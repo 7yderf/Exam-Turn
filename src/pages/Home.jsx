@@ -34,7 +34,7 @@ function Home() {
     async function fetchAvaluo() {
       try {
         const avaluo = await infoAvaluo();
-        if (avaluo === undefined) {
+        if ((avaluo === undefined) || !!avaluo) {
           dispatch({ type: "INFO_AVALUO", payload: data[0] });
           setDataAvaluo(data[0]);
         } else {
