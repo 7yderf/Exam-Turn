@@ -46,8 +46,9 @@ function Home() {
       }
     }
     fetchAvaluo();
-
   }, []);
+
+  console.log(dataAvaluo);
 
   return (
     <div className="home container-fluid">
