@@ -19,13 +19,13 @@ function Home() {
     setTabs([
       {
         id: 0,
-        name: "Calendario",
-        icon: Tab1
+        name: "Avalúos",
+        icon: Tab2
       },
       {
         id: 1,
-        name: "Avalúos",
-        icon: Tab2
+        name: "Calendario",
+        icon: Tab1
       }
     ]);
   }, [setTabs]);
@@ -54,13 +54,13 @@ function Home() {
       {dataAvaluo !== null
         ? (
           <article className="home__content ">
-            {tab?.id === 0 ? <div className="home__dos"></div> : null}
-            {tab?.id === 1 ? (
+            {tab?.id === 0 ? (
               <div className="home__content ">
                 <Avaluos avaluo={dataAvaluo} />
               </div>
             )
               : null}
+            {tab?.id === 1 ? <div className="home__dos"></div> : null}
           </article>
         ) : <Loader />}
     </div>
