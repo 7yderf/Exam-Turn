@@ -34,14 +34,14 @@ function Home() {
     async function fetchAvaluo() {
       try {
         const avaluo = await infoAvaluo();
-        if ((avaluo === undefined) || !!avaluo) {
+        if ((avaluo === undefined) || (avaluo === null)) {
           dispatch({ type: "INFO_AVALUO", payload: data[0] });
           setDataAvaluo(data[0]);
         } else {
           dispatch({ type: "INFO_AVALUO", payload: avaluo });
           setDataAvaluo(avaluo);
         }
-        console.log(avaluo);
+        console.log("null", avaluo);
       } catch (error) {
         console.log(error);
       }
@@ -49,7 +49,7 @@ function Home() {
     fetchAvaluo();
   }, []);
 
-  console.log(dataAvaluo);
+  console.log("data", dataAvaluo);
 
   return (
     <div className="home container-fluid">

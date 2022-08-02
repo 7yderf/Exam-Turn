@@ -127,7 +127,7 @@ module.exports = {
       chunkFilename: "styles/[id].css"
     }),
     new HtmlWebpackPlugin({
-      title: "Template Webpack React",
+      title: "Turn",
       favicon: "./public/favicon.png",
       meta: {
         "theme-color": "#FFFFFF"
