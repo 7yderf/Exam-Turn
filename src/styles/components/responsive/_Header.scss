@@ -29,9 +29,6 @@
   }
   @include for-size(phone-xbig) {}
   @include for-size(phone-big) {
-    &__logo {
-      padding-left: 16px;
-    }
     &__nav {
       padding-right: 16px;
     }

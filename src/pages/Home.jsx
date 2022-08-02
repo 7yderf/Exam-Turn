@@ -34,7 +34,7 @@ function Home() {
     async function fetchAvaluo() {
       try {
         const avaluo = await infoAvaluo();
-        if ((avaluo === undefined) || (avaluo === null)) {
+        if (avaluo === undefined) {
           dispatch({ type: "INFO_AVALUO", payload: data[0] });
           setDataAvaluo(data[0]);
         } else {
@@ -42,22 +42,19 @@ function Home() {
           setDataAvaluo(avaluo);
         }
       } catch (error) {
-        dispatch({ type: "INFO_AVALUO", payload: data[0] });
+        dispatch({ type: "INFO_AVALUO", payload: data[0] }); // in case of error load demo data
         setDataAvaluo(data[0]);
-        console.log("null", data[0]);
       }
     }
     fetchAvaluo();
   }, []);
-
-  console.log("data", dataAvaluo);
 
   return (
     <div className="home container-fluid">
       {dataAvaluo !== null
         ? (
           <article className="home__content ">
-            {tab?.id === 0 ? <div className="home__dos">1</div> : null}
+            {tab?.id === 0 ? <div className="home__dos"></div> : null}
             {tab?.id === 1 ? (
               <div className="home__content ">
                 <Avaluos avaluo={dataAvaluo} />

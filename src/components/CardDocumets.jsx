@@ -6,21 +6,7 @@ import "@stylesComponents/Avaluos.scss";
 
 export default function CardDocumets({ title, data }) {
   const [listDocuments, setListDocuments] = useState(null);
-  const succesMockDocuments = {
-    14: {
-      type: "Vehículo",
-      document: "Diagnóstico mecánico",
-      required: "Si",
-      uploaded_at: "2022-07-29 16:59:28"
-    },
-    15: {
-      type: "Vehículo",
-      document: "Validación de factura origen",
-      required: "Si",
-      uploaded_at: "2022-07-29 16:59:28"
-    }
-  };
-  const clientDocuments = data ? Object.values(data.documents) : Object.values(succesMockDocuments);
+  const clientDocuments = Object.values(data.documents);
   const { documents } = useMockDocuments();
   const duplicado = [];
   const categoryTypes = documents.filter((item) => (duplicado[item.type] ? false : duplicado[item.type] = true));
