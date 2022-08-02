@@ -41,6 +41,7 @@ function Home() {
           dispatch({ type: "INFO_AVALUO", payload: avaluo });
           setDataAvaluo(avaluo);
         }
+        console.log(avaluo);
       } catch (error) {
         console.log(error);
       }
