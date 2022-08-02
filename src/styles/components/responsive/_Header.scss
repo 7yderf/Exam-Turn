@@ -21,6 +21,11 @@
       @include flex(flex-end);
       padding-right: 20px;
     }
+    &__logo{
+      background: none;
+      min-width: inherit;
+      padding-left: 0px;
+    }
   }
   @include for-size(phone-xbig) {}
   @include for-size(phone-big) {

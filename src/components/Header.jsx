@@ -3,6 +3,7 @@ import { useMedia, useModal } from "@hooks";
 
 import Arrow from "@icons/arrow-down.svg";
 import Logo from "@icons/logoSolana.png";
+import LogoMobile from "@icons/favicon.png";
 import profileImage from "@images/default-user-icon.svg";
 
 import "@stylesComponents/Header.scss";
@@ -14,7 +15,7 @@ function Header() {
   return (
     <header className="header container-fluid">
       <Link to="/" className="header__logo" data-mobile={mobile}>
-        <img src={Logo} alt="" className="header__logo-image" />
+        <img src={mobile ? LogoMobile : Logo} alt="" className="header__logo-image" />
       </Link>
       <nav className="header__nav container-fluid">
         {mobile ? (
