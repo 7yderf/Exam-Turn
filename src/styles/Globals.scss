@@ -1,0 +1,62 @@
+@import "./Mixins";
+@import "./Custom.scss";
+
+/* General styles */
+* {
+  box-sizing: border-box;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  // --primary-color: ;
+  // --secondary-color: ;
+  // --accent-color: ;
+  // --success-color: ;
+  --background-color:#081417;
+  --background-second: #191F26 ;
+  --error-color: #E15757;
+  // --warning-color: ;
+  --primary-font: "Zen Kaku Gothic Antique", sans-serif;
+  // --secondary-font: ;
+  --text-color: #464661;
+  --border-input-color: #03253E;
+  --text-color-white: #FFFFFF;
+}
+
+html {
+  font-size: 62.5%;
+  // font-family: var(--primary-font);
+}
+body {
+  font-size: 1.6rem;
+  min-height: 100vh;
+}
+
+input,
+select,
+textarea,
+button {
+  background-color: transparent;
+  border: 0;
+}
+button {
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+button:active {
+  transform: translateY(4px);
+}
+
+#modal-root,
+#loader-root {
+  position: absolute;
+}
+
+#modal-root {
+  z-index: 5;
+}
+#loader-root {
+  z-index: 10;
+}
