@@ -1,0 +1,10 @@
+<svg id="menu" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="vuesax_outline_menu" data-name="vuesax/outline/menu">
+    <g id="menu-2" data-name="menu">
+      <path id="Vector" d="M30,0V30H0V0Z" fill="#fff" opacity="0"/>
+      <path id="Vector-2" data-name="Vector" d="M.707,1.875C.32,1.875,0,1.45,0,.938S.32,0,.707,0H17.668c.386,0,.707.425.707.938s-.32.938-.707.938Z" transform="translate(5.813 7.813)" fill="#fff"/>
+      <path id="Vector-3" data-name="Vector" d="M.938,1.875A.944.944,0,0,1,0,.938.944.944,0,0,1,.938,0h22.5a.944.944,0,0,1,.938.938.944.944,0,0,1-.937.938Z" transform="translate(2.813 14.063)" fill="#fff"/>
+      <path id="Vector-4" data-name="Vector" d="M.707,1.875C.32,1.875,0,1.45,0,.938S.32,0,.707,0H17.668c.386,0,.707.425.707.938s-.32.938-.707.938Z" transform="translate(5.813 20.313)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
