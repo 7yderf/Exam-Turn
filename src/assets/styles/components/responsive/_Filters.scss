@@ -1,0 +1,54 @@
+
+  @include for-size(desktop-xbig) {}
+  @include for-size(desktop-big) {}
+  @include for-size(desktop-mid) {}
+  @include for-size(desktop) {}
+  @include for-size(tablet-landscape) {
+    .modal-content{
+      background: #000;
+    }
+    .filters{
+      &__text{
+        color: var(--text-contrast-color)
+      }
+    }
+    .btn-filters-years{
+      background: #000;
+      border:1px solid rgb(131, 131, 131)!important;
+    }
+    .accordion-header{
+      &__brand{
+        background: #000;
+        .btn-filters.is-active{
+          border: 1px solid rgb(131, 131, 131)!important;
+          span{
+            color:var(--text-contrast-color)!important;
+          }
+        }
+      }
+      
+    }
+    .brand-logo{
+      filter: invert(0);
+    }
+    .btn-filters{
+      background-color: #000;
+      border:1px solid rgb(131, 131, 131)!important;
+    }
+    .button-modal{
+      background: #000;
+      border:1px solid rgb(131, 131, 131)!important;
+      margin-top: 24px;
+      padding: 8px;
+    }
+    .btn-go{
+      font-size: 1.4rem;
+      color: var(--text-contrast-color);
+    }
+  }
+  @include for-size(tablet-portrait) {}
+  @include for-size(tablet-small) {}
+  @include for-size(phone-xbig) {}
+  @include for-size(phone-big) {}
+  @include for-size(phone-mid) {}
+  @include for-size(phone) {}

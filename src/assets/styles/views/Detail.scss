@@ -1,0 +1,60 @@
+@import "../Mixins";
+$icon-arrow: url("@/assets/images/icons/icon-arrow.svg");
+
+.detail {
+  @include content(100%, 0);
+  &__detail-galery{
+    @include content(1200px, 0);
+    @include flex(flex-start, 16px, flex-start);
+    margin-top: 24px;
+  }
+  &__galery{
+    @include content(750px, 0);
+    margin: initial;
+    max-height: 700px;
+  }
+  &__content{
+    flex-grow: 1;
+  }
+  &__content-name{
+    @include text(2.4rem, 400, 3.2rem, left);
+  }
+  &__content-kms{
+    @include text(1.6rem, 400, 2.4rem, left);
+    color: #ABABAB
+  }
+  &__content-price{
+    @include text(4.8rem, 400, 5.6rem, left);
+  }
+  &__content-agency{
+    @include border(#dfdfdf);
+    @include flex(center, false, flex-start);
+    flex-direction: column;
+    width: 100%;
+    background: #F8FAFC;
+    padding: 16px 8px;
+  }
+  &__content-ubication{
+    @include text(1.2rem, 400, 1.4rem, left);
+  }
+  &__agency{
+    @include flex;
+    @include text(1.6rem, 600, 2.4rem, left);
+  }
+  &__agency-ubication{
+    @include text(1.6rem, 400, 2.4rem, left);
+  }
+  &__agency-map{
+    @include text(1.4rem, 600, 1.8rem, left);
+  }
+  &__detail-galery__sumary{
+    @include content(1200px, 0);
+    @include flex(flex-start, false, flex-start);
+   
+  }
+
+
+ 
+}
+
+@import "./responsive/Detail";

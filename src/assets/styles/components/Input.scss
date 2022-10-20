@@ -1,0 +1,45 @@
+@import "../Mixins";
+
+.input {
+  $root: &;
+  @include text(1.6rem, 400, 2.4rem);
+  border: 1px solid var(--text-contrast-color);
+  padding-left: 8px;
+  width: 100%;
+  height: 50px;
+  color: var(--text-contrast-color);
+  &::placeholder{
+    @include text(1.6rem, 400, 2.4rem);
+    color: var(--text-contrast-color);
+  }
+  border-radius: 5px;
+  &--radio {}
+  &--check {}
+  &--file {}
+  &__input {
+    position: relative;
+  }
+  &__area {}
+  &__checkbox {}
+  &__checkbox-error {}
+  &__radio {}
+  &__radio-error {}
+  &__select {
+    padding-left: 8px;
+  }
+  &__select-value {}
+  &__select-options {
+    
+  }
+  &__select-option {}
+  &__file {}
+  &__profile {}
+  &__profile-image {}
+  &__show {}
+  &__text {
+    &--check {}
+    &--radio {}
+  }
+}
+
+@import "./responsive/Input";

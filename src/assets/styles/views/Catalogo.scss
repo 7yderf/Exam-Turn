@@ -1,0 +1,174 @@
+@import "../Mixins";
+
+.catalogo {
+  @include content(100%, 0);
+  &__hero{
+    @include content(100%);
+    padding: 16px 0 16px;
+    background: var(--primary-color);
+    position: sticky;
+    top: 96px;
+    z-index: 2;
+  }
+  &__search{
+    @include content(1200px);
+    @include flex(space-between, 16px, flex-end);
+    
+  }
+  &__content-search{
+    @include flex();
+    position: relative;
+  }
+  &__icon-search{
+    position: absolute;
+    right: 10px;
+    z-index: 2;
+    cursor: pointer;
+     &:hover{
+      transform: scale(1.05);
+      transition: .3s
+    }
+ }
+  &__input-box{
+    flex-grow: 1;
+  }
+  .input {
+    &__select {
+      width: 150px;
+    }
+  }
+  &__order-select{
+    @include flex();
+  }
+  &__clean-filters{
+    @include content(280px, 0);
+    @include flex(flex-start, 16px, baseline);
+    margin: initial;
+    margin-bottom: 12px;
+  }
+  &__text-filters{
+    @include text(2.4rem, 400, 2.8rem);
+    color: var(--text-contrast-color);
+    margin-bottom: 0;
+    &--clear{
+      @include text(1.4rem, 400, 1.7rem);
+    }
+  }
+  &__results{
+    margin-bottom: 18px
+  }
+  &__text-results{
+    @include text(2.4rem, 400, 2.8rem);
+    color: var(--text-contrast-color);
+    margin-right: 16px;
+    &--sub{
+      @include text(1.2rem, 400, 1.46rem);
+      color: var(--text-contrast-color);
+    }
+  }
+  &__body{
+    @include content(1200px);
+    @include flex();
+  }
+  &__row{
+    width: 100%;
+  }
+  &__aside{
+    padding: 0 16px;
+  }
+  &__deck{
+    @include flex(space-around, 16px, flex-start);
+    background: white;
+    padding: 8px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+  }
+  &__deck-img{
+    filter: invert(39%) sepia(92%) saturate(1534%) hue-rotate(347deg) brightness(101%) contrast(101%);
+    width: 25px;
+    height: 25px;
+  }
+  &__deck-filter-text{
+    @include text(1.4rem, 400, 1.68rem);
+    color: #2e2e2e;
+  }
+  &__deck-btn{
+    @include flex(center, 4px, center);
+    flex-direction: column;
+    border-radius: 3px;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.28);
+    padding: 4px 16px;
+    cursor: pointer;
+    &:hover{
+      background: var(--secondary-color);
+      img{
+        filter: invert(0) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+      }
+      .catalogo__deck-filter-text{
+        color: var(--text-contrast-color);
+      }
+    }
+  }
+  &__paginate{
+    @include flex(center, 16px, center);
+    margin-top: 16px;
+  }
+  &__paginate-btn{
+    @include border();
+    @include text(1.6rem, 600, 2.4rem);
+    padding: 8px 16px;
+    border-radius: 3px;
+    &[data-show="true"]{
+      background: var(--secondary-color);
+      color: var(--text-contrast-color);
+    }
+
+  }
+  
+}
+
+.page-loading-vehicle{
+  .noSearch{
+    display: none;
+    flex-direction: column;
+  }
+  .cards-cart__card{
+    display: none;
+  }
+}
+.catalogo{
+  .body{
+    display: none;
+  }
+}
+.page-loading-vehicle{
+  .catalogo{
+    .body{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 4;
+    background: #ffffffd6;
+    bottom: 0;
+    }
+  }
+}
+
+.noSearch{
+  flex-direction: column;
+}
+.simil{
+  flex-direction: column;
+    width: 100%;
+    max-width: inherit!important;
+}
+
+
+
+
+
+@import "./responsive/Catalogo";

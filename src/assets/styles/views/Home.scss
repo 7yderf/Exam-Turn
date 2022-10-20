@@ -1,0 +1,287 @@
+@import "../Mixins";
+$icon-arrow: url("@/assets/images/icons/icon-arrow.svg");
+
+.home {
+  @include content(100%, 0);
+  @include flex(center, false, flex-start);
+  flex-direction: column;
+  &__hero{
+    @include content(100%, 0);
+    @include flex();
+    @include border();
+    height: 700px;
+    .swiper-pagination{
+      @include flex(center, 6px, center);
+      flex-direction: column;
+      height: 100%;
+      width: auto;
+      right: 0;
+      left: initial;
+      bottom: 0;
+    }
+    .swiper-pagination-bullet {
+      @include flex();
+      @include text(1.6rem, 600, 2.4rem); 
+      width: 60px;
+      height: 48px;
+      border: 1px solid #FFFFFF;
+      border-radius: 5px;
+      color: var(--text-contrast-color);
+      opacity: 1;
+      background: var(--primary-color);
+    }
+    
+    .swiper-pagination-bullet-active {
+      color: var(--text-contrast-color);
+      background: var(--secondary-color);
+    }
+  }
+  &__copy{
+    @include content(1440px, 0);
+    @include flex(center, false, stretch);
+    height: 500px;
+    &--dark{
+      margin-top: 60px;
+    }
+  }
+  &__copy-img{
+    width: 50%;
+    object-fit: cover;
+    object-position: center;
+  }
+  &__copy-box{
+    width: 50%;
+    @include flex(center, 8px, center);
+    flex-direction: column;
+    &--drak{
+      background-color: var(--primary-color);
+    }
+  }
+  &__copy-title{
+    @include text(4.8rem, 400, 5.5rem, center);
+    max-width: 400px;
+    &--dark{
+      color: var(--text-contrast-color);
+    }
+  }
+  &__copy-text{
+    @include text(2rem, 400, 2.6rem, center);
+    max-width: 400px;
+    &--dark{
+      color: var(--text-contrast-color);
+    }
+  }
+  &__copy-button{
+    @include button(solid, 380px);
+    &--dark{
+      @include button(outline, 380px);
+    }
+  }
+  &__ubication{
+    @include content(1140px, 0);
+    margin-top: 60px;
+  }
+  &__ubication-btn{
+    @include button(solid, 380px);
+    text-align: left;
+    justify-content: flex-start;
+    margin: 20px 0;
+  }
+  &__ubication-title{
+    @include text(2.4rem, 400, 2.8rem, left);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--primary-color);
+  }
+  &__ubication-send{
+    @include text(1.6rem, 600, 2.4rem, left);
+    margin-top: -50px;
+    &::after{
+    content: 'next';
+    font-family: swiper-icons;
+    font-size: 80%;
+    text-transform: none!important;
+    letter-spacing: 0;
+    font-variant: initial;
+    line-height: 1;
+    margin-left: 15px;
+    }
+  }
+  &__security{
+    @include content(1140px, 0);
+    margin-top: 60px;
+  }
+  &__security-title{
+    @include text(4.8rem, 400, 5.7rem, center);
+    margin-bottom: 16px;
+    color: var(--text-color);
+    margin-bottom: 24px;
+  }
+  &__security-text{
+    @include text(2rem, 400, 2.6rem, center);
+    color: var(--text-color);
+    margin-bottom: 48px;
+  }
+  &__security-card{
+  width: 100%;
+  height: 260px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 24px 16px;
+  }
+  &__security-box{
+    @include flex();
+    width: 70px;
+    height: 70px;
+    border-radius: 5px;
+    background: var(--secondary-color);
+  }
+  &__security-img{
+    width:50%;
+    height: 50%;
+    object-fit: contain
+  }
+  &__security-border{
+    width: 70px;
+    height: 4px;
+    background: var(--secondary-color);
+    margin: 16px 0;
+  }
+  &__security-txt{
+    @include text(2.2rem , 400, 2.8rem);
+    color: var(--text-color);
+  }
+  &__security-subtext{
+    @include text(1.6rem , 400, 2.4rem);
+    color: var(--text-color);
+  }
+  &__agency{
+    @include content(100%, 0);
+    @include flex(center, false, stretch);
+    flex-direction: column;
+    background: var(--primary-color);
+    padding: 50px 0;
+  }
+  &__agency-title{
+    @include text(4.8rem, 400, 5.7rem, center);
+    color: var(--text-contrast-color);
+    margin-bottom: 16px;
+  }
+  &__agency-subtitle{
+    @include text(2rem, 200, 2.6rem, center);
+    color: var(--text-contrast-color);
+    margin:0 auto 32px;
+    max-width: 900px;
+  }
+  &__agency-box{
+    @include content(730px, 0);
+    @include flex(center, 30px, stretch);
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+  }
+  &__agency-card{
+    @include border(#FFF);
+    @include flex(flex-start, false, center);
+    flex-direction: column;
+    border-radius: 5px;
+    max-width: 350px;
+    height: 350px;
+    flex-grow: 1;
+    padding: 32px 24px;
+  }
+  &__agency-img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  &__agency-Boxbtn{
+    @include content(730px, 0);
+    margin-top: 16px;
+    
+  }
+  &__agency-btn{
+    @include button(solid, 380px);
+    align-self: flex-start;
+    margin-right: auto;
+    box-shadow: none;
+    justify-content: flex-start;
+    &::after{
+      content: 'next';
+      font-family: swiper-icons;
+      font-size: 80%;
+      text-transform: none!important;
+      letter-spacing: 0;
+      font-variant: initial;
+      line-height: 1;
+      margin-left: 15px;
+      }
+  }
+  &__agency-txt{
+    @include text(2.4rem, 400, 2.8rem, center);
+    color: var(--text-contrast-color);
+    margin: auto;
+  }
+  &__client{
+    @include content(1140px, 0);
+    margin-top: 60px;
+  }
+  &__client-title{
+    @include text(4.8rem, 400, 5.7rem, center);
+    margin-bottom: 16px;
+    color: var(--text-color);
+    margin-bottom: 24px;
+  }
+  &__client-card{
+    @include flex(flex-start, 8px, flex-start);
+    flex-direction: column;
+    width: 100%;
+    min-height: 260px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 24px 16px;
+    }
+    &__client-score-box,
+    &__client-ubication-box,
+    &__client-box{
+      @include flex(flex-start, 8px, center);
+    }
+    &__client-img{
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+    &__client-text{
+      @include text(1.6rem, 600, 2.4rem);
+      margin-bottom: 0;
+    }
+    &__client-subtext{
+      @include text(1.4rem, 400, 2.2rem);
+      margin-bottom: 0;
+      color: #ABABAB;
+    }
+    &__client-txt{
+      @include text(1.6rem , 400, 2.4rem);
+      color: var(--text-color);
+      flex-grow: 1;
+    }
+    &__client-score-text{
+      @include text(1.6rem , 600, 2.4rem);
+      color: var(--primary-color);
+      margin-bottom: 0;
+    }
+    &__client-score-img{
+      height: 18px;
+    }
+    &__client-ubication-text{
+      @include text(1.6rem , 600, 2.4rem);
+      color: var(--primary-color);
+      margin-bottom: 0;
+    }
+    
+}
+
+@import "./responsive/Home";

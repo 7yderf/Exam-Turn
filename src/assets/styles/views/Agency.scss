@@ -1,0 +1,37 @@
+@import "../Mixins";
+$icon-arrow: url("@/assets/images/icons/icon-arrow.svg");
+
+.agency {
+  @include content(100%, 0);
+ background: var(--primary-color);
+ min-height: calc(100vh - 96px);
+ &__hero-title{
+  @include content(1200px, 0);
+  @include flex(flex-start);
+  @include text(2.4rem, 400, 2.8rem, left);
+  color: var(--text-contrast-color);
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--text-contrast-color);
+ }
+ &__map{
+  width: 100%;
+  height: 500px;
+ }
+ &__hero-box-btn{
+  @include content(1200px, 0);
+  @include flex(flex-start);
+  padding: 16px 0;
+ }
+ &__hero-btn{
+  @include button(solid, 100%);
+  justify-content: flex-start;
+  text-align: left;
+  box-shadow: none;
+ }
+  &__card{
+    @include content(1140px, 0);
+    margin-top: 60px;
+  } 
+}
+
+@import "./responsive/Agency";

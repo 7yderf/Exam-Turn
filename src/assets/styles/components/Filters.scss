@@ -1,0 +1,158 @@
+@import "../Mixins";
+
+.filters{
+  &__text{
+    @include text(1.4rem, 400, 1.8rem);
+    color: #2e2e2e;
+  }
+}
+
+.btn-check:focus+.btn, .btn:focus{
+  box-shadow: none;
+}
+
+
+.accordion-header{
+  @include flex();
+  height: 60px;
+  &__brand{
+    background: rgb(248, 248, 248);
+    margin-bottom: 4px;
+    height: auto;
+    .btn-filters{
+      border: none!important;
+      padding: 4px!important;
+      border-radius: 3px;
+    }
+    .btn-filters.is-active{
+      background: #0202021A;
+      border-color: var(--primary-color)!important;
+      span{
+        color: var(--text-color)!important
+      }
+    }
+  }
+  button{
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.accordion-body{
+  padding-left: 0;
+  padding-right: 0;
+}
+.btn-model{
+  @include flex(space-between, 4px);
+  flex-wrap: wrap;
+  padding-bottom:8px
+}
+.accordion,
+.accordion-item {
+  background: transparent;
+}
+.accordion-item {
+  border: none;
+  border-bottom: 1px solid #2b2b40;
+}
+.accordion-button[data-v-a7b18a08]:not(.collapsed).btn-filters {
+  
+  box-shadow: none;
+}
+.accordion-button:not(.btn-filters),
+.accordion-button:not(.collapsed) {
+  
+  background-color: transparent;
+  box-shadow: none;
+}
+.accordion-button:not(.collapsed) {
+  &::after{
+    filter: invert(52%) sepia(40%) saturate(3589%) hue-rotate(347deg) brightness(101%) contrast(101%);
+  }
+}
+
+.btn-filters {
+  border: 1px solid #020202 !important;
+  margin-bottom: 3px;
+  border-radius: 3px;
+  background-color: white;
+  &:hover,
+  :active,
+  :focus {
+    background-color: rgba(2, 2, 2, 0.1);
+    border-width: 1px;
+    border-style: solid;
+    border: 1px solid #020202 !important;
+    border-radius: 3px !important;
+  }
+  &.is-active {
+    background-color: #FF5C20;
+    border: 1px solid  !important;
+    border-radius: 3px !important;
+    span{
+      color: white!important;
+    }
+  }
+}
+.brand-btn {
+  border-radius: 0 !important;
+}
+.brand-logo{
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  filter: invert(1) sepia(5%) saturate(0%) hue-rotate(294deg) brightness(96%) contrast(104%);
+}
+
+.row-years{
+  @include flex(space-between);
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+}
+.btn-filters-years {
+  border: 1px solid #020202 !important;
+  background-color: white;
+  padding: 7px 10px;
+  &:hover,
+  :active,
+  :focus {
+    background-color: rgba(2, 2, 2, 0.1);
+  }
+  &.is-active {
+    background-color: #FF5C20;
+    border-color: #FF5C20 !important;
+    span{
+      color: white!important;
+    }
+  }
+}
+
+.accordion-button.btn-filters::after {
+  display: none;
+}
+.el-input__icon {
+  width: 24px;
+}
+.el-checkbox {
+  color: var(--el-checkbox-text-color);
+  font-weight: 400;
+  font-size: inherit;
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  user-select: none;
+  margin-right: 30px;
+  height: 32px;
+  --el-checkbox-bg-color: transparent;
+}
+.filt {
+  top: 225px;
+  max-height: 80vh;
+  padding: 0 8px;
+}
+
+@import "./responsive/Filters";
