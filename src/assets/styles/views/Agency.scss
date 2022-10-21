@@ -5,6 +5,7 @@ $icon-arrow: url("@/assets/images/icons/icon-arrow.svg");
   @include content(100%, 0);
  background: var(--primary-color);
  min-height: calc(100vh - 96px);
+ &__card-title,
  &__hero-title{
   @include content(1200px, 0);
   @include flex(flex-start);
@@ -28,10 +29,14 @@ $icon-arrow: url("@/assets/images/icons/icon-arrow.svg");
   text-align: left;
   box-shadow: none;
  }
-  &__card{
+  &__cards{
     @include content(1140px, 0);
     margin-top: 60px;
-  } 
+  }
+  &__card-box{
+    margin-top: 20px;
+  }
+   
 }
 
 @import "./responsive/Agency";

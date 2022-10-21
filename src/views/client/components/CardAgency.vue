@@ -9,17 +9,17 @@
     <div class="agencies__phone">
       <img :src="Phone" class="agencies__phone-img" />
       <p class="agencies__phone-text">
-        {{`${card.address}`}}
+        {{`${card.phone}`}}
       </p>
     </div>
     <div class="agencies__socials">
-      <a href="#" class="agencies__social">
-       <img :src="Network" alt="" class="agencies__img-social" />
+      <a :href="card.twitter_page" target="_blank" class="agencies__social">
+        <img :src="Network" alt="" class="agencies__img-social" />
       </a>
-      <a href="#" class="agencies__social">
+      <a :href="card.facebook_page" target="_blank" class="agencies__social">
         <img :src="Facebook" alt="" class="agencies__img-social" />
       </a>
-      <a href="#" class="agencies__social">
+      <a :href="card.instagram_page" target="_blank" class="agencies__social">
         <img :src="Instagram" alt="" class="agencies__img-social" />
       </a>
     </div>
@@ -61,6 +61,7 @@ export default {
 
 .agencies {
   $root: &;
+
   &__card {
     @include flex(center, false, center);
     @include border(rgb(141, 141, 141));
@@ -68,31 +69,37 @@ export default {
     flex-direction: column;
     padding: 30px 20px 20px;
     height: 100%;
+
     &[data-active="true"] {
       border: 1px solid var(--secondary-color);
       background-color: var(--bg-color);
+
       .agencies__img,
       .agencies__img-social,
-      .agencies__phone-img{
+      .agencies__phone-img {
         filter: invert(1);
       }
+
       .agencies__name,
       .agencies__addres,
-      .agencies__phone-text{
+      .agencies__phone-text {
         color: var(--primary-color);
       }
     }
-    &:hover{
+
+    &:hover {
       border: 1px solid var(--secondary-color);
       background-color: var(--bg-color);
+
       .agencies__img,
       .agencies__img-social,
-      .agencies__phone-img{
+      .agencies__phone-img {
         filter: invert(1);
       }
+
       .agencies__name,
       .agencies__addres,
-      .agencies__phone-text{
+      .agencies__phone-text {
         color: var(--primary-color);
       }
     }
@@ -116,25 +123,30 @@ export default {
     color: var(--text-contrast-color);
     margin-bottom: 20px;
   }
-  &__phone{
+
+  &__phone {
     @include flex();
     align-items: center;
     margin-bottom: 20px;
   }
-  &__phone-text{
+
+  &__phone-text {
     @include text(1.6rem, 400, 2.4rem);
     color: var(--text-contrast-color);
     margin-bottom: 0;
   }
-  &__phone-img{
+
+  &__phone-img {
     width: 24px;
     height: 24px;
     margin-right: 6px;
   }
-  &__socials{
+
+  &__socials {
     @include flex(space-evenly, 16px);
   }
-  &__img-social{
+
+  &__img-social {
     width: 24px;
     height: 24px;
   }

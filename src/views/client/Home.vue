@@ -12,22 +12,32 @@
       <div class="home__copy-box">
         <h2 class="home__copy-title">Compra un auto certificado</h2>
         <p class="home__copy-text">Revisa nuestros planes de financiamiento</p>
-        <button class="home__copy-button">Ver todos los vehículos</button>
+        <router-link to="/catalogo" class="home__copy-button">
+          Ver todos los vehículos 
+        </router-link>
       </div>
     </article>
     <article class="home__ubication slide">
-      <h2 class="home__ubication-title">Usar mi ubicación actual</h2>
-      <div v-if="checkUbication && vehicles.length > 0" class="home__ubication-check">
-        <button class="home__ubication-btn">Usar mi ubicación actual</button>
+      <h2 class="home__ubication-title">Recientemente agregados</h2>
+      <div class="home__ubication-check">
+        <button class="home__ubication-btn" v-if="ubication == ''">Usar mi ubicación actual</button>
+        <button class="home__ubication-btn" v-else>{{ubication}}</button>
         <CarouselCards :vehicles="vehicles" />
-        <div class="home__ubication-bottm">
-          <p class="home__ubication-send">Ver todos los vehículos </p>
 
+        <div class="home__ubication-loading" v-if="vehicles.length === 0">
+          <div class="cart__loading" v-for="cart in Array(4).fill('').map((_, i) => i)"
+            :key="cart">
+            <div class="cart__loading-img"></div>
+            <div class="cart__loading-title"></div>
+            <div class="cart__loading-price"></div>
+          </div>
         </div>
 
-      </div>
-      <div v-else class="home__ubication-Check">
-        <p>Mapa</p>
+        <div class="home__ubication-bottm">
+          <router-link to="/catalogo" class="home__ubication-send">
+            Ver todos los vehículos 
+          </router-link>
+        </div>
       </div>
     </article>
     <article class="home__copy home__copy--dark">
@@ -59,7 +69,10 @@
         </div>
       </div>
       <div class="home__agency-Boxbtn">
-        <button class="home__agency-btn">Ver todas las agencias</button>
+        
+        <router-link to="/agencias" class="home__agency-btn">
+          Ver todas las agencias
+        </router-link>
       </div>
     </article>
     <article class="home__client slide">
@@ -70,13 +83,14 @@
 </template>
 <script>
 /* eslint-disable no-undef */
-import { onMounted, ref, onUnmounted } from "vue";
+import { onMounted, ref, onUnmounted, computed, watch, onBeforeMount } from "vue";
 import Slide from "@/views/client/components/Slide.vue";
 import { Loader } from "@googlemaps/js-api-loader";
 import CarouselCards from "@/views/client/components/CarouselCards.vue";
 import CarouselHome from "@/views/client/components/CarouselHome.vue";
 import { useStore } from "vuex";
 import axios from "axios";
+import { useRoute, useRouter } from "vue-router";
 import ApiService from "@/core/services/ApiService";
 import "@/assets/styles/views/Home.scss";
 import Shell from "@/assets/images/icons/icon-shell.svg";
@@ -100,16 +114,28 @@ export default {
   },
   setup() {
     const store = useStore();
-    const ubication = ref(null);
+    const route = useRoute();
+    const router = useRouter();
+    const ubication = ref('');
     const checkUbication = ref(false);
     const vehicles = ref([]);
     const cardContent = ref([]);
     const cardClientContent = ref([]);
-
+    const imgSrc = ref();
     const loader = new Loader({ apiKey: API_KEY });
+    const windowSize = ref(false);
 
-    const getVehicles = async (link = "") => {
-      const url = "/api/vehicles/marketplace"
+    // const reload = () => {
+    //   location.reload();
+    //   console.log('reload', router);
+    // };
+
+    const getVehicles = async (params = "") => {
+      let url = "api/vehicles/nearby";
+      if (params) {
+        url = `${url}?location=${params}`;
+      }
+
       try {
         const { data } = await ApiService.get(url);
         vehicles.value = data.data.data;
@@ -185,6 +211,22 @@ export default {
     ]
 
 
+    
+
+      const mobile = window.matchMedia("(min-width: 767px)");
+      const handleMobile = (e) => {
+        if (e.matches) {
+          windowSize.value = true;
+        } else {
+          windowSize.value = false;
+        }
+      };
+      mobile.addEventListener("change", handleMobile);
+    
+    onBeforeMount(async () => {
+      handleMobile(mobile);
+    });
+
     onMounted(async () => {
       await loader.load();
       navigator.geolocation.getCurrentPosition(geoposOK, geoposFail);
@@ -201,6 +243,7 @@ export default {
       };
       const geocoder = await new google.maps.Geocoder().geocode({ location: latlng });
       ubication.value = geocoder.results[0].formatted_address;
+      getVehicles(ubication.value);
       checkUbication.value = true;
     };
     const geoposFail = (error) => {
@@ -215,7 +258,9 @@ export default {
       cardContent,
       cardClientContent,
       buyCar,
-      sellYourCar
+      sellYourCar,
+      imgSrc,
+      windowSize
     };
   }
 };

@@ -11,13 +11,11 @@
       </div>
     </article>
     <div ref="mapDiv" class="agency__map" id="map"></div>
-    <article class="agency__card slide">
+    <article class="agency__cards slide">
       <h2 class="agency__card-title">Agencias</h2>
-      <CarouselHome :cardContent="agencies" :type="'agency'" :active="agencies_active" />
+      <CarouselHome class="agency__card-box" :cardContent="agencies" :type="'agency'" :active="agencies_active" />
     </article>
   </main>
-
-
 
 </template>
 
@@ -52,7 +50,8 @@ export default {
 
 
     const getAgencies = async () => {
-      const url = "/api/vehicles/business-unitss";
+      const url = "/api/vehicles/business-units";
+      const newAgencies = [];
       try {
         const { data } = await ApiService.get(url);
         if (data.success) {
@@ -65,101 +64,102 @@ export default {
           }
         }
         agencies.value = newAgencies;
+        console.log("🚀 ~ file: Agencias.vue ~ line 68 ~ getAgencies ~ agencies.value", agencies.value)
       } catch (response) {
         console.error(response, "aqui");
-        agencies.value = [
-          {
-            "id": 6,
-            "name": "Renault Américas",
-            "address": "domicilio conocido",
-            "phone": null,
-            "facebook_page": null,
-            "instagram_page": null,
-            "twitter_page": null,
-            "latitude": 19.5464909,
-            "longitude": -99.1998606,
-            "icon": null,
-            "vehicles": 31
-          },
-          {
-            "id": 5,
-            "name": "Kia Corregidora",
-            "address": "domicilio conocido",
-            "phone": null,
-            "facebook_page": null,
-            "instagram_page": null,
-            "twitter_page": null,
-            "latitude": 19.2009271,
-            "longitude": -99.3521166,
-            "icon": null,
-            "vehicles": 19
-          },
-          {
-            "id": 1,
-            "name": "Audi Galerías",
-            "address": "domicilio conocido",
-            "phone": null,
-            "facebook_page": null,
-            "instagram_page": null,
-            "twitter_page": null,
-            "latitude": 19.0401541,
-            "longitude": -98.3364924,
-            "icon": null,
-            "vehicles": 11
-          },
-          {
-            "id": 3,
-            "name": "Honda Gonzalez Gallo",
-            "address": "domicilio conocido",
-            "phone": null,
-            "facebook_page": null,
-            "instagram_page": null,
-            "twitter_page": null,
-            "latitude": 20.6738686,
-            "longitude": -103.3704326,
-            "icon": null,
-            "vehicles": 11
-          },
-          {
-            "id": 2,
-            "name": "Honda Galerias",
-            "address": "domicilio conocido",
-            "phone": null,
-            "facebook_page": null,
-            "instagram_page": null,
-            "twitter_page": null,
-            "latitude": 21.025147,
-            "longitude": -101.2753897,
-            "icon": null,
-            "vehicles": 8
-          },
-          {
-            "id": 4,
-            "name": "Kia Altaria",
-            "address": "domicilio conocido",
-            "phone": null,
-            "facebook_page": null,
-            "instagram_page": null,
-            "twitter_page": null,
-            "latitude": 19.1539275,
-            "longitude": -103.0217916,
-            "icon": null,
-            "vehicles": 7
-          },
-          {
-            "id": 7,
-            "name": "Acura",
-            "address": "domicilio conocido",
-            "phone": null,
-            "facebook_page": null,
-            "instagram_page": null,
-            "twitter_page": null,
-            "latitude": 19.2401254,
-            "longitude": -103.7636272,
-            "icon": null,
-            "vehicles": 3
-          }
-        ];
+        // agencies.value = [
+        //   {
+        //     "id": 6,
+        //     "name": "Renault Américas",
+        //     "address": "domicilio conocido",
+        //     "phone": null,
+        //     "facebook_page": null,
+        //     "instagram_page": null,
+        //     "twitter_page": null,
+        //     "latitude": 19.5464909,
+        //     "longitude": -99.1998606,
+        //     "icon": null,
+        //     "vehicles": 31
+        //   },
+        //   {
+        //     "id": 5,
+        //     "name": "Kia Corregidora",
+        //     "address": "domicilio conocido",
+        //     "phone": null,
+        //     "facebook_page": null,
+        //     "instagram_page": null,
+        //     "twitter_page": null,
+        //     "latitude": 19.2009271,
+        //     "longitude": -99.3521166,
+        //     "icon": null,
+        //     "vehicles": 19
+        //   },
+        //   {
+        //     "id": 1,
+        //     "name": "Audi Galerías",
+        //     "address": "domicilio conocido",
+        //     "phone": null,
+        //     "facebook_page": null,
+        //     "instagram_page": null,
+        //     "twitter_page": null,
+        //     "latitude": 19.0401541,
+        //     "longitude": -98.3364924,
+        //     "icon": null,
+        //     "vehicles": 11
+        //   },
+        //   {
+        //     "id": 3,
+        //     "name": "Honda Gonzalez Gallo",
+        //     "address": "domicilio conocido",
+        //     "phone": null,
+        //     "facebook_page": null,
+        //     "instagram_page": null,
+        //     "twitter_page": null,
+        //     "latitude": 20.6738686,
+        //     "longitude": -103.3704326,
+        //     "icon": null,
+        //     "vehicles": 11
+        //   },
+        //   {
+        //     "id": 2,
+        //     "name": "Honda Galerias",
+        //     "address": "domicilio conocido",
+        //     "phone": null,
+        //     "facebook_page": null,
+        //     "instagram_page": null,
+        //     "twitter_page": null,
+        //     "latitude": 21.025147,
+        //     "longitude": -101.2753897,
+        //     "icon": null,
+        //     "vehicles": 8
+        //   },
+        //   {
+        //     "id": 4,
+        //     "name": "Kia Altaria",
+        //     "address": "domicilio conocido",
+        //     "phone": null,
+        //     "facebook_page": null,
+        //     "instagram_page": null,
+        //     "twitter_page": null,
+        //     "latitude": 19.1539275,
+        //     "longitude": -103.0217916,
+        //     "icon": null,
+        //     "vehicles": 7
+        //   },
+        //   {
+        //     "id": 7,
+        //     "name": "Acura",
+        //     "address": "domicilio conocido",
+        //     "phone": null,
+        //     "facebook_page": null,
+        //     "instagram_page": null,
+        //     "twitter_page": null,
+        //     "latitude": 19.2401254,
+        //     "longitude": -103.7636272,
+        //     "icon": null,
+        //     "vehicles": 3
+        //   }
+        // ];
       }
     };
 

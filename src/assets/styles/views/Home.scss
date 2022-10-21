@@ -92,9 +92,12 @@ $icon-arrow: url("@/assets/images/icons/icon-arrow.svg");
     padding-bottom: 10px;
     border-bottom: 1px solid var(--primary-color);
   }
+  &__ubication-bottm{
+    margin-top: -50px;
+  }
   &__ubication-send{
     @include text(1.6rem, 600, 2.4rem, left);
-    margin-top: -50px;
+    color: var(--primary-color);
     &::after{
     content: 'next';
     font-family: swiper-icons;
@@ -104,6 +107,9 @@ $icon-arrow: url("@/assets/images/icons/icon-arrow.svg");
     font-variant: initial;
     line-height: 1;
     margin-left: 15px;
+    };
+    &:hover{
+      color: var(--primary-color);
     }
   }
   &__security{
@@ -281,6 +287,14 @@ $icon-arrow: url("@/assets/images/icons/icon-arrow.svg");
       color: var(--primary-color);
       margin-bottom: 0;
     }
+    &__ubication-loading{
+      width: 100%;
+      @include flex(center, 30px, center);
+      flex-wrap: wrap;
+      padding-bottom: 60px;
+    }
+
+    
     
 }
 
