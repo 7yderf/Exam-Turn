@@ -189,7 +189,7 @@
 
 <script>
 /* eslint-disable no-undef */
-import { onMounted, ref, watch, markRaw, onBeforeMount } from "vue";
+import { onMounted, ref, watch, markRaw, onBeforeMount, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import { Actions } from "@/store/enums/StoreEnums";
 import GalleryVehicle from "@/views/client/components/GalleryVehicle.vue";
@@ -362,6 +362,11 @@ export default {
       store.dispatch(Actions.REMOVE_BODY_CLASSNAME, "page-load");
       window.addEventListener("scroll", onScroll);
     });
+
+    onUnmounted(() => {
+      window.removeEventListener("scroll", onScroll);
+    });
+
 
     const getDetail = async (id) => {
       store.dispatch(Actions.ADD_BODY_CLASSNAME, "page-load");
