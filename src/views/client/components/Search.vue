@@ -80,7 +80,7 @@ export default {
         if (searchInput.value.length === 0 && searchGlobal.value == "") {
           if (localStorage.getItem('favorites')) {
             const favorites = JSON.parse(localStorage.getItem('favorites'));
-            searchInput.value = Object.values(favorites);
+            searchInput.value = Object.values(favorites).reverse().slice(0, 5);
             searchInputService.value = [];
           }
           opcionSerch.value = true;
@@ -141,7 +141,7 @@ export default {
       if (searchGlobal.value == "" || !searchGlobal.value) {
         if (localStorage.getItem('favorites')) {
           const favorites = JSON.parse(localStorage.getItem('favorites'));
-          searchInput.value = Object.values(favorites);
+          searchInput.value = Object.values(favorites).reverse().slice(0, 5);
           searchInputService.value = [];
         }
       } else {
