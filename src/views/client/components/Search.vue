@@ -80,7 +80,8 @@ export default {
         if (searchInput.value.length === 0 && searchGlobal.value == "") {
           if (localStorage.getItem('favorites')) {
             const favorites = JSON.parse(localStorage.getItem('favorites'));
-            searchInput.value = Object.values(favorites);
+            console.log("🚀 ~ file: Search.vue ~ line 83 ~ showSearch ~  favorites",  favorites)
+            // searchInput.value = Object.values(favorites);
             searchInputService.value = [];
           }
           opcionSerch.value = true;
@@ -141,7 +142,8 @@ export default {
       if (searchGlobal.value == "" || !searchGlobal.value) {
         if (localStorage.getItem('favorites')) {
           const favorites = JSON.parse(localStorage.getItem('favorites'));
-          searchInput.value = Object.values(favorites);
+          console.log("🚀 ~ file: Search.vue ~ line 144 ~ debounceInput ~ favorites", favorites)
+          // searchInput.value = Object.values(favorites);
           searchInputService.value = [];
         }
       } else {
