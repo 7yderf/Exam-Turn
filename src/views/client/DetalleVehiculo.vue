@@ -368,20 +368,6 @@ export default {
     });
 
 
-    // if (localStorage.favorites) {
-    //       const favorite = { ...data.data.vehicle, id };
-    //       let favorites = JSON.parse(localStorage.favorites);
-    //       if (!Object.keys(favorites).includes(id)) {
-    //         favorites = { ...favorites, [id]: favorite };
-    //         localStorage.favorites = JSON.stringify(favorites);
-    //       }
-    //     } else {
-    //       const favorite = { ...data.data.vehicle, id };
-    //       const favorites = { [id]: favorite };
-    //       localStorage.favorites = JSON.stringify(favorites);
-    //     }
-
-
     const getDetail = async (id) => {
       store.dispatch(Actions.ADD_BODY_CLASSNAME, "page-load");
       try {
@@ -403,7 +389,18 @@ export default {
             });
         });
 
-        
+        if (localStorage.getItem("favorites")) {
+          const favorite = { ...data.data.vehicle, id };
+          let favorites = JSON.parse(localStorage.getItem("favorites"));
+          if (!Object.keys(favorites).includes(id)) {
+            favorites = { ...favorites, [id]: favorite };
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+          }
+        } else {
+          const favorite = { ...data.data.vehicle, id };
+          const favorites = { [id]: favorite };
+          localStorage.setItem("favorites", JSON.stringify(favorites));
+        }
       } catch (error) {
         console.log(error);
       }

@@ -78,12 +78,11 @@ export default {
       opcionSerch.value = true;
       try {
         if (searchInput.value.length === 0 && searchGlobal.value == "") {
-          console.log("entro local");
-          // if (localStorage.favorites) {
-          //   const favorites = JSON.parse(localStorage.favorites);
-          //   searchInput.value = Object.values(favorites);
-          //   searchInputService.value = [];
-          // }
+          if (localStorage.getItem('favorites')) {
+            const favorites = JSON.parse(localStorage.getItem('favorites'));
+            searchInput.value = Object.values(favorites);
+            searchInputService.value = [];
+          }
           opcionSerch.value = true;
         }
       } catch (error) {
@@ -140,11 +139,10 @@ export default {
 
     const debounceInput = _.debounce(async () => {
       if (searchGlobal.value == "" || !searchGlobal.value) {
-        if (localStorage.favorites) {
-          console.log("entro local debounce");
-          // const favorites = JSON.parse(localStorage.favorites);
-          // searchInput.value = Object.values(favorites);
-          // searchInputService.value = [];
+        if (localStorage.getItem('favorites')) {
+          const favorites = JSON.parse(localStorage.getItem('favorites'));
+          searchInput.value = Object.values(favorites);
+          searchInputService.value = [];
         }
       } else {
         const { data } = await ApiService.get(
