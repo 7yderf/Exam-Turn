@@ -25,7 +25,7 @@
     >
       <div
         class="search__resultSerch-list"
-        v-for="item in searchInput.reverse().slice(0, 5)"
+        v-for="item in searchInput"
         :key="item.id"
         @click="serchParams(item.id)"
         data-bs-dismiss="modal"
@@ -80,8 +80,7 @@ export default {
         if (searchInput.value.length === 0 && searchGlobal.value == "") {
           if (localStorage.getItem('favorites')) {
             const favorites = JSON.parse(localStorage.getItem('favorites'));
-            console.log("🚀 ~ file: Search.vue ~ line 83 ~ showSearch ~  favorites",  favorites)
-            // searchInput.value = Object.values(favorites);
+            searchInput.value = Object.values(favorites);
             searchInputService.value = [];
           }
           opcionSerch.value = true;
@@ -142,8 +141,7 @@ export default {
       if (searchGlobal.value == "" || !searchGlobal.value) {
         if (localStorage.getItem('favorites')) {
           const favorites = JSON.parse(localStorage.getItem('favorites'));
-          console.log("🚀 ~ file: Search.vue ~ line 144 ~ debounceInput ~ favorites", favorites)
-          // searchInput.value = Object.values(favorites);
+          searchInput.value = Object.values(favorites);
           searchInputService.value = [];
         }
       } else {
