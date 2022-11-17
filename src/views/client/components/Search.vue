@@ -12,12 +12,10 @@
       class="input input__input"
       :data-search="true"
       @keyup.enter="serchEnter(searchGlobal)"
-      clearable
       placeholder="Buscar vehículo"
       @focus="showSearch"
       @blur="handelSerch"
       v-on:input="debounceInput"
-      :data-bs-dismiss="mod ? 'modal' : ''"
       id="input_search_enter"
     />
     <div
@@ -80,11 +78,12 @@ export default {
       opcionSerch.value = true;
       try {
         if (searchInput.value.length === 0 && searchGlobal.value == "") {
-          if (localStorage.favorites) {
-            const favorites = JSON.parse(localStorage.favorites);
-            searchInput.value = Object.values(favorites);
-            searchInputService.value = [];
-          }
+          console.log("entro local");
+          // if (localStorage.favorites) {
+          //   const favorites = JSON.parse(localStorage.favorites);
+          //   searchInput.value = Object.values(favorites);
+          //   searchInputService.value = [];
+          // }
           opcionSerch.value = true;
         }
       } catch (error) {
@@ -142,9 +141,10 @@ export default {
     const debounceInput = _.debounce(async () => {
       if (searchGlobal.value == "" || !searchGlobal.value) {
         if (localStorage.favorites) {
-          const favorites = JSON.parse(localStorage.favorites);
-          searchInput.value = Object.values(favorites);
-          searchInputService.value = [];
+          console.log("entro local debounce");
+          // const favorites = JSON.parse(localStorage.favorites);
+          // searchInput.value = Object.values(favorites);
+          // searchInputService.value = [];
         }
       } else {
         const { data } = await ApiService.get(
