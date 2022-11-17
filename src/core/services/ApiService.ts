@@ -48,43 +48,7 @@ class ApiService {
     ApiService.vueInstance = app;
     ApiService.vueInstance.use(VueAxios, axios);
     ApiService.vueInstance.axios.defaults.baseURL = process.env.VUE_APP_API_URL;
-    ApiService.vueInstance.axios.interceptors.response.use(
-      (response) => {
-        if (process.env.NODE_ENV == "production") {
-          setTimeout(function () {
-            console.clear();
-            console.log(
-              "%cAlto!",
-              "font-size: 60px;color:red; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;"
-            );
-            console.log(
-              "%cEsta característica del navegador es para desarrolladores, no ejecute scripts ya que puede sufrir perdida de información!",
-              "font-size: 12px; color:yellow;"
-            );
-          }, 50);
-        }
-        return response;
-      },
-      async (error) => {
-        const { status } = error.response;
-        if (status === 401) {
-          store.commit(Mutations.PURGE_AUTH);
-          router.push("/sign-in");
-        }
-
-        if (status === 403) {
-          Alert.fire({
-            icon: "warning",
-            title: "¡No autorizado!",
-            text: "Usted no tiene permisos para acceder a este modulo.",
-            confirmButtonText: "Aceptar",
-          });
-          router.push("/dashboard");
-        }
-
-        return Promise.reject(error);
-      }
-    );
+    
   }
 
   /**

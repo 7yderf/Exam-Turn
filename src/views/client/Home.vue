@@ -533,6 +533,10 @@ export default {
       store.dispatch(Actions.REMOVE_BODY_CLASSNAME, "page-load");
     });
 
+    onUnmounted(() => {
+      window.removeEventListener("scroll", onScroll);
+    });
+
     const geolocation = () => {
       navigator.geolocation.getCurrentPosition(geoposOK, geoposFail);
     };

@@ -6,7 +6,7 @@
 import { useStore } from "vuex";
 import { defineComponent, nextTick, onMounted } from "vue";
 import { Mutations } from "@/store/enums/StoreEnums";
-import { initializeComponents } from "@/core/plugins/keenthemes";
+
 
 export default defineComponent({
   name: "app",
@@ -20,9 +20,7 @@ export default defineComponent({
        */
       store.commit(Mutations.OVERRIDE_LAYOUT_CONFIG);
 
-      nextTick(() => {
-        initializeComponents();
-      });
+      
     });
   },
 });
