@@ -1,16 +1,50 @@
 const ID_TOKEN_KEY = "id_token" as string;
+const ID_TOKEN_KEY_GATEWAY = "id_token_gateway" as string;
+
+const formdata = new FormData();
+formdata.append("grant_type", "client_credentials");
+formdata.append("client_id", "9778b75b-0d78-471f-9881-c475471f845d");
+formdata.append("client_secret", "EIW1hdife8PyeIqTKqNTCx1Aqew5nFuTJWL15ftI");
+
+
+const tokenClient = async() => {
+  
+  try {
+    const response = await fetch("https://apivanguardia.demosturn.com/api/oauth/token", {
+    method: "POST",
+    body: formdata,
+    redirect: 'follow'
+  });
+  
+  const data = await response.json();
+  console.log("data",data);
+    localStorage.setItem(ID_TOKEN_KEY_GATEWAY, data.access_token);
+    return data.access_token;
+  } catch (e) {
+    console.log("errorss", e);
+    const mockToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5Nzc4Yjc1Yi0wZDc4LTQ3MWYtOTg4MS1jNDc1NDcxZjg0NWQiLCJqdGkiOiI4MzM2ZGQ4ZTFhODQxZWIwMmQyNWE1M2Y0OTRjZmUwYjYzMGQxNzMzZTBhMDI3NzkxNDJkYjI4ZTZlOWU0Mjg4MzMyMTNhZmM5ODRmYjZiZCIsImlhdCI6MTY2NzQ4NzUwNC4wMzQ2ODgsIm5iZiI6MTY2NzQ4NzUwNC4wMzQ2OTEsImV4cCI6MTY2ODc4MzUwNC4wMjkwMjIsInN1YiI6IiIsInNjb3BlcyI6W119.Rk3Ss20QwxtFG0PT0mwo8bSK0kQXPnDt7MAMpVzjhsrxDB5pBdS6bhk_fuP_qq72rMy4ElZbd8TKiOPI-IRIM3uIyRqYAgDLMxSvxr4axkcV-ObnjDlgfXIfnQ_4_hL97ewxqLdWozFCzWri2Dj-yMFGGWibK_Qe17RzCAYV3SEwZwknEZ95PeavelgO1LM0mZnQdvDd98R4DUprzycrFOt_x7PFpKUtxWlbfMEjhb6uu70WVQeJ183r9toPabcAhyWhfwNE46CJb5WD5Xf87o_J9myzYwFJsiHC5rDWIDUdel567QQb_OnzjD_ApQvHG8eInF1Raaog5EMC8QCE-jzQSlRNOFUOSCfhRuafhTuCtT48XpoGoqU8GMx28z517Ayph28b5hzcn2m7aU62UYb4BdGQh0uXBsNp6vztTBrQvS8XL7EK7dPmmsoWygidxTx8pjA1hDFEAU2bQEpqX0HpnZC2-75SYQrTLdfStDUE_tqpC884jyNm73AJAuvogwZoEef0nJoeR_2-yAvhHWtDDRVY76qtQ7Hurbo8Nzg9OubxvBZW5J7w9KqigqTeb8jTqXAqns9LYjfT6k7bAD-3BME4wq05FRBIjTbUNiSNQkybUU48twA_j1XrZNS7iX7q53C7zX0dmtYyKWtES0nujdbw8rZ6ehO0bOx1m7g";
+    localStorage.setItem(ID_TOKEN_KEY_GATEWAY, mockToken);
+    return mockToken;
+  }
+};
+
+
+/**
+ * @description get token form localStorage client gateway
+ */
+ export const getTokenGateway = async() => {
+  if (localStorage.getItem(ID_TOKEN_KEY_GATEWAY)) {
+    return localStorage.getItem(ID_TOKEN_KEY_GATEWAY);
+  } else {
+    return tokenClient();
+  }
+};
 
 /**
  * @description get token form localStorage
  */
-export const getToken = (): string | null => {
- 
- if (!window.localStorage.getItem(ID_TOKEN_KEY)) {
-  return "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5Nzc4Yjc1Yi0wYTY0LTRlZWUtYjIyOC1hZTljNTUzMjc3MTUiLCJqdGkiOiIxNjBhMDlhZjY2ZDVkYWQzODc0YjE1ZTc0ZGQzYzI3NDNlM2ZiNWMzMWU4Y2I4YTZiYTMxYjc3MzJmZmE5NTczZWY3NDhkMzYyNjcwZmU0MiIsImlhdCI6MTY2NTQ0NzU0NC44NTY1MDMsIm5iZiI6MTY2NTQ0NzU0NC44NTY1MDYsImV4cCI6MTY2Njc0MzU0NC44NTEwMTcsInN1YiI6IiIsInNjb3BlcyI6W119.ZPV7N50QzDyzESESJ9nWvkE2CFJ-gEVHmYGewLtxCusLb42h1nLyia4-DV8-aNEPtKiJGARHfwZXJJaDiWoxwptpDLKlgJ82zCZWlYbga9zjYv8ba7UwrhjsbnZrj2ONOmnSBp5VhES3GME-Eh1mibtGnMakgoAgEFlsGP0TCyB5lNwFnBZybU34rMq4DctxYmTQ6d3hkhp0lkv07D8Dc5CIESAT6vS168OgQMAchYoROKki7k0M9dSQoMFay5W_0suJWN08vBfXOkSybTVdSIqOJlE4R-zybaLdT5MZSo7WE4lfSG3ZILMUCCHENMAjvP69BxM8B31xe4G2yjaDlDdYDR0C_OJVDkkmwk3A0zFBDgjOAxEVpASvJmn8zxVHSJvUqAcrRts5UlJSB7Fbb-BorQxnBEoT_iF-fiWPzCy1cG1GxsrIQSrLv33GqxpyKZh19l6SP6xUC9CtzO4FQyrZvXh9Q_P8-gQGv70T6ASLv9zLsP5aMST59lw6ue36g9suO44wYxOGIk0hZY-dvViY4Xq5M0NU165pDkn2xIZ6Euq2ZATZS_DczGqNmtRca4LoquAGG7mXcgQ1G_JBfPocU_8Qjn2pWyaTJB1u99uYxYhbb_DoccqpAVDvG9pwDPNWh3kjgFCVE5jzPoh65j4lmHToa7Ij0KUnhSrCzLw";
- } else { 
+ export const getToken = (): string | null => {
   return window.localStorage.getItem(ID_TOKEN_KEY);
- }
-  
 };
 
 /**
@@ -28,4 +62,4 @@ export const destroyToken = (): void => {
   window.localStorage.removeItem(ID_TOKEN_KEY);
 };
 
-export default { getToken, saveToken, destroyToken };
+export default { getToken, saveToken, destroyToken, getTokenGateway };

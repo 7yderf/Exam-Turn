@@ -1,51 +1,60 @@
 @import "../Mixins";
 
-.filters{
-  &__text{
+.filters {
+  &__text {
     @include text(1.4rem, 400, 1.8rem);
     color: #2e2e2e;
   }
 }
 
-.btn-check:focus+.btn, .btn:focus{
+.btn-check:focus + .btn,
+.btn:focus {
   box-shadow: none;
 }
-
-
-.accordion-header{
+.btn-model__box{
+  .btn-filters{
+    padding: 8px 12px!important;
+  }
+}
+.accordion-header {
   @include flex();
   height: 60px;
-  &__brand{
-    background: rgb(248, 248, 248);
+  &__brand {
     margin-bottom: 4px;
     height: auto;
-    .btn-filters{
-      border: none!important;
-      padding: 4px!important;
+    .btn-filters {
+      border: none !important;
+      padding: 4px !important;
       border-radius: 3px;
     }
-    .btn-filters.is-active{
-      background: #0202021A;
-      border-color: var(--primary-color)!important;
-      span{
-        color: var(--text-color)!important
+    .btn-filters.is-active {
+      background: #0202021a;
+      border-color: var(--primary-color) !important;
+      span {
+        color: var(--text-color) !important;
       }
     }
   }
-  button{
+  
+  button {
     padding-left: 0;
     padding-right: 0;
   }
 }
-
-.accordion-body{
+.accordion {
+  padding-bottom: 50px;
+  &--brand {
+    padding-bottom: 0;
+  }
+}
+.accordion-body {
   padding-left: 0;
   padding-right: 0;
 }
-.btn-model{
-  @include flex(space-between, 4px);
+.btn-model {
+  @include flex(flex-start, 8px);
   flex-wrap: wrap;
-  padding-bottom:8px
+  padding-bottom: 8px;
 }
 .accordion,
 .accordion-item {
@@ -56,18 +65,17 @@
   border-bottom: 1px solid #2b2b40;
 }
 .accordion-button[data-v-a7b18a08]:not(.collapsed).btn-filters {
-  
   box-shadow: none;
 }
 .accordion-button:not(.btn-filters),
 .accordion-button:not(.collapsed) {
-  
   background-color: transparent;
   box-shadow: none;
 }
 .accordion-button:not(.collapsed) {
-  &::after{
-    filter: invert(52%) sepia(40%) saturate(3589%) hue-rotate(347deg) brightness(101%) contrast(101%);
+  &::after {
+    filter: invert(52%) sepia(40%) saturate(3589%) hue-rotate(347deg)
+      brightness(101%) contrast(101%);
   }
 }
 
@@ -86,25 +94,26 @@
     border-radius: 3px !important;
   }
   &.is-active {
-    background-color: #FF5C20;
-    border: 1px solid  !important;
+    background-color: #ff5c20;
+    border: 1px solid !important;
     border-radius: 3px !important;
-    span{
-      color: white!important;
+    span {
+      color: white !important;
     }
   }
 }
 .brand-btn {
   border-radius: 0 !important;
 }
-.brand-logo{
+.brand-logo {
   width: 30px;
   height: 30px;
   margin-right: 10px;
-  filter: invert(1) sepia(5%) saturate(0%) hue-rotate(294deg) brightness(96%) contrast(104%);
+  filter: invert(1) sepia(5%) saturate(0%) hue-rotate(294deg) brightness(96%)
+    contrast(104%);
 }
 
-.row-years{
+.row-years {
   @include flex(space-between);
   flex-wrap: wrap;
   gap: 10px;
@@ -120,12 +129,14 @@
     background-color: rgba(2, 2, 2, 0.1);
   }
   &.is-active {
-    background-color: #FF5C20;
-    border-color: #FF5C20 !important;
-    span{
-      color: white!important;
+    background-color: #ff5c20;
+    border-color: #ff5c20 !important;
+    span {
+      color: white !important;
     }
   }
+  min-width: 6rem;
+  max-width: 6rem;
 }
 
 .accordion-button.btn-filters::after {
@@ -153,6 +164,50 @@
   top: 225px;
   max-height: 80vh;
   padding: 0 8px;
+}
+.modal-filter-limpiar{
+  cursor: pointer;
+}
+.reset-order{
+    width: 60px;
+    margin-right: auto;
+    align-self: flex-end;
+    margin-bottom: -3px;
+    margin-left: 16px;
+}
+.filters{
+  &__modal-order{
+  
+    @include text(1.4rem, 400, 1.8rem);
+    color: var(--text-contrast-color);
+  }
+  &__order-opcion{
+    padding-bottom: 24px;
+    margin-top: 16px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    &:hover{
+      color: var(--secondary-color);
+      border-bottom: 1px solid var(--secondary-color);
+    }
+    &[data-active="true"]{
+      color: var(--secondary-color);
+      border-bottom: 1px solid var(--secondary-color);
+    }
+  }
+  .accordion{
+    &__input-range{
+      @include flex(space-between);
+      .input{
+        @include text(1.2rem, 400, 1.6rem);
+        height: 25px;
+        max-width: 80px;
+        margin-bottom: 30px;
+
+      }
+
+    }
+  }
 }
 
 @import "./responsive/Filters";

@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/no-reserved-component-names -->
 <template>
-  <!-- <KTLoader v-if="loaderEnabled" :logo="loaderLogo"></KTLoader> -->
+  
   <Navbar />
   <div class="container-fluid p-0 layout">
     <router-view />
@@ -15,7 +15,7 @@ import { Actions } from "@/store/enums/StoreEnums";
 import { onMounted } from "vue";
 import { reinitializeComponents } from "@/core/plugins/keenthemes";
 import { useStore } from 'vuex';
-import KTLoader from "@/components/Loader.vue";
+
 import {
   toolbarDisplay,
   loaderEnabled,
@@ -39,7 +39,7 @@ export default {
     Footer: defineAsyncComponent(
       () => import("./Footer.vue")
     ),
-    KTLoader
+    
   },
   setup() {
     // show page loading

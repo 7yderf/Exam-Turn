@@ -96,20 +96,26 @@
 @mixin button($type: solid, $width: 250px) {
   @if $type == solid {
     --bg-color: var(--primary-color);
-    --shadow: 0px 8px 20px rgba(107, 107, 107, 0.25);
     --shadow-hover: none;
     --text: var(--text-contrast-color);
-    --bg-hover-color: #1f1f1f;
-    color:  var(--text-contrast-color);
+    --bg-hover-color: #ffffff;
+    --text-hover: var(--primary-color);
+    --border-color: var(--primary-color); 
   } @else if $type == outline {
     --bg-color: var(--text-contrast-color);
-    --shadow: none;
-    --shadow-hover: 0px 8px 20px rgba(107, 107, 107, 0.25);
     --text: var(--text-color);
-    color:var(--text-color);
     --bg-hover-color: var(--bg-color);
-    border: 1px solid var(--primary-color);;
-  }
+    --bg-hover-color: var(--text-color);
+    --text-hover: var(--text-contrast-color);
+    --border-color: var(--text-contrast-color); 
+  } @else if $type == whatassap {
+  --bg-color: #00BB2D;
+  --shadow: none;
+  --shadow-hover: none;
+  --text:var( --text-contrast-color);
+  --bg-hover-color:  #04c230;
+  border: 1px solid  #00BB2D;
+} 
   @include flex(center, 10px);
   @include text(1.4rem, 500, 1.8rem, center);
   width: 100%;
@@ -117,12 +123,11 @@
   height: 45px;
   padding: 10px 20px;
   background-color: var(--bg-color);
-  
   text-decoration: none;
-  box-shadow: var(--shadow);
   border-radius: 1px;
   transition: all 0.1s linear;
   will-change: auto;
+  color: var(--text);
   &--right {
     flex-direction: row-reverse;
   }
@@ -130,6 +135,8 @@
     cursor: pointer;
     background-color: var(--bg-hover-color);
     box-shadow: var(--shadow-hover);
+    color: var(--text-hover);
+    border: 1px solid var(--border-color);
   }
   &:not(:disabled):active {
     box-shadow: none;

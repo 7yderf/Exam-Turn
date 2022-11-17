@@ -1,6 +1,7 @@
 @import "../Mixins";
 $icon-arrow: url("@/assets/images/icons/icon-arrow.svg");
-
+$dot: url("@/assets/images/icons/icon-dot.svg");
+$dot-hover: url("@/assets/images/icons/icon-dot-hover.svg");
 .agency {
   @include content(100%, 0);
  background: var(--primary-color);
@@ -19,15 +20,36 @@ $icon-arrow: url("@/assets/images/icons/icon-arrow.svg");
   height: 500px;
  }
  &__hero-box-btn{
+  @include border(var(--text-contrast-color));
   @include content(1200px, 0);
   @include flex(flex-start);
-  padding: 16px 0;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  &:hover{
+   border-color: transparent;
+  }
  }
  &__hero-btn{
   @include button(solid, 100%);
   justify-content: flex-start;
   text-align: left;
   box-shadow: none;
+  &::after{
+    @include background-img($dot);
+    content: "";
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+  }
+  &:hover{
+    &::after{
+      @include background-img($dot-hover);
+      content: "";
+      width: 20px;
+      height: 20px;
+      filter: invert(1);
+    }
+  }
  }
   &__cards{
     @include content(1140px, 0);

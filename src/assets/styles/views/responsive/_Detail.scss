@@ -1,15 +1,141 @@
 .detail {
-  @include for-size(desktop-xbig) {}
+  @include for-size(desktop-xbig) {
+  }
   @include for-size(desktop-big) {
   }
-  @include for-size(desktop-mid-big) {}
-  @include for-size(desktop-mid) {}
-  @include for-size(desktop) {}
-  @include for-size(tablet-landscape) {}
-  @include for-size(tablet-portrait) {}
-  @include for-size(tablet-small) {}
-  @include for-size(phone-xbig) {}
-  @include for-size(phone-big) {}
-  @include for-size(phone-mid) {}
-  @include for-size(phone) {}
+  @include for-size(desktop-mid-big) {
+  }
+  @include for-size(desktop-mid) {
+  }
+  @include for-size(desktop) {
+  }
+  @include for-size(tablet-landscape) {
+    &__content-price {
+      font-size: 3.2rem;
+    }
+  }
+  @include for-size(tablet-portrait) {
+    &__detail-galery {
+      flex-direction: column;
+    }
+    &__galery {
+      width: 100%;
+    }
+    &__content {
+      width: 100%;
+    }
+    &__content-agency {
+      order: 5;
+    }
+    &__content-texts {
+      gap: 8px;
+    }
+    &__content-name {
+    }
+    &__agency-btnWhat {
+      margin-top: -75px;
+      margin-left: auto;
+      width: 150px;
+      &--hero {
+        margin: initial;
+      }
+      span {
+        display: none;
+      }
+    }
+    &__agency-btnMail {
+      margin-top: -65px;
+      margin-left: calc(100% - 310px);
+      width: 150px;
+      &--hero {
+        margin: initial;
+      }
+      span {
+        display: none;
+      }
+    }
+    &__hero-content{
+      display: none;
+    }
+    &__sumary-title{
+      font-size: 3.5rem;
+      padding-left: 8px;
+    }
+    &__contact-sub{
+      padding-left: 8px;
+    }
+  }
+  @include for-size(tablet-small) {
+    &__specs-box{
+      width: calc(50% - 24px);
+    }
+  }
+  @include for-size(phone-xbig) {
+    
+    &__detail-galery{
+      padding: 0;
+    }
+    &__detail-content{
+      padding-top: 0;
+    }
+    &__galery{
+      .mySwiper2{
+        border-radius: 0;
+      }
+      .mySwiper{
+        display: none;
+      }
+    }
+    &__agency-btnWhat {
+      width: 50px;
+      p {
+        display: none;
+      }
+    }
+    &__agency-btnMail {
+      width: 50px;
+      margin-left: calc(100% - 110px);
+      p {
+        display: none;
+      }
+    }
+    &__content-texts{
+      padding: 8px;
+    }
+    &__sumary-box{
+      flex-wrap: wrap;
+      padding: 0;
+      background: #aeaeae;
+      gap: 0;
+      box-shadow: inset 0px 0px 0px 1px rgb(255 255 255 / 99%);
+    }
+    &__sumary-sumary{
+      flex-grow: 1;
+      margin: 1px;
+      min-width: calc(50% - 2px);
+      background: var(--text-contrast-color);
+      padding: 16px;
+    }
+    &__contact-form{
+      div:nth-child(3), 
+      div:nth-child(4){
+        width: calc(100% - 10px);
+      }
+    }
+    
+    
+  }
+  @include for-size(phone-big) {
+    &__specs-box{
+      width: calc(100% - 24px);
+      padding-bottom: 16px;
+    }
+    &__sumary-box-specs{
+      gap: 16px;
+    }
+  }
+  @include for-size(phone-mid) {
+  }
+  @include for-size(phone) {
+  }
 }

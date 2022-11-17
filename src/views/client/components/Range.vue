@@ -3,28 +3,30 @@
     <div ref="range" >
       <div inverse-left style="width: 70%"></div>
       <div inverse-right style="width: 70%"></div>
-      <div range style="left: 0%; right: 0%"></div>
-      <span thumb style="left: 0%"></span>
-      <span thumb style="left: 100%"></span>
-      <div sign style="left: 0%">
+      <div range :style="{left: (100 * valMin / valInitMax)+'%' , right: (100 - (100 * valMax / valInitMax))+'%'}"></div>
+      <span thumb :style="{left: (100 * valMin / valInitMax)+'%', zIndex: '10'}"></span>
+      <span thumb :style="{left: (100 * valMax / valInitMax)+'%'}"></span>
+      <div sign :style="{left: (100 * valMin / valInitMax)+'%', zIndex: '10'}">
         <span id="value">{{type =='price'? `$${formatPrice(valMin)}`  :  `${formatPrice(valMin)}kms` }}</span>
       </div>
-      <div sign style="left: 100%">
+      <div sign :style="{left: (100 * valMax / valInitMax)+'%'}">
         <span id="value">{{ type == 'price' ? `$${formatPrice(valMax)}` : `${formatPrice(valMax)}kms` }}</span>
       </div>
     </div>
-    <input ref="inputL" type="range" :value="valMin" :max="valMax" :min="valMin" step="1" @input="oninputleft" @change="filterRange"  />
+    <input class="inputLeft" ref="inputL" type="range" :value="valMin" :max="valInitMax" :min="0" step="1000" @input="oninputleft" @change="filterRange"  />
 
-    <input ref="inputR" type="range" :value="valMax" :data-max="valMax" :max="valMax" :min="valMin" step="1"  @input="oninputRigth" @change="filterRange" />
+    <input ref="inputR" type="range" :value="valMax"  :max="valInitMax" :min="0" step="1000"  @input="oninputRigth" @change="filterRange" />
   </div>
 </template>
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 export default {
   name: "Range",
   props: {
     valMin: null,
     valMax: null,
+    valInitMax: null,
+    valInitMin: null,
     type: null
   },
   setup(props, { emit }) {
@@ -34,6 +36,7 @@ export default {
     const range = ref(null);
     const inputL = ref(null);
     const inputR = ref(null);
+    
 
     const formatPrice = (value) => {
       const formatter = new Intl.NumberFormat("en-US", {
@@ -44,6 +47,21 @@ export default {
     });
     return formatter.format(value)
     };
+
+    watch(
+      () => props.valMin,
+      (val) => {
+        console.log("🚀 ~ file: Catalogo.vue ~ line 382 ~ setup ~ val", val)
+        emit("valorMinimo", parseInt(val), props.type);
+      }
+    );
+    watch(
+      () => props.valMax,
+      (val) => {
+        console.log("🚀 ~ file: Catalogo.vue ~ line 382 ~ setup ~ val", val)
+        emit("valorMaximo", parseInt(val), props.type);
+      }
+    );
     
     const oninputleft = () => {
 
@@ -54,11 +72,14 @@ export default {
         inputR.value.value - 1
       );
       const children = range.value.childNodes;
-      children[0].style.width = ((inputMin.value - props.valMin) / ((props.valMax - props.valMin) / 100)) + "%";
-      children[2].style.left = ((inputMin.value - props.valMin) / ((props.valMax - props.valMin) / 100)) + "%";
-      children[3].style.left = ((inputMin.value - props.valMin) / ((props.valMax - props.valMin) / 100)) + "%";
-      // children[10].style.left = ((inputMin.value - props.valMin) / ((props.valMax - props.valMin) / 100)) + "%";
+      children[0].style.width = ((inputMin.value - 0) / ((props.valInitMax - 0) / 100)) + "%";
+      children[2].style.left = ((inputMin.value - 0) / ((props.valInitMax - 0) / 100)) + "%";
+      children[3].style.left = ((inputMin.value - 0) / ((props.valInitMax - 0) / 100)) + "%";
+      children[5].style.left = ((inputMin.value - 0) / ((props.valInitMax - 0) / 100)) + "%";
       children[5].childNodes[0].innerHTML = formatPrice(inputMin.value);
+
+      emit("valorMinimo", parseInt(inputMin.value), props.type);
+
 
       return rangeMin.value = parseInt(inputMin.value)
     };
@@ -70,12 +91,12 @@ export default {
         inputL.value.value - (-1)
       );
       const children = range.value.childNodes;
-      children[1].style.width=(100 - ((inputMax.value - props.valMin) / ((props.valMax - props.valMin) / 100))) + '%';
-      children[2].style.right=(100 - ((inputMax.value - props.valMin) / ((props.valMax - props.valMin) / 100))) + '%';
-      children[4].style.left=((inputMax.value - props.valMin) / ((props.valMax - props.valMin) / 100)) + '%';
-      // children[12].style.left=((inputMax.value - props.valMin) / ((props.valMax - props.valMin) / 100)) + '%';
+      children[1].style.width=(100 - ((inputMax.value - 0) / ((props.valInitMax - 0) / 100))) + '%';
+      children[2].style.right=(100 - ((inputMax.value - 0) / ((props.valInitMax - 0) / 100))) + '%';
+      children[4].style.left=((inputMax.value - 0) / ((props.valInitMax - 0) / 100)) + '%';
+      children[6].style.left=((inputMax.value - 0) / ((props.valInitMax - 0) / 100)) + '%';
       children[6].childNodes[0].innerHTML= formatPrice(inputMax.value);
-
+      emit("valorMaximo", parseInt(inputMax.value) + 1 , props.type);
       return rangeMax.value = parseInt(inputMax.value) + 1
     };
     const filterRange = () => {
@@ -92,10 +113,11 @@ export default {
       filterRange,
       range,
       inputL,
-      inputR
+      inputR,
+      
     };
   },
-  emits:['searchRange']
+  emits:['searchRange', 'valorMinimo', 'valorMaximo'],
   
 };
 </script>
@@ -106,7 +128,7 @@ export default {
   width: 100%;
   position: relative;
   height: 5px;
-  margin: 0px 0 15px 0px;
+  margin: 15px 0 10px 0px;
   padding-bottom: 25px;
 }
 
@@ -120,7 +142,6 @@ export default {
   position: absolute;
   left: 0;
   height: 5px;
-  border-radius: 10px;
   background-color: #ccc;
   margin: 0 7px;
 }
@@ -129,7 +150,6 @@ export default {
   position: absolute;
   right: 0;
   height: 5px;
-  border-radius: 10px;
   background-color: #ccc;
   margin: 0 7px;
 }
@@ -138,8 +158,9 @@ export default {
   position: absolute;
   left: 0;
   height: 5px;
+  z-index: 1;
   border-radius: 14px;
-  background-color:  #FF5C20;
+  background-color: #FF5C20;
 }
 
 [slider] > div > [thumb] {
@@ -157,14 +178,19 @@ export default {
   outline: none;
 }
 
+[slider] > input[type="range"].inputLeft {
+ z-index: 10;
+ left:4px;
+}
 [slider] > input[type="range"] {
   position: absolute;
   pointer-events: none;
   -webkit-appearance: none;
   z-index: 3;
   height: 14px;
-  top: -2px;
+  top: 4px;
   width: 100%;
+  height: 23px;
   opacity: 0;
 }
 
@@ -183,7 +209,7 @@ div[slider] > input[type="range"]::-webkit-slider-thumb {
   height: 28px;
   border-radius: 0px;
   border: 0 none;
-  background:  #FF5C20;
+  background: #FF5C20;
   -webkit-appearance: none;
 }
 
@@ -203,45 +229,47 @@ div[slider] > input[type="range"]::-ms-tooltip {
 
 [slider] > div > [sign] {
   opacity: .7;
-  position: absolute;
-  margin-left: -29px;
-  top: 15px;
-  z-index: 3;
-  // background-color: #DCFBEA;
-  color: #fff;
-  width: 52px;
-  height: 26px;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  align-items: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  text-align: center;
+    position: absolute;
+    margin-left: -28px;
+    top: -30px;
+    z-index: 3;
+    background-color: #DCFBEA;
+    color: #fff;
+    width: 52px;
+    height: 20px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 [slider] > div > [sign]:after {
   position: absolute;
-  content: "";
-  left: 13px;
-  border-radius: 16px;
-  top: 19px;
-  border-left: 14px solid transparent;
-  border-right: 14px solid transparent;
-  border-top-width: 16px;
-  border-top-style: solid;
-  // border-top-color: #DCFBEA;
+    content: "";
+    left: 19px;
+    border-radius: 16px;
+    top: 12px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top-width: 16px;
+    border-top-style: solid;
+    border-top-color: #DCFBEA;
+    z-index: -1;
+    
 }
 
 [slider] > div > [sign] > span {
-  font-size: 12px;
+  font-size: 10px;
   color: black;
   font-weight: bold;
-  line-height: 28px;
+  line-height: 0px;
 }
 
 [slider]:hover > div > [sign] {
   opacity: 1;
-}
+ }
+
 // style firefox
 
 input[type="range"] {
@@ -314,6 +342,79 @@ input[type="range"]::-moz-range-thumb {
   outline: none;
 }
 
+// steps
+
+.range-steps{
+  position: absolute;
+    top: -5px;
+    z-index: 0;
+    height: 15px;
+    width: 15px;
+    margin-left: -11px;
+    background-color: #ccc;
+    border-radius: 50%;
+    &.one{
+      left: 2%;
+      &::after{
+        content: "$0";
+        position: absolute;
+        top: 23px;
+        font-size: 9px;
+        left: 0px;
+      }
+    }
+    &.two{
+      left: 20%;
+      &::after{
+        content: "$10K";
+        position: absolute;
+        top: 23px;
+        font-size: 9px;
+        left: -5px;
+      }
+    }
+    &.three{
+      left: 40%;
+      &::after{
+        content: "$20K";
+        position: absolute;
+        top: 23px;
+        font-size: 9px;
+        left: -5px;
+      }
+    }
+    &.four{
+      left:60%;
+      &::after{
+        content: "$30K";
+        position: absolute;
+        top: 23px;
+        font-size: 9px;
+        left: -5px;
+      }
+    }
+    &.five{
+      left:80%;
+      &::after{
+        content: "$40K";
+        position: absolute;
+        top: 23px;
+        font-size: 9px;
+        left: -5px;
+      }
+    }
+    &.six{
+      left:100%;
+      &::after{
+        content: "+$50K";
+        position: absolute;
+        top: 23px;
+        font-size: 9px;
+        left: -5px;
+      }
+    }
+}
+
 // .slider-distance {
 //   position: relative;
 //   height: 150px;
@@ -323,5 +424,21 @@ input[type="range"]::-moz-range-thumb {
 //   display: flex;
 //   align-items: center;
 // }
+
+@media screen and (min-width: 991px) and (max-width: 1100px){
+  .signLeft{
+    opacity:1 !important;
+  }
+  .signRigth{
+    opacity:1 !important;
+  }
+  .range-steps{
+    &.two, &.three, &.four, &.five{
+      &::after{
+        display: none;
+      }
+    }
+  }
+}
 
 </style>

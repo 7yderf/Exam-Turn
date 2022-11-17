@@ -1,31 +1,45 @@
 <template>
   <div class="col-12 mx-auto overflow-visible slide-gallery">
-    <swiper :style="{
-      '--swiper-navigation-color': '#fff',
-      '--swiper-pagination-color': '#fff',
-    }" :loop="true" :spaceBetween="10" :navigation="true" :thumbs="{ swiper: thumbsSwiper }" :modules="modules"
-      class="mySwiper2">
-      <swiper-slide v-for="image in gallery" :key="image" >
+    <swiper
+      :style="{
+        '--swiper-navigation-color': '#fff',
+        '--swiper-pagination-color': '#fff',
+        '--swiper-navigation-color': '#fff',
+      }"
+      :loop="true"
+      :spaceBetween="10"
+      :navigation="true"
+      :thumbs="{ swiper: thumbsSwiper }"
+      :modules="modules"
+      class="mySwiper2"
+    >
+      <swiper-slide v-for="image in gallery" :key="image">
         <img :src="image" />
       </swiper-slide>
-      
     </swiper>
-    <swiper @swiper="setThumbsSwiper" :loop="true" :spaceBetween="20" :slidesPerView="7" :freeMode="true"
-      :watchSlidesProgress="true" :modules="modules" class="mySwiper">
-      <swiper-slide v-for="image in gallery" :key="image" >
+    <swiper
+      @swiper="setThumbsSwiper"
+      :loop="true"
+      :spaceBetween="20"
+      :slidesPerView="7"
+      :freeMode="true"
+      :watchSlidesProgress="true"
+      :modules="modules"
+      class="mySwiper"
+    >
+      <swiper-slide v-for="image in gallery" :key="image">
         <img :src="image" />
       </swiper-slide>
-      
     </swiper>
   </div>
 </template>
 <script>
 // Import Swiper Vue.js components
-import "swiper/css/bundle"
+import "swiper/css/bundle";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Thumbs, Navigation, Autoplay, FreeMode } from "swiper";
 // Import Swiper styles
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from "vue";
 
 export default {
   name: "GalleryVehicle",
@@ -37,7 +51,6 @@ export default {
     SwiperSlide,
   },
   setup(props) {
-
     const thumbsSwiper = ref(null);
 
     const setThumbsSwiper = (swiper) => {
@@ -53,8 +66,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
 .swiper {
   width: 100%;
   height: 100%;
@@ -99,8 +110,9 @@ export default {
 }
 
 .mySwiper2 {
-  height: 400px;
+  height: 375px;
   width: 100%;
+  border-radius: 10px;
 }
 
 .mySwiper {
@@ -119,19 +131,17 @@ export default {
   opacity: 1;
 }
 
-.mySwiper{
-  .swiper-wrapper{
-    .swiper-slide{
+.mySwiper {
+  .swiper-wrapper {
+    .swiper-slide {
       width: 100%;
       height: 100%;
       opacity: 1;
       border-radius: 5px;
-      img{
+      img {
         border-radius: 5px;
       }
     }
   }
 }
-
-
 </style>

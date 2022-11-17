@@ -1,8 +1,10 @@
 <template>
   <div class="col-12 mx-auto overflow-visible slide-gallery">
-    <swiper v-if="cardContent.length > 0" class="no-seleccionable cards-gallery" style="cursor: grab" 
+    <swiper v-if="cardContent.length > 0" class="no-seleccionable cards-gallery cards-gallery-home" style="cursor: grab" 
       :navigation="true"
-      
+      :pagination="{
+        clickable: true,
+      }"
       :slidesPerView="1" 
       :spaceBetween="10" 
       :breakpoints="{
@@ -19,10 +21,11 @@
         spaceBetween: 30,
       }}" 
       :modules="modules"
+      
     >
       <swiper-slide 
       v-for="card in cardContent"
-      class="px-1"  
+      class="swiper-bullet-cart"  
       :key="card" 
       >
         <CardHome v-if="type == 'security'" :card="card" />
@@ -40,7 +43,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import CardHome from '@/views/client/components/CardHome.vue';
 import CardClienHome from '@/views/client/components/CardClienHome.vue';
 import CardAgency from '@/views/client/components/CardAgency.vue';
-import { Thumbs, Navigation, Autoplay } from "swiper";
+import { Thumbs, Navigation, Autoplay, Pagination } from "swiper";
 // Import Swiper styles
 import { onMounted, ref } from 'vue';
 
@@ -59,7 +62,7 @@ export default {
   },
   setup(props) {
     return {
-      modules: [Navigation, Thumbs, Autoplay],
+      modules: [Navigation, Thumbs, Autoplay, Pagination],
     };
   },
 };
@@ -70,14 +73,31 @@ export default {
 $icon-arrow: url("@/assets/images/icons/icon-arrow.svg");
 .slide{
   .slide-gallery{
-    &>.swiper{
+    .swiper.cards-gallery-home{
       padding-bottom: 60px;
+      .swiper-pagination{
+        display: none;
+        @media screen and (max-width: 640px) {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 16px;
+        }
+        .swiper-pagination-bullet{
+          background: #FF5C20; 
+        }
+      }
       .swiper-wrapper{
         .swiper-slide{
           height: auto;
+          border: 0!important;
           margin-bottom: 25px;
+          @media screen and (max-width: 640px) {
+            max-width: inherit!important;
+          }
         }
       }
+
     }
     .swiper-button-next, .swiper-button-prev{
       @include border(var(--secondary-color));
@@ -89,6 +109,8 @@ $icon-arrow: url("@/assets/images/icons/icon-arrow.svg");
       background: var(--secondary-color);
 
     }
+    
+    
     .swiper-button-disabled{
       border-color: var(--primary-color);
       border-radius: 5px;

@@ -2,7 +2,8 @@
 
   <div class="agencies__card" :data-active="active.some(agency => agency == card.name)">
     <div class="agencies__box">
-      <img :src="card.img ?? imagenDefault" alt="" class="agencies__img" />
+      <img :src="card.icon" alt="" class="agencies__img" />
+      
     </div>
     <p class="agencies__name">{{card.name}}</p>
     <p class="agencies__addres">{{`${card.address}`}}</p>
@@ -13,7 +14,7 @@
       </p>
     </div>
     <div class="agencies__socials">
-      <a :href="card.twitter_page" target="_blank" class="agencies__social">
+      <a :href="card.web_page" target="_blank" class="agencies__social">
         <img :src="Network" alt="" class="agencies__img-social" />
       </a>
       <a :href="card.facebook_page" target="_blank" class="agencies__social">

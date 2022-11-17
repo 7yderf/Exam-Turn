@@ -1,54 +1,109 @@
-
-  @include for-size(desktop-xbig) {}
-  @include for-size(desktop-big) {}
-  @include for-size(desktop-mid) {}
-  @include for-size(desktop) {}
-  @include for-size(tablet-landscape) {
-    .modal-content{
-      background: #000;
-    }
-    .filters{
-      &__text{
-        color: var(--text-contrast-color)
-      }
-    }
-    .btn-filters-years{
-      background: #000;
-      border:1px solid rgb(131, 131, 131)!important;
-    }
-    .accordion-header{
-      &__brand{
-        background: #000;
-        .btn-filters.is-active{
-          border: 1px solid rgb(131, 131, 131)!important;
-          span{
-            color:var(--text-contrast-color)!important;
-          }
-        }
-      }
-      
-    }
-    .brand-logo{
-      filter: invert(0);
-    }
-    .btn-filters{
-      background-color: #000;
-      border:1px solid rgb(131, 131, 131)!important;
-    }
-    .button-modal{
-      background: #000;
-      border:1px solid rgb(131, 131, 131)!important;
-      margin-top: 24px;
-      padding: 8px;
-    }
-    .btn-go{
-      font-size: 1.4rem;
+@include for-size(desktop-xbig) {
+}
+@include for-size(desktop-big) {
+}
+@include for-size(desktop-mid) {
+}
+@include for-size(desktop) {
+}
+@include for-size(tablet-landscape) {
+  .modal-content {
+    background: #000;
+  }
+  .filters {
+    &__text {
       color: var(--text-contrast-color);
     }
   }
-  @include for-size(tablet-portrait) {}
-  @include for-size(tablet-small) {}
-  @include for-size(phone-xbig) {}
-  @include for-size(phone-big) {}
-  @include for-size(phone-mid) {}
-  @include for-size(phone) {}
+  .btn-filters-years {
+    background: #000;
+    border: 1px solid rgb(131, 131, 131) !important;
+  }
+  .accordion-header {
+    &__brand {
+      background: #000;
+      .btn-filters.is-active {
+        border: 1px solid rgb(131, 131, 131) !important;
+        span {
+          color: var(--text-contrast-color) !important;
+        }
+      }
+    }
+  }
+  .brand-logo {
+    filter: invert(0);
+  }
+  .btn-filters {
+    background-color: #000;
+    border: 1px solid rgb(131, 131, 131) !important;
+  }
+  .fixed-button-modal {
+    background-color: #000;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 0px;
+    width: 100% !important;
+    display: flex;
+    align-content: center;
+    justify-items: center;
+    padding: 10px 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+  }
+  .button-modal {
+    background: #000;
+    border: 1px solid rgb(131, 131, 131) !important;
+    width: 87% !important;
+    padding: 8px;
+    margin: 0 auto;
+  }
+  .btn-go {
+    font-size: 1.4rem;
+    color: var(--text-contrast-color);
+  }
+
+  .modal-filter-header {
+    margin-top: 20px;
+    color: var(--text-contrast-color);
+    @include text(2.4rem, 400, 2.8rem);
+  }
+  .modal-filter-limpiar {
+    color: var(--text-contrast-color);
+    @include text(1.4rem, 600, 2.8rem);
+  }
+
+  .options-filters {
+    @include flex(flex-start, 8px, center);
+    margin: 8px 0 16px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .filters-active {
+    @include flex(flex-start, 4px, center);
+    @include text(1.6rem, 300, 1.68rem);
+    color: var(--text-contrast-color);
+    padding: 10px 12px;
+    background: var(#000);
+    border: 1px white solid;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+  .filters-icon-close {
+    width: 25px !important;
+  }
+}
+@include for-size(tablet-portrait) {
+}
+@include for-size(tablet-small) {
+}
+@include for-size(phone-xbig) {
+}
+@include for-size(phone-big) {
+}
+@include for-size(phone-mid) {
+}
+@include for-size(phone) {
+}

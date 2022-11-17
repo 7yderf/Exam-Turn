@@ -11,6 +11,10 @@ import Permissions from "@/core/helpers/Permissions.vue";
 
 //imports for app initialization
 import ApiService from "@/core/services/ApiService";
+import DropZone from "dropzone-vue";
+import "dropzone-vue/dist/dropzone-vue.common.css";
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 import { initVeeValidate } from "@/core/plugins/vee-validate";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
@@ -23,12 +27,13 @@ const app = createApp(App);
 
 // app.mixin(Permissions);
 app.mixin(Permissions);
+app.use(DropZone);
 app.use(store);
 app.use(router);
+app.component('Datepicker', Datepicker);
 
 ApiService.init(app);
 
 initVeeValidate();
-
 
 app.mount("#app");

@@ -36,38 +36,7 @@
         <p class="cards-cart__price">${{ formatPrice(vehicle.price) }}</p>
       </div>
     </router-link>
-    <!-- <router-link
-      v-else
-      class="rounded my-3  p-0 col-12 overflow-hidden"
-      :to="{ name: 'car-detail', params: { id: vehicle.id } }"
-    >
-      <div class="row">
-        <div class="col-md-3 p-0 position-relative">
-          <div
-            v-if="vehicle.status == 'Apartado'"
-            class="position-absolute shadow-md bg-white text-black rounded-pill p-2 mt-3 ms-4"
-            style="z-index: 4"
-          >
-            {{ vehicle.status }}
-          </div>
-          <GalleryCard :images="vehicle.images" />
-        </div>
-        <div class="col-md-5 px-5 py-7">
-          <p class="mb-1 fw-bold fs-3">
-            {{ vehicle.brand + " " + vehicle.model + " " + vehicle.version }}
-          </p>
-          <p class="mb-1 text-gray ">
-            {{ vehicle.year }} - {{ kmFormat(vehicle.Mileage) + " km" }} -
-            {{ vehicle.Estado }}
-          </p>
-          <p class="mb-2">{{ vehicle.agency }}</p>
-          <p class="text-success mb-0 fs-2 fw-bold">${{ formatPrice(vehicle.Price) }}</p>
-        </div>
-        <div class="col-md-4 py-7 text-center">
-          <button class="btn btn-primary">Ver vehículo</button>
-        </div>
-      </div>
-    </router-link> -->
+    
   </template>
 </template>
 
@@ -126,20 +95,19 @@ export default {
   &__data {
     @include text(1.4rem, 400, 1.8rem);
     color: #2e2e2e;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
   }
   &__price {
     @include text(2.4rem, 400, 2.8rem);
     color: var(--text-color);
-    margin-bottom: 24px;
   }
   &__container-img {
     @include load();
     position: relative;
     height: 200px;
-    @media screen and (max-width: 500px) {
-      height: auto;
-    }
+   // @media screen and (max-width: 500px) {
+     // height: auto;
+    //}
   }
   
   &__loading{
@@ -167,6 +135,16 @@ export default {
     height: 35px;
     margin: 0px 8px ;
   }
+  &__banners{
+    width: 275px;
+    height: 350px;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
 }
 
 .page-loading-vehicle{

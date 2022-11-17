@@ -1,109 +1,282 @@
 <template>
   <div class="catalogo">
     <HelloWorld />
+    <div class="hero-mobile">
+      <span :class="[cuantity > 0 ? 'catalogo__text-results' : '']">
+        {{ cuantity > 0 ? "Resultados de la busqueda" : "Vehículos" }}
+      </span>
+      <span class=""> {{ paginate.total }} resultados </span>
+    </div>
     <div class="catalogo__hero d-none d-lg-block">
       <div class="catalogo__search">
         <div class="catalogo__clean-filters">
-          <p class="catalogo__text-filters">Filtros<span>{{` (${cuantity})`}}</span></p>
+          <p class="catalogo__text-filters">
+            Filtros<span>{{ ` (${cuantity})` }}</span>
+          </p>
 
-          <button @click="clearFilters" class="catalogo__text-filters catalogo__text-filters--clear">
-            Limpiar filtros
+          <button
+            @click="clearFilters"
+            class="d-flex justify-content-between gap-3 catalogo__text-filters catalogo__text-filters--clear"
+          >
+            <span>Limpiar filtros</span>
+            <img src="@/assets/images/icons/refresh.svg" alt="" />
           </button>
         </div>
         <div class="catalogo__input-box">
           <div class="d-flex d-none d-lg-block catalogo__results">
-            <span class="catalogo__text-results">Vehículos</span><span class="text-gray catalogo__text-results--sub">
-              {{ paginate.total }} resultados</span>
+            <span class="catalogo__text-results">Vehículos</span
+            ><span class="text-gray catalogo__text-results--sub">
+              {{ paginate.total }} resultados</span
+            >
           </div>
-          <div class="catalogo__content-search">
-            <img src="@/assets/images/icons/icon-serch.svg" alt="" class="catalogo__icon-search" />
-            <input v-model="searchGlobal" class="input input__input" :data-search="true" clearable
-              placeholder="Buscar vehículo" />
-          </div>
+          <Search :prop_searchGlobal="searchGlobal" />
         </div>
+
         <div class="catalogo__order-select">
-          <select class="w-100 pe-1 order input input__select" placeholder="Ordenar por:" v-model="order">
-            <option class="input__select-options" label="Ordenar" selected disabled :value="0">
+          <select
+            class="pe-1 order input input__select"
+            placeholder="Ordenar por:"
+            v-model="order"
+          >
+            <option
+              class="input__select-options"
+              label="Ordenar"
+              selected
+              disabled
+              :value="0"
+            >
               Ordenar
             </option>
-            <option class="input__select-options" label="Menor precio" :value="1">
+            
+            <option
+              class="input__select-options"
+              label="Menor precio"
+              :value="1"
+            >
               Menor precio
             </option>
-            <option class="input__select-options" label="Mayor precio" :value="2">
+            <option
+              class="input__select-options"
+              label="Mayor precio"
+              :value="2"
+            >
               Mayor precio
             </option>
-            <option class="input__select-options" label="Menor Kilometraje" :value="3">
-              Menor Kilometraje
+            <option
+              class="input__select-options"
+              label="Más antiguos"
+              :value="3"
+            >
+            Más antiguos
             </option>
-            <option class="input__select-options" label="Mayor Kilometraje" :value="4">
-              Mayor Kilometraje
+            <option
+              class="input__select-options"
+              label="Más recientes"
+              :value="4"
+            >
+            Más recientes
             </option>
-            <option class="input__select-options" label="Menor Año" :value="5">
-              Menor Año
+            <option
+              class="input__select-options"
+              label="Menos km"
+              :value="5"
+            >
+            Menos km
             </option>
-            <option class="input__select-options" label="Mayor Año" :value="6">
-              Mayor Año
+            <option
+              class="input__select-options"
+              label="Más km"
+              :value="6"
+            >
+              Más km
             </option>
           </select>
         </div>
       </div>
     </div>
+
     <div class="catalogo__body mx-auto mt-4">
       <div class="row catalogo__row my-5">
         <div class="col-lg-3 catalogo__aside">
-          <Filters :prop_brands="brands" :prop_models="models" :prop_years="years" :prop_locations="locations"
-            :prop_cities="cities" :prop_fuel="fuel" :prop_colorex="colorExt" :prop_colorin="colorInt" :prop_type="type"
-            :prop_trans="transmissions" :prop_agencies="agencies" :prop_prices="priceValue" :prop_kms="kmsValue"
-            @filterActive="filterActives" />
+          <Filters
+            :prop_brands="brands"
+            :prop_models="models"
+            :prop_years="years"
+            :prop_locations="locations"
+            :prop_cities="cities"
+            :prop_fuel="fuel"
+            :prop_colorex="colorExt"
+            :prop_colorin="colorInt"
+            :prop_type="type"
+            :prop_trans="transmissions"
+            :prop_agencies="agencies"
+            :prop_prices="priceValue"
+            :prop_kms="kmsValue"
+            @filterActive="filterActives"
+            :prop_qty_filters="cuantity"
+            :prop_filters_active="filtersActive"
+            @deleteFilter="(active) => deleteFilter(active)"
+            @orderActive="selectOrderBy"
+          />
         </div>
         <div class="col-lg-9">
+          <div class="catalogo__options-filters">
+            <p
+              class="catalogo__filters-active"
+              @click="deleteFilter(active)"
+              v-for="active in filtersActive"
+              :key="active"
+            >
+              {{ active }}
+              <img :src="Clear" alt="" class="catalogo__filters-icon-close" />
+            </p>
+          </div>
           <div class="col-12">
             <div class="row cards-cart">
-              <div class="cards-cart__card cards-cart__loading" v-for="cart in Array(9).fill('').map((_, i) => i)"
-                :key="cart">
+              <div
+                class="cards-cart__card cards-cart__loading"
+                v-for="cart in Array(9)
+                  .fill('')
+                  .map((_, i) => i)"
+                :key="cart"
+              >
                 <div class="cards-cart__loading-img"></div>
                 <div class="cards-cart__loading-title"></div>
                 <div class="cards-cart__loading-price"></div>
               </div>
-              <template v-if="vehicles.length > 0">
-                <div class="cards-cart__card" v-for="vehicle in vehicles" :key="vehicle.identificador">
-                  <CardVehicle :typeCard="typeCard" :vehicle="vehicle" />
+              <template v-if="Object.keys(vehicles).length > 0">
+                <div
+                  class="cards-cart__card"
+                  v-for="(value, key, index) in vehicles"
+                  :key="index"
+                >
+                  <CardVehicle
+                    v-if="value.slug"
+                    :typeCard="typeCard"
+                    :vehicle="value"
+                  />
+                  <div
+                    class="cards-cart__banners"
+                    v-if="value.desktop?.banner && windowSize"
+                  >
+                    <img
+                      :src="value.desktop?.banner"
+                      alt=""
+                      class="cards-cart__banners-img"
+                    />
+                  </div>
+                  <div
+                    class="cards-cart__banners"
+                    v-if="value.mobile?.banner && !windowSize"
+                  >
+                    <img
+                      :src="value.mobil?.banner"
+                      alt=""
+                      class="cards-cart__banners-img"
+                    />
+                  </div>
+                  <div
+                    class="cards-cart__banners"
+                    v-if="
+                      !value.mobile?.banner &&
+                      !windowSize &&
+                      value.desktop?.banner
+                    "
+                  >
+                    <img
+                      :src="value.desktop?.banner"
+                      alt=""
+                      class="cards-cart__banners-img"
+                    />
+                  </div>
                 </div>
               </template>
               <template v-else>
                 <div class="col-lg-6 mx-auto text-center noSearch">
-                  <img class="img-fluid" src="/media/images/Sin vehículos.png" alt="" />
-                  <p class="fs-1 fw-bold my-5">No se encontraron vehículos</p>
-                  <p class="my-5">
+                  <img
+                    class="img-fluid noSearch__img"
+                    :src="IconNoSearch"
+                    alt=""
+                  />
+                  <p class="fs-1 noSearch__tit">No se encontraron vehículos</p>
+                  <p class="noSearch__text">
                     Modifica los filtros para encontrar más opciones.
                   </p>
                 </div>
-                <div class="col-12 my-10 simil" v-if="similares.length > 0">
-                  <p class="mb-1 fs-5">También te pueden interesar</p>
+                <div
+                  class="col-12 my-10 simil"
+                  v-if="Object.keys(similar).length > 0"
+                >
+                  <p class="mb-1 simil__text">También te pueden interesar</p>
                   <hr />
-                  <div class="row">
-                    <div class="col-12" v-for="vehicle in similares" :key="vehicle.identificador">
-                      <!-- <CardVehicle :typeCard="typeCard" :vehicle="vehicle" /> -->
+                  <article>
+                    <div class="slide">
+                      <CarouselCards
+                        :vehicles="similar"
+                        :typeCards="'similares'"
+                      />
                     </div>
-                  </div>
+                  </article>
                 </div>
               </template>
             </div>
-            <div class="row">
-              <div class="
-                  col-sm-12 col-md-7
-                  ms-auto
-                  d-flex
-                  align-items-center
-                  justify-content-end
-                  mb-10
-                ">
-                <div class="catalogo__paginate" v-if="paginate.links.length > 1">
-                  <button class="catalogo__paginate-btn" :data-show="paginate.current_page == page.label"
-                    v-for="page in paginate.links" :key="page.url" :disabled="page.url == null"
-                    @click="currentPageChange(page.url)">
-                    {{ page.label.includes('Previous') ? '<' : '' }} {{ page.label.includes('Next') ? '>' : '' }} {{
-                    page.label.includes('Next') || page.label.includes('Previous') ? '' : page.label }} </button>
+            <div class="row" v-if="Object.keys(vehicles).length > 0">
+              <div
+                class="col-sm-12 col-md-7 ms-auto d-flex align-items-center justify-content-center justify-content-md-end mb-10"
+              >
+                <div
+                  class="catalogo__paginate"
+                  v-if="paginate.links.length > 1"
+                >
+                  <button
+                    class="catalogo__paginate-btn"
+                    @click="
+                      currentPageChange(
+                        paginate.links[paginate.current_page - 1].url
+                      )
+                    "
+                    :disabled="paginate.current_page <= 1"
+                  >
+                    <IconArrow :prop_classes="['icon-reverse']" />
+                  </button>
+
+                  <button
+                    class="catalogo__paginate-btn"
+                    :data-show="paginate.current_page == page.label"
+                    v-for="page in paginate.links.slice(
+                      paginate.links.length < 6
+                        ? 1
+                        : paginate.current_page + paginate.links_number >
+                          paginate.links.length - 2
+                        ? paginate.links.length - 1 - paginate.links_number
+                        : paginate.current_page,
+                      paginate.links.length < 6
+                        ? paginate.links.length - 1
+                        : paginate.current_page + paginate.links_number >
+                          paginate.links.length - 2
+                        ? paginate.links.length - 1
+                        : paginate.current_page -
+                          paginate.links.length -
+                          -paginate.links_number
+                    )"
+                    :key="page.url"
+                    @click="currentPageChange(page.url)"
+                  >
+                    {{ page.label }}
+                  </button>
+                  <button
+                    class="catalogo__paginate-btn"
+                    @click="
+                      currentPageChange(
+                        paginate.links[paginate.current_page + 1].url
+                      )
+                    "
+                    :disabled="
+                      paginate.current_page >= paginate.links.length - 2
+                    "
+                  >
+                    <IconArrow :prop_classes="['icon']" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -112,25 +285,34 @@
       </div>
     </div>
   </div>
-</template>  
+</template>
 
 <script lang="ts">
-import { ref, watch, onMounted, onBeforeMount } from "vue";
+import { ref, watch, onMounted, computed, onBeforeMount } from "vue";
 import Filters from "./components/Filters.vue";
 // import Carousel from "@/views/client/components/Carousel.vue";
+import Clear from "@/assets/images/icons/icon-close-filter.svg";
 import { useRoute, useRouter } from "vue-router";
 import CardVehicle from "./components/CardVehicle.vue";
+import Search from "@/views/client/components/Search.vue";
+import CarouselCards from "@/views/client/components/CarouselCards.vue";
 import ApiService from "@/core/services/ApiService";
 import { useStore } from "vuex";
 import { Actions } from "@/store/enums/StoreEnums";
 import HelloWorld from "@/components/HelloWorld.vue";
-import _ from "lodash";
+import IconNoSearch from "@/assets/images/icons/icon-no-search.svg";
+import IconArrow from "@/views/client/components/IconArrow.vue";
+import { object } from "yup/lib/locale";
+
 export default {
   name: "Catalogo",
   components: {
     Filters,
     CardVehicle,
-    HelloWorld
+    HelloWorld,
+    CarouselCards,
+    Search,
+    IconArrow,
   },
   setup() {
     const store = useStore();
@@ -162,14 +344,17 @@ export default {
     const priceTo = ref("");
     const kmsFrom = ref("");
     const kmsTo = ref("");
-    const cuantity = ref<number | null>(0);
+    const cuantity = ref<number>(0);
     const activesFilter = ref<any>([]);
+    const windowSize = ref(false);
     const paginate = ref({
       current_page: 1,
-      per_page: 9,
+      per_page: 30,
       total: 0,
-      links: [],
+      links: [] as any[],
+      links_number: 4
     });
+    const similar = ref<any>([]);
     const searchGlobal = ref<string>("");
     const paramsQuery = ref({
       year: "",
@@ -194,6 +379,23 @@ export default {
         getVehicles();
       }
     );
+    const paginator = ref({ ...paginate.value });
+    watch(
+      () => paginate.value.links,
+      () => {
+        paginator.value = paginate.value;
+      }
+    );
+    watch(
+      () => order.value,
+      (val) => {
+        console.log("🚀 ~ file: Catalogo.vue ~ line 382 ~ setup ~ val", val)
+        getVehicles();
+      }
+    );
+    const selectOrderBy = (id) => {
+      order.value = id;
+    };
 
     const clearFilters = async () => {
       paramsQuery.value = {
@@ -210,7 +412,7 @@ export default {
         colorex: "",
         colorin: "",
         agency: "",
-        kms: ""
+        kms: "",
       };
 
       priceFrom.value = "";
@@ -220,6 +422,8 @@ export default {
       kmsTo.value = "";
       kmsValue.value = [0, 0];
 
+      order.value = 0;
+
       router.replace({
         ...router.currentRoute,
         query: Object.fromEntries(
@@ -228,36 +432,21 @@ export default {
       });
     };
     const currentPageChange = async (url) => {
+      console.log(url);
       url = url.replace("http://vehicles:9008/", "");
       getVehicles(url);
-
     };
-
-    const searchDebouncer = _.debounce(() => {
-      if (searchGlobal.value.length > 0) {
-        router.replace({
-          ...router.currentRoute,
-          query: { ...route.query, search: searchGlobal.value },
-        });
-      } else {
-        paramsQuery.value.search = "";
-        router.replace({
-          ...router.currentRoute,
-          query: Object.fromEntries(
-            Object.entries(paramsQuery.value).filter(([_, v]) => v != "")
-          ),
-        });
-      }
-      getVehicles();
-    }, 500);
 
     const filterActives = (id) => {
       activesFilter.value.push(id);
-      console.log("🚀 ~ file: Catalogo.vue ~ line 326 ~ filterActives ~ activesFilter", activesFilter.value)
-    }
+      console.log(
+        "🚀 ~ file: Catalogo.vue ~ line 326 ~ filterActives ~ activesFilter",
+        activesFilter.value
+      );
+    };
 
+    
     const assingParams = () => {
-
       paramsQuery.value.year = route.query["year"]
         ? route.query["year"].toString()
         : "";
@@ -302,15 +491,43 @@ export default {
         : "";
     };
 
+    let data_brands: any = [];
+    let data_models: any = [];
+    let data_transmissions: any = [];
+    let data_type: any = [];
+    let data_fuel: any = [];
+    let data_colorExt: any = [];
+    let data_colorInt: any = [];
+    let data_agencies: any = [];
+
+    const dataVehicles = async () => {
+      const url = "/api/vehicles/marketplace";
+
+      const { data } = await ApiService.get(url);
+
+      data_brands = data.data.filters["brand"];
+      data_models = data.data.filters["model"];
+      data_transmissions = data.data.filters["transmission"];
+      data_type = data.data.filters["body-type"];
+      data_fuel = data.data.filters["fuel-type"];
+      data_colorExt = data.data.filters["color-exterior"];
+      data_colorInt = data.data.filters["color-interior"];
+      data_agencies = data.data.filters["agency"];
+    };
+
     const getVehicles = async (link = "") => {
       store.dispatch(Actions.ADD_BODY_CLASSNAME, "page-loading-vehicle");
       paginate.value.links = [];
+      paginate.value.current_page = 1;
+
       try {
-        let url = "/api/vehicles/marketplace?showing=" +
+        let url =
+          "/api/vehicles/marketplace?showing=" +
           paginate.value.per_page +
-          "&page=" + 1;
-          priceValue.value = [0, 0];
-          kmsValue.value = [0, 0];
+          "&page=" +
+          1;
+        priceValue.value = [0, 0];
+        kmsValue.value = [0, 0];
 
         for (const p in paramsQuery.value) {
           const actual = paramsQuery.value[p];
@@ -391,21 +608,23 @@ export default {
             });
           }
         }
-        if (searchGlobal.value) {
-          url += "&search=" + searchGlobal.value;
+        
+        if (searchGlobal.value.length > 0) {
+          url += `&search=${searchGlobal.value}`;
         }
+
         if (order.value == 1) {
-          url += "&orderbyprice=asc";
+          url += "&orderby=price_asc";
         } else if (order.value == 2) {
-          url += "&orderbyprice=desc";
+          url += "&orderby=price_desc";
         } else if (order.value == 3) {
-          url += "&orderbykm=asc";
+          url += "&orderby=year_asc";
         } else if (order.value == 4) {
-          url += "&orderbykm=desc";
+          url += "&orderby=year_desc";
         } else if (order.value == 5) {
-          url += "&orderbyyear=asc";
+          url += "&orderby=kms_asc";
         } else if (order.value == 6) {
-          url += "&orderbyyear=desc";
+          url += "&orderby=kms_desc";
         }
 
         if (link !== "") {
@@ -414,269 +633,181 @@ export default {
 
         const { data } = await ApiService.get(url);
         vehicles.value = data.data.data;
-        // similares.value =
-        //   data.data.Similar.data.length > 2
-        //     ? data.data.Similar.data.slice(0, 3)
-        //     : data.data.Similar.data;
+        console.log(
+          "🚀 ~ file: Catalogo.vue ~ line 562 ~ getVehicles ~ data.data.data",
+          data.data.data
+        );
         paginate.value.current_page = data.data.current_page;
         paginate.value.per_page = data.data.per_page;
         paginate.value.total = data.data.total;
         paginate.value.links = data.data.links;
-        type.value = data.data.filters['body-type'];
-        locations.value = data.data.filters['state'];
-        cities.value = data.data.filters['city'];
-        fuel.value = data.data.filters['fuel-type'];
-        years.value = data.data.filters['year'].map((y) => y.name);
-        colorExt.value = data.data.filters['color-interior'];
-        colorInt.value = data.data.filters['color-exterior'];
-        models.value = data.data.filters['model'];
-        brands.value = data.data.filters['brand'];
-        agencies.value = data.data.filters['agency'];
-        transmissions.value = data.data.filters['transmission'];
-        priceValue.value = [data.data.filters['price'][0].min, data.data.filters['price'][0].max];
-        kmsValue.value = [data.data.filters['kms'][0].min, data.data.filters['kms'][0].max];
+        type.value = data.data.filters["body-type"];
+        locations.value = data.data.filters["state"];
+        cities.value = data.data.filters["city"];
+        fuel.value = data.data.filters["fuel-type"];
+        years.value = data.data.filters["year"].map((y) => y.name);
+        colorExt.value = data.data.filters["color-exterior"];
+        colorInt.value = data.data.filters["color-interior"];
+        models.value = data.data.filters["model"];
+        brands.value = data.data.filters["brand"];
+        agencies.value = data.data.filters["agency"];
+        transmissions.value = data.data.filters["transmission"];
+        priceValue.value = [
+          data.data.filters["price"][0].min,
+          data.data.filters["price"][0].max,
+        ];
+        kmsValue.value = [
+          data.data.filters["kms"][0].min,
+          data.data.filters["kms"][0].max,
+        ];
+        similar.value = data.data.similar;
 
         const urlfiltersParam = url.split("?")[1];
-        const arrayFilters = urlfiltersParam.split("&").length - 2;
-        console.log("🚀 ~ file: Catalogo.vue ~ line 488 ~ getVehicles ~ arrayFilters", arrayFilters)
+        const arrayFilters = urlfiltersParam.split("&").filter((item) => !item.includes("orderby")).length - 2;
+        console.log(
+          "🚀 ~ file: Catalogo.vue ~ line 488 ~ getVehicles ~ arrayFilters",
+          arrayFilters
+        );
 
         cuantity.value = arrayFilters > 0 ? arrayFilters : 0;
-
-
       } catch (response) {
         console.error(response, "aqui");
       }
       store.dispatch(Actions.REMOVE_BODY_CLASSNAME, "page-loading-vehicle");
     };
-    const getTypes = async (params = "") => {
-      let urlparams = ""
-      if (params !== "") {
-        urlparams += "?" + params.split("&").filter((item) => !item.includes("body_type")).join("&");
-      }
-      try {
-        const { data } = await ApiService.get(`/api/vehicles/body-types${urlparams}`);
-        type.value = data.data;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const getlocations = async (params = "") => {
-      let urlparams = ""
-      if (params !== "") {
-        urlparams += "?" + params.split("&").filter((item) => !item.includes("state")).join("&");
-      }
 
-      try {
-        const { data } = await ApiService.get(`/api/vehicles/states${urlparams}`);
-        locations.value = Object.values(data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const getCities = async (params = "") => {
-      let urlparams = ""
-      if (params !== "") {
-        urlparams += "?" + params.split("&").filter((item) => !item.includes("city")).join("&");
-      }
+    const filtersActive = computed(() => {
+      const query = { ...route.query };
+      const actives: any = [];
+      Object.keys(query).forEach((key) => {
+        const arrayData: any = query;
+        const val = arrayData[key].toString();
+        if (val?.split(",")) actives.push(val?.split(","));
+        else actives.push(val);
+      });
+      return actives.flat();
+    });
 
-      try {
-        const { data } = await ApiService.get(`/api/vehicles/cities${urlparams}`);
-        cities.value = Object.values(data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const getFuel = async (params = "") => {
-      let urlparams = ""
-      if (params !== "") {
-        urlparams += "?" + params.split("&").filter((item) => !item.includes("fuel_type")).join("&");
-      }
-      try {
-        const { data } = await ApiService.get(`/api/vehicles/fuel-types${urlparams}`);
-        fuel.value = data.data;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const getYears = async (params = "") => {
+    const deleteFilter = (activ) => {
+      const query = { ...route.query };
+      let queryDelete = {};
+      Object.keys(query).forEach((key) => {
+        console.log("key", key);
+        const arrayData: any = query;
+        const val = arrayData[key];
+        if (val?.split(",").length > 1) {
+          queryDelete = {
+            ...query,
+            [key]: val
+              ?.split(",")
+              .filter((item) => item !== activ)
+              .join(","),
+          };
+        } else if (arrayData[key] === activ) {
+          console.log("🚀 ~ file: Catalogo.vue ~ line 688 ~ Object.keys ~ key", key)
+          key === "search" ? searchGlobal.value = "" : "";
+          delete query[key];
+         
+          queryDelete = query;
+          console.log(
+            "🚀 ~ file: Catalogo.vue ~ line 586 ~ Object.keys ~ queryDelete",
+            queryDelete
+          );
+        }
+      });
 
-      let urlparams = ""
-      if (params !== "") {
-        urlparams += "?" + params.split("&").filter((item) => !item.includes("year")).join("&");
-      }
-      try {
-        const { data } = await ApiService.get(`/api/vehicles/years${urlparams}`);
-        years.value = data.data.map((y) => y.name);
+      router.replace({
+        ...router.currentRoute,
+        query: queryDelete,
+      });
 
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const getColorExt = async (params = "") => {
-      let urlparams = ""
-      if (params !== "") {
-        urlparams += "?" + params.split("&").filter((item) => !item.includes("ext_color")).join("&");
-      }
-      try {
-        const { data } = await ApiService.get(`/api/vehicles/colors/exterior${urlparams}`);
-        colorExt.value = data.data;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const getColorInt = async (params = "") => {
-      let urlparams = ""
-      if (params !== "") {
-        urlparams += "?" + params.split("&").filter((item) => !item.includes("int_color")).join("&");
-      }
-      try {
-        const { data } = await ApiService.get(`/api/vehicles/colors/interior${urlparams}`);
-        colorInt.value = data.data;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const getModels = async (params = "") => {
-
-      let urlparams = ""
-      urlparams += "?" + params.split("&").filter((item) => !item.includes("model")).join("&");
-
-      try {
-        const { data } = await ApiService.get(`/api/vehicles/models${urlparams}`);
-        models.value = Object.values(data.data).map((e: any) => e);
-      } catch (error) {
-        console.log(error);
-      }
-
-    };
-    const getBrands = async (params = "") => {
-      let urlparams = ""
-      if (params !== "") {
-        urlparams += "?" + params.split("&").filter((item) => !item.includes("brand")).join("&");
-      }
-      try {
-        const { data } = await ApiService.get(`/api/vehicles/brands${urlparams}`);
-        brands.value = Object.values(data.data).map((e: any) => e);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const getAgencies = async (params = "") => {
-      let urlparams = ""
-      if (params !== "") {
-        urlparams += "?" + params.split("&").filter((item) => !item.includes("agency")).join("&");
-      }
-      try {
-        const { data } = await ApiService.get(`/api/vehicles/agencies${urlparams}`);
-        agencies.value = data.data;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const gettransmission = async (params = "") => {
-      let urlparams = ""
-      if (params !== "") {
-        urlparams += "?" + params.split("&").filter((item) => !item.includes("transmission")).join("&");
-      }
-      try {
-        const { data } = await ApiService.get(`/api/vehicles/transmissions${urlparams}`);
-        transmissions.value = data.data;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const getRangePrice = async (params = "") => {
-
-      let urlparams = ""
-      if (params !== "") {
-        urlparams += "?" + params.split("&").filter((item) => (!item.includes("price_to") || !item.includes("price_from"))).join("&");
-
-      }
-      try {
-        priceValue.value = [0, 0];
-        const { data } = await ApiService.get(`/api/vehicles/price-range${urlparams}`);
-        priceValue.value = [data.data[0].min, data.data[0].max];
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const getMileage = async (params = "") => {
-
-      let urlparams = ""
-      if (params !== "") {
-        urlparams += "?" + params.split("&").filter((item) => (!item.includes("kms_to") || !item.includes("kms_from"))).join("&");
-      }
-      try {
-        kmsValue.value = [0, 0];
-        const { data } = await ApiService.get(`/api/vehicles/km-range${urlparams}`);
-        kmsValue.value = [data.data[0].min, data.data[0].max];
-      } catch (error) {
-        console.log(error);
-      }
+      console.log(
+        "🚀 ~ file: Catalogo.vue ~ line 57822 ~ queryDelete  ~ query",
+        queryDelete
+      );
     };
 
     const findBrandByName = (name) => {
-      console.log("name", name);
-      console.log("name", brands.value);
       if (brands.value?.find((b) => b.name == name)) {
         return brands.value.find((b) => b.name == name)?.id ?? false;
+      } else {
+        return data_brands.find((b) => b.name == name)?.id ?? false;
       }
     };
     const findModelByName = (name) => {
-
       if (models.value?.find((b) => b.name == name)) {
         return models.value.find((b) => b.name == name)?.id ?? false;
+      } else {
+        return data_models.find((b) => b.name == name)?.id ?? false;
       }
-
     };
     const findFuelByName = (name) => {
-      return fuel.value?.find((b) => b.name == name)?.id ?? false;
+      if (fuel.value?.find((b) => b.name == name)) {
+        return fuel.value?.find((b) => b.name == name)?.id ?? false;
+      } else {
+        return data_fuel.find((b) => b.name == name)?.id ?? false;
+      }
     };
     const findTypeByName = (name) => {
-      return type.value?.find((b) => b.name == name)?.id ?? false;
+      if (type.value?.find((b) => b.name == name)) {
+        return type.value?.find((b) => b.name == name)?.id ?? false;
+      } else {
+        return data_type?.find((b) => b.name == name)?.id ?? false;
+      }
     };
     const findTransByName = (name) => {
-      return transmissions.value?.find((b) => b.name == name)?.id ?? false;
+      if (transmissions.value?.find((b) => b.name == name)) {
+        return transmissions.value?.find((b) => b.name == name)?.id ?? false;
+      } else {
+        return data_transmissions?.find((b) => b.name == name)?.id ?? false;
+      }
     };
 
     const findColorExtByName = (name) => {
       if (colorExt.value?.find((b) => b.name == name)) {
         return colorExt.value.find((b) => b.name == name)?.id ?? false;
+      } else {
+        return data_colorExt.find((b) => b.name == name)?.id ?? false;
       }
     };
     const findColorIntByName = (name) => {
       if (colorInt.value?.find((b) => b.name == name)) {
         return colorInt.value.find((b) => b.name == name)?.id ?? false;
+      } else {
+        return data_colorInt.find((b) => b.name == name)?.id ?? false;
       }
     };
     const findAgenciesByName = (name) => {
       if (agencies.value?.find((b) => b.name == name)) {
         return agencies.value.find((b) => b.name == name)?.id ?? false;
+      } else {
+        return data_agencies.find((b) => b.name == name)?.id ?? false;
       }
     };
+
+    const mobile = window.matchMedia("(min-width: 767px)");
+    const handleMobile = (e) => {
+      if (e.matches) {
+        windowSize.value = true;
+      } else {
+        windowSize.value = false;
+      }
+    };
+    mobile.addEventListener("change", handleMobile);
+
+    onBeforeMount(async () => {
+      handleMobile(mobile);
+    });
+
     onMounted(async () => {
       store.dispatch(Actions.ADD_BODY_CLASSNAME, "page-loading");
       store.dispatch(Actions.ADD_BODY_CLASSNAME, "page-loading-vehicle");
 
-      Object.keys(route.query).includes("brand") && await getBrands();
-      Object.keys(route.query).includes("model") && await getModels();
-      Object.keys(route.query).includes("type") && await getTypes();
-      Object.keys(route.query).includes("transmission") && await gettransmission();
-      Object.keys(route.query).includes("fuel") && await getFuel();
-      Object.keys(route.query).includes("colorex") && await getColorExt();
-      Object.keys(route.query).includes("colorin") && await getColorInt();
-      Object.keys(route.query).includes("agency") && await getAgencies();
-      // Object.keys(route.query).includes("year") && await getYears();
-      // Object.keys(route.query).includes("state") && await getlocations();
-      // Object.keys(route.query).includes("city") && await getCities();
-      // Object.keys(route.query).includes("kms") && await getMileage();
-      // Object.keys(route.query).includes("price") && await getRangePrice();
+      await dataVehicles();
       assingParams();
       await getVehicles();
 
       store.dispatch(Actions.REMOVE_BODY_CLASSNAME, "page-loading");
-
     });
 
     return {
@@ -700,7 +831,7 @@ export default {
       agencies,
       transmissions,
       getVehicles,
-      searchDebouncer,
+      // searchDebouncer,
       brandsAll,
       priceValue,
       kmsValue,
@@ -714,7 +845,14 @@ export default {
       kmsTo,
       clearFilters,
       cuantity,
-      filterActives
+      filterActives,
+      filtersActive,
+      Clear,
+      deleteFilter,
+      similar,
+      IconNoSearch,
+      windowSize,
+      selectOrderBy
     };
   },
 };

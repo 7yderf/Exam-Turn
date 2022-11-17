@@ -7,56 +7,88 @@ import SolanaServices from "@/core/services/SolanaServices";
 
 const guess = [
   // '/auth',
-  // "/sign-in",
-  // "/forgot-password",
-  // "/reset-password",
+  "/sign-in",
+  "/forgot-password",
+  "/reset-password",
 ];
 
 const client_site = [
   "/home",
   "/detalle",
   "/agencia",
+  "/beneficios",
   // "/cita-en-agencia",
   // "/seleccionar-cita",
   // "/confirmar-cita",
   '/catalogo',
+  '/vende',
   // '/agendar-cita',
   // '/vender-auto',
   // '/apartar-auto',
   // '/resumen-apartado'
 ]
 const routes: Array<RouteRecordRaw> = [
-  
-  // {
-  //   path: "/",
-  //   component: () => import("@/components/page-layouts/Auth.vue"),
-  //   children: [
-  //     {
-  //       path: "/sign-in",
-  //       name: "sign-in",
-  //       component: () =>
-  //         import("@/views/crafted/authentication/basic-flow/SignIn.vue"),
-  //     },
-  //     {
-  //       path: "/sign-up",
-  //       name: "sign-up",
-  //       component: () =>
-  //         import("@/views/crafted/authentication/basic-flow/SignUp.vue"),
-  //     },
-  //     {
-  //       path: "/forgot-password",
-  //       name: "forgot-password",
-  //       component: () =>
-  //         import("@/views/crafted/authentication/basic-flow/PasswordReset.vue"),
-  //     },
-  //     {
-  //       path: "/reset-password/:token/:pwd?",
-  //       name: "reset-password",
-  //       component: () =>
-  //         import("@/views/crafted/authentication/basic-flow/PasswordSet.vue"),
-  //     },
-  //   ],
-  // },
+  {
+    path: "/",
+    component: () => import("@/layout/user/UserLayout.vue"),
+    children: [
+      {
+        path: "/dashboard",
+        name: "dashboard",
+        component: () =>
+          import("@/views/config/ConfigView.vue"),
+      },
+      {
+        path: "/dashboard-home",
+        name: "dashboard-home",
+        component: () =>
+          import("@/views/config/ConfigHome.vue"),
+      },
+      {
+        path: "/dashboard-market",
+        name: "dashboard-market",
+        component: () =>
+          import("@/views/config/ConfigMarket.vue"),
+      },
+      {
+        path: "/dashboard-detalle",
+        name: "dashboard-detalle",
+        component: () =>
+          import("@/views/config/ConfigDetalle.vue"),
+      },
+      
+    ]
+  },
+  {
+    path: "/",
+    component: () => import("@/components/page-layouts/Auth.vue"),
+    children: [
+      {
+        path: "/sign-in",
+        name: "sign-in",
+        component: () =>
+          import("@/views/crafted/authentication/basic-flow/SignIn.vue"),
+      },
+      // {
+      //   path: "/sign-up",
+      //   name: "sign-up",
+      //   component: () =>
+      //     import("@/views/crafted/authentication/basic-flow/SignUp.vue"),
+      // },
+      {
+        path: "/forgot-password",
+        name: "forgot-password",
+        component: () =>
+          import("@/views/crafted/authentication/basic-flow/PasswordReset.vue"),
+      },
+      {
+        path: "/reset-password/:token/:pwd?",
+        name: "reset-password",
+        component: () =>
+          import("@/views/crafted/authentication/basic-flow/PasswordSet.vue"),
+      },
+    ],
+  },
   {
     // Client - site
     path: "/",
@@ -68,6 +100,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import("@/views/client/Home.vue"),
       },
+      
+      
       {
         path: "/Agencias",
         name: "Agencias",
@@ -79,6 +113,18 @@ const routes: Array<RouteRecordRaw> = [
         name: "catalogo",
         component: () =>
           import("@/views/client/Catalogo.vue"),
+      },
+      {
+        path: "/beneficios",
+        name: "beneficios",
+        component: () =>
+          import("@/views/client/Beneficios.vue"),
+      },
+      {
+        path: "/vende",
+        name: "vende",
+        component: () =>
+          import("@/views/client/Vende.vue"),
       },
       {
         path: "/detalle/:id",
@@ -132,42 +178,56 @@ const can = (permissions) => {
   return false;
 };
 
+
+
 router.beforeEach((to, from, next) => {
+ 
   // reset config to initial state
+  
   store.commit(Mutations.RESET_LAYOUT_CONFIG);
 
-  store.dispatch(Actions.VERIFY_AUTH);
+  // store.dispatch(Actions.VERIFY_AUTH);
 
   const isGuess = _.find(guess, function (item) {
+   
     return _.includes(to.path, item);
+    
   });
+ 
+  
   const isClient = _.find(client_site, function (item) {
+   
     return _.includes(to.path, item);
-  });
-
+    
+  }); 
+ 
   // redirect
   
 
   const auth = store.getters.isUserAuthenticated;
-  console.log("🚀 ~ file: clean.ts ~ line 149 ~ router.beforeEach ~ auth", auth)
+ 
   const redirect = "/home"; // default redirect
   if (isGuess) {
+   
     if (auth) {
-      // console.log("🚀 ~ file: clean.ts ~ line 153 ~ router.beforeEach ~ auth", auth)
+     console.log("🚀 ~ file: clean.ts ~ line 219 ~ router.beforeEach ~ auth", auth)
+     
       next("/dashboard");
     } else {
       next();
     }
   } else if(isClient){
-    // console.log("🚀 ~ file: clean.ts ~ line 159 ~ router.beforeEach ~ isClient", isClient)
+    console.log("🚀 ~ file: clean.ts ~ line 226 ~ router.beforeEach ~ isClient", isClient)
+    
     next();
   }else{
     if (auth) {
-      // console.log("🚀 ~ file: clean.ts ~ line 163 ~ router.beforeEach ~ auth", auth)
-      next(redirect);
+      console.log("🚀 ~ file: clean.ts ~ line 231 ~ router.beforeEach ~ auth", auth)
+      if(to.path == "/")next(redirect);
+      next();
     } else {
       next(redirect);
-      // console.log("🚀 ~ file: clean.ts ~ line 167 ~ router.beforeEach ~ redirect", redirect)
+      
     }
   }
   // Scroll page to top on every route change

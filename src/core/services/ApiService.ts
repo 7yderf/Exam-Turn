@@ -8,6 +8,30 @@ import router from "@/router/";
 import Alert from "sweetalert2/dist/sweetalert2.js";
 import { Mutations } from "@/store/enums/StoreEnums";
 
+console.log("🚀 ~ file: ApiService.ts ~ line 18 ~ token ~ location") 
+
+// const route = () => {
+//  return router.options.history.location
+// }
+
+// const token = () => {
+//   const location = route();
+//     console.log("🚀 ~ file: ApiService.ts ~ line 18 ~ token ~ location", location)
+//     let client = true
+//     if(location.includes('dashboard')){
+//       console.log("🚀 ~ file: ApiService.ts ~ line 22 ~ token ~ location", location.includes('dashboard'))
+//       console.log("🚀 ~ file: ApiService.ts ~ line 21 ~ token ~ location", location)
+//       client = false
+//     }
+//     return client ? JwtService.getTokenGateway() : JwtService.getToken()
+// }
+
+// token()
+  
+  
+
+
+
 /**
  * @description service to call HTTP request via Axios
  */
@@ -66,10 +90,14 @@ class ApiService {
   /**
    * @description set the default HTTP request headers
    */
-  public static setHeader(): void {
+  public static async setHeader(user = false) {
+    const TokenGateway = await JwtService.getTokenGateway();
+    const token = user ? JwtService.getToken() : TokenGateway;
+    const barer_token = token;
+    console.log("🚀 ~ file: ApiService.ts ~ line 89 ~ ApiService ~ setHeader ~ barer_token", barer_token)
     ApiService.vueInstance.axios.defaults.headers.common[
       "Authorization"
-    ] = `Bearer ${JwtService.getToken()}`;
+    ] = `Bearer ${barer_token}`;
     ApiService.vueInstance.axios.defaults.headers.common["Accept"] =
       "application/json";
     ApiService.vueInstance.axios.defaults.headers.common["Pragma"] =
@@ -96,15 +124,16 @@ class ApiService {
    * @param slug: string
    * @returns Promise<AxiosResponse>
    */
-  public static get(
+  public static  async get(
     resource: string,
-    slug = "" as string
+    slug = "" as string,
+    user = false
   ): Promise<AxiosResponse> {
     if (slug != "") {
-      ApiService.setHeader();
+      await ApiService.setHeader(user);
       return ApiService.vueInstance.axios.get(`${resource}/${slug}`);
     } else {
-      ApiService.setHeader();
+      await ApiService.setHeader(user);
       return ApiService.vueInstance.axios.get(`${resource}`);
     }
   }
@@ -115,11 +144,12 @@ class ApiService {
    * @param params: AxiosRequestConfig
    * @returns Promise<AxiosResponse>
    */
-  public static post(
+  public static async post(
     resource: string,
-    params: AxiosRequestConfig | FormData
+    params: AxiosRequestConfig | FormData,
+    user = false
   ): Promise<AxiosResponse> {
-    ApiService.setHeader();
+    await ApiService.setHeader(user);
     return ApiService.vueInstance.axios.post(`${resource}`, params);
   }
 
@@ -130,12 +160,12 @@ class ApiService {
    * @param params: AxiosRequestConfig
    * @returns Promise<AxiosResponse>
    */
-  public static update(
+  public static async update(
     resource: string,
     slug: string,
-    params: AxiosRequestConfig
+    params: AxiosRequestConfig,
   ): Promise<AxiosResponse> {
-    ApiService.setHeader();
+    await ApiService.setHeader();
     return ApiService.vueInstance.axios.put(`${resource}/${slug}`, params);
   }
 
@@ -145,11 +175,11 @@ class ApiService {
    * @param params: AxiosRequestConfig
    * @returns Promise<AxiosResponse>
    */
-  public static put(
+  public static async put(
     resource: string,
     params: AxiosRequestConfig
   ): Promise<AxiosResponse> {
-    ApiService.setHeader();
+    await ApiService.setHeader();
     return ApiService.vueInstance.axios.put(`${resource}`, params);
   }
 
@@ -158,8 +188,8 @@ class ApiService {
    * @param resource: string
    * @returns Promise<AxiosResponse>
    */
-  public static delete(resource: string): Promise<AxiosResponse> {
-    ApiService.setHeader();
+  public static async delete(resource: string): Promise<AxiosResponse> {
+    await ApiService.setHeader();
     return ApiService.vueInstance.axios.delete(resource);
   }
 }

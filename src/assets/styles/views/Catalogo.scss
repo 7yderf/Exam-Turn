@@ -1,8 +1,9 @@
 @import "../Mixins";
+$icon-arrow: url("@/assets/images/icons/arrow-select.svg");
 
 .catalogo {
   @include content(100%, 0);
-  &__hero{
+  &__hero {
     @include content(100%);
     padding: 16px 0 16px;
     background: var(--primary-color);
@@ -10,73 +11,92 @@
     top: 96px;
     z-index: 2;
   }
-  &__search{
+
+  &__search {
     @include content(1200px);
     @include flex(space-between, 16px, flex-end);
-    
   }
-  &__content-search{
+  &__content-search {
     @include flex();
     position: relative;
   }
-  &__icon-search{
+  &__icon-search {
     position: absolute;
-    right: 10px;
+    right: 15px;
     z-index: 2;
     cursor: pointer;
-     &:hover{
+    &:hover {
       transform: scale(1.05);
-      transition: .3s
+      transition: 0.3s;
     }
- }
-  &__input-box{
+  }
+  &__input-box {
     flex-grow: 1;
   }
   .input {
     &__select {
-      width: 150px;
+      width: 200px;
+      background-image: $icon-arrow;
+      background-repeat: no-repeat;
+      background-position: 90%, center;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      -ms-appearance: none;
+      -o-appearance: none;
+      appearance: none;
+      background-color: var(--primary-color);
+    }
+    &__select-options {
+      background: var(--primary-color);
+      color: var(--text-contrast-color);
+      padding: 4px;
     }
   }
-  &__order-select{
+  &__result-mobile {
+    color: white;
+    background-color: red;
+    z-index: 99;
+  }
+  &__order-select {
     @include flex();
   }
-  &__clean-filters{
+  &__clean-filters {
     @include content(280px, 0);
     @include flex(flex-start, 16px, baseline);
     margin: initial;
     margin-bottom: 12px;
   }
-  &__text-filters{
+  &__text-filters {
     @include text(2.4rem, 400, 2.8rem);
     color: var(--text-contrast-color);
     margin-bottom: 0;
-    &--clear{
+    &--clear {
       @include text(1.4rem, 400, 1.7rem);
     }
   }
-  &__results{
-    margin-bottom: 18px
+  &__results {
+    margin-bottom: 18px;
   }
-  &__text-results{
+  &__text-results {
     @include text(2.4rem, 400, 2.8rem);
     color: var(--text-contrast-color);
     margin-right: 16px;
-    &--sub{
+    &--sub {
       @include text(1.2rem, 400, 1.46rem);
       color: var(--text-contrast-color);
     }
   }
-  &__body{
+  &__body {
     @include content(1200px);
     @include flex();
   }
-  &__row{
+  &__row {
     width: 100%;
   }
-  &__aside{
+  &__aside {
     padding: 0 16px;
   }
-  &__deck{
+  &__deck {
     @include flex(space-around, 16px, flex-start);
     background: white;
     padding: 8px;
@@ -86,89 +106,131 @@
     left: 0;
     z-index: 2;
   }
-  &__deck-img{
-    filter: invert(39%) sepia(92%) saturate(1534%) hue-rotate(347deg) brightness(101%) contrast(101%);
+  &__deck-img {
+    filter: invert(39%) sepia(92%) saturate(1534%) hue-rotate(347deg)
+      brightness(101%) contrast(101%);
     width: 25px;
     height: 25px;
   }
-  &__deck-filter-text{
+  &__deck-filter-text {
     @include text(1.4rem, 400, 1.68rem);
     color: #2e2e2e;
   }
-  &__deck-btn{
+  &__deck-btn {
     @include flex(center, 4px, center);
     flex-direction: column;
     border-radius: 3px;
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.28);
+    /* box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.28); */
     padding: 4px 16px;
     cursor: pointer;
-    &:hover{
+    &:hover {
       background: var(--secondary-color);
-      img{
-        filter: invert(0) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+      img {
+        filter: invert(0) sepia(100%) saturate(0%) hue-rotate(288deg)
+          brightness(102%) contrast(102%);
       }
-      .catalogo__deck-filter-text{
+      .catalogo__deck-filter-text {
         color: var(--text-contrast-color);
       }
     }
   }
-  &__paginate{
+  &__paginate {
     @include flex(center, 16px, center);
     margin-top: 16px;
   }
-  &__paginate-btn{
+  &__paginate-btn {
     @include border();
     @include text(1.6rem, 600, 2.4rem);
-    padding: 8px 16px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
     border-radius: 3px;
-    &[data-show="true"]{
+    width: 4rem;
+    height: 4rem;
+    &[data-show="true"] {
       background: var(--secondary-color);
       color: var(--text-contrast-color);
+      border: none;
     }
-
   }
-  
+  &__paginate-btn:disabled,
+  &__paginate-btn:disabled.icon {
+    border: 1px solid #9a9a9a;
+    fill: #9a9a9a;
+  }
+
+  &__options-filters {
+    @include flex(flex-start, 8px, center);
+    margin: 8px 0 16px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  &__filters-active {
+    @include flex(flex-start, 4px, center);
+    @include text(1.4rem, 400, 1.68rem);
+    border-radius: 5px;
+    color: var(--text-contrast-color);
+    padding: 5px 10px;
+    background: var(--secondary-color);
+    cursor: pointer;
+  }
 }
 
-.page-loading-vehicle{
-  .noSearch{
+.page-loading-vehicle {
+  .noSearch {
     display: none;
     flex-direction: column;
   }
-  .cards-cart__card{
+  .cards-cart__card {
     display: none;
   }
 }
-.catalogo{
-  .body{
+.catalogo {
+  .body {
     display: none;
   }
 }
-.page-loading-vehicle{
-  .catalogo{
-    .body{
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    z-index: 4;
-    background: #ffffffd6;
-    bottom: 0;
+.page-loading-vehicle {
+  .catalogo {
+    .body {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      position: fixed;
+      z-index: 4;
+      background: #ffffffd6;
+      bottom: 0;
     }
   }
 }
 
-.noSearch{
+.noSearch {
   flex-direction: column;
+  &__img {
+    margin: 32px 0;
+  }
+  &__tit {
+    @include text(2.4rem, 400, 2.8rem, center);
+    color: var(--text-color);
+    margin-bottom: 16px;
+  }
+  &__text {
+    @include text(1.6rem, 400, 2.4rem, center);
+    color: var(--text-color);
+    margin-bottom: 40px;
+  }
 }
-.simil{
+.simil {
   flex-direction: column;
-    width: 100%;
-    max-width: inherit!important;
+  width: 100%;
+  max-width: inherit !important;
+  &__text {
+    @include text(2.4rem, 400, 2.8rem);
+    color: var(--text-color);
+  }
 }
-
-
-
-
-
+.icon-reverse {
+  transform: rotate(180deg);
+}
 @import "./responsive/Catalogo";

@@ -93,28 +93,9 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
 
   @Mutation
   [Mutations.SET_AUTH](user) {
-    this.isAuthenticated = true;
-    let userPermissions: unknown[] = [];
-    if (user.info) {
-      userPermissions = _.map(
-        _.union(user.info.permissions, user.info.role.permissions),
-        function (permission: Permission) {
-          return permission.name;
-        }
-      );
-      userPermissions = _.uniq(userPermissions);
-      let permission_number = 1;
-      const assignPermission = userPermissions.slice(0);
-      while (assignPermission.length > 0) {
-        window.localStorage.setItem(
-          `permissions_${permission_number}`,
-          JSON.stringify(assignPermission.splice(0, 100))
-        );
-        permission_number++;
-      }
-      delete user.info.permissions;
-      delete user.info.role.permissions;
-    }
+    console.log("🚀 ~ file: AuthModule.ts ~ line 96 ~ AuthModule ~ user", user)
+    const forgotStatus = user.message !== "Te hemos enviado un correo para restablecer la contraseña";
+    this.isAuthenticated = forgotStatus;
     this.user = user.info ? user.info : user;
     this.errors = [];
     if (user.access_token) JwtService.saveToken(user.access_token);
@@ -158,16 +139,8 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
       ApiService.post("api/auth/login", params)
         .then(async({ data }) => {
           if(data.success){
-            await window.localStorage.setItem('userRole', JSON.stringify(data.data.info.role));
-            await window.localStorage.setItem('userAgencies', JSON.stringify(data.data.info.agency));
-            if(data.data.info.agency.length > 0){
-              await window.localStorage.setItem('agencySelected', data.data.info.agency[0].name);
-              await window.localStorage.setItem('agencyIdSelected', data.data.info.agency[0].id);
-            }
-            this.context.commit(Mutations.SET_USERINFO, data.data.info);
             this.context.commit(Mutations.SET_AUTH, data.data);
-            await localStorage.setItem("user",JSON.stringify(data.data));
-            await localStorage.setItem("userinfo",JSON.stringify(data.data.info));
+            console.log("🚀 ~ file: AuthModule.ts ~ line 163 ~ AuthModule ~ .then ~ data.data", data.data)
             resolve(data);
           }
         })
@@ -217,21 +190,22 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
     });
   }
 
-  @Action
-  [Actions.VERIFY_AUTH]() {
-    if (JwtService.getToken()) {
-      ApiService.get("/api/auth/user")
-        .then(({ data }) => {
-          this.context.commit(Mutations.SET_AUTH, data.data[0]);
-        })
-        .catch(({ response }) => {
-          this.context.commit(Mutations.SET_ERROR, response.data.errors);
-          this.context.commit(Mutations.PURGE_AUTH);
-        });
-    } else {
-      this.context.commit(Mutations.PURGE_AUTH);
-    }
-  }
+  // @Action
+  // [Actions.VERIFY_AUTH]() {
+  //   if (JwtService.getToken()) {
+  //     console.log("🚀 ~ file: AuthModule.ts ~ line 195 ~ AuthModule ~ JwtService.getToken()", JwtService.getToken())
+  //     ApiService.get("/api/auth/user")
+  //       .then(({ data }) => {
+  //         this.context.commit(Mutations.SET_AUTH, data.data[0]);
+  //       })
+  //       .catch(({ response }) => {
+  //         this.context.commit(Mutations.SET_ERROR, response.data.errors);
+  //         this.context.commit(Mutations.PURGE_AUTH);
+  //       });
+  //   } else {
+  //     this.context.commit(Mutations.PURGE_AUTH);
+  //   }
+  // }
 
   // @Action
   // [Actions.UPDATE_USER](payload) {
