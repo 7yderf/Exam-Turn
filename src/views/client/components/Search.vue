@@ -78,8 +78,8 @@ export default {
       opcionSerch.value = true;
       try {
         if (searchInput.value.length === 0 && searchGlobal.value == "") {
-          if (localStorage.getItem('favorites')) {
-            const favorites = JSON.parse(localStorage.getItem('favorites'));
+          if (localStorage.favorites) {
+            const favorites = JSON.parse(localStorage.favorites);
             searchInput.value = Object.values(favorites).reverse().slice(0, 5);
             searchInputService.value = [];
           }
@@ -139,8 +139,8 @@ export default {
 
     const debounceInput = _.debounce(async () => {
       if (searchGlobal.value == "" || !searchGlobal.value) {
-        if (localStorage.getItem('favorites')) {
-          const favorites = JSON.parse(localStorage.getItem('favorites'));
+        if (localStorage.favorites) {
+          const favorites = JSON.parse(localStorage.favorites);
           searchInput.value = Object.values(favorites).reverse().slice(0, 5);
           searchInputService.value = [];
         }

@@ -20,7 +20,6 @@ export default defineComponent({
        */
       store.commit(Mutations.OVERRIDE_LAYOUT_CONFIG);
 
-      
     });
   },
 });
