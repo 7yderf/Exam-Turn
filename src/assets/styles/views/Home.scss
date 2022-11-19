@@ -121,7 +121,7 @@ $dot-hover: url("@/assets/images/icons/icon-dot-hover.svg");
   }
 
   &__copy {
-    @include content(1920px, 0);
+    @include content(100%, 0);
     @include flex(center, 0, stretch);
     height: 500px;
     &--dark {

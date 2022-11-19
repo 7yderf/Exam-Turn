@@ -77,6 +77,7 @@ export default {
       children[3].style.left = ((inputMin.value - 0) / ((props.valInitMax - 0) / 100)) + "%";
       children[5].style.left = ((inputMin.value - 0) / ((props.valInitMax - 0) / 100)) + "%";
       children[5].childNodes[0].innerHTML = formatPrice(inputMin.value);
+      console.log("🚀 ~ file: Range.vue ~ line 80 ~ oninputleft ~ formatPrice(inputMin.value)", formatPrice(inputMin.value))
 
       emit("valorMinimo", parseInt(inputMin.value), props.type);
 
@@ -96,10 +97,14 @@ export default {
       children[4].style.left=((inputMax.value - 0) / ((props.valInitMax - 0) / 100)) + '%';
       children[6].style.left=((inputMax.value - 0) / ((props.valInitMax - 0) / 100)) + '%';
       children[6].childNodes[0].innerHTML= formatPrice(inputMax.value);
+
+      console.log("🚀 ~ file: Range.vue ~ line 100 ~ oninputRigth ~ formatPrice(inputMax.value);", formatPrice(inputMax.value))
+      
       emit("valorMaximo", parseInt(inputMax.value) + 1 , props.type);
       return rangeMax.value = parseInt(inputMax.value) + 1
     };
     const filterRange = () => {
+      console.log("🚀 ~ file: Range.vue ~ line 106 ~ filterRange ~ rangeMin.value", rangeMin.value)
       emit('searchRange', rangeMin.value, rangeMax.value, props.type)
     }
 

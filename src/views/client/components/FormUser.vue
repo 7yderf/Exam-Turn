@@ -167,12 +167,12 @@ export default {
 
       const formData = new FormData();
 
-      if (values.type == "Image" && !values.url?.includes('youtube.com') ) {
+     
 
         if (props.file && values.type == "Image") {
           formData.append("file", props.file);
         } else if (values.type == "Video") {
-          formData.append("file", props.file);
+          formData.append("url",  values.url);
         } else {
           Swal.fire({
             icon: "error",
@@ -182,7 +182,7 @@ export default {
           return;
         }
 
-      }
+      
 
 
 

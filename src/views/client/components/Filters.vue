@@ -500,8 +500,8 @@
               >
                 <div class="accordion-body border-0">
                  <div class="accordion__input-range">
-                  <input class="input input--white" type="text" v-model="inputMin" v-on:input="debounceInput">
-                  <input class="input input--white" type="text" v-model="inputMax" v-on:input="debounceInput">
+                  <input class="input input--white" type="text" pattern="^[0-9]+$" v-model="inputMin" v-on:input="debounceInput">
+                  <input class="input input--white" type="text"  pattern="^[0-9]+$" v-model="inputMax" v-on:input="debounceInput">
                  </div>
                   <Range
                     v-if="searchPrice[0] !== 0 || searchPrice[1] !== 0"
@@ -1406,8 +1406,10 @@ export default {
     const kmsFrom = ref<any>([]);
     const kmsTo = ref<any>([]);
     const orderby = ref(0);
-    const inputMin = ref(null);
-    const inputMax = ref(null);
+    const inputMin = ref<any>([]);
+    const inputMax = ref<any>([]);
+    const rangeValuePrice = ref<any>([]);
+    const  limitsValuesPrice = ref<any>([]);
     const filtersActive = computed(() => {
       return props.prop_filters_active;
     });
@@ -1432,19 +1434,6 @@ export default {
       () => route.query,
       () => {
         assingParams();
-      }
-    );
-    watch(
-      () => inputMin.value,
-      (val) => {
-        console.log("🚀 ~ file: Catalogo.vue ~ line 382 ~ setup ~ val", val);
-        
-      }
-    );
-    watch(
-      () => inputMax.value,
-      (val) => {
-        console.log("🚀 ~ file: Catalogo.vue ~ line 382 ~ setup ~ val", val);
       }
     );
     
@@ -1614,11 +1603,15 @@ export default {
       return "$ " + val;
     };
 
-    const debounceInput = _.debounce( () => {
-      console.log("debounce");
-      handleSearchRange(inputMin.value, inputMax.value, "price");
-      console.log("🚀 ~ file: Filters.vue ~ line 1617 ~ debounceInput ~ inputMin.value", inputMin.value)
-    }, 400);
+    const formatPrice = (value) => {
+      const formatter = new Intl.NumberFormat("en-US", {
+      
+      currency: "USD",
+      maximumFractionDigits: 0,
+      minimumFractionDigits: 0,
+    });
+    return formatter.format(value)
+    };
 
     const handleSearchRange = (rangeMin, rangeMax, type) => {
       if (type == "price") {
@@ -1648,12 +1641,47 @@ export default {
       }
     };
 
+       
+
+    watch(
+      () =>  props.prop_prices,
+      (val : any) => {
+        priceValue.value[0] === 0 ? inputMin.value = formatPrice(val[0])  : inputMin.value = formatPrice(priceValue.value[0]);
+        priceValue.value[1] === 0 ? inputMax.value = formatPrice(val[1])  : inputMax.value = formatPrice(priceValue.value[1]);
+        rangeValuePrice.value = [parseInt(inputMin.value.replace(/[,]/g,'')), parseInt(inputMax.value.replace(/[,]/g,''))];
+        limitsValuesPrice.value = val;
+        console.log("🚀 ~ file: Filters.vue ~ line 1645 ~ setup ~ val", val)
+      }
+    );
+    
     const listenerMin =(val, type) => {
-      inputMin.value = val;
+      console.log("🚀 ~ file: Filters.vue ~ line 1661 ~ listenerMin ~ val", val)
+      inputMin.value = formatPrice(val);
     }
     const listenerMax = (val, type) => {
-      inputMax.value = val;
+      inputMax.value = formatPrice(val);
+      console.log("🚀 ~ file: Filters.vue ~ line 1666 ~ listenerMax ~ val", val)
     }
+
+    const debounceInput = _.debounce( () => {
+      console.log("debounce", inputMin.value.replace(/[,]/g,''));
+
+      if( 
+        (parseInt(inputMin.value.replace(/[,]/g,'')) >= limitsValuesPrice.value[0] && parseInt(inputMin.value.replace(/[,]/g,'')) <= rangeValuePrice.value[1]) &&
+        (parseInt(inputMax.value.replace(/[,]/g,'')) >= rangeValuePrice.value[0]  && parseInt(inputMax.value.replace(/[,]/g,'')) <= limitsValuesPrice.value[1])
+      ){
+      console.log("🚀 ~ file: Filters.vue ~ line 1659 ~ debounceInput ~ inputMin.value", [inputMin.value, inputMax.value])
+      console.log("🚀 ~ file: Filters.vue ~ line 1659 ~ debounceInput ~ rangeValuePrice.value[0]", limitsValuesPrice.value)
+      
+        handleSearchRange(inputMin.value, inputMax.value, "price");
+      }
+      
+        
+      
+    
+      console.log("🚀 ~ file: Filters.vue ~ line 1617 ~ debounceInput ~ inputMin.value", inputMin.value)
+    }, 400);
+
     const activeFilter = (id) => {
       const idfilter = id;
       emit("filterActive", idfilter);
@@ -1778,7 +1806,10 @@ export default {
       inputMax,
       listenerMin,
       listenerMax,
-      debounceInput
+      debounceInput,
+      rangeValuePrice,
+      limitsValuesPrice,
+      formatPrice
     };
   },
   emits: ["filterActive", "deleteFilter", "orderActive"],

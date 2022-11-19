@@ -3,12 +3,8 @@
     <HelloWorld />
 
     <article>
-      <FormWizard
-        @submit="onSubmit"
-        :validation-schema="schema"
-        :initial-values="formValues"
-        v-slot="{ errors, currentStep, previous, hasPrevious }"
-      >
+      <FormWizard @submit="onSubmit" :validation-schema="schema" :initial-values="formValues"
+        v-slot="{ errors, currentStep, previous, hasPrevious }">
         <div v-if="hasPrevious && !submited" class="steps__back">
           <div class="steps__back-text">
             <button class="steps__btn-back" @click="previous">
@@ -24,17 +20,11 @@
 
               <p>Tu vehículo</p>
             </div>
-            <div
-              class="step"
-              :class="currentStep >= 1 ? ['step', 'active'] : ['step']"
-            >
+            <div class="step" :class="currentStep >= 1 ? ['step', 'active'] : ['step']">
               <IconUser :prop_active="currentStep >= 1" />
               <p>Tus datos</p>
             </div>
-            <div
-              class="step"
-              :class="currentStep === 2 ? ['step', 'active'] : ['step']"
-            >
+            <div class="step" :class="currentStep === 2 ? ['step', 'active'] : ['step']">
               <IconDolar :prop_active="currentStep >= 3" />
               <p>Valuación</p>
             </div>
@@ -44,254 +34,108 @@
             <p class="venta__contact-title">Vende tu vehículo</p>
 
             <div v-if="!submited">
-              <FormStep
-                class="venta__inputs-content venta__inputs-content--column"
-              >
+              <FormStep class="venta__inputs-content venta__inputs-content--column">
                 <p class="venta__contact-sub">
                   Ingresa los datos de tu vehículo para recibir una oferta
                 </p>
                 <div class="venta__inputs">
-                  <label
-                    for="year"
-                    class="label"
-                    :data-require="Boolean(errors.year)"
-                    >Año</label
-                  >
-                  <Field
-                    v-slot="{ value }"
-                    name="year"
-                    as="select"
-                    :data-require="Boolean(errors.year)"
-                    v-model="valueYears"
-                    class="input input__select"
-                  >
+                  <label for="year" class="label" :data-require="Boolean(errors.year)">Año</label>
+                  <Field v-slot="{ value }" name="year" as="select" :data-require="Boolean(errors.year)"
+                    v-model="valueYears" class="input input__select">
                     <option value="" disabled>Seleciona el año</option>
-                    <option
-                      v-for="year in years"
-                      :key="year"
-                      :value="year"
-                      :selected="year === value"
-                    >
+                    <option v-for="year in years" :key="year" :value="year" :selected="year === value">
                       {{ year }}
                     </option>
                   </Field>
                   <ErrorMessage name="year" class="input__error"></ErrorMessage>
                 </div>
                 <div class="venta__inputs">
-                  <label
-                    for="brand"
-                    class="label"
-                    :data-require="Boolean(errors.brand)"
-                    >Marca</label
-                  >
-                  <Field
-                    v-slot="{ value }"
-                    name="brand"
-                    as="select"
-                    :data-require="Boolean(errors.brand)"
-                    v-model="valueBrands"
-                    class="input input__select"
-                    :disabled="Boolean(!valueYears)"
-                  >
+                  <label for="brand" class="label" :data-require="Boolean(errors.brand)">Marca</label>
+                  <Field v-slot="{ value }" name="brand" as="select" :data-require="Boolean(errors.brand)"
+                    v-model="valueBrands" class="input input__select" :disabled="Boolean(!valueYears)">
                     <option value="" disabled>Seleciona una marca</option>
-                    <option
-                      v-for="brand in brands"
-                      :key="brand.id"
-                      :value="brand.id"
-                      :selected="brand[value] && value.includes(brand.name)"
-                    >
-                      {{ brand.name }}
+                    <option v-for="brand in brands" :key="brand.Clave" :value="brand.Clave"
+                      :selected="brand[value] && value.includes(brand.Nombre)">
+                      {{ brand.Nombre }}
                     </option>
                   </Field>
-                  <ErrorMessage
-                    name="brand"
-                    class="input__error"
-                  ></ErrorMessage>
+                  <ErrorMessage name="brand" class="input__error"></ErrorMessage>
                 </div>
                 <div class="venta__inputs">
-                  <label
-                    for="model"
-                    class="label"
-                    :data-require="Boolean(errors.model)"
-                    >Modelo</label
-                  >
-                  <Field
-                    v-slot="{ value }"
-                    name="model"
-                    as="select"
-                    :data-require="Boolean(errors.model)"
-                    v-model="valueModels"
-                    class="input input__select"
-                    :disabled="Boolean(!valueBrands)"
-                  >
+                  <label for="model" class="label" :data-require="Boolean(errors.model)">Modelo</label>
+                  <Field v-slot="{ value }" name="model" as="select" :data-require="Boolean(errors.model)"
+                    v-model="valueModels" class="input input__select" :disabled="Boolean(!valueBrands)">
                     <option value="" disabled>Seleciona un modelo</option>
-                    <option
-                      v-for="model in models"
-                      :key="model.id"
-                      :value="model.id"
-                      :selected="model[value] && value.includes(model.name)"
-                    >
-                      {{ model.name }}
+                    <option v-for="model in models" :key="model.Clave" :value="model.Clave"
+                      :selected="model[value] && value.includes(model.Nombre)">
+                      {{ model.Nombre }}
                     </option>
                   </Field>
-                  <ErrorMessage
-                    name="model"
-                    class="input__error"
-                  ></ErrorMessage>
+                  <ErrorMessage name="model" class="input__error"></ErrorMessage>
                 </div>
                 <!-- TODO: Implemetnación de Versiones -->
                 <div class="venta__inputs">
-                  <label
-                    for="version"
-                    class="label"
-                    :data-require="Boolean(errors.model)"
-                    >Versión</label
-                  >
-                  <Field
-                    v-slot="{ value }"
-                    name="version"
-                    as="select"
-                    :data-require="Boolean(errors.model)"
-                    v-model="valueModels"
-                    class="input input__select"
-                    :disabled="Boolean(!valueBrands)"
-                  >
-                    <option value="" disabled>Seleciona un modelo</option>
-                    <option
-                      v-for="model in models"
-                      :key="model.id"
-                      :value="model.id"
-                      :selected="model[value] && value.includes(model.name)"
-                    >
-                      {{ model.name }}
+                  <label for="version" class="label" :data-require="Boolean(errors.model)">Versión</label>
+                  <Field v-slot="{ value }" name="version" as="select" :data-require="Boolean(errors.version)"
+                    v-model="valueVersions" class="input input__select" :disabled="Boolean(!valueBrands)">
+                    <option value="" disabled>Seleciona una version</option>
+                    <option v-for="version in versions" :key="version.Clave" :value="version.Clave"
+                      :selected="version[value] && value.includes(version.Nombre)">
+                      {{ version.Nombre }}
                     </option>
                   </Field>
-                  <ErrorMessage
-                    name="model"
-                    class="input__error"
-                  ></ErrorMessage>
+                  <ErrorMessage name="version" class="input__error"></ErrorMessage>
                 </div>
 
                 <div class="venta__inputs">
-                  <label
-                    for="kms"
-                    class="label"
-                    :data-require="Boolean(errors.kms)"
-                    >Kilometráje</label
-                  >
-                  <Field
-                    as="input"
-                    name="kms"
-                    class="input input--white"
-                    :data-error="Boolean(errors.kms)"
-                    placeholder="50,000 km"
-                  />
+                  <label for="kms" class="label" :data-require="Boolean(errors.kms)">Kilometráje</label>
+                  <Field as="input" name="kms" class="input input--white" :data-error="Boolean(errors.kms)"
+                    placeholder="50,000 km" />
                   <ErrorMessage name="kms" class="input__error"></ErrorMessage>
                 </div>
               </FormStep>
 
-              <FormStep
-                class="venta__inputs-content venta__inputs-content--column"
-              >
+              <FormStep class="venta__inputs-content venta__inputs-content--column">
                 <p class="venta__contact-sub">
                   Ingresa tus datos personales para recibir una oferta
                 </p>
                 <div class="d-flex gap-5">
                   <div class="venta__inputs">
-                    <label
-                      for="name"
-                      class="label"
-                      :data-require="Boolean(errors.name)"
-                      >Nombre</label
-                    >
-                    <Field
-                      as="input"
-                      name="name"
-                      class="input input--white"
-                      :data-error="Boolean(errors.name)"
-                      placeholder="Juan"
-                    />
-                    <ErrorMessage
-                      name="name"
-                      class="input__error"
-                    ></ErrorMessage>
+                    <label for="name" class="label" :data-require="Boolean(errors.name)">Nombre</label>
+                    <Field as="input" name="name" class="input input--white" :data-error="Boolean(errors.name)"
+                      placeholder="Juan" />
+                    <ErrorMessage name="name" class="input__error"></ErrorMessage>
                   </div>
                   <div class="venta__inputs">
-                    <label
-                      for="lastname"
-                      class="label"
-                      :data-require="Boolean(errors.lastname)"
-                      >Apellido</label
-                    >
-                    <Field
-                      as="input"
-                      name="lastname"
-                      class="input input--white"
-                      :data-error="Boolean(errors.lastname)"
-                      placeholder="Pérez"
-                    />
-                    <ErrorMessage
-                      name="lastname"
-                      class="input__error"
-                    ></ErrorMessage>
+                    <label for="lastname" class="label" :data-require="Boolean(errors.lastname)">Apellido</label>
+                    <Field as="input" name="lastname" class="input input--white" :data-error="Boolean(errors.lastname)"
+                      placeholder="Pérez" />
+                    <ErrorMessage name="lastname" class="input__error"></ErrorMessage>
                   </div>
                 </div>
                 <div class="venta__inputs">
-                  <label
-                    for="email"
-                    class="label"
-                    :data-require="Boolean(errors.email)"
-                    >Mail</label
-                  >
+                  <label for="email" class="label" :data-require="Boolean(errors.email)">Mail</label>
                   <div class="input-icon">
-                    <Field
-                      as="input"
-                      name="email"
-                      class="input input--white input--icon"
-                      :data-error="Boolean(errors.email)"
-                      placeholder="ejemplo@correo.com"
-                    />
+                    <Field as="input" name="email" class="input input--white input--icon"
+                      :data-error="Boolean(errors.email)" placeholder="ejemplo@correo.com" />
                     <IconMail :prop_classes="['input-icon--icon']" />
                   </div>
-                  <ErrorMessage
-                    name="email"
-                    class="input__error"
-                  ></ErrorMessage>
+                  <ErrorMessage name="email" class="input__error"></ErrorMessage>
                 </div>
                 <div class="venta__inputs">
-                  <label
-                    for="whatsapp"
-                    class="label"
-                    :data-require="Boolean(errors.whatsapp)"
-                    >Whatassap</label
-                  >
+                  <label for="whatsapp" class="label" :data-require="Boolean(errors.whatsapp)">Whatassap</label>
                   <div class="input-icon">
-                    <Field
-                      as="input"
-                      name="whatsapp"
-                      class="input input--white input--icon"
-                      :data-error="Boolean(errors.whatsapp)"
-                      placeholder="33 33 33 33 33 33"
-                    />
+                    <Field as="input" name="whatsapp" class="input input--white input--icon" v-model="valueWhatsapp"
+                      :data-error="Boolean(errors.whatsapp)" placeholder="33 33 33 33 33 33" />
                     <IconPhone :prop_classes="['input-icon--icon']" />
                   </div>
-                  <ErrorMessage
-                    name="whatsapp"
-                    class="input__error"
-                  ></ErrorMessage>
+                  <ErrorMessage name="whatsapp" class="input__error"></ErrorMessage>
                 </div>
                 <div class="input__check">
-                  <Field
-                    as="input"
-                    type="checkbox"
-                    name="notificaciones"
-                    class="form-check-input"
-                    :data-error="Boolean(errors.notificaciones)"
-                  />
+                  <Field as="input" type="checkbox" value="Si" name="notificaciones" class="form-check-input"
+                    :data-error="Boolean(errors.notificaciones)" />
 
-                  <label for="notificaciones"
-                    >Recibir notificaciones vía WhatsApp</label
-                  >
+                  <label for="notificaciones">Recibir notificaciones vía WhatsApp</label>
                 </div>
               </FormStep>
             </div>
@@ -300,48 +144,18 @@
               <p class="venta__code-text">
                 Te envíamos un código a tu teléfono.
               </p>
-              <span class="venta__code-text__bold"
-                >El código vence en: 2:25 minutos</span
-              >
+              <span class="venta__code-text__bold">El código vence en: 2:25 minutos</span>
               <div class="code">
-                <input
-                  type="text"
-                  maxlength="1"
-                  class="input-code"
-                  v-model="code[0]"
-                />
-                <input
-                  type="text"
-                  maxlength="1"
-                  class="input-code"
-                  v-model="code[1]"
-                />
-                <input
-                  type="text"
-                  maxlength="1"
-                  class="input-code"
-                  v-model="code[2]"
-                />
-                <input
-                  type="text"
-                  maxlength="1"
-                  class="input-code"
-                  v-model="code[3]"
-                />
-                <input
-                  type="text"
-                  maxlength="1"
-                  class="input-code"
-                  v-model="code[4]"
-                />
+                <input type="text" maxlength="1" class="input-code" v-model="code[0]" />
+                <input type="text" maxlength="1" class="input-code" v-model="code[1]" />
+                <input type="text" maxlength="1" class="input-code" v-model="code[2]" />
+                <input type="text" maxlength="1" class="input-code" v-model="code[3]" />
+                <input type="text" maxlength="1" class="input-code" v-model="code[4]" />
               </div>
               <button href="#" class="reenviar-codigo">
                 Enviar nuevo código
               </button>
-              <button
-                class="venta__contact-send-btn code-send-btn"
-                @click="sendCode"
-              >
+              <button class="venta__contact-send-btn code-send-btn" @click="sendCode">
                 Verificar código
               </button>
             </div>
@@ -373,6 +187,7 @@ import IconDolar from "@/views/client/components/IconDolar.vue";
 import IconReturn from "@/assets/images/icons/icon-return.svg";
 import IconPhone from "@/views/client/components/IconPhone.vue";
 import IconMail from "@/views/client/components/IconMail.vue";
+import "sweetalert2/src/sweetalert2.scss";
 import "@/assets/styles/views/Venta.scss";
 import "@/assets/styles/components/Input.scss";
 
@@ -402,10 +217,12 @@ export default {
     const valueYears = ref("");
     const valueBrands = ref("");
     const valueModels = ref("");
-    const version = ref([]);
+    const valueVersions = ref("");
+    const versions = ref([]);
     const kms = ref(0);
     const notificaciones = ref(false);
     const submited = ref(false);
+    const valueWhatsapp = ref("");
     const code = ref(["", "", "", "", ""]);
     const formValues = ref({
       email: "",
@@ -417,7 +234,7 @@ export default {
       model: "",
       version: "",
       kms: "",
-      notificaciones: false,
+      notificaciones: 'No',
     });
 
     const priceFormat = (value) => {
@@ -435,6 +252,7 @@ export default {
           brand: yup.string().required("El dato es obligatorio"),
           year: yup.string().required("El dato es obligatorio"),
           model: yup.string().required("El dato es obligatorio"),
+          version: yup.string().required("El dato es obligatorio"),
           kms: yup
             .string()
             .min(1, "diez")
@@ -477,13 +295,163 @@ export default {
       })
     ); */
 
-    const onSubmit = (values) => {
-      submited.value = true;
-      alert(JSON.stringify(values));
+    const onSubmit = (values ) => {
+
+      console.log("data values ", values);
+
+      const data = {
+        year: values.year,
+        brand: brands.value.find((brand) => brand.Clave === values.brand)
+          .Nombre,
+        model: models.value.find((model) => model.Clave === values.model)
+          .Nombre,
+        trim: versions.value.find((version) => version.Clave === values.version)
+          .Nombre,
+        vehicle: values.version,
+        mileage: values.kms,
+        name: values.name,
+        surname: values.lastname,
+        email: values.email,
+        phone: values.whatsapp,
+        phone_notification: values.notificaciones,
+        phone_verified: "Si"
+      }
+
+      localStorage.data = JSON.stringify(data);
+
+
+      
+      const formData = new FormData();
+      formData.append("phone", values.whatsapp);
+
+      ApiService.post(`/api/valuation/phone-validated`, formData)
+        .then((res) => {
+          console.log(res);
+          if (res.data.data.verified === true) {
+
+            ApiService.post(`/api/vehicles/valuation-lead`, data)
+              .then((res) => {
+                console.log(res);
+                console.log(res.data.data);
+                if (res.data.code == 406) {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: `${res.data.message}`,
+                  });
+                } else {
+                  Swal.fire({
+                    icon: "success",
+                    title: "¡Gracias!",
+                    html: `<p class="text-center">Valuación</p>
+                 
+                  <p class="text-center">${res.data.data.vehicle.brand} ${res.data.data.vehicle.model} ${res.data.data.vehicle.year}</p>
+                  <p class="text-center">Valuación recibida</p>
+                  <p class="text-center">Te podemos ofrecer</p>
+                  <p class="text-center">${res.data.data.vehicle.price}</p>
+                  <p class="text-center">Recibimos tu información para darle seguimiento a tu vehículo</b></p>`,
+
+                  });
+                }
+              })
+              .catch((err) => {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Algo salió mal, intenta de nuevo",
+                });
+              });
+          } else {
+            const formDataSend = new FormData();
+            formDataSend.append("number", values.whatsapp);
+            ApiService.post(`/api/valuation/send-code`, formDataSend)
+              .then((res) => {
+                console.log(res);
+                console.log(values);
+                Swal.fire({
+                  icon: "success",
+                  title: "¡Gracias!",
+                  text: "Nos pondremos en contacto contigo a la brevedad",
+                });
+                submited.value = true;
+                
+              })
+              .catch((err) => {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Algo salió mal, intenta de nuevo",
+                });
+              });
+          }
+
+        })
+        .catch((err) => {
+          console.log(err);
+          Swal.fire({
+            title: "¡Error!",
+            text: "Ha ocurrido un error, por favor intenta más tarde",
+            icon: "error",
+            confirmButtonText: "Aceptar",
+          });
+        });
     };
 
     const sendCode = (e) => {
-      e.preventDefault();
+
+      const data = JSON.parse(localStorage.data);
+      console.log("🚀 ~ file: Vende.vue ~ line 394 ~ .then ~ data", data)
+      const formData = new FormData();
+      formData.append("number", valueWhatsapp.value);
+      formData.append("code", code.value.join(""));
+
+      ApiService.post(`/api/valuation/verify-code`, formData)
+        .then((res) => {
+          console.log(`/api/valuation/verify-code`, res);
+
+          ApiService.post(`/api/vehicles/valuation-lead`, data)
+            .then((res) => {
+              console.log(res);
+              if (res.data.code == 406) {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: `${res.data.message}`,
+                  });
+                } else {
+                  Swal.fire({
+                    icon: "success",
+                    title: "¡Gracias!",
+                    html: `<p class="text-center">Valuación</p>
+                 
+                  <p class="text-center">${res.data.data.vehicle.brand} ${res.data.data.vehicle.model} ${res.data.data.vehicle.year}</p>
+                  <p class="text-center">Valuación recibida</p>
+                  <p class="text-center">Te podemos ofrecer</p>
+                  <p class="text-center">${res.data.data.vehicle.price}</p>
+                  <p class="text-center">Recibimos tu información para darle seguimiento a tu vehículo</b></p>`,
+
+                  });
+                }
+            })
+            .catch((err) => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Algo salió mal, intenta de nuevo",
+              });
+            });
+
+
+
+
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Algo salió mal, intenta de nuevo",
+          });
+        });
 
       alert(JSON.stringify(code.value));
     };
@@ -497,40 +465,42 @@ export default {
     watch(
       () => valueBrands.value,
       async () => {
-        await getmodel(valueBrands.value);
+        await getmodel(valueYears.value, valueBrands.value);
         valueModels.value = "";
+      }
+    );
+    watch(
+      () => valueModels.value,
+      async () => {
+        await getversion(valueYears.value, valueBrands.value, valueModels.value);
+        valueVersions.value = "";
       }
     );
 
     onMounted(async () => {
       store.dispatch(Actions.ADD_BODY_CLASSNAME, "page-load");
       await getyears();
-      await getbrand();
-      await getmodel();
       store.dispatch(Actions.REMOVE_BODY_CLASSNAME, "page-load");
     });
 
     const getyears = async () => {
       try {
-        const { data } = await ApiService.get("api/vehicles/years");
+        const { data } = await ApiService.get("/api/vehicles/bb-years");
         console.log(
           "🚀 ~ file: Vende.vue ~ line 168 ~ getyears ~  data ",
           data
         );
 
-        years.value = data.data.map((y) => y.name);
+        years.value = data.data.map((y) => y.Nombre);
       } catch (error) {
         console.log(error);
       }
     };
 
-    const getbrand = async (params = "") => {
-      let url = "";
-      if (params) {
-        url = `?year=${params}`;
-      }
+    const getbrand = async (id_years) => {
+
       try {
-        const { data } = await ApiService.get(`api/vehicles/brands${url}`);
+        const { data } = await ApiService.get(`/api/vehicles/bb-brands/${id_years}`);
         console.log(
           "🚀 ~ file: DetalleVehiculo.vue ~ line 71 ~ getDetail ~ data",
           data
@@ -541,16 +511,28 @@ export default {
       }
     };
 
-    const getmodel = async (params = "") => {
-      let url = "";
-      if (params) {
-        url = `?brand=${params}`;
-      }
+    const getmodel = async (id_years, id_brand) => {
+
       try {
-        const { data } = await ApiService.get(`api/vehicles/models${url}`);
+        const { data } = await ApiService.get(`api/vehicles/bb-models/${id_years}/${id_brand}`);
         console.log("🚀 ~ file: Vende.vue ~ line 197 ~ getmodel ~ data", data);
 
         models.value = data.data;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const getversion = async (id_years, id_brand, id_model) => {
+
+      try {
+        const { data } = await ApiService.get(`api/vehicles/bb-trims/${id_years}/${id_brand}/${id_model}`);
+        console.log(
+          "🚀 ~ file: Vende.vue ~ line 197 ~ getmodel ~ data",
+          data
+        );
+
+        versions.value = data.data;
       } catch (error) {
         console.log(error);
       }
@@ -567,15 +549,20 @@ export default {
       brands,
       years,
       models,
+      versions,
       valueYears,
       valueBrands,
       valueModels,
+      valueVersions,
       IconReturn,
       submited,
       sendCode,
       code,
+      valueWhatsapp
     };
   },
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>
