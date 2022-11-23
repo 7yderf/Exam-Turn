@@ -79,6 +79,9 @@ export default {
     display: flex;
     max-width: 275px;
     padding: 0;
+    @include for-size(phone-xbig) {
+      max-width: inherit;
+    }
   }
   &__box-text {
     padding: 16px 17px;

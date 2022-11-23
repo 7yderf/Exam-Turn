@@ -10,12 +10,12 @@
           <div class="banners__box-play" v-if="typeVideo == 'Video'">
             <img :src="Play" alt="" class="banners__box-play-im">
           </div>
-          <iframe v-if="typeVideo == 'Video'"
+          <!-- <iframe v-if="typeVideo == 'Video'"
             :src="value.flag === active && value.where === 'slider' ? videoIframe : formValues['home_1'].url"
             title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-          <img v-else
+            allowfullscreen></iframe> -->
+          <img v-if="!file"
             :src="value.flag === active && value.where === 'slider' ? value.banner : formValues['home_1'].banner" alt=""
             class="bannesr_box-media-img">
         </div>
@@ -36,7 +36,7 @@
 
         </div>
 
-        <Drop v-if="typeVideo == 'Image' && value.flag === active && value.where === 'slider'" :type="value.flag"
+        <Drop v-if="value.flag === active && value.where === 'slider'" :type="value.flag"
           :active="active" :fileData="fileData" @changeAddFile="onFileAdd" @changeRemoveFile="onFileRemove" />
         <div class="banners__box-tex-banners">
           <h2 class="banners__box-title">{{ value.flag === active && value.where === 'slider' ? titles :

@@ -226,7 +226,7 @@
               >
                 <div
                   class="catalogo__paginate"
-                  v-if="paginate.links.length > 1"
+                  v-if="paginate.links.length > 3"
                 >
                   <button
                     class="catalogo__paginate-btn"

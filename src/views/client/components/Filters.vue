@@ -163,6 +163,12 @@
                 </div>
               </div>
             </div>
+
+
+            
+
+
+
             <div class="accordion-item">
               <h2 class="accordion-header" id="kt_accordion_1_header_3">
                 <button
@@ -204,7 +210,11 @@
               <h2 class="accordion-header" id="kt_accordion_1_header_4">
                 <button
                   class="accordion-button"
-                  :class="paramsQuery.state == '' && 'collapsed'"
+                  :class="
+                    paramsQuery.state == '' &&
+                    paramsQuery.city == '' &&
+                    'collapsed'
+                  "
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#kt_accordion_1_body_4"
@@ -212,70 +222,97 @@
                   aria-controls="kt_accordion_1_body_4"
                   :disabled="paramsQuery.agency != ''"
                 >
-                  <span class="filters__text fw-normal">Estado</span>
+                  <span class="filters__text fw-normal">Estado y ciudad</span>
                 </button>
               </h2>
               <div
                 id="kt_accordion_1_body_4"
                 class="accordion-collapse collapse"
                 :class="
-                  paramsQuery.state != '' && paramsQuery.agency == '' && 'show'
+                  (paramsQuery.state != '' || paramsQuery.city != '') && 'show'
                 "
                 aria-labelledby="kt_accordion_1_header_4"
               >
                 <div class="accordion-body border-0">
-                  <div v-for="state in searchedStates" :key="state">
-                    <button
-                      @click="applyFilter('state', state.name, 'push')"
-                      :class="
-                        paramsQuery.state.includes(state.name) && 'is-active'
-                      "
-                      class="btn btn-filters me-3 w-100 my-2 py-2 px-3 text-start"
+                  <div class="row">
+                    <div
+                      class="col-12"
+                      v-for="state in searchedStates"
+                      :key="state"
                     >
-                      <span class="filters__text fw-normal">{{
-                        state.name
-                      }}</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="kt_accordion_1_header_5">
-                <button
-                  class="accordion-button"
-                  :class="paramsQuery.city == '' && 'collapsed'"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#kt_accordion_1_body_5"
-                  aria-expanded="false"
-                  aria-controls="kt_accordion_1_body_5"
-                  :disabled="paramsQuery.agency != ''"
-                >
-                  <span class="filters__text fw-normal">Ciudad</span>
-                </button>
-              </h2>
-              <div
-                id="kt_accordion_1_body_5"
-                class="accordion-collapse collapse"
-                :class="
-                  paramsQuery.city != '' && paramsQuery.agency == '' && 'show'
-                "
-                aria-labelledby="kt_accordion_1_header_5"
-              >
-                <div class="accordion-body border-0">
-                  <div v-for="city in searchedCities" :key="city">
-                    <button
-                      @click="applyFilter('city', city.name, 'push')"
-                      :class="
-                        paramsQuery.city.includes(city.name) && 'is-active'
-                      "
-                      class="btn btn-filters me-3 w-100 my-2 py-2 px-3 text-start"
-                    >
-                      <span class="filters__text fw-normal">{{
-                        city.name
-                      }}</span>
-                    </button>
+                      <!--begin::Accordion-->
+                      <div
+                        class="accordion accordion--brand"
+                        :id="'kt_accordion_' + state.name"
+                      >
+                        <div class="accordion-item border-0">
+                          <h2
+                            class="accordion-header accordion-header__brand"
+                            :id="'kt_accordion_header' + state.name"
+                          >
+                            <button
+                              class="brand-btn accordion-button btn-filters px-3 py-3 border-0"
+                              @click="applyFilter('state', state.name, 'push')"
+                              :class="
+                                paramsQuery.state.includes(state.name) &&
+                                'is-active'
+                              "
+                              type="button"
+                              data-bs-toggle="collapse"
+                              :data-bs-target="
+                                '#kt_accordion_1_body_1' + state.name
+                              "
+                              aria-expanded="true"
+                              :aria-controls="
+                                '#kt_accordion_1_body_1' + state.name
+                              "
+                            >
+                              
+                              <span class="filters__text fw-normal">{{
+                                state.name
+                              }}</span>
+                            </button>
+                          </h2>
+                          <div
+                            :id="'kt_accordion_1_body_1' + state.name"
+                            class="accordion-collapse"
+                            :class="
+                              paramsQuery.state.includes(state.name)
+                                ? 'show'
+                                : 'collapse'
+                            "
+                            :aria-labelledby="
+                              'kt_accordion_header' + state.name
+                            "
+                          >
+                            <div class="accordion-body border-0">
+                              <div class="btn-model">
+                                <div
+                                  class="btn-model__box"
+                                  v-for="city in searchedCities?.filter(
+                                    (city) => city.state == state.name
+                                  )"
+                                  :key="'m' + city.id"
+                                >
+                                  <button
+                                  @click="applyFilter('city', city.name, 'push')"
+                                    class="btn btn-filters py-1 px-4"
+                                    :class="
+                                    paramsQuery.city.includes(city.name) && 'is-active'
+                                    "
+                                  >
+                                    <span class="filters__text fw-normal">{{
+                                      city.name
+                                    }}</span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--end::Accordion-->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -542,6 +579,10 @@
                 aria-labelledby="kt_accordion_1_header_12"
               >
                 <div class="accordion-body border-0">
+                  <div class="accordion__input-range">
+                    <input class="input input--white" type="text" pattern="^[0-9]+$" v-model="inputMinKms" v-on:input="debounceInputKms">
+                    <input class="input input--white" type="text"  pattern="^[0-9]+$" v-model="inputMaxKms" v-on:input="debounceInputKms">
+                   </div>
                   <Range
                     v-if="searchKms[0] !== 0 || searchKms[1] !== 0"
                     :valMin="kmsValue[0] == 0 ? searchKms[0] : kmsValue[0]"
@@ -550,6 +591,8 @@
                     :valInitMax="searchKms[1]"
                     :type="'kms'"
                     @searchRange="handleSearchRange"
+                    @valorMinimo="listenerMin"
+                    @valorMaximo="listenerMax"
                   />
                 </div>
               </div>
@@ -889,7 +932,11 @@
                 <h2 class="accordion-header" id="kt_accordion_1_header_4">
                   <button
                     class="accordion-button"
-                    :class="paramsQuery.state == '' && 'collapsed'"
+                    :class="
+                      paramsQuery.state == '' &&
+                      paramsQuery.city == '' &&
+                      'collapsed'
+                    "
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#kt_accordion_1_body_4"
@@ -897,72 +944,97 @@
                     aria-controls="kt_accordion_1_body_4"
                     :disabled="paramsQuery.agency != ''"
                   >
-                    <span class="filters__text fw-normal">Estado</span>
+                    <span class="filters__text fw-normal">Estado y ciudad</span>
                   </button>
                 </h2>
                 <div
                   id="kt_accordion_1_body_4"
                   class="accordion-collapse collapse"
                   :class="
-                    paramsQuery.state != '' &&
-                    paramsQuery.agency == '' &&
-                    'show'
+                    (paramsQuery.state != '' || paramsQuery.city != '') && 'show'
                   "
                   aria-labelledby="kt_accordion_1_header_4"
                 >
                   <div class="accordion-body border-0">
-                    <div v-for="state in searchedStates" :key="state">
-                      <button
-                        @click="applyFilter('state', state.name, 'push')"
-                        :class="
-                          paramsQuery.state.includes(state.name) && 'is-active'
-                        "
-                        class="btn btn-filters me-3 w-100 my-2 py-2 px-3 text-start"
+                    <div class="row">
+                      <div
+                        class="col-12"
+                        v-for="state in searchedStates"
+                        :key="state"
                       >
-                        <span class="filters__text fw-normal">{{
-                          state.name
-                        }}</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="kt_accordion_1_header_5">
-                  <button
-                    class="accordion-button"
-                    :class="paramsQuery.city == '' && 'collapsed'"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#kt_accordion_1_body_5"
-                    aria-expanded="false"
-                    aria-controls="kt_accordion_1_body_5"
-                    :disabled="paramsQuery.agency != ''"
-                  >
-                    <span class="filters__text fw-normal">Ciudad</span>
-                  </button>
-                </h2>
-                <div
-                  id="kt_accordion_1_body_5"
-                  class="accordion-collapse collapse"
-                  :class="
-                    paramsQuery.city != '' && paramsQuery.agency == '' && 'show'
-                  "
-                  aria-labelledby="kt_accordion_1_header_5"
-                >
-                  <div class="accordion-body border-0">
-                    <div v-for="city in searchedCities" :key="city">
-                      <button
-                        @click="applyFilter('city', city.name, 'push')"
-                        :class="
-                          paramsQuery.city.includes(city.name) && 'is-active'
-                        "
-                        class="btn btn-filters me-3 w-100 my-2 py-2 px-3 text-start"
-                      >
-                        <span class="filters__text fw-normal">{{
-                          city.name
-                        }}</span>
-                      </button>
+                        <!--begin::Accordion-->
+                        <div
+                          class="accordion accordion--brand"
+                          :id="'kt_accordion_' + state.name"
+                        >
+                          <div class="accordion-item border-0">
+                            <h2
+                              class="accordion-header accordion-header__brand"
+                              :id="'kt_accordion_header' + state.name"
+                            >
+                              <button
+                                class="brand-btn accordion-button btn-filters px-3 py-3 border-0"
+                                @click="applyFilter('state', state.name, 'push')"
+                                :class="
+                                  paramsQuery.state.includes(state.name) &&
+                                  'is-active'
+                                "
+                                type="button"
+                                data-bs-toggle="collapse"
+                                :data-bs-target="
+                                  '#kt_accordion_1_body_1' + state.name
+                                "
+                                aria-expanded="true"
+                                :aria-controls="
+                                  '#kt_accordion_1_body_1' + state.name
+                                "
+                              >
+                                
+                                <span class="filters__text fw-normal">{{
+                                  state.name
+                                }}</span>
+                              </button>
+                            </h2>
+                            <div
+                              :id="'kt_accordion_1_body_1' + state.name"
+                              class="accordion-collapse"
+                              :class="
+                                paramsQuery.state.includes(state.name)
+                                  ? 'show'
+                                  : 'collapse'
+                              "
+                              :aria-labelledby="
+                                'kt_accordion_header' + state.name
+                              "
+                            >
+                              <div class="accordion-body border-0">
+                                <div class="btn-model">
+                                  <div
+                                    class="btn-model__box"
+                                    v-for="city in searchedCities?.filter(
+                                      (city) => city.state == state.name
+                                    )"
+                                    :key="'m' + city.id"
+                                  >
+                                    <button
+                                    @click="applyFilter('city', city.name, 'push')"
+                                      class="btn btn-filters py-1 px-4"
+                                      :class="
+                                      paramsQuery.city.includes(city.name) && 'is-active'
+                                      "
+                                    >
+                                      <span class="filters__text fw-normal">{{
+                                        city.name
+                                      }}</span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--end::Accordion-->
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1408,8 +1480,12 @@ export default {
     const orderby = ref(0);
     const inputMin = ref<any>([]);
     const inputMax = ref<any>([]);
+    const inputMinKms = ref<any>([]);
+    const inputMaxKms = ref<any>([]);
     const rangeValuePrice = ref<any>([]);
+    const rangeValueKms = ref<any>([]);
     const  limitsValuesPrice = ref<any>([]);
+    const  limitsValuesKms = ref<any>([]);
     const filtersActive = computed(() => {
       return props.prop_filters_active;
     });
@@ -1614,17 +1690,21 @@ export default {
     };
 
     const handleSearchRange = (rangeMin, rangeMax, type) => {
+      console.log("🚀 ~ file: Filters.vue ~ line 1683 ~ handleSearchRange ~ rangeMax", rangeMax)
+      console.log("🚀 ~ file: Filters.vue ~ line 1684 ~ handleSearchRange ~ rangeMin", rangeMin)
       if (type == "price") {
         
         const priceMin = rangeMin == null ? Math.trunc(props.prop_prices[0]) : rangeMin;
         
         const selectMin = priceValue.value[0];
         const priceMax = rangeMax == null ? Math.trunc(props.prop_prices[1]) : rangeMax;
+        console.log("🚀 ~ file: Filters.vue ~ line 1691 ~ handleSearchRange ~ priceMax", priceMax)
         const selectMax = priceValue.value[1];
+        console.log("🚀 ~ file: Filters.vue ~ line 1693 ~ handleSearchRange ~  selectMax",  priceValue.value)
 
         priceValue.value = [
-          priceMin === Math.trunc(props.prop_prices[0]) ? selectMin : priceMin,
-          priceMax === Math.trunc(props.prop_prices[1]) ? selectMax : priceMax,
+          priceMin ,
+          priceMax
         ];
         applyFilter("price", priceValue.value.toString(), "range");
       }
@@ -1634,15 +1714,14 @@ export default {
         const kmsMax = rangeMax == null ? Math.trunc(props.prop_kms[1]) : rangeMax;
         const selectMax = kmsValue.value[1];
         kmsValue.value = [
-          kmsMin === Math.trunc(props.prop_kms[0]) ? selectMin : kmsMin,
-          kmsMax === Math.trunc(props.prop_kms[1]) ? selectMax : kmsMax,
+          kmsMin,
+          kmsMax,
         ];
         applyFilter("kms", kmsValue.value.toString(), "range");
       }
     };
 
        
-
     watch(
       () =>  props.prop_prices,
       (val : any) => {
@@ -1650,17 +1729,38 @@ export default {
         priceValue.value[1] === 0 ? inputMax.value = formatPrice(val[1])  : inputMax.value = formatPrice(priceValue.value[1]);
         rangeValuePrice.value = [parseInt(inputMin.value.replace(/[,]/g,'')), parseInt(inputMax.value.replace(/[,]/g,''))];
         limitsValuesPrice.value = val;
+    
+        console.log("🚀 ~ file: Filters.vue ~ line 1645 ~ setup ~ val", val)
+      }
+    );
+    watch(
+      () =>  props.prop_kms,
+      (val : any) => {
+         kmsValue.value[0] === 0 ? inputMinKms.value = formatPrice(val[0])  : inputMinKms.value = formatPrice( kmsValue.value[0]);
+         kmsValue.value[1] === 0 ? inputMaxKms.value = formatPrice(val[1])  : inputMaxKms.value = formatPrice( kmsValue.value[1]);
+         rangeValueKms.value = [parseInt(inputMinKms.value.replace(/[,]/g,'')), parseInt(inputMaxKms.value.replace(/[,]/g,''))];
+         limitsValuesKms.value = val;
+    
         console.log("🚀 ~ file: Filters.vue ~ line 1645 ~ setup ~ val", val)
       }
     );
     
     const listenerMin =(val, type) => {
       console.log("🚀 ~ file: Filters.vue ~ line 1661 ~ listenerMin ~ val", val)
-      inputMin.value = formatPrice(val);
+      if(type == "price"){
+        inputMin.value = formatPrice(val);
+      } else if(type == "kms"){
+        inputMinKms.value = formatPrice(val);
+      }
     }
     const listenerMax = (val, type) => {
-      inputMax.value = formatPrice(val);
+      
       console.log("🚀 ~ file: Filters.vue ~ line 1666 ~ listenerMax ~ val", val)
+      if(type == "price"){
+        inputMax.value = formatPrice(val);
+      } else if(type == "kms"){
+        inputMaxKms.value = formatPrice(val);
+      }
     }
 
     const debounceInput = _.debounce( () => {
@@ -1673,14 +1773,27 @@ export default {
       console.log("🚀 ~ file: Filters.vue ~ line 1659 ~ debounceInput ~ inputMin.value", [inputMin.value, inputMax.value])
       console.log("🚀 ~ file: Filters.vue ~ line 1659 ~ debounceInput ~ rangeValuePrice.value[0]", limitsValuesPrice.value)
       
-        handleSearchRange(inputMin.value, inputMax.value, "price");
+        handleSearchRange(inputMin.value.replace(/[,]/g,''), inputMax.value.replace(/[,]/g,''), "price");
       }
       
-        
-      
-    
       console.log("🚀 ~ file: Filters.vue ~ line 1617 ~ debounceInput ~ inputMin.value", inputMin.value)
-    }, 400);
+    }, 1000);
+
+    const debounceInputKms = _.debounce( () => {
+      console.log("debounce", inputMinKms.value.replace(/[,]/g,''));
+
+      if( 
+        (parseInt(inputMinKms.value.replace(/[,]/g,'')) >= limitsValuesKms.value[0] && parseInt(inputMinKms.value.replace(/[,]/g,'')) <= rangeValueKms.value[1]) &&
+        (parseInt(inputMaxKms.value.replace(/[,]/g,'')) >= rangeValueKms.value[0]  && parseInt(inputMaxKms.value.replace(/[,]/g,'')) <= limitsValuesKms.value[1])
+      ){
+      console.log("🚀 ~ file: Filters.vue ~ line 1659 ~ debounceInput ~ inputMinKms.value", [inputMinKms.value, inputMaxKms.value])
+      console.log("🚀 ~ file: Filters.vue ~ line 1659 ~ debounceInput ~ rangeValueKms.value[0]", limitsValuesKms.value)
+      
+        handleSearchRange(inputMinKms.value.replace(/[,]/g,''), inputMaxKms.value.replace(/[,]/g,''), "kms");
+      }
+      
+      console.log("🚀 ~ file: Filters.vue ~ line 1617 ~ debounceInput ~ inputMinKms.value", inputMinKms.value)
+    }, 1000);
 
     const activeFilter = (id) => {
       const idfilter = id;
@@ -1804,11 +1917,16 @@ export default {
       orderby,
       inputMin,
       inputMax,
+      inputMinKms,
+      inputMaxKms,
       listenerMin,
       listenerMax,
       debounceInput,
+      debounceInputKms,
       rangeValuePrice,
+      rangeValueKms,
       limitsValuesPrice,
+      limitsValuesKms,
       formatPrice
     };
   },

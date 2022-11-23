@@ -10,7 +10,7 @@
       <!-- <button v-if="hasPrevious" type="button" @click="goToPrev">
         Previous
       </button> -->
-      <div class="venta__contact-send" v-if="!submited">
+      <div class="venta__contact-send" v-if="!submited" :data-show="props.ultimateCurrentStep">
         <button type="submit" class="venta__contact-send-btn">
           {{ isLastStep ? "Recibir valuación" : "Continuar" }}
         </button>
@@ -22,13 +22,22 @@
 </template>
 
 <script setup lang="ts">
+import { components } from "@/assets/ts";
 import { useForm } from "vee-validate";
-import { ref, computed, provide } from "vue";
+import { ref, computed, provide, watch } from "vue";
+import { boolean } from "yup/lib/locale";
 
 const props = defineProps({
   validationSchema: {
     type: Array,
     required: true,
+  },
+  sendCode: {
+    type: Boolean
+  },
+  ultimateCurrentStep: {
+    type: Boolean,
+    default: false
   },
 });
 
@@ -47,6 +56,23 @@ provide("CURRENT_STEP_INDEX", currentStepIdx);
 const isLastStep = computed(() => {
   return currentStepIdx.value === stepCounter.value - 1;
 });
+
+watch( 
+  () => props.sendCode,
+  (val) => {
+    console.log("🚀 ~ file: FormWizard.vue ~ line 59 ~ val", val)
+    submited.value = val;
+    console.log("🚀 ~ file: FormWizard.vue ~ line 61 ~ submited.value", submited.value)
+  }
+);
+watch( 
+  () => props.ultimateCurrentStep,
+  (val) => {
+   if (val) {
+    currentStepIdx.value++;
+   }
+  }
+)
 
 // If the `previous` button should appear
 const hasPrevious = computed(() => {
@@ -68,14 +94,16 @@ const { values, handleSubmit, errors } = useForm({
 // We are using the "submit" handler to progress to next steps
 // and to submit the form if its the last step
 const onSubmit = handleSubmit((values) => {
+  console.log("🚀 ~ file: FormWizard.vue ~ line 71 ~ onSubmit ~ values", values)
   if (!isLastStep.value) {
     currentStepIdx.value++;
 
     return;
   }
 
+
   // Let the parent know the form was filled across all steps
-  submited.value = true;
+  
   emit("submit", values);
 });
 

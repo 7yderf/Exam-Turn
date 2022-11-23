@@ -104,12 +104,12 @@
             </p>
           </div>
         </div>
-        <div class="detail__specs-box-bnt" :data-watch="watchSpecs">
+        <div class="detail__specs-box-bnt" :data-watch="watchSpecs" id="contact">
           <button class="detail__spec-btn" @click="viewsAll">Ver todas</button>
         </div>
       </article>
     </div>
-    <article class="detail__contact" id="contact">
+    <article class="detail__contact" >
       <p class="detail__sumary-title detail__sumary-title--contact">
         Estoy interesado
       </p>

@@ -3,13 +3,28 @@
     <HelloWorld />
 
     <article>
-      <FormWizard @submit="onSubmit" :validation-schema="schema" :initial-values="formValues"
-        v-slot="{ errors, currentStep, previous, hasPrevious }">
-        <div v-if="hasPrevious && !submited" class="steps__back">
+      <FormWizard @submit="onSubmit" :validation-schema="schema" :initial-values="formValues" :sendCode="submited" :ultimateCurrentStep="ultimateCurrentStep" v-slot="{ errors, currentStep, previous, hasPrevious }">
+        <div v-if="hasPrevious && !submited && !ultimateCurrentStep" class="steps__back">
           <div class="steps__back-text">
             <button class="steps__btn-back" @click="previous">
               <img :src="IconReturn" alt="" />
-              {{ "Volver" }}
+              {{ "Volver form" }}
+            </button>
+          </div>
+        </div>
+        <div v-if="submited && !ultimateCurrentStep" class="steps__back">
+          <div class="steps__back-text">
+            <button class="steps__btn-back" @click="returnSubmited">
+              <img :src="IconReturn" alt="" />
+              {{ "Volver send code" }}
+            </button>
+          </div>
+        </div>
+        <div v-if="ultimateCurrentStep" class="steps__back">
+          <div class="steps__back-text">
+            <button class="steps__btn-back" @click="refresh">
+              <img :src="IconReturn" alt="" />
+              {{ "Volver valuation" }}
             </button>
           </div>
         </div>
@@ -25,7 +40,7 @@
               <p>Tus datos</p>
             </div>
             <div class="step" :class="currentStep === 2 ? ['step', 'active'] : ['step']">
-              <IconDolar :prop_active="currentStep >= 3" />
+              <IconDolar :prop_active="currentStep === 2" />
               <p>Valuación</p>
             </div>
           </div>
@@ -33,7 +48,7 @@
           <div class="venta__contact-form">
             <p class="venta__contact-title">Vende tu vehículo</p>
 
-            <div v-if="!submited">
+            <div v-show="!submited && !valuation">
               <FormStep class="venta__inputs-content venta__inputs-content--column">
                 <p class="venta__contact-sub">
                   Ingresa los datos de tu vehículo para recibir una oferta
@@ -89,7 +104,7 @@
 
                 <div class="venta__inputs">
                   <label for="kms" class="label" :data-require="Boolean(errors.kms)">Kilometráje</label>
-                  <Field as="input" name="kms" class="input input--white" :data-error="Boolean(errors.kms)"
+                  <Field as="input" name="kms" class="input input--white" :data-error="Boolean(errors.kms)" v-model="valueKms"
                     placeholder="50,000 km" />
                   <ErrorMessage name="kms" class="input__error"></ErrorMessage>
                 </div>
@@ -126,20 +141,20 @@
                   <label for="whatsapp" class="label" :data-require="Boolean(errors.whatsapp)">Whatassap</label>
                   <div class="input-icon">
                     <Field as="input" name="whatsapp" class="input input--white input--icon" v-model="valueWhatsapp"
-                      :data-error="Boolean(errors.whatsapp)" placeholder="33 33 33 33 33 33" />
+                      :data-error="Boolean(errors.whatsapp)" placeholder="33 33 33 33 33" />
                     <IconPhone :prop_classes="['input-icon--icon']" />
                   </div>
                   <ErrorMessage name="whatsapp" class="input__error"></ErrorMessage>
                 </div>
                 <div class="input__check">
-                  <Field as="input" type="checkbox" value="Si" name="notificaciones" class="form-check-input"
+                  <Field as="input" type="checkbox" value="Si" name="notificaciones" class="form-check-input" v-model="notificaciones"
                     :data-error="Boolean(errors.notificaciones)" />
 
                   <label for="notificaciones">Recibir notificaciones vía WhatsApp</label>
                 </div>
               </FormStep>
             </div>
-            <div v-else>
+            <div v-show="submited && !valuation">
               <p class="venta__contact-sub">Ingresar código</p>
               <p class="venta__code-text">
                 Te envíamos un código a tu teléfono.
@@ -159,6 +174,31 @@
                 Verificar código
               </button>
             </div>
+            <div v-if="valuation" class="venta__inputs-content venta__inputs-content--column">
+              <p class="venta__contact-sub venta__contact-sub--valuation">
+                Recibe una valuación
+              </p>
+            
+              <div class="venta__box-valuation">
+                <p class="venta__valuation-brand">{{`${dataVehicle?.vehicle.brand} ${dataVehicle?.vehicle.model} ${dataVehicle?.vehicle.year}`}}</p>
+                <div class="venta__valuation-info">
+                  <p class="venta__valuation-info-title">Valuación recibida</p>
+                  <img :src="Valuation" alt="" class="venta__valuatin-icon">
+                  <p class="venta__valuation-info-sub">Te podemos ofrecer</p>
+                  <p class="venta__valuation-info-price">{{`${dataVehicle?.vehicle.price}`}}</p>
+                  <p class="venta__valuation-info-subtext">Recibimos tu información para darle seguimiento a tu vehículo</p>
+                </div>
+                <a :href="`#`" target="_blank" class="venta__btnWhat ">
+                  <img :src="Whatassap" alt="" class="venta__agency-btnImg" />
+                  <p class="venta__btnText">
+                    Contactar <span>por WhatsApp</span>
+                  </p>
+                </a>
+                <button class="venta__valuation-return-home">Volver al inicio</button>
+              </div>
+              
+            </div>
+           
           </div>
         </div>
       </FormWizard>
@@ -173,13 +213,14 @@ import { useRoute, useRouter } from "vue-router";
 
 import ApiService from "@/core/services/ApiService";
 
-import { Form as Form_, Field, ErrorMessage } from "vee-validate";
+import {  Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import Swal from "sweetalert2/dist/sweetalert2.min.js";
 import { useStore } from "vuex";
 import { Actions } from "@/store/enums/StoreEnums";
 import HelloWorld from "@/components/HelloWorld.vue";
 import Whatassap from "@/assets/images/icons/icon-btn_what.svg";
+import Valuation from "@/assets/images/icons/icon-valuation.svg";
 import Mail from "@/assets/images/icons/icon-btn_mail.svg";
 import IconCar from "@/views/client/components/IconCar.vue";
 import IconUser from "@/views/client/components/IconUser.vue";
@@ -196,7 +237,6 @@ import FormStep from "./components/FormStep.vue";
 export default {
   name: "Venta",
   components: {
-    Form_,
     Field,
     HelloWorld,
     FormWizard,
@@ -211,19 +251,23 @@ export default {
   setup() {
     const store = useStore();
     const route = useRoute();
-    const brands = ref([]);
+    const brands = ref([{ Clave: 0, Nombre: "Seleccione una marca" }]);
     const years = ref([]);
-    const models = ref([]);
+    const models = ref([{Clave: 0, Nombre: "Seleccione un modelo"}]);
+    const versions = ref([{Clave: 0, Nombre: "Seleccione una versión"}]);
     const valueYears = ref("");
     const valueBrands = ref("");
     const valueModels = ref("");
     const valueVersions = ref("");
-    const versions = ref([]);
+    const valueKms = ref("");
     const kms = ref(0);
-    const notificaciones = ref(false);
+    const notificaciones = ref("No");
+    const dataVehicle = ref([])
     const submited = ref(false);
+    const ultimateCurrentStep = ref(false);
     const valueWhatsapp = ref("");
     const code = ref(["", "", "", "", ""]);
+    const valuation = ref(false);
     const formValues = ref({
       email: "",
       name: "",
@@ -237,15 +281,7 @@ export default {
       notificaciones: 'No',
     });
 
-    const priceFormat = (value) => {
-      const val = (value / 1).toFixed(2);
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
-
-    const kmFormat = (value) => {
-      const val = value / 1;
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
+   
     const schema = [
       markRaw(
         yup.object().shape({
@@ -255,8 +291,7 @@ export default {
           version: yup.string().required("El dato es obligatorio"),
           kms: yup
             .string()
-            .min(1, "diez")
-            .matches(/^[0-9]+$/, "Solo se aceptan numeros")
+            .matches(/\d+(,\d+)?$/, "Solo se aceptan numeros")
             .required("El dato es obligatorio"),
         })
       ),
@@ -270,32 +305,31 @@ export default {
             .email("Por favor ingrese un formato valido"),
           whatsapp: yup
             .string()
-            .min(10, "diez")
+            .min(10, "El numero debe tener 10 digitos")
+            .max(10, "El numero debe tener 10 digitos")
             .matches(/^[0-9]+$/, "Solo se aceptan numeros")
             .required("El dato es obligatorio"),
         })
       ),
     ];
-    /* const schema = markRaw(
-      yup.object().shape({
-        name: yup.string().required("El dato es obligatorio"),
-        lastname: yup.string().required("El dato es obligatorio"),
-        email: yup
-          .string()
-          .required("El dato es obligatorio")
-          .email("Porfavor ingrese un formato valido"),
-        whatassap: yup
-          .string()
-          .min(10, "diez")
-          .matches(/^[0-9]+$/, "Solo se aceptan numeros")
-          .required("El dato es obligatorio"),
-        brand: yup.string().required("El dato es obligatorio"),
-        year: yup.string().required("El dato es obligatorio"),
-        model: yup.string().required("El dato es obligatorio"),
-      })
-    ); */
 
-    const onSubmit = (values ) => {
+    const formatPrice = (value) => {
+      const exp = /(\d)(?=(\d{3})+(?!\d))/g;
+      const rep = '$1,';
+      return value.toString().replace(exp, rep);
+    }
+
+    watch(
+      () => valueKms.value,
+      (value) => {
+
+        valueKms.value = formatPrice(value.replace(/,/g, ""));
+
+      }
+    )
+
+
+    const onSubmit = (values) => {
 
       console.log("data values ", values);
 
@@ -308,7 +342,7 @@ export default {
         trim: versions.value.find((version) => version.Clave === values.version)
           .Nombre,
         vehicle: values.version,
-        mileage: values.kms,
+        mileage: values.kms.replace(/,/g, ""),
         name: values.name,
         surname: values.lastname,
         email: values.email,
@@ -319,8 +353,6 @@ export default {
 
       localStorage.data = JSON.stringify(data);
 
-
-      
       const formData = new FormData();
       formData.append("phone", values.whatsapp);
 
@@ -340,18 +372,10 @@ export default {
                     text: `${res.data.message}`,
                   });
                 } else {
-                  Swal.fire({
-                    icon: "success",
-                    title: "¡Gracias!",
-                    html: `<p class="text-center">Valuación</p>
-                 
-                  <p class="text-center">${res.data.data.vehicle.brand} ${res.data.data.vehicle.model} ${res.data.data.vehicle.year}</p>
-                  <p class="text-center">Valuación recibida</p>
-                  <p class="text-center">Te podemos ofrecer</p>
-                  <p class="text-center">${res.data.data.vehicle.price}</p>
-                  <p class="text-center">Recibimos tu información para darle seguimiento a tu vehículo</b></p>`,
 
-                  });
+                  dataVehicle.value = res.data?.data
+                  valuation.value = true;
+                  ultimateCurrentStep.value = true;
                 }
               })
               .catch((err) => {
@@ -366,15 +390,9 @@ export default {
             formDataSend.append("number", values.whatsapp);
             ApiService.post(`/api/valuation/send-code`, formDataSend)
               .then((res) => {
-                console.log(res);
-                console.log(values);
-                Swal.fire({
-                  icon: "success",
-                  title: "¡Gracias!",
-                  text: "Nos pondremos en contacto contigo a la brevedad",
-                });
+
                 submited.value = true;
-                
+
               })
               .catch((err) => {
                 Swal.fire({
@@ -398,6 +416,7 @@ export default {
     };
 
     const sendCode = (e) => {
+      e.preventDefault();
 
       const data = JSON.parse(localStorage.data);
       console.log("🚀 ~ file: Vende.vue ~ line 394 ~ .then ~ data", data)
@@ -413,25 +432,17 @@ export default {
             .then((res) => {
               console.log(res);
               if (res.data.code == 406) {
-                  Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: `${res.data.message}`,
-                  });
-                } else {
-                  Swal.fire({
-                    icon: "success",
-                    title: "¡Gracias!",
-                    html: `<p class="text-center">Valuación</p>
-                 
-                  <p class="text-center">${res.data.data.vehicle.brand} ${res.data.data.vehicle.model} ${res.data.data.vehicle.year}</p>
-                  <p class="text-center">Valuación recibida</p>
-                  <p class="text-center">Te podemos ofrecer</p>
-                  <p class="text-center">${res.data.data.vehicle.price}</p>
-                  <p class="text-center">Recibimos tu información para darle seguimiento a tu vehículo</b></p>`,
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: `${res.data.message}`,
+                });
 
-                  });
-                }
+              } else {
+                dataVehicle.value = res.data?.data
+                valuation.value = true;
+                ultimateCurrentStep.value = true;
+              }
             })
             .catch((err) => {
               Swal.fire({
@@ -440,10 +451,6 @@ export default {
                 text: "Algo salió mal, intenta de nuevo",
               });
             });
-
-
-
-
         })
         .catch((err) => {
           Swal.fire({
@@ -452,9 +459,8 @@ export default {
             text: "Algo salió mal, intenta de nuevo",
           });
         });
-
-      alert(JSON.stringify(code.value));
     };
+    
     watch(
       () => valueYears.value,
       async () => {
@@ -495,6 +501,14 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    };
+
+    const refresh = () => {
+      window.location.reload();
+    };
+
+    const returnSubmited = () => {
+      submited.value = false;
     };
 
     const getbrand = async (id_years) => {
@@ -539,8 +553,6 @@ export default {
     };
 
     return {
-      priceFormat,
-      kmFormat,
       Whatassap,
       Mail,
       schema,
@@ -555,10 +567,18 @@ export default {
       valueModels,
       valueVersions,
       IconReturn,
+      notificaciones,
       submited,
       sendCode,
       code,
-      valueWhatsapp
+      valueWhatsapp,
+      valueKms,
+      ultimateCurrentStep,
+      valuation,
+      refresh,
+      returnSubmited,
+      dataVehicle,
+      Valuation
     };
   },
 };

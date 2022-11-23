@@ -12,6 +12,8 @@ import Permissions from "@/core/helpers/Permissions.vue";
 //imports for app initialization
 import ApiService from "@/core/services/ApiService";
 import DropZone from "dropzone-vue";
+import ElementPlus from "element-plus";
+import "element-plus/theme-chalk/index.css";
 import "dropzone-vue/dist/dropzone-vue.common.css";
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
@@ -28,6 +30,7 @@ const app = createApp(App);
 // app.mixin(Permissions);
 app.mixin(Permissions);
 app.use(DropZone);
+app.use(ElementPlus);
 app.use(store);
 app.use(router);
 app.component('Datepicker', Datepicker);

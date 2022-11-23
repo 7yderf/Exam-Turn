@@ -1,12 +1,10 @@
 <template>
   <div class="body">
-  <div class="container">
-    <h3> GRUPO VANGUARDIA </h3>
-    <div class="bar">
-      <div class="progress"></div>
+    <div class="container">
+      <span class="loader"></span>
+      
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -20,6 +18,7 @@ export default {
 <style scoped>
   .body  {
     width: 100%;
+    background:  #020202 !important;
     }
     
     
@@ -40,46 +39,33 @@ export default {
       text-align: center;
       width: 100%;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 85vh;
       padding: 16px;
     }
     
-    .bar {
-    height:.2em;
-    width:100%;
-    max-width: 30em;
-    margin: 0 auto;
-    border-radius:10px;
-    background:transparent;
-    box-shadow:inset 0px 0px 8px rgb(194, 194, 194);;
-    overflow:hidden;
-    padding:5px;
+    .loader {
+      position: relative;
+      width: 85px;
+      height: 50px;
+      margin: 4px;
+      background-repeat: no-repeat;
+      background-image: linear-gradient(#EBEBEB 50px, transparent 0),
+                        linear-gradient(#EBEBEB 50px, transparent 0),
+                        linear-gradient(#EBEBEB 50px, transparent 0),
+                        linear-gradient(#EBEBEB 50px, transparent 0),
+                        linear-gradient(#EBEBEB 50px, transparent 0),
+                        linear-gradient(#EBEBEB 50px, transparent 0);
+      background-position: 0px center, 15px center, 30px center, 45px center, 60px center, 75px center, 90px center;
+      animation: rikSpikeRoll 1s  linear infinite alternate;
     }
-    
-    .progress {
-    height:3px;
-    margin-top: -1px ;
-    border-radius:inherit;
-    width:0;
-    background:#ff5b20de;
-    animation:load 2s linear infinite;
-    animation-delay:.5s;
-    }
-    
-    
-    @keyframes load{
-    0%{
-    width:0%;
-    }
-    50%{
-    width:100%;
-    }
-    100% {
-    width:0%;
-    float:right;
-    }
-    }
+  @keyframes rikSpikeRoll {
+    0% { background-size: 2px 3px;}
+    16% { background-size: 2px 50px, 2px 3px, 2px 3px, 2px 3px, 2px 3px, 2px 3px}
+    33% { background-size: 2px 30px, 2px 50px, 2px 3px, 2px 3px, 2px 3px, 2px 3px}
+    50% { background-size: 2px 10px, 2px 30px, 2px 50px, 2px 3px, 2px 3px, 2px 3px}
+    66% { background-size: 2px 3px, 2px 10px, 2px 30px, 2px 50px, 2px 3px, 2px 3px}
+    83% { background-size: 2px 3px, 2px 3px,  2px 10px, 2px 30px, 2px 50px, 2px 3px}
+    100% { background-size: 2px 3px, 2px 3px, 2px 3px,  2px 10px, 2px 30px, 2px 50px}
+  }
 </style>

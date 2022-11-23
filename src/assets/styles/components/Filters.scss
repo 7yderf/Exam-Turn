@@ -199,10 +199,10 @@
     &__input-range{
       @include flex(space-between);
       .input{
-        @include text(1.2rem, 400, 1.6rem);
+        @include text(1.1rem, 400, 1.6rem);
         height: 25px;
         max-width: 80px;
-        margin-bottom: 30px;
+        padding: 4px
 
       }
 

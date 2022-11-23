@@ -5,14 +5,14 @@
   }" class="mySwiper">
     <swiper-slide v-for="(banner, index) in Object.keys(desktop).filter(banner => desktop[banner].where === 'slider')"
       :key="index" :data-desktop="windowSize">
-      <img v-if="desktop[banner].type == 'Image'" :src="desktop[banner].banner" alt="" class="slide__carrusel" />
+      <img  :src="desktop[banner].banner" alt="" class="slide__carrusel" />
       <div v-if="desktop[banner].type == 'Video'" class="slide__play-video">
 
-        <iframe class="slide__iframe" :src="desktop[banner].url.replace('watch?v=', 'embed/')"
+        <!-- <iframe class="slide__iframe" :src="desktop[banner].url.replace('watch?v=', 'embed/')"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
-        </iframe>
+        </iframe> -->
         <div class="slide__box-play">
           <a 
           :href="`#video${desktop[banner].id}`"
@@ -34,14 +34,14 @@
     </swiper-slide>
     <swiper-slide v-for="(banner, index) in Object.keys(mobile).filter(banner => mobile[banner].where === 'slider')"
       :key="index" :data-mobile="!windowSize">
-      <img v-if="mobile[banner].type == 'Image'" :src="mobile[banner].banner" alt="" class="slide__carrusel" />
+      <img  :src="mobile[banner].banner" alt="" class="slide__carrusel" />
       <div v-if="mobile[banner].type == 'Video'" class="slide__play-video">
 
-        <iframe class="slide__iframe" :src="mobile[banner].url.replace('watch?v=', 'embed/')"
+        <!-- <iframe class="slide__iframe" :src="mobile[banner].url.replace('watch?v=', 'embed/')"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
-        </iframe>
+        </iframe> -->
         <div class="slide__box-play">
            <a 
            :href="`#video${mobile[banner].id}`"

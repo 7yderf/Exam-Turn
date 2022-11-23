@@ -71,6 +71,7 @@ import Swal from "sweetalert2/dist/sweetalert2.min.js";
 import "sweetalert2/src/sweetalert2.scss";
 import "@/assets/styles/views/Banners.scss";
 import "@/assets/styles/components/Input.scss";
+import { boolean } from 'yup/lib/locale';
 export default {
   name: "drop",
   components: {
@@ -167,20 +168,26 @@ export default {
 
       const formData = new FormData();
 
+      console.log("🚀 ~ file: FormUser.vue ~ line 168 ~ setup ~ props.file", Boolean(props.file))
      
 
-        if (props.file && values.type == "Image") {
-          formData.append("file", props.file);
-        } else if (values.type == "Video") {
-          formData.append("url",  values.url);
-        } else {
+        if (!props.file) {
           Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Debes seleccionar un archivo",
           });
           return;
-        }
+        } 
+
+        if (values.type == "Video" && !values.url.includes("youtube.com")) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Solo se aceptan videos de youtube",
+          });
+          return;
+        } 
 
       
 
@@ -188,6 +195,7 @@ export default {
 
       formData.append("type_of_banner", values.type_of_banner);
       formData.append("type", values.type);
+      formData.append("file", props.file);
       formData.append("url", values.url);
       formData.append("blank", values.blank);
       formData.append("title", values.title);
