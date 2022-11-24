@@ -147,7 +147,7 @@
         "
       >
         <img
-          :src="imagesDesktop[image].banner"
+          :src="`https://apivanguardia.demosturn.com/${imagesMobile[image].file}`"
           alt=""
           class="home__copy-img"
         />
@@ -169,7 +169,7 @@
         class="home__copy-box-img"
         :data-device="!windowSize"
       >
-        <img :src="imagesMobile[image].banner" alt="" class="home__copy-img" />
+        <img :src="`https://apivanguardia.demosturn.com/${imagesMobile[image].file}`" alt="" class="home__copy-img" />
         <a
           v-if="
             imagesMobile[image].url != 'null' &&
