@@ -3,19 +3,19 @@
     delay: 200000,
     disableOnInteraction: false,
   }" class="mySwiper">
-    <swiper-slide v-for="(banner, index) in Object.keys(desktop).filter(banner => desktop[banner].where === 'slider')"
+    <swiper-slide v-for="(image, index) in Object.keys(desktop).filter(image => desktop[image].where === 'slider')"
       :key="index" :data-desktop="windowSize">
-      <img  :src="desktop[banner].banner" alt="" class="slide__carrusel" />
-      <div v-if="desktop[banner].type == 'Video'" class="slide__play-video">
+      <img  :src="desktop[image].banner" alt="" class="slide__carrusel" />
+      <div v-if="desktop[image].type == 'Video'" class="slide__play-video">
 
-        <!-- <iframe class="slide__iframe" :src="desktop[banner].url.replace('watch?v=', 'embed/')"
+        <!-- <iframe class="slide__iframe" :src="desktop[image].url.replace('watch?v=', 'embed/')"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe> -->
         <div class="slide__box-play">
           <a 
-          :href="`#video${desktop[banner].id}`"
+          :href="`#video${desktop[image].id}`"
           data-bs-toggle="modal"
           role="button"
          aria-controls="offcanvasExample"
@@ -27,24 +27,24 @@
       </div>
 
       <div class="slide_carrusel_sub">
-        <span class="slide_carrusel_title">{{ desktop[banner].title }}</span>
-        <span class="slide_carrusel_description">{{ desktop[banner].description }}</span>
+        <span class="slide_carrusel_title">{{ desktop[image].title }}</span>
+        <span class="slide_carrusel_description">{{ desktop[image].description }}</span>
       </div>
-      <a v-if="desktop[banner].url != 'null' && desktop[banner].type == 'Image'" :href="desktop[banner].url" :target="desktop[banner].blank ? '_blank' : ''" class="slide__link"></a>
+      <a v-if="desktop[image].url != 'null' && desktop[image].type == 'Image'" :href="desktop[image].url" :target="desktop[image].blank ? '_blank' : ''" class="slide__link"></a>
     </swiper-slide>
-    <swiper-slide v-for="(banner, index) in Object.keys(mobile).filter(banner => mobile[banner].where === 'slider')"
+    <swiper-slide v-for="(image, index) in Object.keys(mobile).filter(image => mobile[image].where === 'slider')"
       :key="index" :data-mobile="!windowSize">
-      <img  :src="mobile[banner].banner" alt="" class="slide__carrusel" />
-      <div v-if="mobile[banner].type == 'Video'" class="slide__play-video">
+      <img  :src="mobile[image].banner" alt="" class="slide__carrusel" />
+      <div v-if="mobile[image].type == 'Video'" class="slide__play-video">
 
-        <!-- <iframe class="slide__iframe" :src="mobile[banner].url.replace('watch?v=', 'embed/')"
+        <!-- <iframe class="slide__iframe" :src="mobile[image].url.replace('watch?v=', 'embed/')"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe> -->
         <div class="slide__box-play">
            <a 
-           :href="`#video${mobile[banner].id}`"
+           :href="`#video${mobile[image].id}`"
            data-bs-toggle="modal"
            role="button"
           aria-controls="offcanvasExample"
@@ -56,10 +56,10 @@
       </div>
 
       <div class="slide_carrusel_sub">
-        <span class="slide_carrusel_title">{{ mobile[banner].title }}</span>
-        <span class="slide_carrusel_description">{{ mobile[banner].description }}</span>
+        <span class="slide_carrusel_title">{{ mobile[image].title }}</span>
+        <span class="slide_carrusel_description">{{ mobile[image].description }}</span>
       </div>
-      <a v-if="mobile[banner].url != 'null' && mobile[banner].type == 'Image'" :href="mobile[banner].url" :target="mobile[banner].blank ? '_blank' : ''" class="slide__link"></a>
+      <a v-if="mobile[image].url != 'null' && mobile[image].type == 'Image'" :href="mobile[image].url" :target="mobile[image].blank ? '_blank' : ''" class="slide__link"></a>
     </swiper-slide>
   </swiper>
 
@@ -68,7 +68,7 @@
 
 
 <!-- Modal -->
-<div v-for="(banner, index) in Object.keys(desktop).filter(banner => desktop[banner].type === 'Video')" :key="index" class="modal fade banner-video" :id="`video${desktop[banner].id}`" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="videoLabel" aria-hidden="true">
+<div v-for="(image, index) in Object.keys(desktop).filter(image => desktop[image].type === 'Video')" :key="index" class="modal fade banner-video" :id="`video${desktop[image].id}`" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="videoLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -76,7 +76,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <iframe class="slide__iframe-banner" :src="desktop[banner].url.replace('watch?v=', 'embed/')"
+        <iframe class="slide__iframe-banner" :src="desktop[image].url.replace('watch?v=', 'embed/')"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
@@ -86,7 +86,7 @@
     </div>
   </div>
 </div>
-<div v-for="(banner, index) in Object.keys(mobile).filter(banner => mobile[banner].type === 'Video')" :key="index" class="modal fade banner-video" :id="`video${mobile[banner].id}`" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="videoLabel" aria-hidden="true">
+<div v-for="(image, index) in Object.keys(mobile).filter(image => mobile[image].type === 'Video')" :key="index" class="modal fade banner-video" :id="`video${mobile[image].id}`" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="videoLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -94,7 +94,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <iframe class="slide__iframe-banner" :src="mobile[banner].url.replace('watch?v=', 'embed/')"
+        <iframe class="slide__iframe-banner" :src="mobile[image].url.replace('watch?v=', 'embed/')"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>

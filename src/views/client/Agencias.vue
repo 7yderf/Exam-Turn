@@ -11,11 +11,13 @@
       </div>
     </article>
     <div ref="mapDiv" class="agency__map" id="map"></div>
-    <article class="agency__cards slide">
-      <h2 class="agency__card-title">Agencias</h2>
-      <CarouselHome class="agency__card-box" :cardContent="agencies" :type="'agency'" :active="agencies_active" />
+    <article class="agency__cards slide" >
+      <h2 class="agency__card-title" >Agencias</h2>
+      <CarouselHome class="agency__card-box"  :cardContent="agencies" :type="'agency'" :active="agencies_active" />
     </article>
+    <div class="agencies__cards-show" ref="cards"></div>
   </main>
+  
 
 </template>
 
@@ -47,6 +49,7 @@ export default {
     const agencies = ref([]);
     const agencies_active = ref([]);
     const orderAgencies = ref([]);
+    const cards = ref(null);
 
 
     const getAgencies = async () => {
@@ -199,6 +202,9 @@ export default {
                 url: market_select,
               });
               agencies_active.value.unshift(agencyActive);
+              console.log(cards.value);
+              cards.value.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+              
             } else {
               this.setIcon({
                 scaledSize: new google.maps.Size(32, 32),
@@ -234,7 +240,7 @@ export default {
       checkUbication.value = false;
     };
 
-    return { mapDiv, geolocation, agencies, agencies_active, orderAgencies };
+    return { mapDiv, geolocation, agencies, agencies_active, orderAgencies, cards };
   },
 };
 </script>

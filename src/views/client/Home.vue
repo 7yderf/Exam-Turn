@@ -14,8 +14,8 @@
     </article>
     <article class="home__hero">
       <Slide
-        :desktop="bannerDesktop"
-        :mobile="bannerMobile"
+        :desktop="imagesDesktop"
+        :mobile="imagesMobile"
         :windowSize="windowSize"
       />
       <div class="home__search">
@@ -28,50 +28,50 @@
     </div>
     <article class="home__copy">
       <div
-        v-for="(banner, index) in Object.keys(bannerDesktop).filter(
-          (banner) => bannerDesktop[banner].where === 'home2'
+        v-for="(image, index) in Object.keys(imagesDesktop).filter(
+          (image) => imagesDesktop[image].where === 'home2'
         )"
         :key="index"
         class="home__copy-box-img"
         :data-device="windowSize"
         :data-default="
           !windowSize &&
-          !Object.keys(bannerMobile).filter(
-            (banner) => bannerMobile[banner].where === 'home2'
+          !Object.keys(imagesMobile).filter(
+            (image) => imagesMobile[image].where === 'home2'
           )
         "
       >
         <img
-          :src="bannerDesktop[banner].banner"
+          :src="imagesDesktop[image].banner"
           alt=""
           class="home__copy-img"
         />
         <a
           v-if="
-            bannerDesktop[banner].url != 'null' &&
-            bannerDesktop[banner].type == 'Image'
+            imagesDesktop[image].url != 'null' &&
+            imagesDesktop[image].type == 'Image'
           "
-          :href="bannerDesktop[banner].url"
-          :target="bannerDesktop[banner].blank ? '_blank' : ''"
+          :href="imagesDesktop[image].url"
+          :target="imagesDesktop[image].blank ? '_blank' : ''"
           class="home__link-banner"
         ></a>
       </div>
       <div
-        v-for="(banner, index) in Object.keys(bannerMobile).filter(
-          (banner) => bannerMobile[banner].where === 'home2'
+        v-for="(image, index) in Object.keys(imagesMobile).filter(
+          (image) => imagesMobile[image].where === 'home2'
         )"
         :key="index"
         class="home__copy-box-img"
         :data-device="!windowSize"
       >
-        <img :src="bannerMobile[banner].banner" alt="" class="home__copy-img" />
+        <img :src="imagesMobile[image].banner" alt="" class="home__copy-img" />
         <a
           v-if="
-            bannerMobile[banner].url != 'null' &&
-            bannerMobile[banner].type == 'Image'
+            imagesMobile[image].url != 'null' &&
+            imagesMobile[image].type == 'Image'
           "
-          :href="bannerMobile[banner].url"
-          :target="bannerMobile[banner].blank ? '_blank' : ''"
+          :href="imagesMobile[image].url"
+          :target="imagesMobile[image].blank ? '_blank' : ''"
           class="home__link-banner"
         ></a>
       </div>
@@ -133,50 +133,50 @@
     </article>
     <article class="home__copy home__copy--dark">
       <div
-        v-for="(banner, index) in Object.keys(bannerDesktop).filter(
-          (banner) => bannerDesktop[banner].where === 'home3'
+        v-for="(image, index) in Object.keys(imagesDesktop).filter(
+          (image) => imagesDesktop[image].where === 'home3'
         )"
         :key="index"
         class="home__copy-box-img"
         :data-device="windowSize"
         :data-default="
           !windowSize &&
-          !Object.keys(bannerMobile).filter(
-            (banner) => bannerMobile[banner].where === 'home3'
+          !Object.keys(imagesMobile).filter(
+            (image) => imagesMobile[image].where === 'home3'
           )
         "
       >
         <img
-          :src="bannerDesktop[banner].banner"
+          :src="imagesDesktop[image].banner"
           alt=""
           class="home__copy-img"
         />
         <a
           v-if="
-            bannerDesktop[banner].url != 'null' &&
-            bannerDesktop[banner].type == 'Image'
+            imagesDesktop[image].url != 'null' &&
+            imagesDesktop[image].type == 'Image'
           "
-          :href="bannerDesktop[banner].url"
-          :target="bannerDesktop[banner].blank ? '_blank' : ''"
+          :href="imagesDesktop[image].url"
+          :target="imagesDesktop[image].blank ? '_blank' : ''"
           class="home__link-banner"
         ></a>
       </div>
       <div
-        v-for="(banner, index) in Object.keys(bannerMobile).filter(
-          (banner) => bannerMobile[banner].where === 'home3'
+        v-for="(image, index) in Object.keys(imagesMobile).filter(
+          (image) => imagesMobile[image].where === 'home3'
         )"
         :key="index"
         class="home__copy-box-img"
         :data-device="!windowSize"
       >
-        <img :src="bannerMobile[banner].banner" alt="" class="home__copy-img" />
+        <img :src="imagesMobile[image].banner" alt="" class="home__copy-img" />
         <a
           v-if="
-            bannerMobile[banner].url != 'null' &&
-            bannerMobile[banner].type == 'Image'
+            imagesMobile[image].url != 'null' &&
+            imagesMobile[image].type == 'Image'
           "
-          :href="bannerMobile[banner].url"
-          :target="bannerMobile[banner].blank ? '_blank' : ''"
+          :href="imagesMobile[image].url"
+          :target="imagesMobile[image].blank ? '_blank' : ''"
           class="home__link-banner"
         ></a>
       </div>
@@ -313,9 +313,9 @@ export default {
     const ubicationTitle = ref("");
     const scrollNow = ref("");
     const hero = ref(null);
-    const bannerDesktop = ref({});
+    const imagesDesktop = ref({});
 
-    const bannerMobile = ref({});
+    const imagesMobile = ref({});
 
     const getVehicles = async (params = "") => {
       let url = "api/vehicles/nearby";
@@ -350,59 +350,59 @@ export default {
         Array(5)
           .fill("")
           .map((element, index) => {
-            bannerDesktop.value[`desktop_${index + 1}`] = {
-              ...bannerDesktop.value[`desktop_${index + 1}`],
+            imagesDesktop.value[`desktop_${index + 1}`] = {
+              ...imagesDesktop.value[`desktop_${index + 1}`],
               id: data.data.desktop[index] ? data.data.desktop[index].id : "",
               type: data.data.desktop[index]
                 ? data.data.desktop[index].type
-                : bannerDesktop.value[`desktop_${index + 1}`].type,
+                : imagesDesktop.value[`desktop_${index + 1}`].type,
               url: data.data.desktop[index]
                 ? data.data.desktop[index].url
-                : bannerDesktop.value[`desktop_${index + 1}`].url,
+                : imagesDesktop.value[`desktop_${index + 1}`].url,
               blank: data.data.desktop[index]
                 ? data.data.desktop[index].blank
-                : bannerDesktop.value[`desktop_${index + 1}`].blank,
+                : imagesDesktop.value[`desktop_${index + 1}`].blank,
               banner: data.data.desktop[index]
                 ? data.data.desktop[index].banner
-                : bannerDesktop.value[`desktop_${index + 1}`].banner,
+                : imagesDesktop.value[`desktop_${index + 1}`].banner,
               title: data.data.desktop[index]
                 ? data.data.desktop[index].title
-                : bannerDesktop.value[`desktop_${index + 1}`].title,
+                : imagesDesktop.value[`desktop_${index + 1}`].title,
               description: data.data.desktop[index]
                 ? data.data.desktop[index].description
-                : bannerDesktop.value[`desktop_${index + 1}`].description,
+                : imagesDesktop.value[`desktop_${index + 1}`].description,
               where: data.data.desktop[index]
                 ? data.data.desktop[index].where
-                : bannerDesktop.value[`desktop_${index + 1}`].where,
+                : imagesDesktop.value[`desktop_${index + 1}`].where,
             };
           });
         Array(mobileLength)
           .fill("")
           .map((element, index) => {
-            bannerMobile.value[`mobile_${index + 1}`] = {
-              ...bannerMobile.value[`mobile_${index + 1}`],
+            imagesMobile.value[`mobile_${index + 1}`] = {
+              ...imagesMobile.value[`mobile_${index + 1}`],
               id: data.data.mobil[index] ? data.data.mobil[index].id : "",
               type: data.data.mobil[index]
                 ? data.data.mobil[index].type
-                : bannerMobile.value[`mobile_${index + 1}`].type,
+                : imagesMobile.value[`mobile_${index + 1}`].type,
               url: data.data.mobil[index]
                 ? data.data.mobil[index].url
-                : bannerMobile.value[`mobile_${index + 1}`].url,
+                : imagesMobile.value[`mobile_${index + 1}`].url,
               blank: data.data.mobil[index]
                 ? data.data.mobil[index].blank
-                : bannerMobile.value[`mobile_${index + 1}`].blank,
+                : imagesMobile.value[`mobile_${index + 1}`].blank,
               banner: data.data.mobil[index]
                 ? data.data.mobil[index].banner
-                : bannerMobile.value[`mobile_${index + 1}`].banner,
+                : imagesMobile.value[`mobile_${index + 1}`].banner,
               title: data.data.mobil[index]
                 ? data.data.mobil[index].title
-                : bannerMobile.value[`mobile_${index + 1}`].title,
+                : imagesMobile.value[`mobile_${index + 1}`].title,
               description: data.data.mobil[index]
                 ? data.data.mobil[index].description
-                : bannerMobile.value[`mobile_${index + 1}`].description,
+                : imagesMobile.value[`mobile_${index + 1}`].description,
               where: data.data.mobil[index]
                 ? data.data.mobil[index].where
-                : bannerMobile.value[`mobile_${index + 1}`].where,
+                : imagesMobile.value[`mobile_${index + 1}`].where,
             };
           });
       } catch (error) {
@@ -573,8 +573,8 @@ export default {
       geolocation,
       ubicationTitle,
       hero,
-      bannerDesktop,
-      bannerMobile,
+      imagesDesktop,
+      imagesMobile,
       imgBanner,
       imgBannerMovil,
       cardAgency,

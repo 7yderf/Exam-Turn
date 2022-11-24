@@ -64,6 +64,18 @@
   border: none;
   border-bottom: 1px solid #2b2b40;
 }
+.accordion__input-range{
+  @include flex(space-between);
+  .input{
+    @include text(1.3rem, 400, 1.6rem);
+    height: 25px;
+    max-width: 100px;
+    padding: 4px;
+    color: var(--text-contrast-color);
+
+  }
+
+}
 .accordion-button[data-v-a7b18a08]:not(.collapsed).btn-filters {
   box-shadow: none;
 }
@@ -202,7 +214,8 @@
         @include text(1.1rem, 400, 1.6rem);
         height: 25px;
         max-width: 80px;
-        padding: 4px
+        padding: 4px;
+        color: var(--text-color);
 
       }
 

@@ -16,6 +16,9 @@
   @include for-size(tablet-small) {
   }
   @include for-size(phone-xbig) {
+    &__row {
+      margin-top: 0!important;
+    }
   }
   @include for-size(phone-big) {
   }

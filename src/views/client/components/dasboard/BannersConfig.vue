@@ -405,15 +405,7 @@ export default {
     };
 
     async function getData() {
-      const response = await fetch('https://apivanguardia.demosturn.com/api/banners/home', {
-        method: 'GET',
-        headers: {
-          authorization: `Bearer ${localStorage.id_token_gateway}`,
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        }
-      })
-      const data = await response.json();
+      const { data } = await ApiService.get("api/banners/home");
 
       console.log("🚀 ~ file: ConfigView.vue ~ line 306 ~ onMounted ~ res", data.data.desktop)
       //Array(9).fill('').map 

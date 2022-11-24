@@ -56,6 +56,7 @@ import { useRoute, useRouter } from "vue-router";
 import ApiService from "@/core/services/ApiService";
 import _ from "lodash";
 import * as bootstrap from "bootstrap";
+import "@/assets/styles/components/Input.scss";
 export default {
   name: "Search",
 

@@ -105,7 +105,7 @@ export default {
 
   &__hero{
     @include content(900px, 0);
-    @include flex(flex-start, false, flex-start);
+    @include flex;
     flex-direction: column;
     width: 100%;
      padding: 32px 0;
@@ -123,7 +123,7 @@ export default {
 
   &__opcions-box {
     @include content(900px, 0);
-    @include flex(space-between, 16px, center);
+    @include flex(center, 16px, center);
     flex-wrap: wrap;
   }
 

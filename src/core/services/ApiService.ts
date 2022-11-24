@@ -68,8 +68,11 @@ class ApiService {
       async (error) => {
         const { status } = error.response;
         if (status === 401) {
-          store.commit(Mutations.PURGE_AUTH);
-          router.push("/sign-in");
+          console.log("🚀 ~ file: ApiService.ts ~ line 172 ~ error", error)
+          sessionStorage.removeItem("id_token_gateway");
+          window.location.reload();
+          // store.commit(Mutations.PURGE_AUTH);
+          // router.push("/sign-in");
         }
 
         if (status === 403) {

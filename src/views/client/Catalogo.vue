@@ -78,14 +78,14 @@
             </option>
             <option
               class="input__select-options"
-              label="Menos km"
+              label="Menos kilometraje"
               :value="5"
             >
             Menos km
             </option>
             <option
               class="input__select-options"
-              label="Más km"
+              label="Más kilometraje"
               :value="6"
             >
               Más km
@@ -164,6 +164,11 @@
                       alt=""
                       class="cards-cart__banners-img"
                     />
+                    <a
+                    v-if="value.desktop?.url != 'null'" 
+                    :href="value.desktop?.url"
+                    :target="value.desktop?.blank ? '_blank' : ''" 
+                    class="cards-cart__href"></a>
                   </div>
                   <div
                     class="cards-cart__banners"
@@ -174,6 +179,11 @@
                       alt=""
                       class="cards-cart__banners-img"
                     />
+                    <a
+                    v-if="value.mobil?.url != 'null'" 
+                    :href="value.mobil?.url"
+                    :target="value.mobil?.blank ? '_blank' : ''" 
+                    class="cards-cart__href"></a>
                   </div>
                   <div
                     class="cards-cart__banners"
@@ -188,6 +198,11 @@
                       alt=""
                       class="cards-cart__banners-img"
                     />
+                    <a
+                    v-if="value.desktop?.url != 'null'" 
+                    :href="value.desktop?.url"
+                    :target="value.desktop?.blank ? '_blank' : ''" 
+                    class="cards-cart__href"></a>
                   </div>
                 </div>
               </template>

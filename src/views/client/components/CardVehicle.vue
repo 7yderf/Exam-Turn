@@ -141,13 +141,19 @@ export default {
   &__banners{
     width: 275px;
     height: 350px;
+    position: relative;
     img{
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
-
+  &__href{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+   left: 0;
+  }
 }
 
 .page-loading-vehicle{

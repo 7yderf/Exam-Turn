@@ -8,7 +8,7 @@
           <div class="steps__back-text">
             <button class="steps__btn-back" @click="previous">
               <img :src="IconReturn" alt="" />
-              {{ "Volver form" }}
+              {{ "Volver" }}
             </button>
           </div>
         </div>
@@ -16,7 +16,7 @@
           <div class="steps__back-text">
             <button class="steps__btn-back" @click="returnSubmited">
               <img :src="IconReturn" alt="" />
-              {{ "Volver send code" }}
+              {{ "Volver" }}
             </button>
           </div>
         </div>
@@ -24,7 +24,7 @@
           <div class="steps__back-text">
             <button class="steps__btn-back" @click="refresh">
               <img :src="IconReturn" alt="" />
-              {{ "Volver valuation" }}
+              {{ "Volver" }}
             </button>
           </div>
         </div>
@@ -159,7 +159,7 @@
               <p class="venta__code-text">
                 Te envíamos un código a tu teléfono.
               </p>
-              <span class="venta__code-text__bold">El código vence en: 2:25 minutos</span>
+              <!-- <span class="venta__code-text__bold">El código vence en: 2:25 minutos</span> -->
               <div class="code">
                 <input type="text" maxlength="1" class="input-code" v-model="code[0]" />
                 <input type="text" maxlength="1" class="input-code" v-model="code[1]" />
@@ -167,7 +167,7 @@
                 <input type="text" maxlength="1" class="input-code" v-model="code[3]" />
                 <input type="text" maxlength="1" class="input-code" v-model="code[4]" />
               </div>
-              <button href="#" class="reenviar-codigo">
+              <button href="#" class="reenviar-codigo" v-if="NewCode" @click="sendNewCode">
                 Enviar nuevo código
               </button>
               <button class="venta__contact-send-btn code-send-btn" @click="sendCode">
@@ -268,6 +268,7 @@ export default {
     const valueWhatsapp = ref("");
     const code = ref(["", "", "", "", ""]);
     const valuation = ref(false);
+    const NewCode = ref(false);
     const formValues = ref({
       email: "",
       name: "",
@@ -312,6 +313,11 @@ export default {
         })
       ),
     ];
+
+    setTimeout(function () {
+      NewCode.value = true;
+    }, 60000);
+  
 
     const formatPrice = (value) => {
       const exp = /(\d)(?=(\d{3})+(?!\d))/g;
@@ -460,6 +466,26 @@ export default {
           });
         });
     };
+
+    const sendNewCode = (e) => {
+      const formDataSend = new FormData();
+      formDataSend.append("number", valueWhatsapp.value);
+      ApiService.post(`/api/valuation/send-code`, formDataSend)
+        .then((res) => {
+          Swal.fire({
+            icon: "success",
+            title: "Código enviado",
+            text: "Se ha enviado un nuevo código de verificación",
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Algo salió mal, intenta de nuevo",
+          });
+        });
+    };
     
     watch(
       () => valueYears.value,
@@ -578,7 +604,9 @@ export default {
       refresh,
       returnSubmited,
       dataVehicle,
-      Valuation
+      Valuation,
+      sendNewCode,
+      NewCode
     };
   },
 };

@@ -176,23 +176,28 @@ export default {
       /* console.log(values); */
       console.log(props.file);
       const formData = new FormData();
-      const id = values.id;
+      let id = '';
+      if (values.id) {
+        id = values.id;
+      } else {
+        if (!props.file) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Debes seleccionar un archivo",
+          });
+          return;
+        } 
+      }
 
       if (props.file) {
         formData.append("file", props.file);
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Debes seleccionar un archivo",
-        });
-        return;
-      }
+      } 
 
       formData.append("type_of_banner", values.type_of_banner);
       formData.append("type", "Image");
       formData.append("url", values.url);
-      formData.append("blank", values.blank);
+      formData.append("blank", values.blank != undefined ? values.blank : 0);
       formData.append("title", values.title);
       formData.append("description", values.description);
       formData.append(

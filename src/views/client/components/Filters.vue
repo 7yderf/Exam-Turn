@@ -1262,6 +1262,10 @@
                   aria-labelledby="kt_accordion_1_header_11"
                 >
                   <div class="accordion-body border-0">
+                   <div class="accordion__input-range">
+                    <input class="input input--white" type="text" pattern="^[0-9]+$" v-model="inputMin" v-on:input="debounceInput">
+                    <input class="input input--white" type="text"  pattern="^[0-9]+$" v-model="inputMax" v-on:input="debounceInput">
+                   </div>
                     <Range
                       v-if="searchPrice[0] !== 0 || searchPrice[1] !== 0"
                       :valMin="
@@ -1274,6 +1278,8 @@
                       :valInitMax="searchPrice[1]"
                       :type="'price'"
                       @searchRange="handleSearchRange"
+                      @valorMinimo="listenerMin"
+                      @valorMaximo="listenerMax"
                     />
                   </div>
                 </div>
@@ -1299,6 +1305,10 @@
                   aria-labelledby="kt_accordion_1_header_12"
                 >
                   <div class="accordion-body border-0">
+                    <div class="accordion__input-range">
+                      <input class="input input--white" type="text" pattern="^[0-9]+$" v-model="inputMinKms" v-on:input="debounceInputKms">
+                      <input class="input input--white" type="text"  pattern="^[0-9]+$" v-model="inputMaxKms" v-on:input="debounceInputKms">
+                     </div>
                     <Range
                       v-if="searchKms[0] !== 0 || searchKms[1] !== 0"
                       :valMin="kmsValue[0] == 0 ? searchKms[0] : kmsValue[0]"
@@ -1307,6 +1317,8 @@
                       :valInitMax="searchKms[1]"
                       :type="'kms'"
                       @searchRange="handleSearchRange"
+                      @valorMinimo="listenerMin"
+                      @valorMaximo="listenerMax"
                     />
                   </div>
                 </div>
@@ -1398,10 +1410,10 @@
                   Más recientes
                 </p>
                 <p class="filters__order-opcion" :data-active="orderby == 5" @click="orderOpcions(5)">
-                  Menos km
+                  Menos kilometraje
                 </p>
                 <p class="filters__order-opcion" :data-active="orderby == 6" @click="orderOpcions(6)">
-                  Más km
+                  Más kilometraje
                 </p>
               </div>
               

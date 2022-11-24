@@ -93,24 +93,26 @@ export default {
       let id = '';
       if(props.formValues[props.active]?.id){
         id = props.formValues[props.active]?.id;
+      } else {
+        if (!props.file) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Debes seleccionar un archivo",
+          });
+          return;
+        } 
       }
       const formData = new FormData();
 
       if (props.file) {
         formData.append("file", props.file)
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Debes seleccionar un archivo",
-        });
-        return;
-      }
+      } 
 
       formData.append("type_of_banner", values.type_of_banner);
       formData.append("type", values.type);
       formData.append("url", values.url);
-      formData.append("blank", values.blank);
+      formData.append("blank", values.blank !== undefined ? values.blank : 0);
       formData.append("title", values.title);
       formData.append("description", values.description);
       formData.append("temporized_ini", values.temporized ? values.temporized[0].toISOString().split('T')[0] + ' 00:00:00' : '');

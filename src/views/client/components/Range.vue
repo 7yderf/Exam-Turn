@@ -4,7 +4,7 @@
     
 
     <div class="slider-demo-block">
-      <el-slider v-model="value" range :step="1000" :min="0" :max="valInitMax" @input="oninput" @change="filterRange" />
+      <el-slider v-model="value" range :step="1000" :min="valInitMin" :max="valInitMax" @input="oninput" @change="filterRange" />
     </div>
 
     

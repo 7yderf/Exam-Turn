@@ -164,13 +164,7 @@ export default {
       let id = '';
       if (props.formValues?.id) {
         id = props.formValues?.id;
-      }
-
-      const formData = new FormData();
-
-      console.log("🚀 ~ file: FormUser.vue ~ line 168 ~ setup ~ props.file", Boolean(props.file))
-     
-
+      } else {
         if (!props.file) {
           Swal.fire({
             icon: "error",
@@ -178,6 +172,18 @@ export default {
             text: "Debes seleccionar un archivo",
           });
           return;
+        } 
+      }
+
+
+
+      const formData = new FormData();
+
+      console.log("🚀 ~ file: FormUser.vue ~ line 168 ~ setup ~ props.file", Boolean(props.file))
+     
+
+        if (props.file) {
+          formData.append("file", props.file);
         } 
 
         if (values.type == "Video" && !values.url.includes("youtube.com")) {
@@ -195,9 +201,8 @@ export default {
 
       formData.append("type_of_banner", values.type_of_banner);
       formData.append("type", values.type);
-      formData.append("file", props.file);
       formData.append("url", values.url);
-      formData.append("blank", values.blank);
+      formData.append("blank", values.blank !== undefined ? values.blank : 0);
       formData.append("title", values.title);
       formData.append("description", values.description);
       formData.append(
