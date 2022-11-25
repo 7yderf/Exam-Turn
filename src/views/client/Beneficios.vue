@@ -3,19 +3,22 @@
     <article class="benefits__copy">
       <img :src="buyCar" alt="" class="benefits__copy-img" />
       <div class="benefits__copy-box benefits__copy-box--drak">
-        <h2 class="benefits__copy-title benefits__copy-title--dark">
-          Vende tu vehículo
-        </h2>
-        <p class="benefits__copy-text benefits__copy-text--dark">
-          ¡Hazlo fácil! Con la confianza, seguridad, garantía y protección que
-          nos distinguen.
-        </p>
-        <router-link
-          to="/vende"
-          class="benefits__copy-button benefits__copy-button--dark"
-        >
-          Quiero vender mi auto
-        </router-link>
+        <div class="benefits__copy-box-content">
+          <h2 class="benefits__copy-title benefits__copy-title--dark">
+            Vende tu vehículo
+          </h2>
+          <p class="benefits__copy-text benefits__copy-text--dark">
+            ¡Hazlo fácil! Con la confianza, seguridad, garantía y protección que
+            nos distinguen.
+          </p>
+          <router-link
+            to="/vende"
+            class="benefits__copy-button benefits__copy-button--dark"
+          >
+            Quiero vender mi auto
+          </router-link>
+
+        </div>
       </div>
     </article>
 

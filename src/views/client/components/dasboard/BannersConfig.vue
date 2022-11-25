@@ -31,7 +31,7 @@
             {{ value.flag }}
           </p>
           <p class="banners__carrusel-back-info">
-            (1920x1080 px, .png .jpeg. jpg)
+            (1440x450 px, .png .jpeg. jpg)
           </p>
 
         </div>

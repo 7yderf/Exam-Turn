@@ -142,6 +142,10 @@ export default {
     width: 275px;
     height: 350px;
     position: relative;
+    @include for-size(phone-xbig) {
+      max-width: inherit;
+      width: 100%;
+    }
     img{
       width: 100%;
       height: 100%;

@@ -60,7 +60,6 @@
                   data-bs-target="#kt_accordion_1_body_2"
                   aria-expanded="false"
                   aria-controls="kt_accordion_1_body_2"
-                  @click="activeFilter('brand')"
                 >
                   <span class="filters__text fw-normal">Marcas y modelos</span>
                 </button>
@@ -92,7 +91,7 @@
                           >
                             <button
                               class="brand-btn accordion-button btn-filters px-3 py-3 border-0"
-                              @click="applyFilter('brand', brand.name, 'push')"
+                              @click="applyFilter('brand', brand.name, 'push', brand.id)"
                               :class="
                                 paramsQuery.brand.includes(brand.name) &&
                                 'is-active'
@@ -1619,7 +1618,9 @@ export default {
     const applyFilter = (
       type: string,
       value: string,
-      functionality: string
+      functionality: string,
+      ...args: any[]
+
     ) => {
       if (functionality == "push") {
         value = value.toString();
@@ -1628,6 +1629,34 @@ export default {
             ? paramsQuery.value[type].split(",")
             : [];
         if (explodedParamsQuerty.includes(value.toString())) {
+          if(type == "brand"){
+            searchedModels.value?.map((model: any) => {
+              if(model.brand_id == args[0]){
+                paramsQuery.value['model']?.split(',').filter((model_id: any) => {
+                  if(model_id ==  model.name){
+                    paramsQuery.value['model'] = paramsQuery.value['model']?.split(',').filter((model_id: any) => {
+                      return model_id != model.name
+                    }).join(',')
+                  }
+                  
+                })
+              }
+            })
+          }
+          if(type == "state"){
+            searchedCities?.value?.map((city: any) => {
+              if(city.state == value){
+                paramsQuery.value['city']?.split(',').filter((city_name: any) => {
+                  if(city_name ==  city.name){
+                    paramsQuery.value['city'] = paramsQuery.value['city']?.split(',').filter((city_params: any) => {
+                      return city_params != city.name
+                    }).join(',')
+                  }
+                  
+                })
+              }
+            })
+          }
           explodedParamsQuerty = explodedParamsQuerty.filter((e) => e != value);
         } else {
           explodedParamsQuerty.push(value);

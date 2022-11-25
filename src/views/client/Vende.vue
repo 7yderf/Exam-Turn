@@ -146,7 +146,7 @@
                   </div>
                   <ErrorMessage name="whatsapp" class="input__error"></ErrorMessage>
                 </div>
-                <div class="input__check">
+                <div class="input__check" :style="'visibility: hidden;'">
                   <Field as="input" type="checkbox" value="Si" name="notificaciones" class="form-check-input" v-model="notificaciones"
                     :data-error="Boolean(errors.notificaciones)" />
 
@@ -161,11 +161,11 @@
               </p>
               <!-- <span class="venta__code-text__bold">El código vence en: 2:25 minutos</span> -->
               <div class="code">
-                <input type="text" maxlength="1" class="input-code" v-model="code[0]" />
-                <input type="text" maxlength="1" class="input-code" v-model="code[1]" />
-                <input type="text" maxlength="1" class="input-code" v-model="code[2]" />
-                <input type="text" maxlength="1" class="input-code" v-model="code[3]" />
-                <input type="text" maxlength="1" class="input-code" v-model="code[4]" />
+                <input type="text" maxlength="1" class="input-code" v-model="code[0]"  ref="number_1"/>
+                <input type="text" maxlength="1" class="input-code" v-model="code[1]" ref="number_2"/>
+                <input type="text" maxlength="1" class="input-code" v-model="code[2]" ref="number_3"/>
+                <input type="text" maxlength="1" class="input-code" v-model="code[3]" ref="number_4"/>
+                <input type="text" maxlength="1" class="input-code" v-model="code[4]" ref="number_5"/>
               </div>
               <button href="#" class="reenviar-codigo" v-if="NewCode" @click="sendNewCode">
                 Enviar nuevo código
@@ -261,7 +261,7 @@ export default {
     const valueVersions = ref("");
     const valueKms = ref("");
     const kms = ref(0);
-    const notificaciones = ref("No");
+    const notificaciones = ref("Si");
     const dataVehicle = ref([])
     const submited = ref(false);
     const ultimateCurrentStep = ref(false);
@@ -269,6 +269,12 @@ export default {
     const code = ref(["", "", "", "", ""]);
     const valuation = ref(false);
     const NewCode = ref(false);
+    const number_1 = ref(null);
+    const number_2 = ref(null);
+    const number_3 = ref(null);
+    const number_4 = ref(null);
+    const number_5 = ref(null);
+
     const formValues = ref({
       email: "",
       name: "",
@@ -333,7 +339,38 @@ export default {
 
       }
     )
-
+    watch(
+      () => code.value[0],
+      (value) => {
+        if (value) {
+          number_2.value.focus();
+        }
+      }
+    )
+    watch(
+      () => code.value[1],
+      (value) => {
+        if (value) {
+          number_3.value.focus();
+        }
+      }
+    )
+    watch(
+      () => code.value[2],
+      (value) => {
+        if (value) {
+          number_4.value.focus();
+        }
+      }
+    )
+    watch(
+      () => code.value[3],
+      (value) => {
+        if (value) {
+          number_5.value.focus();
+        }
+      }
+    )
 
     const onSubmit = (values) => {
 
@@ -353,7 +390,7 @@ export default {
         surname: values.lastname,
         email: values.email,
         phone: values.whatsapp,
-        phone_notification: values.notificaciones,
+        phone_notification: "Si",
         phone_verified: "Si"
       }
 
@@ -489,7 +526,7 @@ export default {
     
     watch(
       () => valueYears.value,
-      async () => {
+      async (val) => {
         await getbrand(valueYears.value);
         valueBrands.value = "";
       }
@@ -606,7 +643,12 @@ export default {
       dataVehicle,
       Valuation,
       sendNewCode,
-      NewCode
+      NewCode,
+      number_1, 
+      number_2,
+      number_3,
+      number_4,
+      number_5
     };
   },
 };

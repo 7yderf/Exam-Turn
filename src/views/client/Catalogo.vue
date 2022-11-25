@@ -172,7 +172,7 @@
                   </div>
                   <div
                     class="cards-cart__banners"
-                    v-if="value.mobile?.banner && !windowSize"
+                    v-if="value.mobil?.banner && !windowSize"
                   >
                     <img
                       :src="value.mobil?.banner"
@@ -188,7 +188,7 @@
                   <div
                     class="cards-cart__banners"
                     v-if="
-                      !value.mobile?.banner &&
+                      !value.mobil?.banner &&
                       !windowSize &&
                       value.desktop?.banner
                     "
@@ -708,6 +708,49 @@ export default {
       let queryDelete = {};
       Object.keys(query).forEach((key) => {
         console.log("key", key);
+        if (key == 'brand'){
+          const arrayData: any = query;
+          brands.value.map((brand) => {
+            if (brand.name == activ) {
+              models.value.map((model) => {
+                if (model.brand_id == brand.id) {
+                  arrayData['model'] = arrayData['model']
+                      ?.split(",")
+                      .filter((item) => item !== model.name)
+                      .join(",");
+                  queryDelete = {
+                    ...query,
+                    model: arrayData['model']
+                  };
+                }
+              });
+            }
+            if (arrayData['model'] == '') {
+              delete query['model'];
+              queryDelete = query;
+            }
+          });
+        }
+        if (key == 'state') {
+          const arrayData: any = query;
+          cities.value.map((city) => {
+            if (city.state == activ) {
+              arrayData['city'] = arrayData['city']
+                ?.split(",")
+                .filter((item) => item !== city.name)
+                .join(",");
+              queryDelete = {
+                ...query,
+                city: arrayData['city']
+              };
+            }
+          });
+
+          if (arrayData['city'] == '') {
+            delete query['city'];
+            queryDelete = query;
+          }
+        }
         const arrayData: any = query;
         const val = arrayData[key];
         if (val?.split(",").length > 1) {

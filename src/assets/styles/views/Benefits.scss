@@ -12,7 +12,7 @@ $dot-hover: url("@/assets/images/icons/icon-dot-hover.svg");
   flex-direction: column;
 
   &__copy {
-    @include content(1920px, 0);
+    @include content(100%, 0);
     @include flex(center, false, stretch);
     height: 500px;
   }
@@ -23,15 +23,12 @@ $dot-hover: url("@/assets/images/icons/icon-dot-hover.svg");
   }
   &__copy-box {
     width: 50%;
-    @include flex(center, 16px, flex-start);
+    @include flex(center, 16px, center);
     flex-direction: column;
     background: var(--text-contrast-color);
     padding: 0 40px;
     &--drak {
       background-color: var(--primary-color);
-    }
-    &--white {
-      align-items: self-end;
     }
   }
   &__copy-title {

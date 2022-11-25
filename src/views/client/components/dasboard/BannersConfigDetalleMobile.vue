@@ -75,7 +75,7 @@
                 <span> selecciona una imagen </span>
                 para el Banner
               </p>
-              <p class="userDetalle__home2-subtext-copy">(1920x1080 px, .png .jpeg. jpg)</p>
+              <p class="userDetalle__home2-subtext-copy">(320x450 px, .png .jpeg. jpg)</p>
             </div>
             <div class="userDetalle__home2-drop">
               <Drop :type="value.flag" :active="active" :fileData="fileData" @changeAddFile="onFileAdd"

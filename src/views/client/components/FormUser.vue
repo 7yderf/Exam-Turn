@@ -111,9 +111,12 @@ export default {
           if (urlVideo.value.includes("youtube.com")) {
             video_Iframe.value = urlVideo.value.replace("watch?v=", "embed/");
           } else if (props.formValues?.url.includes("youtube.com")) {
-
             video_Iframe.value = props.formValues?.url.replace("watch?v=", "embed/");
-          }
+          } else if (urlVideo.value.includes("youtu.be")){
+            video_Iframe.value = urlVideo.value.replace("youtu.be", "youtube.com/embed/");
+          } else if (props.formValues?.url.includes("youtu.be")){
+            video_Iframe.value = props.formValues?.url.replace("youtu.be", "youtube.com/embed/");
+          } 
         }
         emit("video", type_Video.value, video_Iframe.value);
       }
@@ -122,8 +125,10 @@ export default {
       () => urlVideo.value,
       (val) => {
         if (type_Video.value == "Video") {
-          if (val.includes("youtube.com")) {
+          if (val.includes("youtube.com") ) {
             video_Iframe.value = val.replace("watch?v=", "embed/");
+          } else if (val.includes("youtu.be")){
+            video_Iframe.value = val.replace("youtu.be", "youtube.com/embed/");
           }
         }
         emit("video", type_Video.value, video_Iframe.value);
@@ -186,14 +191,20 @@ export default {
           formData.append("file", props.file);
         } 
 
-        if (values.type == "Video" && !values.url.includes("youtube.com")) {
+        if (values.type == "Video" && values.url.includes("youtube.com")) {
+          console.log("🚀 ~ file: FormUser.vue ~ line 195 ~ onSubmit ~ values.url", values.url.includes("youtu.be"))
+         
+        } else  if (values.type == "Video" && values.url.includes("youtu.be")) {
+         values.url = values.url.replace("youtu.be", "youtube.com/watch?v=");
+         
+        }else {
           Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Solo se aceptan videos de youtube",
           });
           return;
-        } 
+        }
 
       
 
