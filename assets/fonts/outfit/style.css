@@ -1,0 +1,72 @@
+/* Font Outfit  */
+
+@font-face {
+    font-family: "Outfit";
+    src: url("./Outfit-Black.eot"), url("./Outfit-Black.ttf"), url("./Outfit-Black.woff"), url("./Outfit-Black.woff2");
+    font-weight: bold;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: "Outfit";
+    src: url("./Outfit-Bold.eot"), url("./Outfit-Bold.ttf"), url("./Outfit-Bold.woff"), url("./Outfit-Bold.woff2");
+    font-weight: 900;
+    font-style: 900;
+}
+
+@font-face {
+    font-family: "Outfit";
+    src: url("./Outfit-ExtraBold.eot"), url("./Outfit-ExtraBold.ttf"), url("./Outfit-ExtraBold.woff"), url("./Outfit-ExtraBold.woff2");
+    font-weight: bolder;
+    font-style: bolder;
+}
+
+@font-face {
+    font-family: "Outfit";
+    src: url("./Outfit-ExtraLight.eot"), url("./Outfit-ExtraLight.ttf"), url("./Outfit-ExtraLight.woff"), url("./Outfit-ExtraLight.woff2");
+    font-weight:lighter;
+    font-style:lighter;
+}
+
+@font-face {
+    font-family: "Outfit";
+    src: url("./Outfit-Light.eot"), url("./Outfit-Light.ttf"), url("./Outfit-Light.woff"), url("./Outfit-Light.woff2");
+    font-weight:200;
+    font-style:200;
+}
+
+@font-face {
+    font-family: "Outfit";
+    src: url("./Outfit-Medium.eot"), url("./Outfit-Medium.ttf"), url("./Outfit-Medium.woff"), url("./Outfit-Medium.woff2");
+    font-weight:400;
+    font-style:400;
+}
+
+@font-face {
+    font-family: "Outfit";
+    src: url("./Outfit-Regular.eot"), url("./Outfit-Regular.ttf"), url("./Outfit-Regular.woff"), url("./Outfit-Regular.woff2");
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face {
+    font-family: "Outfit";
+    src: url("./Outfit-SemiBold.eot"), url("./Outfit-SemiBold.ttf"), url("./Outfit-SemiBold.woff"), url("./Outfit-SemiBold.woff2");
+    font-weight:600;
+    font-style:600;
+}
+
+@font-face {
+    font-family: "Outfit";
+    src: url("./Outfit-Thin.eot"), url("./Outfit-Thin.ttf"), url("./Outfit-Thin.woff"), url("./Outfit-Thin.woff2");
+    font-weight:300;
+    font-style:300;
+}
+
+
+@font-face {
+    font-family: "Outfit";
+    src: url("./Outfit-Variable.eot"), url("./Outfit-Variable.ttf"), url("./Outfit-Variable.woff"), url("./Outfit-Variable.woff2");
+    font-weight:500;
+    font-style:500;
+}

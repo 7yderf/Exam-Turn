@@ -1,0 +1,105 @@
+@import "./Mixins";
+.services{
+@include flex(center, 56px, stretch);
+width: 100%;
+flex-direction: column;
+margin-bottom: 80px;
+
+&__hero{
+  @include flex;
+  width: 100%;
+}
+&__hero-tit{
+  
+  padding: 32px;
+  width: 45%;
+  h1{
+    @include text(6.4rem, 400, 7rem, left);
+  }
+  p{
+    @include text(3.2rem, 200, 5rem, left);
+  }
+  button{
+    @include button(solid);
+    margin-top: 32px;
+    &--radius{
+      border-radius: 10px;
+    }
+  }
+}
+&__hero-img{
+  
+  flex-grow: 1;
+  width: 55%;
+  img{
+    width: 120%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+&__paragraphs{
+  @include flex(space-between, false, stretch);
+  width: 100%;
+  margin-bottom: 136px;
+  
+  
+}
+&__paragraph-1{
+  width: 45%;
+  animation: fade-show 1s ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  
+}
+&__list-1{
+  width: 45%;
+  animation: fade-in 1.5s ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+ 
+}
+&__contact{
+  @include flex(flex-start, false, stretch);
+  width: 100%;
+  flex-direction: column;
+  max-width: 800px;
+  margin: auto;
+  h2{
+    @include text(5.6rem, 400, 7.2rem, left);
+    margin-bottom: 16px;
+    color: var(--text-color);
+  }
+  p{
+    @include text(3.2rem, 400, 4rem, left);
+    color: var(--text-color);
+  }
+  small{
+    @include text(2.4rem, 400, 3.2rem, left);
+    color: var(--text-color);
+  }
+}
+  @keyframes fade-in{
+    0%{
+      opacity: 0;
+      transform: translateX(50%);
+    }
+    100%{
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes fade-show{
+    0%{
+      opacity: 0;
+      filter: blur(20px)
+    }
+    100%{
+      opacity: 1;
+      filter: brightness(2 blur(10px));
+    }
+  }
+  .paused * { 
+    animation-play-state: paused;
+  }
+}
+@import "./responsive/Services";
