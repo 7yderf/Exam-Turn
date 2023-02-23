@@ -2,7 +2,15 @@
   @include for-size(desktop-xbig) {}
   @include for-size(desktop-big) {}
   @include for-size(desktop-mid) {}
-  @include for-size(desktop) {}
+  @include for-size(desktop) {
+    &__hero-tit{
+      width: 40%;
+    }
+    &__hero-img{
+      width: 60%;
+    }
+
+  }
   @include for-size(tablet-landscape) {}
   @include for-size(tablet-portrait) {
     gap: 16px;

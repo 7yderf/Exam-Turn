@@ -114,17 +114,17 @@ const mod = ref(false);
       searchInputService.value = [
         {
         id: 1,
-        value: '300,000',
+        value: 300000,
         name: '$300,000'
         },
         {
         id: 2,
-        value: '700,000',
+        value: 700000,
         name: '$700,000'
         },
         {
         id: 3,
-        value: '1500,000',
+        value: 1500000,
         name: '$1500,000'
         }
       ];

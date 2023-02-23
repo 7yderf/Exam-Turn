@@ -122,6 +122,13 @@
   --bg-hover-color:  #eaa693;
   ;
   border: 1px solid  #eaa693;
+} @else if $type == btn-agile {
+  --bg-color: #21212180;
+  --shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  --shadow-hover: none;
+  --text:var( --text-color);
+  --bg-hover-color:  var(--text-dark);
+  --border-color: var(--primary-color);
 } 
   @include flex(center, 10px);
   @include text(1.4rem, 500, 1.8rem, center);

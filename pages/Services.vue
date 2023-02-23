@@ -14,7 +14,7 @@
 
             </div>
             <div class="services__hero-img">
-                <img src="/services-img.png" alt="">
+                <GlobalHomeImgCircleApp />
             </div>
         </article>
         <article class="services__paragraphs paused">

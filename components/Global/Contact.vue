@@ -76,11 +76,11 @@
 <script setup>
     import { ref, onMounted } from "vue";
     import axios from "axios";
-    import { configure } from "vee-validate";
     // import { object, string, ref as yupRef } from "yup";
     import * as yup from "yup";
-import { value } from "dom7";
 
+    const swal = inject("$swal");
+    const config = useRuntimeConfig();
     const formValues = ref({
       email: "",
       first_name: "",
@@ -111,23 +111,37 @@ import { value } from "dom7";
 
        
         console.log(values);
-        alert(JSON.stringify(values));
-        return false;
+        // alert(JSON.stringify(values));
+        // console.log("valid", config.API_BASE_URL);
+        // return false;
 
         // submitButton.value!.disabled = true;
         // submitButton.value?.setAttribute("data-kt-indicator", "on");
         
-        // try {
-        //     let url = "https://jsonplaceholder.typicode.com/todos/1";
-            
-        //     const { data } = await axios.get(url);
-        //     console.log(data);
+        try {
+            const { data } = await axios.post(`${config.API_BASE_URL}api/lead`, values);
+            console.log(data);
 
-        //     data_object.value = data;
+            swal.fire({
+            icon: "success",
+            title: "¡Gracias!",
+            text: "Nos pondremos en contacto contigo a la brevedad",
+            timer: 2000,
+            // showConfirmButton: false,
+            confirmButtonColor: "green",
+            });
+        } catch (error) {
+          swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Algo salió mal, intenta de nuevo",
+            timer: 2000,
+            // showConfirmButton: false,
+            confirmButtonColor: "red",
 
-        // } catch (error) {
-        //     console.log(error);
-        // }
+      });
+            console.log(error);
+        }
     };
 
     const onInvalidSubmit = async (values) => {

@@ -158,6 +158,9 @@ body{
     background-size: cover;
     background-position: top ;
 }
+body {
+    cursor: url("/cursor.png"), default;
+ }
 
 // estilos generales..
 
@@ -165,7 +168,7 @@ body{
     &__default{
         width: 100%;
         object-fit: contain;
-        height:auto
+        height:auto;
       }
     &__max-h{
         max-height: 580px;
@@ -337,7 +340,7 @@ h6{
 }
 
 .navbar .navbar-nav .nav-item .nav-link:hover,
-.navbar .navbar-nav .nav-item .nav-link.active {
+.navbar .navbar-nav .nav-item .router-link-exact-active {
     border-bottom: 2px solid #ED5A30 !important;
 }
 
@@ -350,6 +353,11 @@ h6{
     width: 100%;
     margin: 0px !important;
     padding: 0px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    position: relative;
     // border: 1px solid blue;
 }
 
@@ -425,6 +433,13 @@ h6{
     &[data-active="true"]{
      border:1px solid #ED5A30 !important;
     }
+    &:hover{
+        border:1px solid #ED5A30 !important;
+        cursor: pointer;
+        cursor: url("/pointer.png"), pointer;
+
+    }
+
 }
 
 .turn-card h5 {
@@ -595,6 +610,20 @@ input[type=password]:focus,
         border: 0;
         box-shadow: inset 0px 0px 200px 75px rgba(0,0,0,1.0);
     }
+}
+.canvas-cursor{
+    width: 10rem;
+    height: 10rem;
+    border: solid 2px #000000;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    filter: blur(10px);
+    background: rgb(252 111 16 / 62%);
+    -webkit-filter: blur(40px);
+    -moz-filter: blur(40px);
+    // transition: all ease 0.1s;
 }
 
 .home {

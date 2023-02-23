@@ -17,10 +17,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="./">Inicio</a>
+                        <NuxtLink class="nav-link" to="/">
+                            Inicio
+                        </NuxtLink>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./Services">Servicios</a>
+                        <NuxtLink class="nav-link" to="./Services">
+                            Servicios
+                        </NuxtLink>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Metodologías</a>

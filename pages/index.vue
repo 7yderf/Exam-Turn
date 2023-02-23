@@ -1,5 +1,8 @@
 <template>
     <main class="main-section">
+        <div class="canvas-cursor" ref="cursor">
+
+        </div>
         <div class="section-one">
                 <div class=" container m-auto row align-items-center justify-content-center">
                     <div class="col-12 col-md-7 mt-2 text-white">
@@ -178,8 +181,7 @@
                     </div>
     
                     <div class="col-12 col-md-8 p-0 turn-m-t-67 d-flex align-items-center justify-content-center">
-                        <!-- <div class="float-left backlight"></div> -->
-                        <img src="../assets/images/agile.png" alt="agile" class="img__default"/>
+                        <GlobalHomeImgCircle />
                     </div>
                 </div>
             </div>
@@ -212,6 +214,7 @@
 <script lang="ts" setup>
     import { ref, onMounted } from "vue";
     const card_active = ref(1);
+    const cursor = ref<any | HTMLElement>(null);
 
     const app_mobile = ref<any>([
         {   
@@ -295,17 +298,25 @@
     ])
 
     const show = (index: any) => {
-        console.log("show", index);
         card_active.value = index;
     };
 
-    setInterval(() => {
-        if (card_active.value == 3) {
-            card_active.value = 1;
-        } else {
-            card_active.value++;
-        }
-    }, 5000);
+    // setInterval(() => {
+    //     if (card_active.value == 3) {
+    //         card_active.value = 1;
+    //     } else {
+    //         card_active.value++;
+    //     }
+    // }, 5000);
 
+    onMounted(async () => {
+      console.log("mounted", cursor.value);
+      window.addEventListener("mousemove", (e: any) => {
+        console.log('🚀 ~ file: index.vue:316 ~ cursor.value?.addEventListener ~ e:', e)
+        cursor.value.style.top = (e.pageY - 60) + "px";
+        cursor.value.style.left = (e.pageX - 5)+ "px";
+        // cursor.value.style.background = `radial-gradient(circle at ${x}px ${y - 50}px, rgba(217, 77, 37, 0.5) 0%, transparent 100px)`;
+      });
+    });
     
 </script>
