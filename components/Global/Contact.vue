@@ -76,9 +76,11 @@
 <script setup>
     import { ref, onMounted } from "vue";
     import axios from "axios";
+    import { useForm } from 'vee-validate';
     // import { object, string, ref as yupRef } from "yup";
     import * as yup from "yup";
 
+    const { handleSubmit } = useForm();
     const swal = inject("$swal");
     const config = useRuntimeConfig();
     const formValues = ref({
@@ -106,7 +108,7 @@
       })
     );
 
-    const onSubmit = async (values) => {
+    const onSubmit =  async(values, {resetForm}) => {
         console.log("valid ");
 
        
@@ -121,12 +123,13 @@
         try {
             const { data } = await axios.post(`${config.API_BASE_URL}api/lead`, values);
             console.log(data);
-
+            resetForm();
             swal.fire({
             icon: "success",
             title: "¡Gracias!",
             text: "Nos pondremos en contacto contigo a la brevedad",
             timer: 2000,
+            confirmButtonText: "Listo",
             // showConfirmButton: false,
             confirmButtonColor: "green",
             });
@@ -136,13 +139,14 @@
             title: "Oops...",
             text: "Algo salió mal, intenta de nuevo",
             timer: 2000,
+            confirmButtonText: "Entiendo",
             // showConfirmButton: false,
             confirmButtonColor: "red",
 
       });
             console.log(error);
         }
-    };
+    }
 
     const onInvalidSubmit = async (values) => {
         console.log("invalid ");        

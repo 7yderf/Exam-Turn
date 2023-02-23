@@ -3,7 +3,7 @@
         <article class="services__hero">
             <div class="services__hero-tit">
                 <h1>
-                    Nuesros servicios
+                    Nuestros servicios
                 </h1>
                 <p>
                     Conoce en qué te podemos ayudar
