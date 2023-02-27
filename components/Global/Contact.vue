@@ -75,6 +75,7 @@
 
 <script setup>
     import { ref, onMounted } from "vue";
+    import { useReCaptcha } from 'vue-recaptcha-v3';
     import axios from "axios";
     import { useForm } from 'vee-validate';
     // import { object, string, ref as yupRef } from "yup";
@@ -92,6 +93,20 @@
       details: "",
     });
     
+    // initialize a instance
+    const recaptchaInstance = useReCaptcha();
+
+    const recaptcha = async () => {
+        // optional you can await for the reCaptcha load
+        await recaptchaInstance?.recaptchaLoaded();
+
+        // get the token, a custom action could be added as argument to the method
+        const token = await recaptchaInstance?.executeRecaptcha('lead_Contact');
+
+        return token;
+        };
+    
+
     const schema = markRaw(
       yup.object().shape({
         first_name: yup.string().required("El dato es obligatorio"),
@@ -109,19 +124,11 @@
     );
 
     const onSubmit =  async(values, {resetForm}) => {
-        console.log("valid ");
-
-       
         console.log(values);
-        // alert(JSON.stringify(values));
-        // console.log("valid", config.API_BASE_URL);
-        // return false;
-
-        // submitButton.value!.disabled = true;
-        // submitButton.value?.setAttribute("data-kt-indicator", "on");
-        
         try {
-            const { data } = await axios.post(`${config.API_BASE_URL}api/lead`, values);
+            const token = await recaptcha();
+            console.log('🚀 ~ file: Contact.vue:130 ~ onSubmit ~ token:', token)
+            const { data } = await axios.post(`${config.API_BASE_URL}api/lead`, {...values, 'g-recaptcha-response': token});
             console.log(data);
             resetForm();
             swal.fire({

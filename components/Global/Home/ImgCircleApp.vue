@@ -1,10 +1,12 @@
 <template>
-  <div class="circle__canvas">
+  <div class="circle__canvas"
+  :class="type == 'services'? '' : 'a_bout'"
+  >
     <div class="circle">
     
-      <img src="/circle_4.png" alt="" class="circle__back-1">
-      <img src="/circle_2.png" alt="" class="circle__back-2">
-      <div class="circle__body">
+      <img :src="img_top" alt="" class="circle__back-1">
+      <img :src="image_bottom" alt="" class="circle__back-2">
+      <div class="circle__body" v-if="type == 'services' ">
         <div class="circle__box circle__box--w">
           <button class="circle__btn--top-sm">Sitios web</button>
         </div>
@@ -21,16 +23,28 @@
           <button class="circle__btn--botton-sm">Análisis</button>
         </div>
       </div>
-      <button class="circle__btn-app circle__btn-app--css">
+      <button
+      v-if="type == 'services' " 
+      class="circle__btn-app circle__btn-app--css"
+      >
         <img src="/img/logos/css.png" alt="">
       </button>
-      <button class="circle__btn-app circle__btn-app--boostrap">
+      <button
+      v-if="type == 'services' " 
+      class="circle__btn-app circle__btn-app--boostrap"
+      >
         <img src="/img/logos/bootstrap.png" alt="">
       </button>
-      <button class="circle__btn-app circle__btn-app--kotlin">
+      <button
+      v-if="type == 'services' " 
+      class="circle__btn-app circle__btn-app--kotlin"
+      >
         <img src="/img/logos/kotlin.png" alt="">
       </button>
-      <button class="circle__btn-app circle__btn-app--html5">
+      <button
+      v-if="type == 'services' " 
+      class="circle__btn-app circle__btn-app--html5"
+      >
         <img src="/img/logos/html5.png" alt="">
       </button>
     </div>
@@ -40,14 +54,13 @@
 <script lang="ts" setup>
 import { defineProps } from "vue";
 
-//  const props = defineProps<{
+const props = defineProps<{
       
-//       listServices: Array<{
-//         titulo: string,
-//         description: string,
-//       }>,
+    img_top: string,
+    image_bottom: string,
+    type: string,
       
-//   }>();
+}>();
   
 </script>
 <style lang="scss" scoped>
@@ -186,6 +199,19 @@ import { defineProps } from "vue";
   }
 }
 
+.a_bout {
+  .circle__back-2{
+    z-index: -1;
+  }
+}
+.a_bout{
+  @include for-size(tablet-portrait) {
+    &.circle__canvas{
+      height: auto;
+      margin-top: 50px;
+    }
+  }
+}
 @keyframes identifier {
   0% {
     width: 120%;

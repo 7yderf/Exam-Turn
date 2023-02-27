@@ -30,7 +30,9 @@
                         <a class="nav-link" href="#">Metodologías</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Nosotros</a>
+                        <NuxtLink class="nav-link" to="./About">
+                            Nosotros
+                        </NuxtLink>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled">Español</a>

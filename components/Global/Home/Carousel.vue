@@ -13,6 +13,15 @@
           slidesPerView: 2,
           spaceBetween: 40,
         },
+        '1024': {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        '1280': {
+          slidesPerView: 4,
+          spaceBetween: 30,
+        },
+        
        
       }" :modules="modules">
       <swiper-slide class="px-1" v-for="(card, index) in cards" 
@@ -38,7 +47,16 @@
           :description="card.text_tecno"
           :subtitle="card.sub_title_tecno"
           :logos="card.tecnologias"
-      />
+        />
+        <GlobalAboutCardAbout
+          v-if="type === 'about'"
+          :key="index"
+          :img="card.img"
+          :title="card.title"
+          :description="card.description"
+          :type="'our'"
+          :id="index"
+        />
       </swiper-slide>
 
     </swiper>
@@ -81,7 +99,7 @@ export default {
       &>.swiper-wrapper {
         .swiper-slide {
           height: auto;
-
+          
           @media screen and (max-width: 640px) {
             max-width: 320px;
           }

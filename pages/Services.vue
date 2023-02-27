@@ -14,7 +14,11 @@
 
             </div>
             <div class="services__hero-img">
-                <GlobalHomeImgCircleApp />
+                <GlobalHomeImgCircleApp
+                :img_top="'/circle_4.png'" 
+                :image_bottom="'/circle_2.png'"
+                :type="'services'"
+                />
             </div>
         </article>
         <article class="services__paragraphs paused">

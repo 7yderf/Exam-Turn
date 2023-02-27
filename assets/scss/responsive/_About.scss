@@ -1,0 +1,86 @@
+.about {
+  @include for-size(desktop-xbig) {}
+  @include for-size(desktop-big) {}
+  @include for-size(desktop-mid) {}
+  @include for-size(desktop) {}
+  @include for-size(tablet-landscape) {}
+  @include for-size(tablet-portrait) {
+    gap: 16px;
+    &__hero{
+      flex-direction: column;
+    }
+    &__hero-tit{
+      width:100%;
+      margin-top: 32px;
+      h1{
+       font-size: 5.4rem;
+      }
+      p{
+        font-size: 2.4rem;
+        line-height: 4rem;
+      }
+    }
+    &__hero-img{
+      width: 100%;
+      img{
+        width: 120%;
+        object-fit: contain;
+        object-position: center;
+        margin-left: -10%;
+      }
+    }
+    &__strategy{
+      margin-top: 32px;
+      h2{
+        font-size: 5.4rem;
+      }
+      p{
+        font-size: 2.4rem;
+        line-height: 4rem;
+        max-width: 100%;
+      }
+    }
+    &__our{
+      margin-top: 50px;
+      gap:24px;
+      h2{
+        font-size: 5.4rem;
+      }
+      p{
+        font-size: 2.4rem;
+        line-height: 4rem;
+      }
+    }
+    &__ideology{
+      h4{
+        font-size: 4rem;
+        line-height: 4.4rem;
+      }
+    }
+    
+  }
+  @include for-size(tablet-small) {
+    &__strategy-cards{
+      flex-direction: column;
+      gap: 24px;
+    }
+    &__ideology-cards{
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+  @include for-size(phone-xbig) {
+    &__hero-tit{
+      padding: 8px;
+      h1{
+        @include text(5rem, 400, 5.5rem, left);
+      }
+      p{
+        @include text(2.4rem, 200, 3rem, left);
+      }
+    }
+  }
+  @include for-size(phone-big) {}
+  @include for-size(phone-mid) {}
+  @include for-size(phone) {}
+}

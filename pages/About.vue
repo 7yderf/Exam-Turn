@@ -1,111 +1,173 @@
 <template>
-    <div class="main-section">
-        <div class="section-one">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-12 col-md-8 mt-2 text-white">
-                        <div class="t-middle">
-                            <p class="turn-f-s-64 l-h-80">
-                                Nosotros
-                            </p>
-                            
-                            <p class="">Queremos convertirnos en una de las principales compañías de México para el desarrollo de software.</p>
-                        </div>
-                        
-                        <div class="turn-p-t-20">
-                            <button class="btn btn-br-2 btn-primary text-white turn-m-r-20 turn-p-lr-24">
-                                Cotiza tu desarrollo
-                            </button>
-                        </div>
-                    </div>
-    
-                    <div class="col-12 col-md-4 p-0 turn-m-t-67 d-flex align-items-center justify-content-center">
-                        <!-- <div class="float-left backlight"></div> -->
-                        <img src="../assets/images/logo-with-bg-light.png" alt="turn" class=""/>
-                    </div>
-                </div>
+    <section class=" container about"  >
+        <article class="about__hero">
+            <div class="about__hero-tit">
+                <h1>
+                    Nosotros
+                </h1>
+                <p>
+                    Queremos convertirnos en una de las principales compañías de México para el desarrollo de software.
+                </p>
+                <button>
+                    Cotiza tu desarrollo
+                </button>
+
             </div>
-        </div>
-
-
-        <div class="section-seven turn-m-t-120 turn-m-b-160">
-            <div class="container">
-                <div class="row d-flex align-items-center justify-content-center">
-                    <div class="col-7 text-white">
-                        <div class="">
-                            <h2 class="">
-                                Contáctanos
-                            </h2>
-                            
-                            <h4 class="">Estamos encantados de oir tu proyecto.</h4>
-                        </div>
-                        
-                        <div class="p-2">
-                            <GlobalContact />
-                        </div>
-                    </div>
-    
-                </div>
+            <div class="about__hero-img">
+                <GlobalHomeImgCircleApp
+                :img_top="'/turn.png'" 
+                :image_bottom="'/circle_2.png'"
+                :type="'about'"
+                />
             </div>
-        </div>
+        </article>
 
+        <article class="about__strategy">
+            <h2>El mejor aliado estratégico</h2>
+            <p>Trabajamos de la mano contigo desde el proceso de creación y diseño hasta la operación de tu nuevo negocio digital.</p>
+            <div class="about__strategy-cards">
+                <GlobalAboutCardAbout
+                v-for="kpi, index in kpis"
+                :key="index"
+                :title="kpi.title"
+                :description="kpi.description"
+                :type="'strategy'"
+                :id="index"
+                />
+            </div>
+        </article>
+
+        <article class="about__our">
+            <h2>Nuestro equipo</h2>
+            <p>Lleno de personas talentosas en diversas áreas.</p>
+            <div class="about__our-cards">
+                <button
+                v-for="(teem, index) in Object.keys(teems)"
+                :key="index"
+                @click="(e) => key_teem = teem" 
+                class="about__our-btns"
+                :class="key_teem == teem ? 'about__our-btns--active' : ''"
+                >
+                {{teem}}
+                </button>
+            </div>
+            <div class="about__our-self">
+              <GlobalHomeCarousel :cards="teems[`${key_teem}`]" :type="'about'" />
+            </div>
+        </article>
+        <article class="about__ideology">
+          <h4 class="about__ideology-tit">
+            Nosotros creemos en
+          </h4>
+          <div class="about__ideology-cards">
+            <GlobalAboutCardIcons
+              v-for="idelogy, index in card_idelogy"
+              :key="index"
+              :img="idelogy.img"
+              :description="idelogy.description"
+              :type="'strategy'"
+              :id="index"
+              />
+          </div>
+
+        </article>
         
+        <article class="about__contact">
+            <h2>Contactános</h2>
+            <p>Estamos encantados de oir tu proyecto</p>
 
-    </div>
+            <GlobalContact />
+
+        </article>
+
+    </section>
 </template>
 
 <script lang="ts" setup>
     import { ref, onMounted } from "vue";
-    import axios from "axios";
-    import * as yup from "yup";
+    type Teem = {
+      img: string;
+      title: string;
+      description: string;
+    };
+    type Teems = {
+      [key: string]: Teem[];
+    };
     
-    let validation_schema = yup.object().shape({
-        first_name: yup.string().required(),
-        company: yup.string().required(),
-        email: yup.string().email(),
-        
+    const key_teem = ref<String>('');
+
+    const kpis = ref([
+        {
+            title: "6+",
+            description: "años laborales",
+        },
+        {
+            title: "100+",
+            description: "proyectos realizados",
+        },
+        {
+            title: "10+",
+            description: "industrias",
+        },
+    ]);
+
+    const teems = ref<Teems>({
+      analisis: [
+        {
+          img: "/profiles/profile.png",
+          title: "Diana Marisol",
+          description: "Frontend",
+        },
+        {
+          img: "/profiles/profile.png",
+          title: "Tabita Ku",
+          description: "Análisista",
+        },
+        {
+          img: "/profiles/profile.png",
+          title: "Ailton Ramos",
+          description: "Diseñador UI/UX",
+        },
+      ],
+      front: [
+        {
+          img: "/profiles/profile.png",
+          title: "Fredy Nazario",
+          description: "Frontend",
+        },
+        {
+          img: "/profiles/profile.png",
+          title: "Jose Luis",
+          description: "Frontend",
+        },
+      ],
     });
 
-    const onSubmit = async (values: any) => {
-        console.log("valid ");
+    const card_idelogy = ref([
+      {
+        img: "./icon/tecn_1.svg",
+        description: "El software es el cambio",
+      },
+      {
+        img: "./icon/tecn_2.svg",
+        description: "El software nos conecta",
+      },
+      {
+        img: "./icon/tecn_3.svg",
+        description: "El software es cotidiano",
+      },
+      {
+        img: "./icon/tecn_4.svg",
+        description: "El software es indispensable",
+      },
+    ]);
 
-        values = values as string;
-        console.log(values);
-
-        return false;
-
-        // submitButton.value!.disabled = true;
-        // submitButton.value?.setAttribute("data-kt-indicator", "on");
-        
-        // try {
-        //     let url = "https://jsonplaceholder.typicode.com/todos/1";
-            
-        //     const { data } = await axios.get(url);
-        //     console.log(data);
-
-        //     data_object.value = data;
-
-        // } catch (error) {
-        //     console.log(error);
-        // }
-    };
-
-    const onInvalidSubmit = async (values: any) => {
-        console.log("invalid ");
-
-        values = values as string;
-        console.log(values);
-
-        
-
-        return false;
-    };
-
-
-    onMounted(async () => {
-       
-    });
-
+      onMounted(() => {
+        key_teem.value = Object.keys(teems.value)[0];
+      });
 
 
 </script>
+<style lang="scss" scoped>
+@import "@/assets/scss/about";
+</style>
