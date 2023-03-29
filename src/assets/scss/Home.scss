@@ -1,0 +1,192 @@
+@import "./Mixins";
+.home{
+  $root: &;
+  &__main{
+    
+    @include flex;
+    flex-direction: column;
+    margin: 0;
+  }
+  &__section{
+    
+    @include flex;
+    width: 100%;
+    max-width: 1400px;
+    flex-direction: wrap;
+    &--hero{
+      min-height: 100vh;
+      @include background-img(url("../images/background_hero.png"));
+    }
+    &--app{
+      flex-direction: column;
+      margin: 36px 0;
+    }
+    &--exito{
+      width: 100%;
+      max-width: inherit;
+      padding: 64px 0;
+      background: linear-gradient(90deg, #ED5A30 0%, #E9613A 51.84%, #CB3105 100%);
+    }
+    &--agil{
+      flex-direction: column;
+      margin: 54px 0;
+      gap: 24px;
+    }
+    &--contact{
+      max-width: inherit;
+      width: 100%;
+      background: #FEEFEB;
+      padding: 54px 0 80px;
+    }
+  }
+  &__hero-img{
+    @include flex;
+    flex-grow: 1;
+
+    img{
+      max-height: 600px;
+      width: auto;
+    }
+  }
+  &__hero-copy{
+    max-width: 60%;
+    #{$root}__h1{
+      max-width: 700px;
+    }
+  }
+  &__subtitle{
+    margin: 30px 0;
+  }
+  &__hero-h1{
+    max-width: 300px;
+  }
+  &__button-solid{
+    @include button(solid);
+    &--radius{
+      border-radius: 10px;
+    }
+  }
+  &__button-outline{
+    @include button(outline);
+  }
+  &__h1{
+    @include text(6.4rem, 500, 7rem, left);
+    color: var(--primary-contrast-color);
+  }
+  &__subtitle{
+    @include text(4.4rem, 400, 5rem, left);
+    color: var(--primary-contrast-color);
+  }
+  &__title{
+    @include text(5.6rem, 400, 6rem, left);
+    width: 100%;
+    color: var(--primary-contrast-color);
+    margin: 16px 0;
+    &--center{
+      text-align: center;
+      color: #FFF;
+      margin-bottom: 54px;
+    }
+    &--agil{
+      max-width: 550px;
+      margin-right: auto;
+    }
+  }
+  
+  &__text{
+    width: 100%;
+    @include text(2.4rem, 400, 3rem, left);
+    color: var(--primary-contrast-color);
+    &--strong{
+      font-weight: 600;
+      font-size: 3.2rem;
+      text-align: center;
+    }
+    &--agil{
+      max-width: 700px;
+      margin-right: auto;
+      line-height: 3.6rem;
+    }
+    &--tit-agil{
+      @include text(3.2rem, 400, 4rem, left);
+    }
+  }
+  &__content-image{
+    @include flex(center, false, stretch);
+    flex-direction: column;
+  }
+
+  &__image-box{
+    @include flex;
+    position: relative;
+    flex-grow: 1;
+  }
+  &__app{
+    @include flex(space-between, false, center);
+    width: 100%;
+    padding: 0 24px 0 0;
+  }
+  
+  &__list-1{
+    margin: 54px 0;
+  }
+
+  &__exito-container{
+    max-width: 1400px;
+  }
+
+  &__agil{
+    @include flex;
+    width: 100%;
+    flex-direction: row;
+  }
+  &__agil>div{
+    width: 33%;
+    flex-grow: 1;
+  }
+  &__agil-box-backlog{
+    @include flex(space-around, false, center);
+   flex-wrap: wrap;
+  }
+  &__agil-backlog{
+    width: 32%;
+  }
+  &__agil-backlog > div:nth-child(1){
+    justify-content: flex-start;
+    padding-left: 8px;
+  }
+  &__agil-circle{
+    padding: 16px;
+  }
+  &__agil-img{
+    @include flex(center, false, flex-start);
+    flex-direction: column;
+    padding-left: 3%;
+    img{
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  &__brands{
+    @include flex;
+    flex-wrap: wrap;
+    margin: 54px 0 80px;
+     h2{
+      @include text(6.4rem, 400, 8rem, left);
+      width: 100%;
+      text-align: center;
+      margin-bottom: 32px;
+     }
+  }
+  &__brands-box{
+    @include flex;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  &__brands-box-img{
+    @include flex;
+    width:33%;
+    margin: auto;
+  }
+
+}

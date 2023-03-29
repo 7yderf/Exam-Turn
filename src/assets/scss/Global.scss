@@ -1,0 +1,133 @@
+@import "bootstrap/scss/bootstrap";
+@import "./Mixins";
+// @import "../fonts/outfit/style.css";
+
+
+/* General styles */
+* {
+  box-sizing: border-box;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --primary-color: #ed5a30;
+ 
+  // --secondary-color: #FF5C20;
+  // --bg-color: #F8FAFC;
+  // --bg-second-color: ;
+  --text-color: #060606;
+ --text-contrast-color:#ed5a30 ;
+ --text-dark: #000;
+  // --neutral-color:;
+  // --neutral-two-color: ;
+  // --neutral-three-color: ;
+  // --neutral-four-color: ;
+  // --neutral-five-color: ;
+  // --accent-color: ;
+  // --success-color: ;
+  --error-color: #f6323f;
+  // // --warning-color: ;
+  --primary-font: 'Outfit', sans-serif;
+  // // --secondary-font: ;
+}
+
+
+html {
+  font-size: 62.5%;
+  font-family: var(--primary-font)!important;
+
+  @media screen and (max-width: 900px) {
+    font-size: 55%;
+  }
+}
+body {
+  font-family: var(--primary-font)!important;
+  font-size: 1.6rem;
+  min-height: 100vh;
+  background: var(--bg-color)!important;
+}
+.img-default{
+  display: none;
+}
+
+body {
+  cursor: url("/cursor.png"), default;
+}
+
+input,
+select,
+textarea,
+button {
+  background-color: transparent;
+  border: 0;
+}
+button {
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+button:active {
+  transform: translateY(4px);
+}
+
+.swal-button-container {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+a{
+  text-decoration: none!important;
+}
+
+.scroll{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-color: #ff5b2011 #f3f3f300;
+  scrollbar-width: thin;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background: #ff5b2011;
+  border-radius: 4px;
+}
+
+.scroll::-webkit-scrollbar{
+  width: 0px;
+}
+
+.scroll::-webkit-scrollbar-thumb:active {
+  background-color: #ff5b2021;
+}
+
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: #ff5b2021;
+}
+
+ /* Estilos track de scroll */
+.scroll::-webkit-scrollbar-track {
+  background: #f3f3f300;
+  border-radius: 4px;
+}
+
+.scroll::-webkit-scrollbar-track:hover, 
+.scroll::-webkit-scrollbar-track:active {
+  background: #00000000;
+}
+.swal-button {
+  @include text(1.7rem, bold, 2.6rem, center);
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: var(--secondary-color);
+  color: var(--neutral-color);
+  border-radius: 8px;
+  &:not([disabled]):hover {
+    background-color: var(--secondary-color);
+  }
+}
+
+.img__default{
+  width: 100%;
+}

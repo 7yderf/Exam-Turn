@@ -8,14 +8,20 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@intlify/unplugin-vue-i18n": "^0.8.2",
     "@types/bootstrap": "^5.2.6",
-    "nuxt": "3.0.0",
-    "sass": "^1.57.1"
+    "nuxt": "^3.2.3",
+    "nuxt-icon": "^0.3.2",
+    "sass": "^1.57.1",
+    "vue-i18n": "^9.2.2"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.7",
     "@vee-validate/rules": "^4.7.4",
-    "axios": "^1.2.2",
+    "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
+    "pinia": "^2.0.32",
+    "sass-loader": "^13.2.0",
     "swiper": "^8.4.7",
     "vee-validate": "^4.7.4",
     "vue-recaptcha-v3": "^2.0.1",

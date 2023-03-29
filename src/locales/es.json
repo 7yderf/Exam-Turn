@@ -1,0 +1,24 @@
+{
+  "hello": "hola, {name}!",
+  "language": "Lenguaje",
+  "text": "español",
+  "lang": "es",
+  "list_app_movile": [
+      {
+        "titulo": "Aplicaciones Android",
+        "description": "Aplicación diseñada para ejecutarse en un dispositivo móvil, que puede ser un teléfono inteligente o una tableta"
+    },
+    {
+        "titulo": "Aplicaciones hibridas",
+        "description": "Aplicaciones que pueden emplearse en cualquier sistema operativo, así como equipo o marca."
+    },
+    {
+        "titulo": "Aplicaciones iOS",
+        "description": "Es un sistema operativo inteligente móvil de la multinacional Apple Inc."
+    },
+    {
+        "titulo": "Otro tipo",
+        "description": "Aplicación diseñada para ejecutarse en un dispositivo móvil, que puede ser un teléfono inteligente o una tableta"
+    }
+  ]
+}

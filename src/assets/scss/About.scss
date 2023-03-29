@@ -1,0 +1,205 @@
+@import "./Mixins";
+$icon-active: url("/poligono.png");
+
+.about{
+@include flex(center, 56px, stretch);
+width: 100%;
+flex-direction: column;
+// margin-bottom: 80px;
+
+article{
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+&__hero{
+  @include flex;
+  width: 100%;
+  margin-bottom: 64px;
+  margin-top: 32px;
+}
+&__hero-tit{
+  
+  padding: 32px;
+  width: 60%;
+  h1{
+    @include text(6.4rem, 400, 7rem, left);
+  }
+  p{
+    @include text(3.2rem, 200, 5rem, left);
+  }
+  button{
+    @include button(solid);
+    margin-top: 32px;
+    &--radius{
+      border-radius: 10px;
+    }
+  }
+}
+&__hero-img{
+  
+  flex-grow: 1;
+  width: 40%;
+  img{
+    width: 120%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+&__strategy{
+  @include flex(center, 32px, stretch);
+  flex-direction: column;
+  width: 100%;
+  h2{
+    @include text(6.4rem, 400, 7.2rem, center);
+    width: 100%;
+    color: var(--text-color);
+  }
+  p{
+    @include text(3.2rem, 400, 4rem, center);
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    margin-bottom: 48px;
+    color: var(--text-color);
+  }
+}
+
+&__strategy-cards{
+  @include flex(space-between, 54px, stretch);
+  width: 100%;
+}
+
+&__why{
+  width: 100%!important;
+  max-width: inherit!important;
+  @include flex;
+  background: #ED5A30;
+  padding: 64px 0;
+  color: white!important;
+  h2{
+    width: 100%;
+    @include text(6.4rem, 400, 7.2rem, left);
+  }
+}
+
+&__why-box{
+  @include flex(space-around, 32px, stretch);
+  padding: 0 32px;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+&__why-box-cards{
+  @include flex(flex-start, false, stretch);
+  width: 48%;
+  height: 200px;
+  .tecnologias{
+    border-color: white!important;
+    flex-grow: 1
+  }
+}
+
+
+&__our{
+  @include flex(center, 32px, stretch);
+  width: 100%;
+  flex-direction: column;
+  margin-top: 108px;
+  h2{
+    @include text(6.4rem, 400, 7.2rem, left);
+    width: 100%;
+    color: var(--text-color);
+  }
+  p{
+    @include text(3.2rem, 400, 4rem, left);
+    width: 100%;
+    margin-bottom: 24px;
+    color: var(--text-color);
+  }
+}
+&__our-cards{
+  @include flex(flex-start, 32px, stretch);
+  width: 100%;
+  width: 100%;
+  border-bottom: 1px solid var(--text-contrast-color);
+  padding-bottom: 45px;
+}
+&__our-btns{
+  @include button(outline);
+  @include text(2.4rem, 400, 3.2rem, center);
+  color: var(--text-color);
+  border-radius: 8px;
+  border: 1px solid var(--text-color);
+  &--active{
+    border: 1px solid var(--text-contrast-color);
+    background: var(--text-contrast-color);
+    color: white;
+    font-weight: 100;
+    position: relative;
+    &::after{
+      content: "";
+    position: absolute;
+    width: 50px;
+    height: 30px;
+    background-size: cover;
+    background-image: $icon-active;
+    background-repeat: no-repeat;
+    top: 60px;
+
+    }
+  }
+}
+&__ideology{
+  margin-top: 108px;
+  margin-bottom: 108px;
+}
+&__ideology-tit{
+  @include border(var(--primary-color));
+  @include text(6.4rem, 400, 8rem, center);
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  margin-bottom: 32px
+
+}
+&__ideology-cards{
+  @include flex(flex-start, 32px, stretch);
+  flex-wrap: wrap;
+  
+}
+
+&__contact{
+  @include flex(flex-start, false, stretch);
+  width: 100%!important;
+  max-width: inherit!important;
+  background: #FEEFEB;
+  padding: 54px 0 80px;
+  h2{
+    @include text(5.6rem, 400, 7.2rem, left);
+    margin-bottom: 16px;
+    color: var(--text-color);
+  }
+  p{
+    @include text(3.2rem, 400, 4rem, left);
+    color: var(--text-color);
+  }
+  small{
+    @include text(2.4rem, 400, 3.2rem, left);
+    color: var(--text-color);
+  }
+}
+
+&__contact-box{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+}
+  
+}
+@import "./responsive/about";
