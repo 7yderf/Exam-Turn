@@ -108,7 +108,7 @@ export default {
 <style lang="scss" >
 @import "@/assets/scss/Mixins";
 
-$icon-arrow: url("~/icon-arrow.svg");
+$icon-arrow: url("/icon-arrow.svg");
 
 
   .slide-gallery {
