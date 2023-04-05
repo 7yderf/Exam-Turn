@@ -1,5 +1,5 @@
 @import "./Mixins";
-$icon-active: url("~/poligono.png");
+$icon-active: url("/poligono.png");
 
 .methodologies{
 @include flex(center, 56px, stretch);
