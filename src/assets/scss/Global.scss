@@ -55,7 +55,9 @@ body {
 body {
   cursor: url("/cursor.png"), default;
 }
-
+p{
+  white-space: break-spaces;
+}
 input,
 select,
 textarea,
@@ -87,12 +89,13 @@ a{
   scrollbar-width: thin;
 }
 .scroll::-webkit-scrollbar-thumb {
-  background: #ff5b2011;
+  background: #ff5b2043;
   border-radius: 4px;
 }
 
 .scroll::-webkit-scrollbar{
   width: 0px;
+  height: 3px;
 }
 
 .scroll::-webkit-scrollbar-thumb:active {

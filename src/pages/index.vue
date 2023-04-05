@@ -1,20 +1,22 @@
 <template>
   <main class="home__main">
-      <div class="canvas-cursor" ref="cursor">
-      </div>
-
+      
       <div class="home__section home__section--hero">
+        <div id="transport"></div>
         <div class="home__hero-copy">
-          <h1 class="home__h1">
-              Crea, construye y consigue tu nueva app.
-          </h1>
+          <Teleport v-if="on_Mounted" :disabled="device" to="#transport"  >
+            <h1 class="home__h1">
+                Crea, construye y consigue tu nueva app.
+            </h1>
+          </Teleport>
           <p class="home__subtitle">Más <span class="">6 años</span> de experiencia.</p>
-          <div class="d-flex gap-5">
+          <div class="home__hero-action">
               <button class="home__button-solid">
-                  Cotiza tu desarrollo
+                Cotiza tu desarrollo
               </button>
               <button class="home__button-outline">
-                {{ $t('text') }}
+                <!-- {{ $t('text') }} -->
+                Conoce más
               </button>
           </div>
       </div>
@@ -27,11 +29,15 @@
       <div class="home__section home__section--app">
         <div class="home__app">
             <h2 class="home__subtitle">Aplicaciones móviles</h2>
-            <button class="home__button-solid"> Cotiza tu desarrollo</button>
+            <Teleport v-if="on_Mounted" :disabled="device" to="#button_1"  >
+              <button class="home__button-solid"> Cotiza tu desarrollo</button>
+            </Teleport>
+            
         </div>
         <p class="home__text home__text--app">
           Transformamos tu idea en una app móvil de vanguardia para llevar tu negocio al siguiente nivel.
         </p>
+        <div id="button_1" class="w-100 mt-5"></div>
         <div class="home__list-1">
           <ServicesListServices
           :listServices="list"
@@ -43,11 +49,15 @@
       <div class="home__section home__section--app">
         <div class="home__app">
             <h2 class="home__subtitle">Desarrollo web</h2>
-            <button class="home__button-solid">Cotiza tu desarrollo</button>
+            <Teleport v-if="on_Mounted" :disabled="device" to="#button_2"  >
+              <button class="home__button-solid">Cotiza tu desarrollo</button>
+            </Teleport>
+            
         </div>
         <p class="home__text home__text--app">
           Potencia tu sitio web con nuestro enfoque y tecnologías de vanguardia para aumentar tus ventas.
         </p>
+        <div id="button_2" class="w-100 mt-5"></div>
         <div class="home__list-1">
           <ServicesListServices
           :listServices="list_app_web"
@@ -60,10 +70,14 @@
       
       <div class="home__section home__brands">
         <h2>Nuestros clientes</h2>
-        <div class="home__brands-box">
+        <div v-if="device" class="home__brands-box">
           <div class="home__brands-box-img" v-for="brand, index in brands" :key="index">
             <img :src="brand" alt="">
           </div>
+          
+        </div>
+        <div class="home__brands-box">
+          <HomeBrands v-if="!device" :brands="brands" />
         </div>
       </div>
       
@@ -85,7 +99,7 @@
                           
           <p class="home__text  home__text--agil">Trabajamos de manera ágil para adaptarnos rápidamente a los cambios y entregar valor constante a nuestros clientes a través de colaboración y entregas incrementales.</p>
                 
-          <div class="home__agil">
+          <div v-if="device" class="home__agil">
             <div class="home__agil-box-backlog">
               <p class="home__text home__text--tit-agil">
                 Backlog
@@ -115,13 +129,16 @@
                 <HomeCardColor :text="'Mantenimiento'" :color="'#FBDED6'" :whith="'100%'" />
               </div>
             </div>
-              <div class="home__agil-circle">
+            <div class="home__agil-circle">
                 <HomeImgCircle />
-              </div>
-              <div class="home__agil-img">
+            </div>
+            <div class="home__agil-img">
                 <p class="home__text home__text--tit-agil">Incrementos</p>
                 <img src="/Fases.png" alt="">
-              </div>
+            </div>
+          </div>
+          <div v-if="!device" class="home__agil">
+            <img src="/agil.png" alt="" class="w-100">
           </div>
          
       </div>
@@ -157,8 +174,10 @@
   import {useI18n} from "vue-i18n";
   const { t, tm } = useI18n();
   const card_active = ref(1);
-  const cursor = ref<any | HTMLElement>(null);
   const list = ref<any>(tm('list_app_movile'))
+  const device = ref<boolean>(true);
+  const on_Mounted = ref<boolean>(false);
+  
 
   watch(() => t('lang'), (value) => {
         console.log('🚀 ~ file: index.vue:145 ~ watch ~ value:', value)
@@ -248,16 +267,15 @@
       card_active.value = index;
   };
 
- 
-
   onMounted(async () => {
 
-    window.addEventListener("mousemove", (e: any) => {
-
-      cursor.value.style.top = (e.pageY - 60) + "px";
-      cursor.value.style.left = (e.pageX - 5)+ "px";
-      // cursor.value.style.background = `radial-gradient(circle at ${x}px ${y - 50}px, rgba(217, 77, 37, 0.5) 0%, transparent 100px)`;
+    const { windowSize } = useMediaQuery("(min-width: 767px)");
+    device.value = windowSize.value;
+    watch(() => windowSize.value, (value) => {
+      device.value = value;
     });
+    on_Mounted.value = true;
+
   });
   
 </script>

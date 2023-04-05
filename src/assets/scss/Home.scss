@@ -13,6 +13,7 @@
     width: 100%;
     max-width: 1400px;
     flex-direction: wrap;
+    padding: 16px;
     &--hero{
       min-height: 100vh;
       @include background-img(url("../images/background_hero.png"));
@@ -56,6 +57,13 @@
   }
   &__subtitle{
     margin: 30px 0;
+    span{
+      color: var(--primary-color);
+    }
+  }
+  &__hero-action{
+    @include flex(flex-start, 32px, center);
+    
   }
   &__hero-h1{
     max-width: 300px;
@@ -133,6 +141,7 @@
 
   &__exito-container{
     max-width: 1400px;
+    width: 100%;
   }
 
   &__agil{
@@ -190,3 +199,4 @@
   }
 
 }
+@import "./responsive/Home";

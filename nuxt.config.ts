@@ -18,9 +18,16 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: [ '/', '/about', '/methodologies', '/services'  ]
+      routes: [ '/' ]
     }
   },
+  // hooks: {
+  //   'vite:extendConfig' (config, { isClient }) {
+  //     if (isClient) {
+  //       config.base = './'
+  //     }
+  //   }
+  // },
   vite: {
       plugins: [
        VueI18nVitePlugin({
@@ -38,5 +45,5 @@ export default defineNuxtConfig({
         API_BASE_URL: process.env.API_BASE_URL || "http://localhost:3000",
         // otherUrl: process.env.OTHER_URL || "default_other_url"
       }
-    }
+    },
 })

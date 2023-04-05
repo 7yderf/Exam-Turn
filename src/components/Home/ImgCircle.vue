@@ -135,9 +135,16 @@ import { defineProps } from "vue";
   }
 }
 .circle{
+  @include for-size(desktop-mid-big) {
+    width: 350px;
+    height: 350px;
+  }
+  @include for-size(desktop-mid) {
+    margin: auto;
+  }
   @include for-size(desktop) {
-    width: 450px;
-    height: 450px;
+    width: 320px;
+    height: 320px;
     &__box{
       &--wMax{width:  40%};
       &--w{width: 30%};
@@ -147,8 +154,6 @@ import { defineProps } from "vue";
     }
   }
   @include for-size(phone-xbig){
-    width: 300px;
-    height: 300px;
     &__box{
       &--wMax{width:  33%};
       &--w{width: 33%};

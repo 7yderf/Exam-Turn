@@ -40,7 +40,9 @@
   &--home{
     flex-wrap: wrap;
     width: 100%;
-    flex-direction: row
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 32px 0;
   }
   &__content-box{
     @include flex(flex-start, false, inherit);
@@ -59,6 +61,17 @@
   &__content-text{
     @include text(1.6rem, 400, 2.8rem, left);
     
+  }
+}
+@include for-size(tablet-portrait) {
+  .list{
+
+    &__content-box{
+       &--home{
+        width: 100%;
+      }
+    }
+   
   }
 }
 </style>

@@ -1,10 +1,14 @@
 <template>
   <section class="methodologies"  >
       <article class="methodologies__hero">
+        <div id="mobile_title-m" class="services__hero-tit-mobile" />
           <div class="methodologies__hero-tit">
+            <Teleport  v-if="on_Mounted" :disabled="device" to="#mobile_title-m" >
               <h1>
-                  Nosotros
+                Conoce nuestra forma de trabajo
               </h1>
+            </Teleport>
+              
               <p>
                   Queremos convertirnos en una de las principales compañías de México para el desarrollo de software.
               </p>
@@ -15,7 +19,7 @@
           </div>
           <div class="methodologies__hero-img">
               <HomeImgCircleApp
-              :img_top="'/turn.png'" 
+              :img_top="'/hero_m.png'" 
               :image_bottom="'/circle_2.png'"
               :type="'methodologies'"
               />
@@ -23,8 +27,8 @@
       </article>
       <article class="methodologies__marco">
         <div class="methodologies__marco-box">
-          <h2>Metodología marco Agile</h2>
-          <p>Metodología que se centra en la implementación rápida de un equipo eficiente y flexible para planear el flujo de trabajo.</p>
+          <h2>Metodología Scrum Agile</h2>
+          <p>Metodología enfocada en entregas iterativas, equipos autodirigibles, y colaboración constante con el cliente</p>
         </div>
         <div class="methodologies__marco-box-img">
           <div class="methodologies__marco-header">
@@ -34,11 +38,11 @@
           </div>
           <div class="methodologies__marco-body">
             <div class="methodologies__marco-body-box">
-              <button>Despliegue</button>
-              <button>Mantenimiento</button>
+              <button class="methodologies__move_1" >Despliegue</button>
+              <button class="methodologies__move_2">Mantenimiento</button>
             </div>
             <div class="methodologies__marco-body-box">
-              <button>Implementación</button>
+              <button class="methodologies__move_3">Implementación</button>
             </div>
             <div class="methodologies__marco-body-box">
               <button>Análisis y diseño</button>
@@ -51,9 +55,12 @@
       <article class="methodologies__carrusel">
         <h2>Ventajas</h2>
         <div class="methodologies__carrusel-box">
-          <HomeCarousel 
-          :cards="card_soluciones" 
-          :type="'methodologies'" 
+          <MethodologiesCardMethodologies 
+          v-for="(card, index) in card_soluciones"
+          :key="index"
+          :description="card.description" 
+          :action="card.action"
+          :title="card.titulo" 
           />
         </div>
       </article>
@@ -63,7 +70,7 @@
                         
         
               
-        <div class="methodologies__agil-box">
+        <div v-if="device" class="methodologies__agil-box">
           <div class="methodologies__agil-box-backlog">
             <p class="methodologies__text-agil methodologies__text-agil--tit">
               Backlog
@@ -93,19 +100,25 @@
               <HomeCardColor :text="'Mantenimiento'" :color="'#FBDED6'" :whith="'100%'" />
             </div>
           </div>
-            <div class="methodologies__agil-circle">
+          <div class="methodologies__agil-circle">
               <HomeImgCircle />
-            </div>
-            <div class="methodologies__agil-img">
+          </div>
+          <div class="methodologies__agil-img">
               <p class="methodologies__text-agil methodologies__text-agil--tit">Incrementos</p>
               <img src="/Fases.png" alt="">
-            </div>
+          </div>
+        </div>
+        <div v-if="!device" class="methodologies__agil-box">
+          <img src="/agil.png" alt="" class="w-100">
         </div>
 
         <div class="methodologies__carrusel-box methodologies__carrusel-box--agil">
-          <HomeCarousel 
-          :cards="card_soluciones" 
-          :type="'methodologies'" 
+          <MethodologiesCardMethodologies 
+          v-for="(card, index) in card_agil"
+          :key="index"
+          :description="card.description" 
+          :action="card.action"
+          :title="card.titulo" 
           />
         </div>
        
@@ -124,9 +137,12 @@
       <article class="methodologies__carrusel">
         <h2>Ventajas</h2>
         <div class="methodologies__carrusel-box">
-          <HomeCarousel 
-          :cards="card_soluciones" 
-          :type="'methodologies'" 
+          <MethodologiesCardMethodologies 
+          v-for="(card, index) in card_ventajas_2"
+          :key="index"
+          :description="card.description" 
+          :action="card.action"
+          :title="card.titulo" 
           />
         </div>
       </article>
@@ -136,27 +152,33 @@
           <h2>Proceso de la metodología</h2>
           <MethodologiesRows 
             :title="'Título'" 
-            :description="'Pequeña descripción de un renglón.'" 
-            :distance="'80px'"
-            :action="'Requerimientos'" 
+            :description="'Entrevistas para conocer el alcance'" 
+            :distance="80"
+            :action="'Ánalisis'" 
           />
           <MethodologiesRows 
             :title="'Título'" 
-            :description="'Pequeña descripción de un renglón.'" 
-            :distance="'150px'"
-            :action="'Requerimientos'" 
+            :description="'Maquetación UI/UX'" 
+            :distance="150"
+            :action="'Diseño'" 
           />
           <MethodologiesRows 
             :title="'Título'" 
-            :description="'Pequeña descripción de un renglón.'" 
-            :distance="'200px'"
-            :action="'Requerimientos'" 
+            :description="'Etapa de desarrollo de software'" 
+            :distance="150"
+            :action="'Implementación'" 
           />
           <MethodologiesRows 
             :title="'Título'" 
-            :description="'Pequeña descripción de un renglón.'" 
-            :distance="'270px'"
-            :action="'Requerimientos'" 
+            :description="'Testing para verificar funcionamiento'" 
+            :distance="300"
+            :action="'Pruebas'" 
+          />
+          <MethodologiesRows 
+            :title="'Título'" 
+            :description="'Producción y monitoreo de usabilidad'" 
+            :distance="320"
+            :action="'Despliegue y mantenimiento'" 
             :arrow="true"
           />
         </div>
@@ -170,38 +192,92 @@
           <Contact />
         </div>
       </article>
-
+      <BotonContacto />
   </section>
 </template>
 
 <script lang="ts" setup>
   import { ref, onMounted } from "vue";
+  const device = ref<boolean>(true);
+  const on_Mounted = ref<boolean>(false);
   
   const card_soluciones = ref([
         {
-        titulo: "Ventaja 1 título",
-        description: "Pequeña descripción de un renglón.",
+        titulo: "Adaptabilidad",
+        description: "Facilidad de cambios durante el proyecto",
         action: "Conoce más"
         },
         {
-        titulo: "Ventaja 2 título",
-        description: "Pequeña descripción de un renglón.",
+        titulo: "Mayor calidad",
+        description: "Medida en cada entregable",
         action: "Conoce más"
         },
         {
-        titulo: "Ventaja 3 título",
-        description: "Pequeña descripción de un renglón.",
+        titulo: "Entregas frecuentes",
+        description: "Uso inmediato del sistema",
         action: "Conoce más"
         },
         {
-        titulo: "Ventaja 4 título",
-        description: "Pequeña descripción de un renglón.",
+        titulo: "Mitigación",
+        description: "Redice el riesgo de fracaso",
+        action: "Conoce más"
+        }
+    ])
+  const card_agil = ref([
+        {
+        titulo: "backlog",
+        description: "Lista total de tareas a trabajar ordenadas por prioridad",
+        action: "Conoce más"
+        },
+        {
+        titulo: "Sprint backlog",
+        description: "Lista de tareas a trabajar en la siguiente iteración",
+        action: "Conoce más"
+        },
+        {
+        titulo: "Sprint",
+        description: "Iteración de 15 días donde se trabaja el sprint backlog",
+        action: "Conoce más"
+        },
+        {
+        titulo: "Incrementos",
+        description: "Entregas constantes al finalizar cada sprint",
+        action: "Conoce más"
+        }
+    ])
+  const card_ventajas_2 = ref([
+        {
+        titulo: "Presupuesto claro",
+        description: "Lo conoces desde la segunda etapa",
+        action: "Conoce más"
+        },
+        {
+        titulo: "Documentación",
+        description: "Entregables al finalizar cada fase",
+        action: "Conoce más"
+        },
+        {
+        titulo: "Medición",
+        description: "Plan de trabajo detallado",
+        action: "Conoce más"
+        },
+        {
+        titulo: "Para proyectos limitados",
+        description: "Ideal para alcances definidos y sencillos",
         action: "Conoce más"
         }
     ])
   
 
-  
+
+  onMounted(() => {
+        const { windowSize } = useMediaQuery("(min-width: 767px)");
+        device.value = windowSize.value;
+        watch(() => windowSize.value, (value) => {
+        device.value = value;
+        });
+        on_Mounted.value = true;
+      });
 
 
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="tecnologias">
-    <h4>{{title}}</h4>
+    <h4 :class="section">{{title}}</h4>
     <p>{{description}}</p>
     
       <ul class="tecnologias__list">
@@ -25,6 +25,7 @@
       description: string,
       arrayTecno: string[],
       action: string,
+      section?: string,
         
   }>();
 </script>
@@ -32,7 +33,7 @@
 @import "@/assets/scss/Mixins";
 
 .tecnologias {
-  @include border(black);
+  @include border(var(--primary-color));
   @include flex(flex-start, false, center);
   width: 100%;
   flex-direction: column;
@@ -42,9 +43,15 @@
   h4 {
     @include text(2.4rem, 400, 3.2rem, left);
     width: 100%;
+    color: (var(--primary-color))
+  }
+
+
+  .about{
+    color: #FFF
   }
   p {
-     @include text(1.4rem, 400, 2.4rem, left);
+     @include text(1.6rem, 200, 2.4rem, left);
      width: 100%;
 
   }
@@ -60,7 +67,6 @@
     p {
       @include text(1.4rem, 500, 2.4rem, left);
       margin-bottom: 0;
-      width: max-content;
       margin-right: 8px;
     }
   }

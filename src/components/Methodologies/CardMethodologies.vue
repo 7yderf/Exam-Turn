@@ -53,6 +53,13 @@
     }
   }
     
+  @include for-size(tablet-portrait) {
+    padding: 8px;
+    h4{
+      margin-bottom: 8px;
+    }
+  }
+
   
 }
 </style>

@@ -29,5 +29,13 @@ const props = defineProps<{
   height: 40px;
   
 }
+.card-color{
+  @include for-size(desktop-mid) {
+    font-size: 1.2rem;
+  }
+  @include for-size(desktop) {
+    font-size: 1rem;
+  }
+}
 
 </style>

@@ -78,7 +78,12 @@
         padding: 8px 12px;
         border-radius: 12px; 
         height: auto
-      }
+    }
+    @include for-size(tablet-portrait){
+        &__rigth{
+            padding: 0 8px;
+        }
+    }
 }
 .content-leyend{
     display: flex;
@@ -94,7 +99,15 @@
    max-width: 350px;
    color: #FFF;
     }
+    @include for-size(tablet-portrait){
+        p{
+            font-size:3.2rem;
+            line-height: 3.6rem;
+            max-width: inherit;
+        }
+    }
 }
+
 
 
 </style>

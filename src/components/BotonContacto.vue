@@ -1,8 +1,8 @@
 <template>
   <div class="button-contact">
-    <button class="button-contact__button">
+    <a href="https://web.whatsapp.com/send?phone=3334944317" target="_blank" class="button-contact__button">
       <img src="/icon/whatsapp.svg" alt="">
-    </button>
+    </a>
   </div>
 </template>
 <script lang="ts" setup>
@@ -13,7 +13,6 @@
 .button-contact{
   @include flex;
   position:fixed;
-  background: white;
   width: 45px;
   height: 45px;
   right: 0;

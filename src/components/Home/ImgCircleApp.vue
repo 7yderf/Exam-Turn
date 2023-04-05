@@ -167,6 +167,9 @@ const props = defineProps<{
   @include for-size(phone-xbig){
     width: 250px;
     height: 250px;
+    &__canvas{
+      height: 320px;
+    }
     &__box{
       &--wMax{width:  33%};
       &--w{width: 33%};

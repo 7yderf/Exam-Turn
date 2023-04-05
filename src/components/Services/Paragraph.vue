@@ -68,7 +68,8 @@
   @include for-size(phone-xbig) {
    
       h2{
-        @include text(4.5rem, 400, 5.5rem, left);
+        font-size: 3.2rem;
+      line-height: 4rem;
       }
   }
 }

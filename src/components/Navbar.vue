@@ -1,54 +1,51 @@
 <template>
-    <nav class="navbar navbar-expand-md nav-menu">
+    <nav class="navbar navbar-expand-md nav-menu" :class="toggler?'nav-menu__mobile-content' : ''">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="#" :class="toggler?'nav-menu__mobile' : ''">
                 <img src="/turn.svg" alt="turn" class="logo-header"/>
             </a>
 
-            <button class="navbar-toggler nav-menu__toggler" :data-active="toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"  @click="toggler = !toggler">
-                <span span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler nav-menu__toggler" :class="toggler?'nav-menu__mobile' : ''"
+            :data-active="toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"  @click="() => toggler = !toggler">
+               
+                <icon :name="toggler?'solar:close-circle-outline' :'pajamas:hamburger' " class="nav-menu__icon"/>
             </button>
             
-            <div class="collapse navbar-collapse nav-menu__collapse d-flex align-items-center justify-content-strech " id="navbarNav" :data-active="toggler">
-                <ul class="navbar-nav d-flex justify-content-around flex-grow-1">
-                    <li class="nav-item nav-menu__brand-mobile">
-                        <a class="" href="#">
-                            <img src="/turn.svg" alt="turn" class="logo-header"/>
-                        </a>
-                    </li>
-                    <li class="nav-item">
+            <div class="collapse navbar-collapse nav-menu__collapse d-flex align-items-center justify-content-strech " :class="toggler?'nav-menu__mobile-content' : ''" id="navbarNav" :data-active="toggler">
+                <ul class="navbar-nav d-flex justify-content-around flex-grow-1" :class="toggler?'nav-menu__mobile-content--box container' : ''">
+                    
+                    <li class="nav-item" @click="() => changePage()">
                         <NuxtLink class="nav-link" to="/">
                             Inicio
                         </NuxtLink>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" @click="() => changePage()">
                         <NuxtLink class="nav-link" to="./Services">
                             Servicios
                         </NuxtLink>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item"  @click="() => changePage()">
                         <NuxtLink class="nav-link" to="./Methodologies">
                             Metodologías
                         </NuxtLink>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item"  @click="() => changePage()">
                         <NuxtLink class="nav-link" to="./About">
                             Nosotros
                         </NuxtLink>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                       <form>
                           <select id="locale-select" v-model="$i18n.locale">
                             <option value="en">en</option>
-                            <!-- <option value="fr">fr</option> -->
                             <option value="es">es</option>
                           </select>
                         </form>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 
-            <button class="btn btn-nav" type="button">
+            <button class="btn btn-nav" type="button" :class="toggler?'nav-menu__mobile-contact' : ''">
                 Contacto
             </button>
         </div>
@@ -56,19 +53,65 @@
 </template>
 <script lang="ts" setup>
 
-let toggler = ref(false);
+const toggler = ref<any>(false);
+const device = ref<boolean>(true);
 
+const changePage = () => {
+  toggler.value = false;
+};
 
+onMounted(async () => {
 
+const { windowSize } = useMediaQuery("(min-width: 768px)");
+device.value = windowSize.value;
+watch(() => windowSize.value, (value) => {
+  device.value = value;
+});
+
+});
 
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/Mixins";
 .logo-header{
     filter:invert(1);
+    transition: .5s;
+}
+
+.btn-nav{
+    @include button;
+    height: inherit;
+    animation-delay: 1s;
+    transition: .5s;
+}
+
+.navbar-toggler{
+padding: 0;
+border: none;
+&:focus{
+    outline: none;
+    box-shadow: none!important;
+}
 }
 .nav-menu{
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #FFF;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.11);
+    &__mobile-content{
+        padding: 16px;
+        transition: .5s;
+        &--box{
+            gap:32px;
+            align-self: flex-start;
+            margin-top: 110px;
+            .nav-link{
+                padding: 16px 0;
+            }
+        }
+    }
+
     &__brand-mobile{
         display: none;
     }
@@ -82,12 +125,38 @@ let toggler = ref(false);
         display: flex;
       }
     }
-.btn-nav{
-    @include button;
-    height: inherit;
+    &__mobile{
+        
+        z-index: 5;
+        margin-top: 36px;
+        transition: .5s;
+    }
+    &__toggler{
+        transition: .5s;
+    }
+    &__mobile-contact{
+        z-index: 5;
+        position: fixed !important;
+        bottom: 10px;
+        width: 90%;
+        max-width: inherit;
+        right: 5% !important;
+        animation-delay: .5s;
+        transition: .5s;
+    }
+    &__icon{
+        width: 24px;
+        height: 24px;
+        transition: .5s;
+    }
 
-}
     
+}
+
+.router-link-active{
+    border-bottom: 1px solid var(--primary-color);
+    color: black;
+    font-weight: 600;
 }
 @media screen and (max-width: 768px) {
     .nav-menu{
@@ -102,7 +171,7 @@ let toggler = ref(false);
         &__collapse{
             
             position: fixed;
-            background: #020202;
+            background: #ffffff;
             width: 100%;
             height: 100vh;
             top: 0;
@@ -135,17 +204,9 @@ let toggler = ref(false);
         }
         &__toggler{
             order: 4;
-            
             background: white;
             animation: cubic-bezier(0.075, 0.82, 0.165, 1);
             transition: .5s;
-            
-            &[data-active=true]{
-              position: fixed;
-              z-index: 5;
-              animation: shows forwards .4s linear normal;
-             
-            }
         }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="soluciones">
+  <div class="soluciones" @click="()=>(showSection(section))">
     <h4>{{title}}</h4>
     <p>{{description}}</p>
     <div class="soluciones__box">
@@ -10,13 +10,20 @@
   
 </template>
 <script lang="ts" setup>
- import { defineProps } from "vue";
+import { defineProps } from "vue";
+
+  const emit = defineEmits(['show'])
+
+  const showSection = (section:string) => {
+    emit('show', section)
+  }
 
   const props = defineProps<{
         
       title: string,
       description: string,
       action: string,
+      section: string,
         
   }>();
 </script>

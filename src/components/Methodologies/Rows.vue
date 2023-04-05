@@ -1,98 +1,113 @@
 <template>
-  <div 
-  :class="arrow ? 'rows rows__arrow': 'rows'"
-  >
+  <div :class="arrow ? 'rows rows__arrow' : 'rows'">
     <div class="rows__proceso-paragraph">
-      <h4>{{title}}</h4>
-      <p>{{description}}</p>
+      <!-- <h4>{{ title }}</h4> -->
+      <p>{{ description }}</p>
     </div>
-    <div 
-      class="rows__proceso-line"
-      :style="{width: distance}"
-    >
+    <div class="rows__proceso-line" :style="device ? `width: ${distance}px` : `width: ${(distance / 2)}px`">
     </div>
-    <button>{{action}}</button>
+    <button>{{ action }}</button>
     <div class="rows__proceso-border">
 
     </div>
   </div>
 </template>
 <script lang="ts" setup>
- import { defineProps } from "vue";
+import { defineProps } from "vue";
+const device = ref<boolean>(true);
 
-  const props = defineProps<{
-        
-      title: string,
-      description: string,
-      action: string,
-      distance: string,
-      arrow?: boolean
-        
-  }>();
+const props = defineProps<{
+
+  title: string,
+  description: string,
+  action: string,
+  distance: string | number | any,
+  arrow?: boolean
+
+}>();
+
+onMounted(() => {
+  const { windowSize } = useMediaQuery("(min-width: 767px)");
+  device.value = windowSize.value;
+  watch(() => windowSize.value, (value) => {
+    device.value = value;
+  });
+
+});
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/Mixins";
 
 .rows {
- @include flex(flex-start, 8px, center);
- width: 100%;
- max-width: max-content;
- flex-direction: row;
- position: relative;
- background: rgb(255, 255, 255);
-padding-right: 36px;
-padding-top: 15px;
-
-&__proceso-paragraph{
-  @include flex(flex-start, false, center);
-  flex-direction: column;
-  h4{
-    @include text(2.4rem, 400, 3.2rem, left);
-    width: 100%;
-  }
-  p{
-    @include text(1.6rem, 400, 2.8rem, left);
-    width: 100%;
-  }
-}
-&__proceso-line{
+  @include flex(flex-start, 8px, center);
+  width: 100%;
+  max-width: max-content;
+  flex-direction: row;
   position: relative;
-  height: 3px;
-  background: #ED5A30;
-  &::after{
-    @include flex;
-    content: "";
-    position: relative;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #ED5A30;
-    border-radius: 10px;
-    margin-top: -4px;
-    margin-left: -3px;
+  background: rgb(255, 255, 255);
+  padding-right: 36px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15%;
+
+  &__proceso-paragraph {
+    @include flex(flex-start, false, center);
+    flex-direction: column;
+
+    h4 {
+      @include text(2.4rem, 400, 3.2rem, left);
+      width: 100%;
+    }
+
+    p {
+      @include text(1.6rem, 400, 2.8rem, left);
+      width: 100%;
+      min-width: 300px;
+    }
   }
-}
- button{
-    @include text(2rem, 300, 3.2rem, center);
+
+  &__proceso-line {
+    position: relative;
+    height: 3px;
+    background: #ED5A30;
+
+    &::after {
+      @include flex;
+      content: "";
+      position: relative;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ED5A30;
+      border-radius: 10px;
+      margin-top: -4px;
+      margin-left: -3px;
+    }
+  }
+
+  button {
+    @include text(1.8rem, 300, 3.2rem, center);
     @include flex(flex-end, false, center);
     position: relative;
     cursor: pointer;
     letter-spacing: 1.2px;
     color: #FFFFFF;
     background: #ED5A30;
-    padding: 8px 24px;
+    padding: 4px 20px;
     max-width: max-content;
     border: 1px solid #ED5A30;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(2px);
     /* Note: backdrop-filter has minimal browser support */
-    border-radius: 20px;
+    border-radius: 12px;
     transition: all 0.3s ease-in-out;
-    
- } 
- &__proceso-border{
-  width: 150px;
+
+  }
+
+  &__proceso-border {
+    width: 250px;
     border: 2px solid #ED5A30;
+    border-radius: 3px;
     border-bottom: transparent;
     border-left: transparent;
     align-self: stretch;
@@ -101,22 +116,49 @@ padding-top: 15px;
     right: -2px;
     top: -2px;
     z-index: -1;
- }
- &__arrow{
-  &::after{
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-top: 13px solid transparent;
-    border-bottom: 13px solid transparent;
-    border-left: 18px solid #ED5A30;
-    right: -10px;
-    bottom: -10px;
-    
-    rotate: 90deg;
   }
- }
-}
 
+  &__arrow {
+    &::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 13px solid transparent;
+      border-bottom: 13px solid transparent;
+      border-left: 18px solid #ED5A30;
+      right: -10px;
+      bottom: -10px;
+
+      rotate: 90deg;
+    }
+  }
+
+  @include for-size(desktop-mid) {
+    padding-left: 7%;
+  }
+
+  @include for-size(tablet-portrait) {
+    padding-left: initial;
+    button {
+      @include text(1.4rem, 300, 2.4rem, center);
+      padding: 3px 16px;
+      border-radius: 5px;
+
+    }
+  }
+  @include for-size(phone-xbig){
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 24px;
+
+    h4, p{display: none;}
+    &__proceso-line{
+      visibility: hidden;
+    }
+    &__proceso-border{
+      width: 180px;
+    }
+  }
+}
 </style>

@@ -11,7 +11,7 @@
           slidesPerView: 1,
           spaceBetween: 20,
         },
-        '768': {
+        '641': {
           slidesPerView: 2,
           spaceBetween: 40,
         },
@@ -108,7 +108,7 @@ export default {
 <style lang="scss" >
 @import "@/assets/scss/Mixins";
 
-$icon-arrow: url("/icon-arrow.svg");
+$icon-arrow: url("~/icon-arrow.svg");
 
 
   .slide-gallery {
@@ -121,7 +121,7 @@ $icon-arrow: url("/icon-arrow.svg");
           height: auto;
           
           @media screen and (max-width: 640px) {
-            max-width: 320px;
+            max-width: 300px;
           }
         }
       }

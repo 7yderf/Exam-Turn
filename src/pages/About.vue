@@ -1,12 +1,15 @@
 <template>
     <section class="about"  >
         <article class="about__hero">
+            <div id="mobile_title-a" class="services__hero-tit-mobile" />
             <div class="about__hero-tit">
+                <Teleport  v-if="on_Mounted" :disabled="device" to="#mobile_title-a" >
                 <h1>
                     Nosotros
                 </h1>
+                </Teleport>
                 <p>
-                    Queremos convertirnos en una de las principales compañías de México para el desarrollo de software.
+                   Somos una empresa orgullosamente Mexicana fundada en 2016. Especialistas en desarrollar sistemas que transforman la manera de hacer negocios, superando las expectativas de nuestros clentes.
                 </p>
                 <button>
                     Cotiza tu desarrollo
@@ -24,7 +27,7 @@
 
         <article class="about__strategy">
             <h2>El mejor aliado estratégico</h2>
-            <p>Trabajamos de la mano contigo desde el proceso de creación y diseño hasta la operación de tu nuevo negocio digital.</p>
+            <p>Nuestra calidad nos respalda. Nuestros procesos y buenas prácticas aseguran el éxito y satisfacción de nuestros clientes</p>
             <div class="about__strategy-cards">
                 <AboutCardAbout
                 v-for="kpi, index in kpis"
@@ -41,7 +44,9 @@
          <div class="about__why-box">
           <h2>¿Porqué turn?</h2>
           <div class="about__why-box-cards" v-for="card, index in card_tecno" :key="index" >
-              <ServicesCardTecnologias :action="card.action" :description="card.description" :arrayTecno="card.arrayTecno" :title="card.titulo" />
+              <ServicesCardTecnologias :action="card.action" :description="card.description" :arrayTecno="card.arrayTecno" :title="card.titulo"
+              :section="'about'"
+               />
           </div>
          </div> 
         </article>
@@ -49,16 +54,18 @@
         <article class="about__our">
             <h2>Nuestro equipo</h2>
             <p>Lleno de personas talentosas en diversas áreas.</p>
-            <div class="about__our-cards">
+            <div class="about__our-cards scroll" ref="teems_buttons">
                 <button
                 v-for="(teem, index) in Object.keys(teems)"
                 :key="index"
-                @click="(e) => key_teem = teem" 
+                @click="() => teemActive(teem, index)" 
                 class="about__our-btns"
+                :id="`team_${index}`"
                 :class="key_teem == teem ? 'about__our-btns--active' : ''"
                 >
                 {{teem}}
                 </button>
+                <div class="about__line-button " />
             </div>
             <div class="about__our-self">
               <p>{{teems[`${key_teem}`].description}}</p>
@@ -94,7 +101,7 @@
             <Contact />
           </div>
         </article>
-
+        <BotonContacto />
     </section>
 </template>
 
@@ -108,24 +115,49 @@
     type Teems = {
       [key: string]: Teem;
     };
+
+
+
+    const device = ref<boolean>(true);
+
+    const teems_buttons = ref<null | any>(null) 
     
     const key_teem = ref<String>('Análisis');
+
+    const on_Mounted = ref<boolean>(false);
 
     const kpis = ref([
         {
             title: "6+",
-            description: "años laborales",
+            description: "Años laborales",
         },
         {
-            title: "100+",
-            description: "proyectos realizados",
+            title: "40,000+",
+            description: "Horas de programación",
         },
         {
-            title: "10+",
-            description: "industrias",
+            title: "5+",
+            description: "Industrias",
         },
     ]);
 
+    
+      
+    const teemActive = (teem: string, id: any) => {
+      key_teem.value = teem;
+      // const buttonsLength = Array.from(teems_buttons.value.children).length;
+      // const scroll = (teems_buttons.value.scrollWidth - teems_buttons.value.offsetWidth) / 2;
+
+      // Array.from(teems_buttons.value.children).forEach((element: any, index ) => {
+      //   if( index == 1){
+      //     element.style.order = index+3;}
+      //   if( index !== 1){
+      //     element.style.order = index;}
+      //   if(element.id.split('_')[1] == id){
+      //     element.style.order = 1;
+      //   }
+      // })
+    }; 
     const teems = ref<Teems>({
       Análisis: 
         {
@@ -186,33 +218,49 @@
 
     const card_tecno = ref([
         {
-        titulo: "¿Qué ofrecemos?",
-        description: "",
-        arrayTecno:['Desarrollo aplicación web', 'Desarrollo aplicación móvil', 'Diseño UI/UX'],
+        titulo: "Transaprencia",
+        description: "Somos una empresa construida con bases en la honestidad y transparencia hacia los clientes. La comunicación es constante y continua. Serás parte del proceso de principio a fin.",
+        arrayTecno:[],
         action: "Conoce más"
         },
         {
-        titulo: "¿Cómo lo hacemos?",
-        description: "",
-        arrayTecno:['Escuchamos tus necesidades','Seleccionamos un marco de trabajo: Agile o cascada', 'Bloqueamos a un equipo de trabajo para tu proyecto', 'Iniciamos con las etapas de tu desarrollo'],
+        titulo: "Calidad",
+        description: "Nuestro equipo abarca todas las etapas del desarrollo de software; desde análisis hasta ingenieros de Quality Assurance. Hemos ido perfeccionando  nuestros proceso con el paso del tiempo y la mejora continua nunca se detiene.",
+        arrayTecno:[],
         action: "Conoce más"
         },
         {
-        titulo: "Trabajamos bajo  ISO29110",
-        description: "",
-        arrayTecno:['Documentación de proyecto', 'Control de calidad','Buenas prácticas de desarrollo'],
+        titulo: "Experiencia",
+        description: "Teniendo conocimiento en más de 5 industrias , y habiendo desarrollado diferentes tipos de plataformas, hemos creado múltiples módulos que se utilizan en diversos sectores. Podemos reutilizar toda esta experiencia y aprovecharla para tu proyecto.",
+        arrayTecno:[],
         action: "Conoce más"
         },
         {
-        titulo: "Arquitectura en microservicios",
-        description: "",
-        arrayTecno:['Escalabilidad','Implementación sencilla','Código reutilizable','Agilidad en cambios'],
+        titulo: "Adaptabilidad",
+        description: "Desde un Proyecto con scope limitado, hasta un producto que requiera de muchos incrementales, dominamos tanto la metodología en cascada como agile. Te ayudamos a definir una metodología para que tu proyecto sea lo más rentable posible.",
+        arrayTecno:[],
         action: "Conoce más"
         }
     ])
 
       onMounted(() => {
+        const { windowSize } = useMediaQuery("(min-width: 767px)");
+        device.value = windowSize.value;
+        watch(() => windowSize.value, (value) => {
+        device.value = value;
+        });
         key_teem.value = Object.keys(teems.value)[0];
+        on_Mounted.value = true;
+
+        window.addEventListener("resize", function () {
+          if (window.innerWidth < 960) {
+            const scroll = teems_buttons.value.scrollWidth
+            teems_buttons.value.children[6].style.width = `${scroll}px`;
+          } else {
+            teems_buttons.value.children[6].style.width = `100%`;
+          }
+        });
+
       });
 
 

@@ -1,6 +1,6 @@
 <template>
   <div class="col-12 mx-auto overflow-visible slide-gallery">
-    <swiper class="no-seleccionable cards-agency" style="cursor: grab"
+    <swiper class="no-seleccionable cards" style="cursor: grab"
       :navigation="false" 
       :speed=1700
       :slidesPerView="'2'" 

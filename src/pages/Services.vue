@@ -2,17 +2,20 @@
     <section class="services" ref="servic" >
         
         <article class="services__hero">
+            <div id="mobile_title" class="services__hero-tit-mobile" />
             <div class="services__hero-tit">
+                <Teleport  v-if="on_Mounted" :disabled="device" to="#mobile_title" >
                 <h1>
                     Nuestros servicios
                 </h1>
+                </Teleport>   
+                
                 <p>
                     Conoce en qué te podemos ayudar
                 </p>
                 <button>
                     Descubre más
                 </button>
-
             </div>
             <div class="services__hero-img">
                 <HomeImgCircleApp
@@ -23,16 +26,23 @@
             </div>
         </article>
         <article class="services__soluciones">
-            <h2>Soluciones tecnológicas personalizadas.</h2>
-            <p>Ofrecemos soluciones tecnológicas personalizadas de alta calidad para mejorar la eficiencia y productividad de su negocio, desde aplicaciones móviles hasta sistemas de gestión empresarial.</p>
+            <h2>Ingeniería de software de calidad mundial</h2>
+            <p>Todos los desarrollos los trabajamos con enfoque en la escalabilidad. Conocemos los retos de los cambios y la evolución de la tecnología. Por eso es que nuestros códigos tienen prácticas de creación y trazabiidad de versiones</p>
             <div class="services__soluciones-box">
-                <HomeCarousel 
-                :cards="card_soluciones" 
-                :type="'soluciones'" 
+                <div class="services__soluciones-card"
+                v-for="card, index in card_soluciones" :key="index"
+                >
+                <ServicesCardSoluciones
+                    :title="card.titulo" 
+                    :description="card.description"
+                    :action="card.action" 
+                    :section="card.section"
+                    @show="showsection"
                 />
+                </div>
             </div>
         </article>
-        <article class="services__paragraphs paused">
+        <article class="services__paragraphs paused" ref="ux" >
             <div class="services__paragraph-1">
                 <ServicesParagraph
                 :titulo="types_proyects[0].titulo"
@@ -47,7 +57,7 @@
                 />
             </div>
         </article>
-        <article class="services__paragraphs services__paragraphs--orange paused">
+        <article class="services__paragraphs services__paragraphs--orange paused" ref="apps">
             <div class="services__paragraphs-box">
                 <div class="services__paragraph-1">
                     <ServicesParagraph
@@ -64,7 +74,7 @@
                 </div>
             </div>
         </article>
-        <article class="services__paragraphs paused">
+        <article class="services__paragraphs paused" ref="webs">
             <div class="services__paragraph-1">
                 <ServicesParagraph
                 :titulo="types_proyects[2].titulo"
@@ -79,7 +89,7 @@
                 />
             </div>
         </article>
-        <article class="services__tecnologias">
+        <article class="services__tecnologias" ref="tecnologi">
             <h2>Tecnologías</h2>
             <div class="services__tecnologias-brand-box">
                 <button v-for="icon, index in icons" :key="index"
@@ -101,14 +111,22 @@
             </div>
 
         </article>
-
+        <BotonContacto />
     </section>
 </template>
 
 <script lang="ts" setup>
-    import { ref, onMounted } from "vue";
+    import { ref, onMounted, HtmlHTMLAttributes } from "vue";
     
     const servic = ref(null);
+    const device = ref<boolean>(true);
+    const ux = ref<HTMLElement | null>(null);
+    const apps = ref<HTMLElement | null>(null);
+    const webs = ref<HTMLElement | null>(null);
+    const tecnologi = ref<HTMLElement | null>(null);
+
+    const on_Mounted = ref<boolean>(false);
+
    const types_proyects = ref([
     
     {
@@ -120,10 +138,10 @@
         action: "Cotiza tu proyecto",
     },
     {
-        titulo: "Desarrollo de Apps",
+        titulo: "Aplicaciones móviles",
         bullets: [
             "Aplicaciones nativos",
-            "Aplicaciones nativos",
+            "Aplicaciones híbridas",
         ],
         texto: "Confiamos en nuestra experiencia tecnológica en varias industrias para ofrecer aplicaciones web, móviles, de escritorio e híbridas altamente escalables, flexibles e interoperables.",
         action: "Cotiza tu proyecto",
@@ -133,7 +151,7 @@
         bullets: [
             "Desarrollos a la medida",
         ],
-        texto: "Servicios de desarrollo de software personalizado. Contamos con desarrolladores expertos, y con vasta experiencia en industrias específicas.",
+        texto: "Todos nuestros desarrollos están creados con las mejores prácticas de diseño y programación.\n Asegurando rendimiento, eficiencia, escalabilidad, y usabilidad",
         action: "Cotiza tu proyecto",
     },
     
@@ -161,36 +179,36 @@
 
     const list_proyects_apps = ref([
         {
-            titulo: "Mantenimiento de aplicaciones",
-            description: "Diseñados para garantizar la escalabilidad, el rendimiento y la sostenibilidad de la aplicación",
+            titulo: "Últimas tecnologías",
+            description: "Los sistemas operativos tienen constantes actualizaciones. Utilizando las últimas versiones de los lenguajes, aseguramos el funcionamiento óptimo.",
         },
         {
-            titulo: "Integraciones de API",
-            description: "Creamos API personalizadas para todas las clases de aplicaciones, agregando funcionalidades a sus sistemas.",  
+            titulo: "Arquitectura escalable",
+            description: "Sabemos que las aplicaciones necesitan estar en constante actualización. La planeación de la arquitectura está preparada para cambios continuos.",  
         },
         {
             titulo: "Diseñamos UI/UX",
-            description: "aplicaciones receptivas y escalables que transforman las experiencias de los clientes a través de múltiples canales.",
+            description: "Cuando un usuario tiene la sensación de navegar una aplicación móvil con gestos de interaciones de calidad, aumenta el tiempo de uso de la misma.",
         },
         
     ]);
 
     const list_proyects_web = ref([
         {
-            titulo: "Desarrollo web personalizado",
-            description: "Nuestras soluciones facilitan los flujos de trabajo, aumentan los ingresos y optimizan las operaciones comerciales",
+            titulo: "Sistemas funcionales y escalables",
+            description: "Gracias a nuestras prácticas de programación, documentación, y versionamiento, aseguramos trazabilidad y escalabilidad ¡Sin dependecias del creador!",
         },
         {
-            titulo: "Implementación y despliegue",
-            description: "Diseñamos un plan de implementación y despliegue de software a profundidad.",  
+            titulo: "Desarrollos seguros y confiables",
+            description: "LA seguridad es nuestra prioridad. Utilizamos las técnicas de encriptación y protección de datos más avanzadas.\nGarantizando datos seguros y protegidos",  
         },
         {
             titulo: "Desarrollo de API",
-            description: "Desarrollamos APIs confiables que permiten integraciones flexibles y personalización de productos de software.",
+            description: "Nos conectamos a los sistemas que ya utilizas, Ya sea integrando servicios existentes, o la creación de estos para asegurar el funcionamiento integral de la pataforma",
         },
         {
-            titulo: "Integración de sistemas",
-            description: "Nuestros equipo de integración de software adoptan nuevas tecnologías y procesos para superar posibles desafíos.",
+            titulo: "Completamente a la medida",
+            description: "Creamos plataformas completamente perzonalizadas para satisfacer las necesidades especificas de tu negocio",
         },
         
     ]);
@@ -198,23 +216,27 @@
     const card_soluciones = ref([
         {
         titulo: "Diseño UX/UI",
-        description: "Equipo experto en diseño de experiencia de usuario e interfaz.",
-        action: "Conoce más"
+        description: "Interfaz y experiencia de usuario que logra los objetivos",
+        action: "Conoce más",
+        section: "ux"
         },
         {
-        titulo: "Desarrollo de Apps",
-        description: "Equipo experto en desarrollo de aplicaciones móviles personalizadas.",
-        action: "Conoce más"
+        titulo: "Aplicacines móviles",
+        description: "Aplicaciones poderosas listas para usar en cualquier dispositivo móvil",
+        action: "Conoce más",
+        section: "apps"
         },
         {
-        titulo: "Aplicaciones móviles",
-        description: "Equipo experto en desarrollo web y soluciones digitales personalizadas.",
-        action: "Conoce más"
+        titulo: "Desarrollo web",
+        description: "Aplicaciones web que simplifican los procesos diarios, y mejora la experiencia de sus clientes personalizadas",
+        action: "Conoce más",
+        section: "webs"
         },
         {
         titulo: "Tecnologías",
-        description: "Ofrecemos tecnologías avanzadas para desarrollo web y móvil personalizado.",
-        action: "Conoce más"
+        description: "Trabajamos con las ultimas versiones de las tecnologias más utilizadas",
+        action: "Conoce más",
+        section: "tecnologi"
         }
     ])
 
@@ -266,6 +288,27 @@
       '/img/logos/html5.png',
     ])
 
+    const showsection = (section: any) => {
+    
+    switch (section) {
+            case 'ux':
+                console.log('🚀 ~ file: Services.vue:290 ~ showsection ~ section:', section)
+            ux.value?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                break;
+            case 'apps':
+            apps.value?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                break;
+            case 'webs':
+            webs.value?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                break;
+            case 'tecnologi':
+            tecnologi.value?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                break;
+            default:
+                break;
+        }
+       
+    }
 function isVisible(elm: any) {
     var rect = elm.getBoundingClientRect();
     var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
@@ -283,12 +326,20 @@ const animationScroll = () => {
 }
 
     onMounted(async () => {
+
+        const { windowSize } = useMediaQuery("(min-width: 767px)");
+        device.value = windowSize.value;
+        watch(() => windowSize.value, (value) => {
+        device.value = value;
+        });
+
        console.log("mounted", window.scroll);
        animationScroll();
        console.log("mounted", servic)
+       on_Mounted.value = true;
     });
 
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 @import "@/assets/scss/Services";
 </style>

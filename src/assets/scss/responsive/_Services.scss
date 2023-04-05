@@ -1,7 +1,21 @@
 .services {
   @include for-size(desktop-xbig) {}
   @include for-size(desktop-big) {}
-  @include for-size(desktop-mid) {}
+  @include for-size(desktop-mid) {
+    &__soluciones-box{
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: stretch;
+
+    }
+    &__soluciones-card{
+      @include flex(center, false, stretch);
+      width: 49%;
+      flex-grow: 1;
+      min-height: 150px;
+
+    }
+  }
   @include for-size(desktop) {
     &__hero-tit{
       width: 40%;
@@ -11,15 +25,32 @@
     }
 
   }
-  @include for-size(tablet-landscape) {}
+  @include for-size(tablet-landscape) {
+   
+  }
   @include for-size(tablet-portrait) {
     gap: 16px;
+    &__hero-tit-mobile{
+      width: 100%;
+    
+      h1{
+        width: 100%;
+        padding: 0 32px;
+        @include text(6.4rem, 400, 7rem, center);
+      }
+    }
     &__hero{
       flex-direction: column;
     }
     &__hero-tit{
       width:100%;
-      margin-top: 54px;
+      margin-top: 8px;
+      padding-top: 8px;
+      order: 4;
+      button{
+        max-width: inherit;
+        width: 100%;
+      }
     }
     &__hero-img{
       width: 100%;
@@ -27,9 +58,9 @@
         width: 120%;
         object-fit: contain;
         object-position: center;
-        margin-left: -10%;
       }
     }
+    &__paragraphs-box,
     &__paragraphs{
       flex-direction: column;
       margin-bottom: 54px;
@@ -40,16 +71,69 @@
     &__list-1{
       width: 100%;
     }
+    &__tecnologias-brand-box{
+      gap: 20px 40px 
+    }
+    &__tecnologias-brand-btn{
+      height: 50px;
+    width: 50px;
+    min-height: 50px;
+    min-width: 50px;
+    border-radius: none;
+    border-color: transparent;
+    box-shadow: none;
+    }
+    &__soluciones-box{
+      margin-bottom: 32px;
+    }
   }
   @include for-size(tablet-small) {}
   @include for-size(phone-xbig) {
+    article{
+      padding: 0 8px;
+    }
+  
+    &__hero-tit-mobile,
     &__hero-tit{
       padding: 8px;
       h1{
-        @include text(5rem, 400, 5.5rem, left);
+        @include text(4.2rem, 400, 5.5rem, left);
+        padding: 0;
       }
       p{
         @include text(2.4rem, 200, 3rem, left);
+      }
+    }
+
+    &__hero-tit-mobile{
+      h1{
+        text-align: center;
+      }
+    }
+    
+    &__soluciones-card{
+      width: 100%;
+      min-height: inherit;
+
+    }
+    h2{
+      font-size: 3.2rem;
+      line-height: 4rem;
+    }
+    &__tecnologias{
+      h2{
+        padding-bottom: 8px ;
+      }
+    }
+
+    &__tecnologias-box{
+      width: 100%;
+    }
+    &__contact-box{
+      padding-top: 32px;
+      p{
+        font-size: 2.4rem;
+        line-height: 3rem;
       }
     }
   }
