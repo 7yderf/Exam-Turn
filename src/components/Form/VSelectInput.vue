@@ -38,7 +38,6 @@
                 v-for="item in searchInputService"
                 :key="item.id"
                 @click="serchParams(item)"
-                data-bs-dismiss="modal"
               >
                 {{ `${item.name}` }}
               </div>
@@ -177,7 +176,7 @@ const mod = ref(false);
     }
   }
   &__resultSerch {
-    background: #151317;
+    background: #FEEFEB;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -229,10 +228,10 @@ const mod = ref(false);
     align-items: center;
     width: 100%;
     padding: 8px;
-    color: white;
+    
     cursor: pointer;
     &:hover {
-      background-color:#252427;
+      background-color:#fcddd4;
       font-weight: 400;
     }
   }

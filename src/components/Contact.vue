@@ -123,47 +123,43 @@
       })
     );
 
-    const onSubmit =  async(values, {resetForm}) => {
-        console.log(values);
-        try {
-            const token = await recaptcha();
-            console.log('🚀 ~ file: Contact.vue:130 ~ onSubmit ~ token:', token)
+    const onSubmit = async (values, { resetForm }) => {
 
-            const { data } = await useLazyFetch(`${config.API_BASE_URL}api/lead`, {
-                method: "POST",
-                body: JSON.stringify({...values, 'g-recaptcha-response': token}),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
+    const token = await recaptcha();
 
-            // const { data } = await axios.post(`${config.API_BASE_URL}api/lead`, {...values, 'g-recaptcha-response': token});
-            // console.log('🚀 ~ file: Contact.vue:134 ~ onSubmit ~ error:', error)
-            resetForm();
-            swal.fire({
-            icon: "success",
-            title: "¡Gracias!",
-            text: "Nos pondremos en contacto contigo a la brevedad",
-            timer: 2000,
-            confirmButtonText: "Listo",
-            // showConfirmButton: false,
-            confirmButtonColor: "green",
-            });
+    const { data, error } = await useLazyFetch(`${config.API_BASE_URL}api/lead`, {
+      method: "POST",
+      body: JSON.stringify({ ...values, 'g-recaptcha-response': token }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-        } catch (error) {
-          swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Algo salió mal, intenta de nuevo",
-            timer: 2000,
-            confirmButtonText: "Entiendo",
-            // showConfirmButton: false,
-            confirmButtonColor: "red",
-
+    if (data.value) {
+      resetForm();
+      swal.fire({
+        icon: "success",
+        title: "¡Gracias!",
+        text: "Nos pondremos en contacto contigo a la brevedad",
+        timer: 2000,
+        confirmButtonText: "Listo",
+        // showConfirmButton: false,
+        confirmButtonColor: "green",
       });
-            console.log(error);
-        }
     }
+
+    if (error.value) {
+      swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Algo salió mal, intenta de nuevo",
+        timer: 2000,
+        confirmButtonText: "Entiendo",
+        // showConfirmButton: false,
+        confirmButtonColor: "red",
+      })
+    }
+  }
 
     const onInvalidSubmit = async (values) => {
         console.log("invalid ");        

@@ -17,9 +17,10 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.7",
-    "@vee-validate/rules": "^4.7.4",
     "@popperjs/core": "^2.11.6",
+    "@vee-validate/rules": "^4.7.4",
     "bootstrap": "^5.2.3",
+    "lightgallery": "^2.7.1",
     "pinia": "^2.0.32",
     "sass-loader": "^13.2.0",
     "swiper": "^8.4.7",

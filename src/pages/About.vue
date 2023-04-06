@@ -243,6 +243,14 @@
         }
     ])
 
+        const listenerResize = () => {
+          if (window.innerWidth < 960) {
+            const scroll = teems_buttons.value.scrollWidth
+            teems_buttons.value.children[6].style.width = `${scroll}px`;
+          } else {
+            teems_buttons.value.children[6].style.width = `100%`;
+          }
+        }
       onMounted(() => {
         const { windowSize } = useMediaQuery("(min-width: 767px)");
         device.value = windowSize.value;
@@ -252,16 +260,13 @@
         key_teem.value = Object.keys(teems.value)[0];
         on_Mounted.value = true;
 
-        window.addEventListener("resize", function () {
-          if (window.innerWidth < 960) {
-            const scroll = teems_buttons.value.scrollWidth
-            teems_buttons.value.children[6].style.width = `${scroll}px`;
-          } else {
-            teems_buttons.value.children[6].style.width = `100%`;
-          }
-        });
+        window.addEventListener("resize", listenerResize);
 
       });
+
+      onUnmounted(() => {
+      window.removeEventListener("resize",listenerResize);
+    });
 
 
 </script>

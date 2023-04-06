@@ -79,6 +79,8 @@ input:-webkit-autofill,
     // }
   }
   &__text-danger{
+    font-size: 1.4rem;
+    line-height: normal;
     position: absolute;
     bottom: -32px;
     color: var(--error-color);

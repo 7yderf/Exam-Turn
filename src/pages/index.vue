@@ -9,7 +9,7 @@
                 Crea, construye y consigue tu nueva app.
             </h1>
           </Teleport>
-          <p class="home__subtitle">Más <span class="">6 años</span> de experiencia.</p>
+          <p class="home__subtitle">Más de <span class="">6 años</span> de experiencia.</p>
           <div class="home__hero-action">
               <button class="home__button-solid">
                 Cotiza tu desarrollo
@@ -138,7 +138,23 @@
             </div>
           </div>
           <div v-if="!device" class="home__agil">
-            <img src="/agil.png" alt="" class="w-100">
+            <VLightgallery
+              :settings="{ speed: 500, plugins: plugins  }"
+            >
+              <a
+                data-lg-size=""
+                class="gallery-item"
+                data-src="/agil.png"
+                data-sub-html=""
+                w-100
+              >
+                <img
+                  class=" w-100"
+                  src="/agil.png"
+                />
+              </a>
+
+            </VLightgallery>
           </div>
          
       </div>
@@ -158,12 +174,13 @@
                       <div class="p-2">
                           <Contact />
                       </div>
+
                   </div>
   
               </div>
           </div>
       </div>
-
+      
       <BotonContacto />
 
   </main>
@@ -172,11 +189,18 @@
 <script lang="ts" setup>
   import { ref, onMounted } from "vue";
   import {useI18n} from "vue-i18n";
+  import lgZoom from 'lightgallery/plugins/zoom/lg-zoom.umd';
+  
+
+
+  const plugins = [lgZoom];
   const { t, tm } = useI18n();
   const card_active = ref(1);
   const list = ref<any>(tm('list_app_movile'))
   const device = ref<boolean>(true);
   const on_Mounted = ref<boolean>(false);
+
+ 
   
 
   watch(() => t('lang'), (value) => {
@@ -186,7 +210,7 @@
 
   const list_app_web = ref([
         {
-            titulo: "Front End ",
+            titulo: "Frontend ",
             description: "La parte de una aplicación o sitio web que los usuarios ven y con la que interactúan directamente.",
         },
         {
