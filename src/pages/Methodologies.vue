@@ -9,8 +9,7 @@
               </h1>
             </Teleport>
               
-              <p>
-                  Queremos convertirnos en una de las principales compañías de México para el desarrollo de software.
+              <p>Queremos convertirnos en una de las principales compañías de México para el desarrollo de software.
               </p>
               <button>
                   Cotiza tu desarrollo
@@ -279,7 +278,9 @@
         on_Mounted.value = true;
       });
 
-
+      useHead({
+   title: 'Metodologías',    
+  })
 </script>
 <style lang="scss">
 @import "@/assets/scss/Methodologies";

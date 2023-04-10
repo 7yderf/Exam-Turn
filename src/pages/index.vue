@@ -34,8 +34,7 @@
             </Teleport>
             
         </div>
-        <p class="home__text home__text--app">
-          Transformamos tu idea en una app móvil de vanguardia para llevar tu negocio al siguiente nivel.
+        <p class="home__text home__text--app">Transformamos tu idea en una app móvil de vanguardia para llevar tu negocio al siguiente nivel.
         </p>
         <div id="button_1" class="w-100 mt-5"></div>
         <div class="home__list-1">
@@ -54,8 +53,7 @@
             </Teleport>
             
         </div>
-        <p class="home__text home__text--app">
-          Potencia tu sitio web con nuestro enfoque y tecnologías de vanguardia para aumentar tus ventas.
+        <p class="home__text home__text--app">Potencia tu sitio web con nuestro enfoque y tecnologías de vanguardia para aumentar tus ventas.
         </p>
         <div id="button_2" class="w-100 mt-5"></div>
         <div class="home__list-1">
@@ -139,7 +137,7 @@
           </div>
           <div v-if="!device" class="home__agil">
             <VLightgallery
-              :settings="{ speed: 500, plugins: plugins  }"
+              :settings="{ speed: 500, close:true,  plugins: plugins  }"
             >
               <a
                 data-lg-size=""
@@ -189,7 +187,10 @@
 <script lang="ts" setup>
   import { ref, onMounted } from "vue";
   import {useI18n} from "vue-i18n";
-  import lgZoom from 'lightgallery/plugins/zoom/lg-zoom.umd';
+  import lgZoom  from 'lightgallery/plugins/zoom/lg-zoom.umd';
+
+  
+ 
   
 
 
@@ -301,6 +302,13 @@
     on_Mounted.value = true;
 
   });
+
+   useHead({
+   title: 'Inicio',    
+  })
+  useSeoMeta({
+  title: 'Inicio',
+  })
   
 </script>
 <style lang="scss" scoped>

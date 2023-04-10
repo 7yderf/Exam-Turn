@@ -4,12 +4,23 @@ import { fileURLToPath } from 'url'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 
 export default defineNuxtConfig({
+  app: {
+    head: {
+      meta: [
+        { 
+          name: 'description',
+          content: 'Especialistas en desarrollar sistemas que transforman la manera de hacer negocios' 
+        },
+      ],
+      link: [{rel: 'icon', type: 'image/png', href: '/favicon.png'}]
+    },
+  },
   css: [
     '@/assets/scss/Global.scss',
     '@/assets/fonts/outfit/style.css',
   ],
   srcDir: 'src',
-  modules: ['nuxt-icon', '@pinia/nuxt'],
+  modules: ['nuxt-icon', '@pinia/nuxt', 'nuxt-simple-sitemap'],
   imports: {
     dirs: ['./stores'],
   },
@@ -18,7 +29,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: [ '/' ]
+      routes: [ '/', '/about', '/methodologies', '/services'  ]
     }
   },
   // hooks: {
@@ -43,6 +54,7 @@ export default defineNuxtConfig({
       // Keys within public, will be also exposed to the client-side
       public: {
         API_BASE_URL: process.env.API_BASE_URL || "http://localhost:3000",
+        siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://urlpage.com',
         // otherUrl: process.env.OTHER_URL || "default_other_url"
       }
     },

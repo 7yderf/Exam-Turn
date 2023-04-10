@@ -10,8 +10,7 @@
                 </h1>
                 </Teleport>   
                 
-                <p>
-                    Conoce en qué te podemos ayudar
+                <p>Conoce en qué te podemos ayudar
                 </p>
                 <button>
                     Descubre más
@@ -338,7 +337,9 @@ const animationScroll = () => {
        console.log("mounted", servic)
        on_Mounted.value = true;
     });
-
+    useHead({
+   title: 'Servicios',    
+  })
 </script>
 <style lang="scss" >
 @import "@/assets/scss/Services";

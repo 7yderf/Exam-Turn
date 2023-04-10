@@ -8,8 +8,7 @@
                     Nosotros
                 </h1>
                 </Teleport>
-                <p>
-                   Somos una empresa orgullosamente Mexicana fundada en 2016. Especialistas en desarrollar sistemas que transforman la manera de hacer negocios, superando las expectativas de nuestros clentes.
+                <p>Somos una empresa orgullosamente Mexicana fundada en 2016. Especialistas en desarrollar sistemas que transforman la manera de hacer negocios, superando las expectativas de nuestros clentes.
                 </p>
                 <button>
                     Cotiza tu desarrollo
@@ -268,7 +267,9 @@
       window.removeEventListener("resize",listenerResize);
     });
 
-
+    useHead({
+   title: 'Nosotros',    
+  })
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/About";
