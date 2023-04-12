@@ -85,21 +85,28 @@
 
     }
     @include for-size(tablet-small) {
+
+      
       
     &--strategy{
+      padding: 12px;
         #{$root}__title{
-          font-size: 4rem;
-        line-height: 5rem;
+          font-size: 5.4rem;
+          line-height: 5rem;
+          margin-bottom: 32px;
+      }
+      #{$root}__text{
+        margin-bottom: 0px;
       }
     } 
     &__0{
-      border-radius: 24px 24px 0 0;
+      border-radius: 12px 12px 0 0;
      }
     &__1{
       border-radius: 0;
     }
     &__2{
-      border-radius: 0 0 24px 24px;
+      border-radius: 0 0 12px 12px;
     }
    
   } 

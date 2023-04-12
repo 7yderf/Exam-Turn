@@ -86,7 +86,7 @@ onMounted(() => {
   }
 
   button {
-    @include text(1.8rem, 300, 3.2rem, center);
+    @include text(1.6rem, 400, 3.2rem, center);
     @include flex(flex-end, false, center);
     position: relative;
     cursor: pointer;
@@ -141,9 +141,9 @@ onMounted(() => {
   @include for-size(tablet-portrait) {
     padding-left: initial;
     button {
-      @include text(1.4rem, 300, 2.4rem, center);
+      @include text(1.4rem, 400, 2.4rem, center);
       padding: 3px 16px;
-      border-radius: 5px;
+      border-radius: 9px;
 
     }
   }

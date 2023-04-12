@@ -3,13 +3,14 @@
     <img src="/turn.svg" alt="" class="footer__turn">
     <div class="footer__box-contact">
       <div class="footer__contact">
-        <img src="" alt="">
+        <Icon class="footer__icon" name="ic:baseline-facebook"  />
       </div>
       <div class="footer__contact">
-        <img src="" alt="">
+        <Icon class="footer__icon" name="ri:instagram-fill"  />
       </div>
       <div class="footer__contact">
-        <img src="" alt="">
+        
+        <Icon class="footer__icon" name="ri:twitter-fill"  />
       </div>
     </div>
     <div class="footer__legal-box">
@@ -56,6 +57,16 @@
   padding: 24px 0;
   width: 100%;
   text-align: center;
+ }
+ &__box-contact{
+  @include flex(space-between, 16px, center);
+  width: 200px;
+  margin-top: 24px;
+  
+ }
+ &__icon{
+  color: white;
+  font-size: 24px;
  }
 }
 </style>

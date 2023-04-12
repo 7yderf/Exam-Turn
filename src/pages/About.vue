@@ -17,7 +17,7 @@
             </div>
             <div class="about__hero-img">
                 <HomeImgCircleApp
-                :img_top="'/turn.png'" 
+                :img_top="device?'/turn.png': '/about_mobile.png'" 
                 :image_bottom="'/circle_2.png'"
                 :type="'about'"
                 />

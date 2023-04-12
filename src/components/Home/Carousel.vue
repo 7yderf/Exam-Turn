@@ -135,9 +135,9 @@ $icon-arrow: url("/icon-arrow.svg");
         height: 40px;
         border-radius: 5px;
         background: var(--secondary-color);
-        @media screen and (max-width: 640px) {
+        /* @media screen and (max-width: 640px) {
             display: none;
-        }
+        }*/
 
       }
 

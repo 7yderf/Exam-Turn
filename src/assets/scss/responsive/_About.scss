@@ -25,6 +25,10 @@
     
     &__hero{
       flex-direction: column;
+      border-bottom: 3px solid var(--primary-color);
+      margin-bottom: 0;
+      padding-bottom: 64px!important;
+      
     }
     &__why-box{
       padding: 0;
@@ -94,6 +98,15 @@
     &__why-box-cards{
       width: 100%;
       height: auto;
+    }
+    &__strategy{
+      h2{
+        text-align: left;
+      }
+      p{
+        text-align: left;
+        line-height: 3rem;
+      }
     }
   }
   @include for-size(phone-xbig) {

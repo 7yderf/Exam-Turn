@@ -1,7 +1,10 @@
 <template>
-    <nav class="navbar navbar-expand-md nav-menu" :class="toggler?'nav-menu__mobile-content' : ''">
-        <div class="container">
-            <a class="navbar-brand" href="#" :class="toggler?'nav-menu__mobile' : ''">
+    <nav class="navbar navbar-expand-md nav-menu" :class="device?'' : 'nav-menu__mobile-content'">
+        <div 
+        :class="device? 'container':'container-fluid '"
+        :data-toggle="toggler"
+        >
+            <a class="navbar-brand" href="#">
                 <img src="/turn.svg" alt="turn" class="logo-header"/>
             </a>
 
@@ -45,7 +48,9 @@
                 </ul>
             </div>
 
-            <button class="btn btn-nav" type="button" :class="toggler?'nav-menu__mobile-contact' : ''">
+            <button class="btn btn-nav" type="button" :class="toggler?'nav-menu__mobile-contact' : ''"
+            :data-mobile="!device"
+            >
                 Contacto
             </button>
         </div>
@@ -60,12 +65,25 @@ const changePage = () => {
   toggler.value = false;
 };
 
+
+
+watch(() =>  toggler.value, (value) => {
+  if (value) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+   
+  }
+});
+
+
 onMounted(async () => {
 
 const { windowSize } = useMediaQuery("(min-width: 768px)");
 device.value = windowSize.value;
 watch(() => windowSize.value, (value) => {
   device.value = value;
+  value && (toggler.value = false);
 });
 
 });
@@ -83,6 +101,15 @@ watch(() => windowSize.value, (value) => {
     height: inherit;
     animation-delay: 1s;
     transition: .5s;
+    &[data-mobile=true]{
+        transform: translateX(150%); 
+        opacity: 0;
+        position: fixed !important;
+        bottom: 16px;
+        width: 70%;
+        max-width: inherit;
+        right: 5% !important;
+    }
 }
 
 .navbar-toggler{
@@ -128,26 +155,27 @@ border: none;
     &__mobile{
         
         z-index: 5;
-        margin-top: 36px;
+        transform: translateX(-74vw);
         transition: .5s;
+        padding: 8px;
     }
     &__toggler{
         transition: .5s;
     }
-    &__mobile-contact{
-        z-index: 5;
-        position: fixed !important;
-        bottom: 10px;
-        width: 90%;
-        max-width: inherit;
-        right: 5% !important;
-        animation-delay: .5s;
-        transition: .5s;
-    }
+    
     &__icon{
         width: 24px;
         height: 24px;
         transition: .5s;
+    }
+
+    &__mobile-contact{
+        z-index: 5;
+        
+        animation-delay: .5s;
+        transition: .5s;
+        transform: translateX(0)!important;
+        opacity: 1!important;
     }
 
     
@@ -179,21 +207,52 @@ border: none;
             z-index: 2;
             &[data-active=false]{
                 display: flex;
-                transform: translateY(-110%);
+                transform: translateX(110%);
                 animation: cubic-bezier(0.95, 0.05, 0.795, 0.035);
                 transition: .3s;
                 opacity: 0;
             }
             &[data-active=true]{
                 display: flex;
-                transform: translateY(0);
+                transform: translateX(20%);
                 animation: cubic-bezier(0.075, 0.82, 0.165, 1);
                 transition: .5s;
                 opacity: 1;
+                &::before{
+                    content: "";
+                    position: absolute;
+                    width: 100px;
+                    height: 60px;
+                    background-image: url("/turn.svg");
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    filter: invert(1);
+                    top: 26px;
+                    left: 24px;
+                    transition: .5s;
+                }
             }
             
 
         }
+        .container-fluid{
+            &[data-toggle=true]{
+                &::before{
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 100vh;
+                    background: #616161;
+                    opacity: 0.5;
+                    z-index: -1;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    transition: .5s;
+                }
+            }
+        }
+        
         &__brand-mobile{
             @include flex;
             width: 100%;
@@ -208,6 +267,7 @@ border: none;
             animation: cubic-bezier(0.075, 0.82, 0.165, 1);
             transition: .5s;
         }
+        
     }
 }
 @media screen and (max-width: 635px) {
@@ -215,25 +275,13 @@ border: none;
         .btn-nav{
             right: 15%;
         }
+        &__mobile{
+        
+           
+            transform: translateX(-70vw);
+           
+        }
     }
 }
-@keyframes shows {
-  0%{
-    position: fixed;
-    opacity: 0;
-    top: 2%;
-    right: 100px;
-  }
-  50%{
-    top: 3%;
-    right: 6%;
-    opacity: .5;
-  }
-  100%{
-    position: fixed;
-    opacity: 1;
-    top: 5%;
-    right: 5%;
-  }
-}
+
 </style>

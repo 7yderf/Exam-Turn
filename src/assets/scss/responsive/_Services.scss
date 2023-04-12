@@ -41,6 +41,9 @@
     }
     &__hero{
       flex-direction: column;
+      border-bottom: 3px solid var(--primary-color);
+      margin-bottom: 0;
+      padding-bottom: 64px!important;
     }
     &__hero-tit{
       width:100%;
