@@ -18,7 +18,7 @@
   @include flex;
   position: fixed;
   border-radius: 3px 0px 0px 3px;
-  background: #40c351;
+  background: #f9f9f9;
   width: 70px;
   height: 55px;
   right: 0;
@@ -29,20 +29,20 @@
 
   &::after {
     @include flex(flex-start, false, center);
-    @include text(1.4rem, 400, 1.6rem, left);
+    @include text(1.2rem, 400, 1.6rem, left);
     padding-left: 8px;
-    content: "Cuentanos tú proyecto";
+    content: "Escribenos por Whatsapp \A Ir al chat";
     position: absolute;
     width: 78%;
     height: 98%;
-    background: #43cc55;
+    background: #1c9781;
     right: 0;
     transform: translateX(200%);
     transition: .3s;
     white-space: pre;
     color: white;
     letter-spacing: 1px;
-    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+    
   }
 
   &:hover {
@@ -66,9 +66,9 @@
     transition: .3s;
 
     img {
-      width: 40px;
-      height: 40px;
-      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      width: 45px;
+      height: 45px;
+      
     }
 
   }
