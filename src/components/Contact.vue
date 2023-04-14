@@ -27,7 +27,7 @@
           icon="/icon/building.svg"
         />
       </div>
-      <div class="form__box">
+      <div class="form__box form__box--mobile">
         <FormVTextInput
           type="mail"
           name="email"
@@ -80,6 +80,7 @@
     import { useForm } from 'vee-validate';
     // import { object, string, ref as yupRef } from "yup";
     import * as yup from "yup";
+    
 
     const { handleSubmit } = useForm();
     const swal = inject("$swal");
@@ -192,4 +193,20 @@
     margin: 16px 0 32px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .form{
+    &__box{
+      &--mobile{
+        flex-direction: column ;
+        gap: 0;
+        .field{
+          width: 100%;
+
+        }
+      }
+    }
+  }
+}
+
 </style>

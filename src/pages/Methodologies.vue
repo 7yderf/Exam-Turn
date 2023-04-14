@@ -11,9 +11,9 @@
               
               <p>Queremos convertirnos en una de las principales compañías de México para el desarrollo de software.
               </p>
-              <button>
+              <a href="#Methodologies" class="button">
                   Cotiza tu desarrollo
-              </button>
+              </a>
 
           </div>
           <div class="methodologies__hero-img">
@@ -184,7 +184,7 @@
 
       </article>
       
-      <article class="methodologies__contact">
+      <article class="methodologies__contact" id="Methodologies">
         <div class="methodologies__contact-box">
           <h2>Contactános</h2>
           <p>Estamos encantados de oir tu proyecto</p>

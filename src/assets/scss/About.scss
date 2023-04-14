@@ -32,7 +32,7 @@ article{
   p{
     @include text(3.2rem, 200, 5rem, left);
   }
-  button{
+  .button{
     @include button(solid);
     margin-top: 32px;
     &--radius{
@@ -130,6 +130,7 @@ article{
   @include flex(flex-start, 32px, stretch);
   width: 100%;
   padding-bottom: 45px;
+  padding-top: 8px;
 }
 &__line-button{
   position: absolute;

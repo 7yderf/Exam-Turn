@@ -6,18 +6,18 @@
         <div class="home__hero-copy">
           <Teleport v-if="on_Mounted" :disabled="device" to="#transport"  >
             <h1 class="home__h1">
-                Crea, construye y consigue tu nueva app.
+                Transformación digital con la mejor calidad
             </h1>
           </Teleport>
-          <p class="home__subtitle">Más de <span class="">6 años</span> de experiencia.</p>
+          <p class="home__subtitle">Desarrollo de software a la medida</p>
           <div class="home__hero-action">
-              <button class="home__button-solid">
+              <a href="#Home" class="home__button-solid">
                 Cotiza tu desarrollo
-              </button>
-              <button class="home__button-outline">
+              </a>
+              <NuxtLink to="./Services" class="home__button-outline">
                 <!-- {{ $t('text') }} -->
                 Conoce más
-              </button>
+              </NuxtLink>
           </div>
       </div>
       <div class="home__hero-img">
@@ -30,11 +30,11 @@
         <div class="home__app">
             <h2 class="home__subtitle">Aplicaciones móviles</h2>
             <Teleport v-if="on_Mounted" :disabled="device" to="#button_1"  >
-              <button class="home__button-solid"> Cotiza tu desarrollo</button>
+              <a href="#Home" class="home__button-solid"> Cotiza tu desarrollo</a>
             </Teleport>
             
         </div>
-        <p class="home__text home__text--app">Transformamos tu idea en una app móvil de vanguardia para llevar tu negocio al siguiente nivel.
+        <p class="home__text home__text--app">Aplicaciones poderosas, diseñadas y creadas con los estándares más altos de calidad
         </p>
         <div id="button_1" class="w-100 mt-5"></div>
         <div class="home__list-1">
@@ -49,11 +49,11 @@
         <div class="home__app">
             <h2 class="home__subtitle">Desarrollo web</h2>
             <Teleport v-if="on_Mounted" :disabled="device" to="#button_2"  >
-              <button class="home__button-solid">Cotiza tu desarrollo</button>
+              <a href="#Home" class="home__button-solid">Cotiza tu desarrollo</a>
             </Teleport>
             
         </div>
-        <p class="home__text home__text--app">Potencia tu sitio web con nuestro enfoque y tecnologías de vanguardia para aumentar tus ventas.
+        <p class="home__text home__text--app">Ingenieria de último nivel con nuestras plataformas web, la escalabilidad es fundamental para nosotros
         </p>
         <div id="button_2" class="w-100 mt-5"></div>
         <div class="home__list-1">
@@ -157,7 +157,7 @@
          
       </div>
 
-      <div class="home__section home__section--contact">
+      <div class="home__section home__section--contact" id="Home">
           <div class="container">
               <div class="row d-flex align-items-center justify-content-center">
                   <div class="col-12 col-md-10 col-lg-8 col-xl-7 ">
@@ -211,71 +211,128 @@
 
   const list_app_web = ref([
         {
-            titulo: "Frontend ",
-            description: "La parte de una aplicación o sitio web que los usuarios ven y con la que interactúan directamente.",
+            titulo: "Herramientas de seguimiento",
+            description: "Amplia experiencia en el diseño y desarrollo de herramientas ERP; CRM; DMS; TMS, entre otros, completamente adaptados a tu operación",
         },
         {
-            titulo: "Backend ",
-            description: "Parte de una sitio web que no es visible para los usuarios y que maneja la lógica de la aplicación y la gestión de datos.",  
+            titulo: "Sitios 360",
+            description: "Interconecta tus herramientas de seguimiento con un sitio para cliente final y no pierdas de vista ninguna parte del proceso",  
         },
         {
-            titulo: "Servidores web",
-            description: "Tecnologías de servidores web populares que se utilizan para alojar y entregar sitios web a los navegadores de los usuarios.",
+            titulo: "Ecommerce",
+            description: "Bríndale a tus clientes una experiencia completamente digital, y maximiza tus ventas con un ecommerce de vanguardia",
         },
         {
-            titulo: "APIs y servicios web",
-            description: "Tecnologías como RESTful APIs y servicios web se utilizan para integrar aplicaciones web con otras aplicaciones y servicios.",
+            titulo: "Mobile first",
+            description: "Algunos lo consideran un extra, en TURN es obligatorio.\nNuestros desarrollos web se visualizan y funcionan de manera óptima desde cualquier dispositivo móvil",
         }
         
     ]);
   
   const app_tecnologics = ref<any>([
       {
-          image_left: "/home/app-1.png",
+          image_left: "/carrusel/toyota.png",
           
-          title_tecno: "Nombre del proyecto",
+          title_tecno: "Sitio 360 para seminuevos",
           
-          text_tecno: "Proyecto donde se requería desarrollar una aplicación móvil con un administrador web.",
+          text_tecno: "Nuestro cliente es una da las marcas más importantes de México. Creamos una plataforma donde monitorea desde la carga de inventario, hasta la venta, con interacción de cliente final. ",
           sub_title_tecno: "TECNOLOGÍAS",
           bullets: [
             "Análisis",
             "Diseño",
             "Aplicación web",
-            "Aplicación híbrida"
+            "devops",
+            "apis y servicios",
         ],
       },
       {
-          image_left: "/home/app-2.png",
+          image_left: "/carrusel/cartera.png",
           
-          title_tecno: "Nombre del proyecto",
+          title_tecno: "App para la gestión de carteras",
           
-          text_tecno: "Proyecto donde se requería desarrollar una aplicación móvil con un administrador web.",
+          text_tecno: "Aplicación móvil para los clientes finales de una institución financiera.\nPueden conocer el estatus de sus créditos, pagos, y descarga de estados de cuenta.  ",
           sub_title_tecno: "TECNOLOGÍAS",
           bullets: [
             "Análisis",
             "Diseño",
-            "Aplicación web",
-            "Desarrollo",
-            "Arquitectura",
+            "Aplicación móvil",
+            "Desarrollo web",
+            "apis y servicios",
             "DevOps",
-            "Hosting"
 
         ],
       },
       {
-          image_left: "/home/app-3.png",
+          image_left: "/carrusel/tingit.png",
           
-          title_tecno: "Nombre del proyecto",
+          title_tecno: "Sistema para transportistas",
           
-          text_tecno: "Proyecto donde se requería desarrollar una aplicación móvil con un administrador web.",
+          text_tecno: "Sistema para la gestión y seguimiento de las empresas de transporte.\n Facturación; registro de gastos y fletes; mantenimiento de unidades; entre otras funciones.",
           sub_title_tecno: "TECNOLOGÍAS",
           bullets: [
             "Análisis",
             "Diseño",
-            "Aplicación web",
-            "Arquitectura",
+            "Desarrollo web",
             "DevOps",
-            "Hosting"
+            "APIs y servicios"
+        ],
+      },
+      {
+          image_left: "/carrusel/optimum.png",
+          
+          title_tecno: "ERP a la medida",
+          
+          text_tecno: "Una de las principales importadoras de equipo de gimnasio del país nos pidió un ERP completamente adaptado al flujo que llevan actualmente.",
+          sub_title_tecno: "TECNOLOGÍAS",
+          bullets: [
+            "Análisis",
+            "Diseño",
+            "Desarrollo web",
+            "DevOps",
+        ],
+      },
+      {
+          image_left: "/carrusel/movi.png",
+          
+          title_tecno: "Arrendamiento automotriz",
+          
+          text_tecno: "Descripción: Aplicación web para la solicitud y pre-autorización de un arrendamiento automotriz.",
+          sub_title_tecno: "TECNOLOGÍAS",
+          bullets: [
+            "Análisis",
+            "Desarrollo web",
+            "DevOps",
+            "APIs y servicios"
+        ],
+      },
+      {
+          image_left: "/carrusel/autodeal.png",
+          
+          title_tecno: "Marketplace Seminuevos",
+          
+          text_tecno: "Descripción: Aplicación web para la compra y venta de autos seminuevos. Los principales grupos automotrices del país exponen su inventario para que los clientes adquieran su próximo vehículo.",
+          sub_title_tecno: "TECNOLOGÍAS",
+          bullets: [
+            "Análisis",
+            "Diseño",
+            "Desarrollo web",
+            "DevOps",
+            "APIs y servicios"
+        ],
+      },
+      {
+          image_left: "/carrusel/progreza.png",
+          
+          title_tecno: "Fitness App",
+          
+          text_tecno: "Aplicación móvil para el seguimiento diario de una vida balanceada de ejercicio, alimentación, y hábitos de sueño. Cuenta con administrador para la carga de rutinas y seguimiento de los clientes finales.",
+          sub_title_tecno: "TECNOLOGÍAS",
+          bullets: [
+            "Análisis",
+            "Diseño",
+            "Desarrollo web",
+            "Desarrollo móvil",	
+            "DevOps",
         ],
       }
   ]);
@@ -304,7 +361,10 @@
   });
 
    useHead({
-   title: 'Inicio',    
+   title: 'Inicio', 
+   link: [
+     {rel: 'canonical', href: 'https://cozy-cobbler-561525.netlify.app'  },
+   ],
   })
   useSeoMeta({
   title: 'Inicio',

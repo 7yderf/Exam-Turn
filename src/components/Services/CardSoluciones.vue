@@ -1,22 +1,17 @@
 <template>
-  <div class="soluciones" @click="()=>(showSection(section))">
+  <a :href="`#${section}`" class="soluciones" >
     <h4>{{title}}</h4>
     <p>{{description}}</p>
     <div class="soluciones__box">
       <p>{{action}}</p>
       <img src="/arrow_black.png" alt="">
     </div>
-  </div>
+  </a>
   
 </template>
 <script lang="ts" setup>
 import { defineProps } from "vue";
 
-  const emit = defineEmits(['show'])
-
-  const showSection = (section:string) => {
-    emit('show', section)
-  }
 
   const props = defineProps<{
         
@@ -37,7 +32,7 @@ import { defineProps } from "vue";
   flex-direction: column;
   border-radius: 10px;
   padding: 16px;
-
+  color: black;
   h4 {
     @include text(2.4rem, 400, 3.2rem, left);
     width: 100%;

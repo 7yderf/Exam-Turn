@@ -33,7 +33,7 @@ article{
   p{
     @include text(3.2rem, 200, 5rem, left);
   }
-  button{
+  .button{
     @include button(solid);
     margin-top: 32px;
     &--radius{

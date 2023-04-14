@@ -49,7 +49,6 @@
 @import "@/assets/scss/Mixins";
 .carSlide{
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     width: 100%;
     margin: auto;
@@ -66,8 +65,13 @@
     &__text{
         @include text(1.8rem, lighter, 3.2rem, left);
         color: #FFF;
+        flex-grow: 1;
     }
     &__rigth{
+        display: flex;
+        flex-direction: column;
+        
+        flex-grow: 1;
         padding: 0 32px;
     }
     &__bullets{
@@ -89,6 +93,10 @@
     display: flex;
     align-items: center;
    flex-wrap: nowrap;
+   min-height: 102px;
+   @include for-size(tablet-portrait){
+        min-height: 50px;
+    }
 }
 .label-leyend-logo{
     display: flex;

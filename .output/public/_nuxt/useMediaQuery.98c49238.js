@@ -1,1 +1,0 @@
-import{r as s}from"./entry.b6091e91.js";const o=(a=null)=>{const e=s(!1),t=matchMedia(a??"(min-width: 0px)");e.value=t.matches;const n=r=>e.value=r.matches;return t.addEventListener("change",n),{windowSize:e}};export{o as u};

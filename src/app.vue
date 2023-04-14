@@ -5,9 +5,12 @@ useHead({
 useServerSeoMeta({
   title: 'Turn',
   ogTitle: 'Turn my app',
-  description: 'Description de la página',
-  ogDescription: 'Description de la pagina para redes sociales',
-  ogImage: 'https://cozy-cobbler-561525.netlify.app/turn.png',
+  ogType: 'website',
+  ogUrl: 'https://cozy-cobbler-561525.netlify.app/',
+  ogLocale: 'es_MX',
+  description: 'Desarrollo de software a la medida',
+  ogDescription: 'Desarrollo de software a la medida',
+  ogImage: 'https://cozy-cobbler-561525.netlify.app/turn_my_app.png',
   twitterCard: 'summary_large_image',
 })
 </script>

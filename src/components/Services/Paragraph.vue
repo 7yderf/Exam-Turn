@@ -10,7 +10,7 @@
     <div class="paragraph__box-text">
       <p class="paragraph__text">{{texto}}</p>
     </div>
-    <button class="paragraph__action">{{action}}</button>  
+    <a href="#Services" class="paragraph__action">{{action}}</a >  
   </div>
   
 </template>

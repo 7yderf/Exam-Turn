@@ -2,24 +2,26 @@
   <footer class="footer">
     <img src="/turn.svg" alt="" class="footer__turn">
     <div class="footer__box-contact">
-      <div class="footer__contact">
+      <a href="https://www.facebook.com/turnappmx/" target="_blank" class="footer__contact">
         <Icon class="footer__icon" name="ic:baseline-facebook"  />
-      </div>
-      <div class="footer__contact">
+      </a>
+      <a href="https://www.instagram.com/turnappmx/" target="_blank" class="footer__contact">
         <Icon class="footer__icon" name="ri:instagram-fill"  />
-      </div>
-      <div class="footer__contact">
+      </a>
+      <a href="https://www.linkedin.com/company/turnmyapp" target="_blank" class="footer__contact">
         
-        <Icon class="footer__icon" name="ri:twitter-fill"  />
-      </div>
+        <Icon class="footer__icon" name="mdi:linkedin"  />
+      </a>
     </div>
     <div class="footer__legal-box">
-      <a href="" class="footer__legal-link">
+      <NuxtLink  class="footer__legal-link" to="./Privacynotice">
         Términos y condiciones
-      </a>
-      <a href="" class="footer__legal-link">
+      </NuxtLink>
+     
+      <NuxtLink  class="footer__legal-link" to="./Privacynotice">
         Aviso de privacidad
-      </a>
+      </NuxtLink>
+      
     </div>
     <p class="footer__copyright">
       © 2023 Copyright Turnmyapp

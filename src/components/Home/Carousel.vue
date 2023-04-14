@@ -119,7 +119,7 @@ $icon-arrow: url("/icon-arrow.svg");
       &>.swiper-wrapper {
         .swiper-slide {
           height: auto;
-          
+          display: flex;
           @media screen and (max-width: 640px) {
             max-width: 300px;
           }

@@ -6,10 +6,15 @@ import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 export default defineNuxtConfig({
   app: {
     head: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      htmlAttrs: { lang: 'es'},
       meta: [
         { 
-          name: 'description',
-          content: 'Especialistas en desarrollar sistemas que transforman la manera de hacer negocios' 
+          name: 'Turn My App - Desarrollo de software a la medida',
+          content: 'Especialistas en desarrollar sistemas que transforman la manera de hacer negocios',
+          
+          
         },
       ],
       link: [{rel: 'icon', type: 'image/png', href: '/favicon.png'}]
@@ -20,7 +25,14 @@ export default defineNuxtConfig({
     '@/assets/fonts/outfit/style.css',
   ],
   srcDir: 'src',
-  modules: ['nuxt-icon', '@pinia/nuxt', 'nuxt-simple-sitemap'],
+  modules: ['nuxt-icon', '@pinia/nuxt', 'nuxt-simple-sitemap', ['@nuxtjs/robots', {
+    UserAgent: '*',
+    Disallow: '/',
+    BlankLine: true ,
+    Comment: 'Comment here',
+    Sitemap: (req: any) => `https://${req.headers.host}/sitemap.xml`,
+  }],],
+  
   imports: {
     dirs: ['./stores'],
   },

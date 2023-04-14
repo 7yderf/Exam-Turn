@@ -10,9 +10,9 @@
                 </Teleport>
                 <p>Somos una empresa orgullosamente Mexicana fundada en 2016. Especialistas en desarrollar sistemas que transforman la manera de hacer negocios, superando las expectativas de nuestros clentes.
                 </p>
-                <button>
+                <a href="#About" class="button">
                     Cotiza tu desarrollo
-                </button>
+                </a>
 
             </div>
             <div class="about__hero-img">
@@ -41,7 +41,7 @@
 
         <article class="about__why">
          <div class="about__why-box">
-          <h2>¿Porqué turn?</h2>
+          <h2>¿Porqué Turn?</h2>
           <div class="about__why-box-cards" v-for="card, index in card_tecno" :key="index" >
               <ServicesCardTecnologias :action="card.action" :description="card.description" :arrayTecno="card.arrayTecno" :title="card.titulo"
               :section="'about'"
@@ -50,7 +50,7 @@
          </div> 
         </article>
 
-        <article class="about__our">
+        <!-- <article class="about__our">
             <h2>Nuestro equipo</h2>
             <p>Lleno de personas talentosas en diversas áreas.</p>
             <div class="about__our-cards scroll" ref="teems_buttons">
@@ -75,7 +75,9 @@
                 :src="img" alt="">
               </div>
             </div>
-        </article>
+        </article> -->
+
+
         <!-- <article class="about__ideology">
           <h4 class="about__ideology-tit">
             Nosotros creemos en
@@ -93,7 +95,7 @@
 
         </article> -->
         
-        <article class="about__contact">
+        <article class="about__contact" id="About">
           <div class="about__contact-box">
             <h2>Contactános</h2>
             <p>Estamos encantados de oir tu proyecto</p>

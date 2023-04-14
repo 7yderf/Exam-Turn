@@ -17,6 +17,7 @@
     "vue-i18n": "^9.2.2"
   },
   "dependencies": {
+    "@nuxtjs/robots": "^3.0.0",
     "@pinia/nuxt": "^0.4.7",
     "@popperjs/core": "^2.11.6",
     "@vee-validate/rules": "^4.7.4",

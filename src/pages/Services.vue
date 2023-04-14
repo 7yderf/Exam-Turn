@@ -12,9 +12,9 @@
                 
                 <p>Conoce en qué te podemos ayudar
                 </p>
-                <button>
+                <a href="#Services" class="button">
                     Descubre más
-                </button>
+                </a>
             </div>
             <div class="services__hero-img">
                 <HomeImgCircleApp
@@ -36,12 +36,11 @@
                     :description="card.description"
                     :action="card.action" 
                     :section="card.section"
-                    @show="showsection"
                 />
                 </div>
             </div>
         </article>
-        <article class="services__paragraphs paused" ref="ux" >
+        <article class="services__paragraphs paused" id="ux" >
             <div class="services__paragraph-1">
                 <ServicesParagraph
                 :titulo="types_proyects[0].titulo"
@@ -56,7 +55,7 @@
                 />
             </div>
         </article>
-        <article class="services__paragraphs services__paragraphs--orange paused" ref="apps">
+        <article class="services__paragraphs services__paragraphs--orange paused" id="apps">
             <div class="services__paragraphs-box">
                 <div class="services__paragraph-1">
                     <ServicesParagraph
@@ -73,7 +72,7 @@
                 </div>
             </div>
         </article>
-        <article class="services__paragraphs paused" ref="webs">
+        <article class="services__paragraphs paused" id="webs">
             <div class="services__paragraph-1">
                 <ServicesParagraph
                 :titulo="types_proyects[2].titulo"
@@ -88,7 +87,7 @@
                 />
             </div>
         </article>
-        <article class="services__tecnologias" ref="tecnologi">
+        <article class="services__tecnologias" id="tecnologi">
             <h2>Tecnologías</h2>
             <div class="services__tecnologias-brand-box">
                 <button v-for="icon, index in icons" :key="index"
@@ -101,7 +100,7 @@
                 <ServicesCardTecnologias :action="card.action" :description="card.description" :arrayTecno="card.arrayTecno" :title="card.titulo" />
             </div>
         </article>
-        <article class="services__contact">
+        <article class="services__contact" id="Services">
             <div class="services__contact-box">
                 <h2>Contactános</h2>
             <p>Estamos encantados de oir tu proyecto</p>
@@ -133,7 +132,7 @@
         bullets: [
             "Diseño UX/UI",
         ],
-        texto: "La clave para desarrollar una aplicación exitosa es combinar la funcionalidad que exigen los usuarios con un diseño y una experiencia intuitivos que la hagan lo más simple posible de usar.",
+        texto: "Experiencias digitales inmersivas que cautivan a los usuarios con interfaces intuitivas y funcionales. Nuestro enfoque centrado en el usuario garantiza que cada interacción sea excepcional y funcional.",
         action: "Cotiza tu proyecto",
     },
     {
@@ -158,20 +157,20 @@
 
     const list_proyects_design = ref([
         {
+            titulo: "Investigación y comprensión del usuario",
+            description: "Comprendemos a fondo al usuario objetivo. Realizamos entrevistas y benchmark del mercado para brindar la mejor experiencia.",
+        },
+        {
             titulo: "Arquitectura de información y wireframes",
-            description: "La creación de un diseño y una interfaz fáciles de usar comienza aquí.",
+            description: "El diseño bien cimentado. Aseguramos estructura escalable y funcional de producto, validando diseño antes de implementación.",  
         },
         {
             titulo: "Diseño de interfaz de usuario",
-            description: "Construimos interfaces gráficas de usuario exquisitamente receptivas, animaciones y medios integrados.",  
+            description: "Nuestras interfaces se centran en tomar con el mismo nivel de prioridades los objetivos de negocio y la experiencia de usuario final.",
         },
         {
-            titulo: "Desarrollo de UI / UX móviles",
-            description: "Como parte de nuestros servicios de desarrollo de aplicaciones móviles de extremo a extremo.",
-        },
-        {
-            titulo: "Programación de Front-End",
-            description: "Las impresionantes interfaces de aplicaciones cobran vida gracias a nuestros desarrolladores front-end.",
+            titulo: "Responsividad",
+            description: "Cuidamos la forma de interactuar desde cualquier dispositivo. Así, el usuario final podrá navegar desde cualquier lugar o situación.",
         }
         
     ]);
@@ -260,8 +259,8 @@
         },
         {
         titulo: "Base de datos",
-        description: "Relacionada (MySQL, PostgreSQL, Oracle) Base documentada (NoSQL)",
-        arrayTecno:[],
+        description: "",
+        arrayTecno:['Relacionada (MySQL, PostgreSQL, Oracle)','Base documentada (NoSQL)'],
         action: "Conoce más"
         },
         {
@@ -287,27 +286,8 @@
       '/img/logos/html5.png',
     ])
 
-    const showsection = (section: any) => {
     
-    switch (section) {
-            case 'ux':
-                console.log('🚀 ~ file: Services.vue:290 ~ showsection ~ section:', section)
-            ux.value?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-                break;
-            case 'apps':
-            apps.value?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-                break;
-            case 'webs':
-            webs.value?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-                break;
-            case 'tecnologi':
-            tecnologi.value?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-                break;
-            default:
-                break;
-        }
-       
-    }
+
 function isVisible(elm: any) {
     var rect = elm.getBoundingClientRect();
     var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);

@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-md nav-menu" :class="device?'' : 'nav-menu__mobile-content'">
+    <nav class="navbar navbar-expand-md nav-menu nav-menu__mobile-content" >
         <div 
         :class="device? 'container':'container-fluid '"
         :data-toggle="toggler"
@@ -48,11 +48,13 @@
                 </ul>
             </div>
 
-            <button class="btn btn-nav" type="button" :class="toggler?'nav-menu__mobile-contact' : ''"
+            <a 
+            :href="`#${path.split('/')[1]}`" class="btn btn-nav" type="button" :class="toggler?'nav-menu__mobile-contact' : ''"
             :data-mobile="!device"
+            @click="() => changePage()"
             >
                 Contacto
-            </button>
+            </a>
         </div>
     </nav>
 </template>
@@ -60,19 +62,26 @@
 
 const toggler = ref<any>(false);
 const device = ref<boolean>(true);
+const path = ref<string>('/Home');
+const route = useRoute();
+path.value = route.path === '/' ? '/Home' : route.path;;
+
 
 const changePage = () => {
   toggler.value = false;
 };
 
 
+watch (() => route.path, (value) => {
+    path.value = value === '/' ? '/Home' : value;;
+    console.log('path', value)
+})
 
 watch(() =>  toggler.value, (value) => {
   if (value) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "auto";
-   
   }
 });
 
@@ -182,9 +191,18 @@ border: none;
 }
 
 .router-link-active{
-    border-bottom: 1px solid var(--primary-color);
+    position: relative;
     color: black;
     font-weight: 600;
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--primary-color);
+    }
 }
 @media screen and (max-width: 768px) {
     .nav-menu{
