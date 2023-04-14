@@ -296,7 +296,7 @@
           
           title_tecno: "Arrendamiento automotriz",
           
-          text_tecno: "Descripción: Aplicación web para la solicitud y pre-autorización de un arrendamiento automotriz.",
+          text_tecno: "Aplicación web para la solicitud y pre-autorización de un arrendamiento automotriz.",
           sub_title_tecno: "TECNOLOGÍAS",
           bullets: [
             "Análisis",
@@ -310,7 +310,7 @@
           
           title_tecno: "Marketplace Seminuevos",
           
-          text_tecno: "Descripción: Aplicación web para la compra y venta de autos seminuevos. Los principales grupos automotrices del país exponen su inventario para que los clientes adquieran su próximo vehículo.",
+          text_tecno: "Aplicación web para la compra y venta de autos seminuevos. Los principales grupos automotrices del país exponen su inventario para que los clientes adquieran su próximo vehículo.",
           sub_title_tecno: "TECNOLOGÍAS",
           bullets: [
             "Análisis",
@@ -338,12 +338,12 @@
   ]);
 
   const brands = ref<any>([
-    '/home/toyota.png',
-    '/home/cartera.png',
-    '/home/vanguardia.png',
-    '/home/optimum.png',
-    '/home/movicar.png',
-    '/home/tingit.png',
+    '/home/toyota.webp',
+    '/home/cartera.webp',
+    '/home/vanguardia.webp',
+    '/home/optimum.webp',
+    '/home/movicar.webp',
+    '/home/tingit.webp',
   ])
   const show = (index: any) => {
       card_active.value = index;

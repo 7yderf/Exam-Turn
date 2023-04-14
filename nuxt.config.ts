@@ -11,8 +11,8 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'es'},
       meta: [
         { 
-          name: 'Turn My App - Desarrollo de software a la medida',
-          content: 'Especialistas en desarrollar sistemas que transforman la manera de hacer negocios',
+          name: 'Turn My App - Especialistas en desarrollar sistemas web y aplicaciones móviles que transforman la manera de hacer negocios',
+          content: 'Especialistas en desarrollar sistemas web y aplicaciones móviles que transforman la manera de hacer negocios',
           
           
         },
@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     Disallow: '/',
     BlankLine: true ,
     Comment: 'Comment here',
-    Sitemap: (req: any) => `https://${req.headers.host}/sitemap.xml`,
+    Sitemap: 'https://turnv.demosturn.com/sitemap.xml'
   }],],
   
   imports: {
@@ -55,7 +55,7 @@ export default defineNuxtConfig({
       plugins: [
        VueI18nVitePlugin({
         include: [
-         resolve(dirname(fileURLToPath(import.meta.url)), './locales/*.json')
+          resolve(dirname(fileURLToPath(import.meta.url)), './locales/*.json')
          ]
        })
       ]
