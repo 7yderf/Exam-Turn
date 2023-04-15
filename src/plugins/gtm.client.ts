@@ -8,20 +8,23 @@ export default defineNuxtPlugin(nuxtApp => {
 		if (gtmContainerId) {
 			useHead({
 				script: [
+          {
+            children:`<script async src='https://www.googletagmanager.com/gtag/js?id=${gtmContainerId}'><script>`,
+            tagPriority: 'high',
+          },
 					{
-						children: `(window.dataLayer = window.dataLayer || [];
+						children: `window.dataLayer = window.dataLayer || [];
               function gtag() {
                   dataLayer.push(arguments);
               }
               gtag('js', new Date());
-              gtag('config', ${gtmContainerId}));`,
+              gtag('config', ${gtmContainerId});`,
 						tagPriority: 'high',
 					},
 				],
 				noscript: [
 					{
-						children: `<script async src="https://www.googletagmanager.com/gtag/js?id=${gtmContainerId}"></script>
-            <script>`,
+						children:`<script async src='https://www.googletagmanager.com/gtag/js?id=${gtmContainerId}'><script>`,
 						tagPosition: 'bodyOpen',
 					},
 				],
