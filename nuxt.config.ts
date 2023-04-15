@@ -68,6 +68,8 @@ export default defineNuxtConfig({
         API_BASE_URL: process.env.API_BASE_URL || "http://localhost:3000",
         siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://urlpage.com',
         gtmContainerId: process.env.NUXT_PUBLIC_GTM_CONTAINER_ID || 'GTM-XXXXXXX',
+        fcbContainerId: process.env.NUXT_PUBLIC_FCB_CONTAINER_ID || 'FCB-XXXXXXX',
+        adsContainerId: process.env.NUXT_PUBLIC_ADS_CONTAINER_ID || 'ADS-XXXXXXX',
         // otherUrl: process.env.OTHER_URL || "default_other_url"
       }
     },
