@@ -11,13 +11,13 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'es'},
       meta: [
         { 
-          name: 'Turn My App - Especialistas en desarrollar sistemas web y aplicaciones móviles que transforman la manera de hacer negocios',
-          content: 'Especialistas en desarrollar sistemas web y aplicaciones móviles que transforman la manera de hacer negocios',
+          name: 'Turn My App - Desarrollo de software a la medida',
+          content: 'Especialistas en desarrollar sistemas que transforman la manera de hacer negocios',
           
           
         },
       ],
-      link: [{rel: 'icon', type: 'image/png', href: '/favicon.png'}]
+      link: [{rel: 'icon', type: 'image/png', href: '/favicon.png'}],
     },
   },
   css: [
@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     Disallow: '/',
     BlankLine: true ,
     Comment: 'Comment here',
-    Sitemap: 'https://turnv.demosturn.com/sitemap.xml'
+    Sitemap: (req:any) => `https://${req.headers.host}/sitemap.xml`
   }],],
   
   imports: {
@@ -55,7 +55,7 @@ export default defineNuxtConfig({
       plugins: [
        VueI18nVitePlugin({
         include: [
-          resolve(dirname(fileURLToPath(import.meta.url)), './locales/*.json')
+          resolve(dirname(fileURLToPath(import.meta.url)), './locales/**')
          ]
        })
       ]
@@ -67,6 +67,7 @@ export default defineNuxtConfig({
       public: {
         API_BASE_URL: process.env.API_BASE_URL || "http://localhost:3000",
         siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://urlpage.com',
+        gtmContainerId: process.env.NUXT_PUBLIC_GTM_CONTAINER_ID || 'GTM-XXXXXXX',
         // otherUrl: process.env.OTHER_URL || "default_other_url"
       }
     },
