@@ -231,7 +231,7 @@
   
   const app_tecnologics = ref<any>([
       {
-          image_left: "/carrusel/toyota.png",
+          image_left: "/carrusel/toyota.webp",
           
           title_tecno: "Sitio 360 para seminuevos",
           
@@ -246,7 +246,7 @@
         ],
       },
       {
-          image_left: "/carrusel/cartera.png",
+          image_left: "/carrusel/cartera.webp",
           
           title_tecno: "App para la gestión de carteras",
           
@@ -263,7 +263,7 @@
         ],
       },
       {
-          image_left: "/carrusel/tingit.png",
+          image_left: "/carrusel/tingit.webp",
           
           title_tecno: "Sistema para transportistas",
           
@@ -278,7 +278,7 @@
         ],
       },
       {
-          image_left: "/carrusel/optimum.png",
+          image_left: "/carrusel/optimum.webp",
           
           title_tecno: "ERP a la medida",
           
@@ -292,7 +292,7 @@
         ],
       },
       {
-          image_left: "/carrusel/movi.png",
+          image_left: "/carrusel/movi.webp",
           
           title_tecno: "Arrendamiento automotriz",
           
@@ -306,7 +306,7 @@
         ],
       },
       {
-          image_left: "/carrusel/autodeal.png",
+          image_left: "/carrusel/autodeal.webp",
           
           title_tecno: "Marketplace Seminuevos",
           
@@ -321,7 +321,7 @@
         ],
       },
       {
-          image_left: "/carrusel/progreza.png",
+          image_left: "/carrusel/progreza.webp",
           
           title_tecno: "Fitness App",
           
@@ -334,16 +334,30 @@
             "Desarrollo móvil",	
             "DevOps",
         ],
+      },
+      {
+          image_left: "/carrusel/vanguardia.webp",
+          
+          title_tecno: "Marketplace seminuevos",
+          
+          text_tecno: "Uno de los principales grupos de Guadalajara. Aplicación web para la compra y venta de autos seminuevos. Además, cuenta con una herramienta de valuación para conocer el precio de tu vehículo. ",
+          sub_title_tecno: "TECNOLOGÍAS",
+          bullets: [
+            "Análisis",
+            "Diseño",
+            "Desarrollo web",
+            "DevOps",
+        ],
       }
   ]);
 
   const brands = ref<any>([
-    '/home/toyota.webp',
-    '/home/cartera.webp',
-    '/home/vanguardia.webp',
-    '/home/optimum.webp',
-    '/home/movicar.webp',
-    '/home/tingit.webp',
+    '/home/toyota.png',
+    '/home/cartera.png',
+    '/home/vanguardia.png',
+    '/home/optimum.png',
+    '/home/movicar.png',
+    '/home/tingit.png',
   ])
   const show = (index: any) => {
       card_active.value = index;
@@ -363,7 +377,7 @@
    useHead({
    title: 'Inicio', 
    link: [
-     {rel: 'canonical', href: 'https://cozy-cobbler-561525.netlify.app'  },
+     {rel: 'canonical', href: 'https://turn.com.mx/'  },
    ],
   })
   useSeoMeta({

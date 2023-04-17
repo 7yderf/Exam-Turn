@@ -1,12 +1,12 @@
 <script setup lang="ts">
 useHead({
-  titleTemplate: (title) => title ? `${title} - Turn My App - Especialistas en desarrollar sistemas web y aplicaciones móviles` : 'Turn My App - Especialistas en desarrollar sistemas web y aplicaciones móviles',
+  titleTemplate: (title) => title ? `${title} - Turn - Especialistas en sistemas web y apps móviles` : 'Turn My App - Especialistas en sistemas web y apps móviles',
 })
 useServerSeoMeta({
   title: 'Turn',
   ogTitle: 'Turn my app',
   ogType: 'website',
-  ogUrl: 'https://turnv.demosturn.com/',
+  ogUrl: 'https://turn.com.mx/',
   ogLocale: 'es_MX',
   description: 'Especialistas en desarrollar sistemas web y aplicaciones móviles que transforman la manera de hacer negocios',
   ogDescription: 'Especialistas en desarrollar sistemas web y aplicaciones móviles que transforman la manera de hacer negocios',

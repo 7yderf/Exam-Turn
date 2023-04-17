@@ -23,10 +23,7 @@ export default defineNuxtPlugin(nuxtApp => {
 					},
 				],
 				noscript: [
-					{
-						children:`<script async src='https://www.googletagmanager.com/gtag/js?id=${gtmContainerId}'><script>`,
-						tagPosition: 'bodyOpen',
-					},
+					{},
 				],
 			})
 		}
