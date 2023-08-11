@@ -10,27 +10,51 @@
       </h3>
       <div class="form__box form__box--mobile">
         <FormVTextInput
+        type="text"
+        name="name"
+        label="Nombre"
+        placeholder="Nombre"
+        icon="/icon/sms.svg"
+        />
+        
+        
+        <FormVTextInput
+        type="text"
+        name="rfc"
+        label="rfc"
+        placeholder="rfc"
+        icon="/icon/building.svg"
+        />
+
+        <FormVTextInput
         type="mail"
         name="email"
         label="Correo electrónico"
         placeholder="Correo electrónico"
         icon="/icon/sms.svg"
         />
+
+        <FormVTextInput
+        type="password"
+        name="password"
+        label="Contraseña"
+        placeholder="Contraseña"
+        icon="/icon/building.svg"
+        />
+
+        <FormVTextInput
+        type="text"
+        name="tipe_account"
+        label="Tipo de cuenta"
+        placeholder="Tipo de cuenta"
+        icon="/icon/building.svg"
+        />
         
-        <div class="form__box">
-          <FormVTextInput
-            type="text"
-            name="password"
-            label="Contraseña"
-            placeholder="Contraseña"
-            icon="/icon/building.svg"
-          />
-        </div>
       </div>
                   
       <div class="form__submit" type="submit">
         <button class="form__submit-btn">
-            Quiero que me contacten
+            crear cuenta nueva
         </button>
       </div>                                                       
     </VForm>      
@@ -43,36 +67,42 @@
     import { useForm } from 'vee-validate';
     // import { object, string, ref as yupRef } from "yup";
     import * as yup from "yup";
-    import useAuth from "@/composables/useAuth";
-    import { useAuthentication } from '@/stores/AuthStore'
+    import useNewAccount from "@/composables/useAccount";
     
-    const { login } = useAuth();
+    
+    const {  newAcoount } = useNewAccount();
   
     const { handleSubmit } = useForm();
     const swal = inject("$swal");
     // const config = useRuntimeConfig();
     const formValues = ref({
-      email: "",
-      password: "",
-      name: "",
+      'name' : '',
+      'rfc' : '',
+      'email' : '',
+      'password' : '',
+      'tipe_account' : '',
     });
 
     
     
     const schema = markRaw(
       yup.object().shape({
+        name: yup.string().required("El dato es obligatorio"),
+        rfc: yup.string().required("El dato es obligatorio"),
         password: yup.string().required("El dato es obligatorio"),
         email: yup
           .string()
           .required("El dato es obligatorio")
           .email("Porfavor ingrese un formato valido"),
-        
-      })
+        'tipe_account': yup.string().required("El dato es obligatorio"),
+      }),
+
     );
 
     const onSubmit = async (values, { resetForm }) => {
+    console.log("🚀 ~ file: CreateAccount.vue:103 ~ onSubmit ~ values:", values)
 
-    const { data, error } = await login(values);
+    const { data, error } = await newAcoount(values);
 
     console.log(data);
 

@@ -43,7 +43,9 @@
               </div>
             </div>
             <span
-              class="input__check--select"
+              @click="showclick"
+              
+              class="input__check--select click"
               :data-check="meta.valid && meta.touched"
             >
               <img src="/icon/arrow-down.svg" alt="">
@@ -104,7 +106,8 @@ const mod = ref(false);
     
     const serchParams = (value) => {
       console.log(value);
-      searchGlobal.value = value.value;
+      searchGlobal.value = value.name;
+      opcionSerch.value = false;
       // emit("cityValue", value.value);
     };
   
@@ -114,22 +117,27 @@ const mod = ref(false);
         {
         id: 1,
         value: 300000,
-        name: '$300,000'
+        name: '+ MXN $300,000'
         },
         {
         id: 2,
         value: 700000,
-        name: '$700,000'
+        name: '+ MXN $700,000'
         },
         {
         id: 3,
         value: 1500000,
-        name: '$1500,000'
+        name: '+ MXN $1,500,000'
         }
       ];
       
     };
 
+    const showclick = () => {
+      opcionSerch.value = !opcionSerch.value;
+      console.log('🚀 ~ file: VSelectInput.vue:137 ~ showclick ~  opcionSerch.value:',  opcionSerch.value)
+      debounceInput();
+    };
     // const debounceInput = _.debounce(async () => {
     //   const { data } = await ApiService.get(
     //       `/api/cities?search=${searchGlobal.value}`
@@ -147,6 +155,9 @@ const mod = ref(false);
 <style lang="scss" scoped>
 @import "@/assets/scss/Input.scss";
 
+.click{
+  cursor: pointer;
+}
 .search {
   &__content-search {
     position: relative;

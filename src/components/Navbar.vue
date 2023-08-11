@@ -23,20 +23,20 @@
                         </NuxtLink>
                     </li>
                     <li class="nav-item" @click="() => changePage()">
-                        <NuxtLink class="nav-link" to="./Services">
-                            Servicios
+                        <NuxtLink class="nav-link" to="/login">
+                           Login
                         </NuxtLink>
                     </li>
                     <li class="nav-item"  @click="() => changePage()">
-                        <NuxtLink class="nav-link" to="./Methodologies">
-                            Metodologías
+                        <NuxtLink class="nav-link" to="/admin">
+                            admin
                         </NuxtLink>
                     </li>
-                    <li class="nav-item"  @click="() => changePage()">
+                   <!--  <li class="nav-item"  @click="() => changePage()">
                         <NuxtLink class="nav-link" to="./About">
                             Nosotros
                         </NuxtLink>
-                    </li>
+                    </li> -->
                     <!-- <li class="nav-item">
                       <form>
                           <select id="locale-select" v-model="$i18n.locale">
@@ -48,32 +48,47 @@
                 </ul>
             </div>
 
-            <a 
+            <!-- <a 
             :href="`#${path.split('/')[1]}`" class="btn btn-nav" type="button" :class="toggler?'nav-menu__mobile-contact' : ''"
             :data-mobile="!device"
             @click="() => changePage()"
             >
                 Contacto
-            </a>
+            </a> -->
+
+            <button @click="() => exit()">
+                Logout
+            </button>
         </div>
     </nav>
 </template>
 <script lang="ts" setup>
 
+import useAuth from "@/composables/useAuth";
+
 const toggler = ref<any>(false);
 const device = ref<boolean>(true);
 const path = ref<string>('/Home');
 const route = useRoute();
+
 path.value = route.path === '/' ? '/Home' : route.path;;
 
-
+const { logout } = useAuth();
 const changePage = () => {
   toggler.value = false;
 };
 
+const exit = async() => {
+  const {data, error} = await logout();
+  if(data.value){
+      console.log("🚀 ~ file: Navbar.vue:83 ~ exit ~ data:", data.value)
+    navigateTo('/login');
+  }
+};
+
 
 watch (() => route.path, (value) => {
-    path.value = value === '/' ? '/Home' : value;;
+    path.value = value === '/' ? '/Home' : value;
     console.log('path', value)
 })
 

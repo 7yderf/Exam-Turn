@@ -2,14 +2,16 @@
 export default defineNuxtPlugin(nuxtApp => {
 	nuxtApp.hooks.hook('vue:setup', () => {
 		const {
-			public: { gtmContainerId },
+			public: { gtmContainerId, IS_PROD },
 		} = useRuntimeConfig()
 
-		if (gtmContainerId) {
+		if (!!IS_PROD && gtmContainerId) {
+			console.log("🚀 ~ file: gtm.client.ts:9 ~ nuxtApp.hooks.hook ~ IS_PROD:", IS_PROD)
 			useHead({
 				script: [
           {
-            children:`<script async src='https://www.googletagmanager.com/gtag/js?id=${gtmContainerId}'><script>`,
+						async: true,
+            src:`https://www.googletagmanager.com/gtag/js?id=${gtmContainerId}`,
             tagPriority: 'high',
           },
 					{
@@ -18,7 +20,7 @@ export default defineNuxtPlugin(nuxtApp => {
                   dataLayer.push(arguments);
               }
               gtag('js', new Date());
-              gtag('config', ${gtmContainerId});`,
+              gtag('config', '${gtmContainerId}');`,
 						tagPriority: 'high',
 					},
 				],

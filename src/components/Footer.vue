@@ -14,13 +14,13 @@
       </a>
     </div>
     <div class="footer__legal-box">
-      <NuxtLink  class="footer__legal-link" to="./Privacynotice">
+      <!-- <NuxtLink  class="footer__legal-link" to="./Privacynotice">
         Términos y condiciones
       </NuxtLink>
      
       <NuxtLink  class="footer__legal-link" to="./Privacynotice">
         Aviso de privacidad
-      </NuxtLink>
+      </NuxtLink> -->
       
     </div>
     <p class="footer__copyright">

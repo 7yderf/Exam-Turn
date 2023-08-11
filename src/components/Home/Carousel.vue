@@ -28,18 +28,7 @@
       }" :modules="modules">
       <swiper-slide class="px-1" v-for="(card, index) in cards" 
       :key="index">
-        <HomeCardApps 
-          v-if="type === 'apps'"
-          :key="index" 
-          :img_device="card.img_device"
-          :image_top="card.icon_tecno"
-          :title="card.title_tecno" 
-          :description="card.text_tecno" 
-          :subtitle="card.sub_title_tecno" 
-          :logos="card.tecnologias"
-          :cardActive="0" 
-          :id="index + 1" 
-        />
+        
         <HomeCardslide
           v-if="type === 'tecno'"
           :image_left="card.image_left"
@@ -50,29 +39,9 @@
           :subtitle="card.sub_title_tecno"
           :bullets="card.bullets"
         />
-        <AboutCardAbout
-          v-if="type === 'about'"
-          :key="index"
-          :img="card.img"
-          :title="card.title"
-          :description="card.description"
-          :type="'our'"
-          :id="index"
-        />
-        <ServicesCardSoluciones
-          v-if="type === 'soluciones'"
-          :key="index"
-          :title="card.titulo"
-          :description="card.description"
-          :action="card.action"
-        />
-        <MethodologiesCardMethodologies
-          v-if="type === 'methodologies'"
-          :key="index"
-          :title="card.titulo"
-          :description="card.description"
-          :action="card.action"
-        />
+        
+        
+        
       </swiper-slide>
 
     </swiper>

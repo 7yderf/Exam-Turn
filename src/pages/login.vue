@@ -1,5 +1,6 @@
 <template>
-  <div class="form">
+  <client-only>
+    <div class="form">
     <VForm class="form__container" 
     :validation-schema="schema" 
     :initial-values="formValues" 
@@ -35,6 +36,8 @@
       </div>                                                       
     </VForm>      
   </div>
+  </client-only>
+  
 </template>
 
 <script setup>
@@ -44,7 +47,7 @@
     // import { object, string, ref as yupRef } from "yup";
     import * as yup from "yup";
     import useAuth from "@/composables/useAuth";
-    import { useAuthentication } from '@/stores/AuthStore'
+    
     
     const { login } = useAuth();
   
@@ -87,6 +90,7 @@
         // showConfirmButton: false,
         confirmButtonColor: "green",
       });
+      navigateTo('/admin');
     }
 
     if (error.value) {
@@ -108,6 +112,9 @@
         return false;
     };
 
+    definePageMeta({
+    middleware: 'is-logged-in',
+    });
 
     onMounted(async () => {
        

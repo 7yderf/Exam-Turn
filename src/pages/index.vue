@@ -14,7 +14,7 @@
               <a href="#Home" class="home__button-solid">
                 Cotiza tu desarrollo
               </a>
-              <NuxtLink to="./Services" class="home__button-outline">
+              <NuxtLink to="#" class="home__button-outline">
                 <!-- {{ $t('text') }} -->
                 Conoce más
               </NuxtLink>
@@ -34,15 +34,9 @@
             </Teleport>
             
         </div>
-        <p class="home__text home__text--app">Aplicaciones poderosas, diseñadas y creadas con los estándares más altos de calidad
-        </p>
+        
         <div id="button_1" class="w-100 mt-5"></div>
-        <div class="home__list-1">
-          <ServicesListServices
-          :listServices="list"
-          :type="'home'"
-          />
-        </div>
+        
         
       </div>
       <div class="home__section home__section--app">
@@ -53,16 +47,8 @@
             </Teleport>
             
         </div>
-        <p class="home__text home__text--app">Ingenieria de último nivel con nuestras plataformas web, la escalabilidad es fundamental para nosotros
-        </p>
-        <div id="button_2" class="w-100 mt-5"></div>
-        <div class="home__list-1">
-          <ServicesListServices
-          :listServices="list_app_web"
-          :type="'home'"
-          />
-        </div>
         
+        <div id="button_2" class="w-100 mt-5"></div>
       </div>
 
       
@@ -97,63 +83,6 @@
                           
           <p class="home__text  home__text--agil">Trabajamos de manera ágil para adaptarnos rápidamente a los cambios y entregar valor constante a nuestros clientes a través de colaboración y entregas incrementales.</p>
                 
-          <div v-if="device" class="home__agil">
-            <div class="home__agil-box-backlog">
-              <p class="home__text home__text--tit-agil">
-                Backlog
-              </p>
-              <HomeCardColor :text="'Pruebas'" :color="'#D6FBE0'" />
-              <HomeCardColor :text="'Requerimientos'" :color="'#D6E3FB'" />
-              <HomeCardColor :text="'Mantenimiento'" :color="'#FBDED6'" />
-              <HomeCardColor :text="'Despliegue'" :color="'#FBDED6'" />
-              <HomeCardColor :text="'Implementación'" :color="'#D6FBE0'" />
-              <HomeCardColor :text="'Análisis y diseño'" :color="'#D6E3FB'" />
-              <p class="home__text home__text--tit-agil mt-5">
-                Sprint backlog
-              </p>
-              <div class="home__agil-backlog">
-                <HomeCardColor :text="'Sprint 1'" :color="''" :whith="'100%'"  />
-                <HomeCardColor :text="'Análisis y diseño'" :color="'#D6E3FB'" :whith="'100%'" />
-                <HomeCardColor :text="'Requerimientos'" :color="'#D6E3FB'" :whith="'100%'" />
-              </div>
-              <div class="home__agil-backlog">
-                <HomeCardColor :text="'Sprint 2'" :color="''" :whith="'100%'" />
-                <HomeCardColor :text="'Implementación'" :color="'#D6FBE0'" :whith="'100%'" />
-                <HomeCardColor :text="'Pruebas'" :color="'#D6FBE0'" :whith="'100%'" />
-              </div>
-              <div class="home__agil-backlog">
-                <HomeCardColor :text="'Sprint 3'" :color="''" :whith="'100%'" />
-                <HomeCardColor :text="'Despliegue'" :color="'#FBDED6'" :whith="'100%'" />
-                <HomeCardColor :text="'Mantenimiento'" :color="'#FBDED6'" :whith="'100%'" />
-              </div>
-            </div>
-            <div class="home__agil-circle">
-                <HomeImgCircle />
-            </div>
-            <div class="home__agil-img">
-                <p class="home__text home__text--tit-agil">Incrementos</p>
-                <img src="/Fases.png" alt="">
-            </div>
-          </div>
-          <div v-if="!device" class="home__agil">
-            <VLightgallery
-              :settings="{ speed: 500, close:true,  plugins: plugins  }"
-            >
-              <a
-                data-lg-size=""
-                class="gallery-item"
-                data-src="/agil.png"
-                data-sub-html=""
-                w-100
-              >
-                <img
-                  class=" w-100"
-                  src="/agil.png"
-                />
-              </a>
-
-            </VLightgallery>
-          </div>
          
       </div>
 
@@ -169,9 +98,9 @@
                           <h4 class="home__subtitle">Estamos encantados de oir tu proyecto.</h4>
                       </div>
                       
-                      <div class="p-2">
+                      <!-- <div class="p-2">
                           <Contact />
-                      </div>
+                      </div> -->
 
                   </div>
   
@@ -187,14 +116,11 @@
 <script lang="ts" setup>
   import { ref, onMounted } from "vue";
   import {useI18n} from "vue-i18n";
-  import lgZoom  from 'lightgallery/plugins/zoom/lg-zoom.umd';
 
-  
- 
-  
+  // configuracíon de lightgallery
+  // import lgZoom  from 'lightgallery/plugins/zoom/lg-zoom.umd';
+  // const plugins = [lgZoom];
 
-
-  const plugins = [lgZoom];
   const { t, tm } = useI18n();
   const card_active = ref(1);
   const list = ref<any>(tm('list_app_movile'))
@@ -209,25 +135,7 @@
         list.value = tm('list_app_movile');
     });
 
-  const list_app_web = ref([
-        {
-            titulo: "Herramientas de seguimiento",
-            description: "Amplia experiencia en el diseño y desarrollo de herramientas ERP; CRM; DMS; TMS, entre otros, completamente adaptados a tu operación",
-        },
-        {
-            titulo: "Sitios 360",
-            description: "Interconecta tus herramientas de seguimiento con un sitio para cliente final y no pierdas de vista ninguna parte del proceso",  
-        },
-        {
-            titulo: "Ecommerce",
-            description: "Bríndale a tus clientes una experiencia completamente digital, y maximiza tus ventas con un ecommerce de vanguardia",
-        },
-        {
-            titulo: "Mobile first",
-            description: "Algunos lo consideran un extra, en TURN es obligatorio.\nNuestros desarrollos web se visualizan y funcionan de manera óptima desde cualquier dispositivo móvil",
-        }
-        
-    ]);
+  
   
   const app_tecnologics = ref<any>([
       {
@@ -359,9 +267,7 @@
     '/home/movicar.png',
     '/home/tingit.png',
   ])
-  const show = (index: any) => {
-      card_active.value = index;
-  };
+ 
 
   onMounted(async () => {
 

@@ -25,13 +25,23 @@ export default defineNuxtConfig({
     '@/assets/fonts/outfit/style.css',
   ],
   srcDir: 'src',
-  modules: ['nuxt-icon', '@pinia/nuxt', 'nuxt-simple-sitemap', ['@nuxtjs/robots', {
-    UserAgent: '*',
-    Disallow: '/',
-    BlankLine: true ,
-    Comment: 'Comment here',
-    Sitemap: (req:any) => `https://${req.headers.host}/sitemap.xml`
-  }],],
+  modules: 
+  [
+    'nuxt-icon', '@pinia/nuxt', 'nuxt-simple-sitemap', 
+    //si el variable de entorno es develop no inciar el robots
+    process.env?.NUXT_PRODUCTION &&
+    [
+      '@nuxtjs/robots', 
+      {
+        UserAgent: '*',
+        Disallow: '/',
+        BlankLine: true ,
+        Comment: 'Comment here',
+        Sitemap: 'https://turn.com.mx/sitemap.xml'
+      }
+    ],
+
+  ],
   
   imports: {
     dirs: ['./stores'],
@@ -41,7 +51,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: [ '/', '/about', '/methodologies', '/services'  ]
+      routes: [ '/', '/login', '/admin'  ]
     }
   },
   // hooks: {
@@ -70,6 +80,7 @@ export default defineNuxtConfig({
         gtmContainerId: process.env.NUXT_PUBLIC_GTM_CONTAINER_ID || 'GTM-XXXXXXX',
         fcbContainerId: process.env.NUXT_PUBLIC_FCB_CONTAINER_ID || 'FCB-XXXXXXX',
         adsContainerId: process.env.NUXT_PUBLIC_ADS_CONTAINER_ID || 'ADS-XXXXXXX',
+        IS_PROD: process.env?.NUXT_PRODUCTION || '',
         // otherUrl: process.env.OTHER_URL || "default_other_url"
       }
     },

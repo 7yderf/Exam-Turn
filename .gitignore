@@ -4,3 +4,4 @@
 .nitro
 .cache
 .DS_Store
+node_modules
