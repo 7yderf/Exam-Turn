@@ -2,10 +2,10 @@
 import { ref, onMounted, watch } from "vue";
 
 
-const { products, productsOffers } = useProducts();
-const { products_list, error }: any = await products();
+const {useFetch } = useProducts();
+const { products_list, error }: any = await useFetch('highlights');
 console.log("🚀 ~ file: index.vue:6 ~ products_list:", products_list)
-const { products_offers, error: error_offers }: any = await productsOffers();
+const { products_list:products_offers, error: error_offers }: any = await useFetch('offers');
 console.log("🚀 ~ file: index.vue:8 ~ products_offers:", products_offers)
 
 const device = ref<boolean>(true);
@@ -56,9 +56,9 @@ useSeoMeta({
         <div id="transport-prod"></div>
       </div>
       <div class="row mt-5 w-100">
-        <HomeCarousel v-if="!device" :cards="products_list.data" :type="'tecno'" />
+        <HomeCarousel v-if="!device" :cards="products_list?.data || []" :type="'tecno'" />
         <div class="home__card-desktop-box" v-if="device">
-          <div class="home__card-desktop" v-for="(card, index) in products_list.data" :key="index">
+          <div class="home__card-desktop" v-for="(card, index) in products_list.data || []" :key="index">
             <HomeCardslide 
               :sale="card?.Sale" 
               :type="card.Type" 
@@ -104,9 +104,9 @@ useSeoMeta({
         <div id="transport-sale"></div>
       </div>
       <div class="row mt-5 w-100">
-        <HomeCarousel v-if="!device" :cards="products_offers.data" :type="'tecno'" />
+        <HomeCarousel v-if="!device" :cards="products_offers?.data || [] " :type="'tecno'" />
         <div class="home__card-desktop-box" v-if="device">
-          <div class="home__card-desktop" v-for="(card, index) in products_offers.data" :key="index">
+          <div class="home__card-desktop" v-for="(card, index) in products_offers?.data || []" :key="index">
             <HomeCardslide 
               :sale="card?.Sale" 
               :type="card.Type" 
