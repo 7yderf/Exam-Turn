@@ -16,3 +16,18 @@ export const useMediaQuery = (query: query = null) => {
     windowSize
   };
 };
+
+
+export const useShowMenu = () => useState('showMenu', () => false);
+
+export const useToggler = () => useState('toggler', () => false);
+
+export const useformatPrice = (value:any) => {
+  const formatter = new Intl.NumberFormat("en-US", {
+  currency: "USD",
+  style: "currency",
+  maximumFractionDigits: 2,
+  minimumFractionDigits: 2,
+})
+  return formatter.format(value)
+};

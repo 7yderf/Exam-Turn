@@ -2,120 +2,157 @@
 
 <template>
     <div class="row carSlide">
-        <div class="home__five-img carSlide__left g-0">
-            <img :src="image_left" alt="portfolio" class="img__default" />
+        <div class="home__five-img  g-0">
+            <!-- <img :src="images[0].link" alt="portfolio" class="img__default" /> -->
+						<CardSlider :images="images" />
         </div>
-        <div class="col-12  carSlide__rigth">
-            <div class="content-leyend">
-                <span class="label-leyend-logo">
-                    <p>{{ title }}</p>
-                </span>
+        <div class="carSlide__text-content">
+            <div class="carSlide__data">
+							<div class="carSlide__box-hero">
+                <CardBullet :bullet="type" />
+                <p class="carSlide__title">
+                    {{ name }}
+                </p>
             </div>
-            <p class="home__text carSlide__text">
-                {{ description }}
-            </p>
+            <div class="carSlide__info">
+                <span class="carSlide__info-text">{{ brand }}</span>
+                <span class="carSlide__info-text">{{ model }}</span>
+                <span class="carSlide__info-text">{{ code }}</span>
+						</div>
             <!-- <p class="turn-card-text-small text-start">{{subtitle}}</p> -->
-            <div class="d-flex gap-3 flex-wrap my-5">
-                <button v-for="(bullet, index) in bullets" :key="index" class="carSlide__bullets">{{ bullet }}</button>
+            <div class="carSlide__prices">
+							<span class="carSlide__prices-text-price">
+								{{ useformatPrice(priceMax) }}
+							</span>
+							<span class="carSlide__prices-text-sale">
+								{{ useformatPrice(priceMax) }}
+							</span>
+                
             </div>
+						</div>
+						<div class="carSlide__cart">
+							<icon name="ri:shopping-cart-2-fill" class="carSlide__icon" />
+						</div>
         </div>
     </div>
 </template>
 <script lang="ts" setup>
-    import { defineProps } from "vue";
 
-    const active = ref(1);
-
-   const props = defineProps<{
-        image_left: string,
-       
-        title: string,
-        
-        description: string,
-        subtitle: string,
-        bullets: string[],
-    }>();
+import { defineProps } from "vue";
+type arrayImages = {
+		link: string;
+		Type: string;
+};
 
 
-    // watch(() => props.cardActive, (value) => {
-    //     console.log("cardActive ", value);
-    //     active.value = value;
-    // });
-    
+const props = defineProps<{
+    sale?: {
+			type: string;
+			default: "";
+		}
+		type: string;
+		name: string;
+		brand: string;
+		model: string;
+		code: string;
+		priceMax: number;
+		priceSale?: number
+		isQuote?: string;
+		images: arrayImages[];
+}>();
 
-    
+
+
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/Mixins";
-.carSlide{
+
+.carSlide {
     align-items: center;
     flex-direction: column;
     width: 100%;
     margin: auto;
     border: 0.5px solid #ffffff;
     flex-direction: column;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(2px);
+    
     /* Note: backdrop-filter has minimal browser support */
     margin: 0;
     padding: 0;
-    border-radius: 20px;
     gap: 24px;
 
-    &__text{
-        @include text(1.8rem, lighter, 3.2rem, left);
-        color: #FFF;
-        flex-grow: 1;
+
+    &__text-content {
+        display: flex;
+        
     }
-    &__rigth{
+    &__data {
         display: flex;
         flex-direction: column;
-        
         flex-grow: 1;
-        padding: 0 32px;
     }
-    &__bullets{
-        @include button(bullet);
-        @include text(1.3rem, 400, 2rem, left);
-        flex: wrap;
-        width: max-content;
-        padding: 8px 12px;
-        border-radius: 12px; 
-        height: auto
-    }
-    @include for-size(tablet-portrait){
-        &__rigth{
-            padding: 0 8px;
-        }
-    }
-}
-.content-leyend{
-    display: flex;
-    align-items: center;
-   flex-wrap: nowrap;
-   min-height: 102px;
-   @include for-size(tablet-portrait){
-        min-height: 50px;
-    }
-}
-.label-leyend-logo{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    p{
-   @include text(4rem, 400, 4.6rem, left);
-   max-width: 350px;
-   color: #FFF;
-    }
-    @include for-size(tablet-portrait){
-        p{
-            font-size:3.2rem;
-            line-height: 3.6rem;
-            max-width: inherit;
-        }
-    }
-}
+		&__cart{
+			@include flex(center, false, flex-end);
+			
+		}
+		&__icon{
+			color: #1A1A1A;
+			margin: 0;
+			border: 1px solid #1a1a1a31;
+			padding: 3px;
+		}
 
+    &__box-hero {
+        @include flex(center, 8px, flex-start);
+       flex-direction: column;
+        @include for-size(tablet-portrait) {
+            min-height: 50px;
+        }
+    }
+
+    &__title {
+      font-weight: 700;  
+    }
+
+    &__info{
+			@include flex(flex-start, 8px);
+		}
+		&__info-text{
+			font-size: 12px;
+			&::before{
+				content: "•";
+				margin-right: 8px;
+			}
+			&:nth-child(1){
+				&::before{
+					content: "";
+					margin-right: 0px;
+				}
+			}
+		}
+
+		&__prices{
+			@include flex(flex-start, 8px);
+		}
+		&__prices-text-price{
+			font-size: 10px;
+			color: var(--red-color);
+			text-decoration: line-through;
+		}
+		&__prices-text-sale{
+			font-size: 14px;
+			font-weight: 500;
+			&::before{
+				content: "Ahora";
+				margin-right: 4px;
+			}
+			&::after{
+				content: "MXN";
+				margin-left: 4px;
+			}
+		}
+
+    
+}
 
 
 </style>

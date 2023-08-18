@@ -12,14 +12,36 @@
 }
 
 :root {
-  --primary-color: #ed5a30;
+  --primary-color: #4200FF;
+  --primary-lighter: #D9CCFF;
+  --primary-light: #C6B3FF;
+  --primary-darker: #0B1A28;
+  --primary-dark: #280099;
+
+  --green-color: #15B75B;
+  --green-lighter: #D1FAE3;
+  --green-light: #A3F5C7;
+  --green-darker: #0F8A45;
+  --green-dark: #0A5C2E;
+ 
+  --yellow-color: #FFD400;
+  --yellow-lighter: #FFF3C2;
+  --yellow-light: #FFEE99;
+  --yellow-darker: #CCAA00;
+  --yellow-dark: #665500;
+
+  --red-color: #FF7766;
+  --red-lighter: #FDF2F1;
+  --red-light: #FAD3D1;
+  --red-darker: #FF1C00;
+  --red-dark: #59201D;
  
   // --secondary-color: #FF5C20;
   // --bg-color: #F8FAFC;
   // --bg-second-color: ;
-  --text-color: #060606;
- --text-contrast-color:#ed5a30 ;
- --text-dark: #000;
+  --text-color: #1A1A1A;
+ --text-contrast-color: #2D679F;
+ --text-invert: #FFFFFF;
   // --neutral-color:;
   // --neutral-two-color: ;
   // --neutral-three-color: ;
@@ -29,7 +51,7 @@
   // --success-color: ;
   --error-color: #f6323f;
   // // --warning-color: ;
-  --primary-font: 'Outfit', sans-serif;
+  --primary-font: 'Satoshi', sans-serif;
   // // --secondary-font: ;
 }
 
@@ -46,7 +68,6 @@ body {
   font-family: var(--primary-font)!important;
   font-size: 1.6rem;
   min-height: 100vh;
-  background: var(--bg-color)!important;
 }
 .img-default{
   display: none;
@@ -55,8 +76,28 @@ body {
 body {
   cursor: url("/cursor.png"), default;
 }
+h1{
+  @include text(9.6rem, 700, auto);
+}
+h2{
+  @include text(6.4rem, 700, auto);
+}
+h3{
+  @include text(4.8rem, 700, auto);
+}
+h4{
+  @include text(3.6rem, 700, auto);
+}
+h5{
+  @include text(2.4rem, 500, auto);
+}
+h6{
+  @include text(2rem, 400, auto);
+}
 p{
   white-space: break-spaces;
+  @include text(1.6rem, 400, 2.4rem);
+  margin-bottom: 0;
 }
 input,
 select,
@@ -82,7 +123,7 @@ button:active {
   margin: 0;
 }
 a{
-  text-decoration: none!important;
+  text-decoration: none;
 }
 
 .scroll{
@@ -132,6 +173,13 @@ a{
   &:not([disabled]):hover {
     background-color: var(--secondary-color);
   }
+}
+.icon{
+  width: 24px;
+    height: 24px;
+    transition: 0.5s;
+    margin: 0 8px;
+    color: var(--text-invert);
 }
 
 .img__default{

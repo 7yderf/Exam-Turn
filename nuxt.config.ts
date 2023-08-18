@@ -11,18 +11,18 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'es'},
       meta: [
         { 
-          name: 'Turn My App - Desarrollo de software a la medida',
-          content: 'Especialistas en desarrollar sistemas que transforman la manera de hacer negocios',
+          name: '',
+          content: '',
           
           
         },
       ],
-      link: [{rel: 'icon', type: 'image/png', href: '/favicon.png'}],
+      link: [{rel: 'icon', type: 'image/png', href: '/favicon.ico'}],
     },
   },
   css: [
     '@/assets/scss/Global.scss',
-    '@/assets/fonts/outfit/style.css',
+    '@/assets/fonts/satoshi/style.css',
   ],
   srcDir: 'src',
   modules: 
@@ -51,7 +51,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: [ '/', '/login', '/admin'  ]
+      routes: [ '/'  ]
     }
   },
   // hooks: {

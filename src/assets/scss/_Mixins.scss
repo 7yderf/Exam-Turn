@@ -42,6 +42,7 @@
   } @else if $size == desktop-big {
     @media (max-width: 1400px) {
       @content;
+      
     }
   } @else if $size == desktop-xbig {
     @media (max-width: 1920px) {
@@ -103,10 +104,23 @@
     --border-color: var(--primary-color); 
   } @else if $type == outline {
     --bg-color: transparent;
-    --text: var(--text-contrast-color);
-    --bg-hover-color: var(--primary-color);
+    --text: var(--text-color);
+    --bg-hover-color: var(--text-color);
     --text-hover: #FFF;
-    --border-color: var(--primary-color); 
+    --border-color: var(--text-color); 
+    a{
+      color: var(--text-color)!important;
+      
+    }
+    &:hover a{
+      color:#FFF!important;
+    }
+    .icon{
+      color: var(--text-color)!important;
+    }
+    &:hover .icon{
+      color:#FFF!important;
+    }
   } @else if $type == whatassap {
   --bg-color: #00BB2D;
   --shadow: none;
@@ -118,8 +132,9 @@
   --bg-color: #F8BDAC;
   --shadow: none;
   --shadow-hover: none;
-  --text:var( --text-dark);
-  --bg-hover-color:  #eaa693;
+  --text:var( --text-invert);
+  // --bg-hover-color:  #eaa693;
+  opacity: .9;
   ;
   border: 1px solid  #eaa693;
 } @else if $type == btn-agile {
@@ -132,10 +147,11 @@
 } 
   @include flex(center, 10px);
   @include text(1.4rem, 500, 1.8rem, center);
+  text-wrap: nowrap;
   width: auto;
   max-width: $width;
-  height: 45px;
-  padding: 10px 20px;
+  // height: 45px;
+  padding: 4px 12px;
   background-color: var(--bg-color);
   text-decoration: none;
   border-radius: $radius;

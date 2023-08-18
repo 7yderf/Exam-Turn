@@ -1,7 +1,7 @@
 <template>
   <div class="col-12 mx-auto overflow-visible slide-gallery">
     <swiper class="no-seleccionable cards-agency" style="cursor: grab"
-      :navigation="true" 
+      :navigation="false" 
       :loop="true"
       :speed=700
       :slidesPerView="'auto'" 
@@ -20,8 +20,8 @@
           spaceBetween: 30,
         },
         '1280': {
-          slidesPerView: type === 'tecno' ? 3 : 4,
-          spaceBetween: type === 'tecno' ? 70 : 30,
+          slidesPerView:  4,
+          spaceBetween:  30,
         },
         
        
@@ -31,17 +31,17 @@
         
         <HomeCardslide
           v-if="type === 'tecno'"
-          :image_left="card.image_left"
-          :bullet="card.bullet"
-          :title="card.title_tecno"
-          :icon_title="card.icon_title"
-          :description="card.text_tecno"
-          :subtitle="card.sub_title_tecno"
-          :bullets="card.bullets"
+          :sale="card?.Sale"
+          :type="card.Type"
+          :name="card.Name"
+          :brand="card.brand?.Name"
+          :model="card.Model"
+          :code="card.Code"
+          :priceMax="card.PriceMax"
+          :priceSale="card?.PriceSale"
+          :isQuote="card?.IsQuote"
+          :images="card.images"
         />
-        
-        
-        
       </swiper-slide>
 
     </swiper>
@@ -82,7 +82,7 @@ $icon-arrow: url("/icon-arrow.svg");
 
   .slide-gallery {
     .swiper.cards-agency {
-      padding-bottom: 102px;
+      padding-bottom: 40px;
     
 
       &>.swiper-wrapper {
