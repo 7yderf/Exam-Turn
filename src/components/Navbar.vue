@@ -54,7 +54,7 @@
             <div id="transport"></div>
           </li>
           <li class="nav-item" @click="() => changePage()">
-            <NuxtLink class="nav-link" :data-active="toggler" to="circuits"> Circuito </NuxtLink>
+            <NuxtLink class="nav-link" :data-active="toggler" to="/circuits"> Circuito </NuxtLink>
           </li>
           <li class="nav-item" @click="() => changePage()">
             <NuxtLink class="nav-link" :data-active="toggler" to=""> Contacto </NuxtLink>
