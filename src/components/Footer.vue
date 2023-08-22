@@ -12,10 +12,10 @@
           <a href="https://www.instagram.com/optimumequipo" target="_blank" class="footer__contact">
             <Icon class="footer__icon" name="ri:instagram-fill"  />
           </a>
-          <!-- <a href="https://www.linkedin.com/company/turnmyapp" target="_blank" class="footer__contact">
+          <a href="https://youtube.com/@optimumequipo" target="_blank" class="footer__contact">
             
-            <Icon class="footer__icon" name="mdi:linkedin"  />
-          </a> -->
+            <Icon class="footer__icon" name="ri:youtube-fill"  />
+          </a>
         </div>
       </div>
       

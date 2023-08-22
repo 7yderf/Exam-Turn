@@ -15,9 +15,9 @@
           <a href="https://es-la.facebook.com/people/Optimum-Equipo/100093244458686" target="_blank">
             <icon name="ri:facebook-circle-fill" class="nav-menu__icon" />
           </a>
-          <!-- <a href="">
-            <icon name="ri:twitter-fill" class="nav-menu__icon" />
-          </a> -->
+          <a href="https://youtube.com/@optimumequipo" target="_blank">
+            <icon name="ri:youtube-fill" class="nav-menu__icon" />
+          </a>
         </div>
 
       </div>
@@ -54,7 +54,7 @@
             <div id="transport"></div>
           </li>
           <li class="nav-item" @click="() => changePage()">
-            <NuxtLink class="nav-link" :data-active="toggler" to=""> Circuito </NuxtLink>
+            <NuxtLink class="nav-link" :data-active="toggler" to="circuits"> Circuito </NuxtLink>
           </li>
           <li class="nav-item" @click="() => changePage()">
             <NuxtLink class="nav-link" :data-active="toggler" to=""> Contacto </NuxtLink>

@@ -1,0 +1,42 @@
+.products {
+  $root: &;
+  @include for-size(desktop-xbig) {}
+  @include for-size(desktop-big) {}
+  @include for-size(desktop-mid) {
+    &__card-desktop-box{
+      justify-content: center;
+      gap: 16px;
+    }
+    &__card-desktop{
+      width: 100%;
+      max-width: 250px;
+    }
+  }
+  @include for-size(desktop) {
+    &__card-desktop{
+      width: 100%;
+      max-width: 200px;
+    }
+    .home__five-img{
+      height: 200px;
+    }
+  }
+  @include for-size(tablet-landscape) {
+  }
+  @include for-size(tablet-portrait) {
+    &__title-content{
+      justify-content: space-between;
+    }
+
+  }
+  @include for-size(tablet-small) {}
+  @include for-size(phone-xbig) {
+    &__btn-outline{
+      font-size: 1.9rem;
+      margin-right: 16px;
+    }
+  }
+  @include for-size(phone-big) {}
+  @include for-size(phone-mid) {}
+  @include for-size(phone) {}
+}

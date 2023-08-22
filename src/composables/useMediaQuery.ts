@@ -1,4 +1,5 @@
 
+
 type query = string|null;
 
 export const useMediaQuery = (query: query = null) => {
@@ -31,3 +32,7 @@ export const useformatPrice = (value:any) => {
 })
   return formatter.format(value)
 };
+
+export const useApiLink = (link: "") => {
+  return  link.replace("http://ecommerce:9000/api/products", ``)
+}

@@ -1,13 +1,15 @@
 
 
 <template>
-    <div class="row carSlide">
-        <div class="home__five-img  g-0">
+    <div class="row carSlide" :data-grid="isGird">
+
+        <div class="home__five-img  g-0" :data-grid="isGird">
             <!-- <img :src="images[0].link" alt="portfolio" class="img__default" /> -->
 						<CardSlider :images="images" />
         </div>
-        <div class="carSlide__text-content">
-            <div class="carSlide__data">
+
+        <div class="carSlide__text-content" :data-grid="isGird">
+            <div class="carSlide__data" :data-grid="isGird">
 							<div class="carSlide__box-hero">
                 <CardBullet :bullet="type" />
                 <p class="carSlide__title">
@@ -16,12 +18,15 @@
             </div>
             <div class="carSlide__info">
                 <span class="carSlide__info-text">{{ brand }}</span>
-                <span class="carSlide__info-text">{{ model }}</span>
-                <span class="carSlide__info-text">{{ code }}</span>
+								<Teleport v-if="on_Mounted" :disabled="isGird" :to="`#column-${index}`">
+									<span class="carSlide__info-text">{{ model }}</span>
+                	<span class="carSlide__info-text" v-if="!(type == 'Usado')">{{ code }}</span>
+								</Teleport>
+                
 						</div>
             <!-- <p class="turn-card-text-small text-start">{{subtitle}}</p> -->
             <div class="carSlide__prices">
-							<span class="carSlide__prices-text-price">
+							<span class="carSlide__prices-text-price" v-if="priceSale">
 								{{ useformatPrice(priceMax) }}
 							</span>
 							<span class="carSlide__prices-text-sale">
@@ -31,12 +36,19 @@
             </div>
 						</div>
 						<div class="carSlide__cart">
-							<icon name="ri:shopping-cart-2-fill" class="carSlide__icon" />
+							<Teleport v-if="on_Mounted" :disabled="isGird" :to="`#column-${index}`">
+								<button class="carSlide__btn-box">
+									<icon name="ri:shopping-cart-2-fill" class="carSlide__icon" />
+								</button>
+							</Teleport>
+							
+							<div :id="`column-${index}`"></div>
 						</div>
         </div>
     </div>
 </template>
 <script lang="ts" setup>
+const on_Mounted = ref<boolean>(false);
 
 import { defineProps } from "vue";
 type arrayImages = {
@@ -55,13 +67,17 @@ const props = defineProps<{
 		brand: string;
 		model: string;
 		code: string;
-		priceMax: number;
+		priceMax?: number;
 		priceSale?: number
 		isQuote?: string;
 		images: arrayImages[];
+		isGird?: boolean;
+		index?: number;
 }>();
 
-
+onMounted(async () => {
+		on_Mounted.value = true;
+});
 
 </script>
 <style lang="scss" scoped>
@@ -69,35 +85,59 @@ const props = defineProps<{
 
 .carSlide {
     align-items: center;
-    flex-direction: column;
     width: 100%;
     margin: auto;
     border: 0.5px solid #ffffff;
     flex-direction: column;
-    
-    /* Note: backdrop-filter has minimal browser support */
     margin: 0;
     padding: 0;
     gap: 24px;
+		&[data-grid='false']{
+			flex-direction: row;
+			gap: 0;
+			align-items: stretch;
+			}
 
-
+	.home__five-img{
+		&[data-grid='false']{
+		width: 300px;
+		height: 250px;
+	 	}
+	}
     &__text-content {
         display: flex;
+				&[data-grid='false']{
+					width:100%;
+					max-width: 350px;
+					@include flex(flex-start, 8px);
+					align-items: stretch;
+				 }
         
     }
     &__data {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+				&[data-grid='false']{
+					height: 100%;
+					gap: 20px;
+				}
     }
 		&__cart{
 			@include flex(center, false, flex-end);
 			
 		}
+		&__btn-box{
+			@include button(outline);
+    gap: 0px;
+    margin: auto;
+    flex-grow: 1;
+    font-size: 1.8rem;
+		margin: 0;
+		}
 		&__icon{
-			color: #1A1A1A;
+			color: var(--text-color);;
 			margin: 0;
-			border: 1px solid #1a1a1a31;
 			padding: 3px;
 		}
 
@@ -115,6 +155,7 @@ const props = defineProps<{
 
     &__info{
 			@include flex(flex-start, 8px);
+			flex-wrap: wrap;
 		}
 		&__info-text{
 			font-size: 12px;
@@ -151,6 +192,11 @@ const props = defineProps<{
 			}
 		}
 
+		@include for-size(tablet-landscape) {
+			.home__five-img > .swiper.slider-images > .swiper-wrapper .swiper-slide{
+		height: 200px;
+		}
+		}
     
 }
 

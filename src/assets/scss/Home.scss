@@ -18,6 +18,9 @@
     }
 
   }
+  &__card-mobile{
+    display: none;
+  }
 
   &__card-desktop-box{
     @include flex(space-between, 32px 16px, stretch);

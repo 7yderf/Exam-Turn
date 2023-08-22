@@ -1,0 +1,39 @@
+@import "./Mixins";
+.products{
+  $root: &;
+  &__main{
+    @include flex(center, 32px);
+    flex-direction: column;
+    margin: 0;
+  }
+  
+  &__card-desktop-box{
+    @include flex(space-between, 32px 16px, stretch);
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 40px;
+    &[data-grid='false']{
+     flex-direction: column;
+    }
+  }
+
+  &__card-desktop{
+    width: 300px;
+    &[data-grid='false']{
+      width: 100%;
+     }
+  }
+
+  &__title-content{
+    @include flex;
+    width: 100%;
+  }
+  &__btn-outline{
+    @include button(outline);
+    gap: 0px;
+    margin: auto;
+    flex-grow: 1;
+    font-size: 1.8rem;
+  }
+}
+@import "./responsive/Products";

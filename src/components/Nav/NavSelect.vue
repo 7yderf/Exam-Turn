@@ -17,7 +17,7 @@ const showButton = () => {
 
 <template>
   <div class="nav-opcion" :data-active="dataActive">
-    <NuxtLink class="nav-link" :data-active="dataActive" to=""> Productos </NuxtLink>
+    <NuxtLink class="nav-link" :data-active="dataActive" to="/products"> Productos </NuxtLink>
     <icon name="ri:arrow-down-s-line" class="icon" @click="()=>showButton()" :data-active="dataActive" :data-show="useToggle"/>
   </div>
  

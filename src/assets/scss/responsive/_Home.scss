@@ -31,6 +31,12 @@
   }
   @include for-size(desktop) {}
   @include for-size(tablet-landscape) {
+    &__card-desktop-box{
+      display: none;
+    }
+    &__card-mobile{
+      display: block;
+    }
     &__faq{
      
       .container{

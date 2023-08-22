@@ -1,12 +1,15 @@
 <script lang="ts" setup>
+const type = ref<string>('');
 const props = defineProps<{
     bullet: string,
     version?: string
 }>();
 
+type.value = (props.bullet == 'Usado' ? 'Seminuevo' : props.bullet)  ; 
+
 </script>
 <template>
-  <button  class="bullets" :data-type="version ? version : bullet" >{{ bullet }}</button>
+  <button  class="bullets" :data-type="version ? version : bullet" >{{ type }}</button>
   
 </template>
 <style lang="scss" scoped>
@@ -23,7 +26,7 @@ const props = defineProps<{
   &[data-type="Nuevo"] {
     background-color: var(--green-color);
   }
-  &[data-type="Seminuevo"] {
+  &[data-type="Usado"] {
     background-color: var(--red-color);
   }
   &[data-type="text"] {

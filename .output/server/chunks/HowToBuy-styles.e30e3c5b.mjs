@@ -1,6 +1,0 @@
-const HowToBuy_vue_vue_type_style_index_0_scoped_f75da035_lang = "@keyframes backgroundPulse-f75da035{0%{background-position:0 0}to{background-position:100em 0}}.buyCard[data-v-f75da035]{background:#fff;border:1px solid rgba(26,26,26,.192);border-radius:5px;flex-direction:column;gap:16px;margin:0;padding:0 0 16px;width:100%}.buyCard__text-content[data-v-f75da035]{display:flex}.buyCard__data[data-v-f75da035]{display:flex;flex-direction:column;flex-grow:1}.buyCard__cart[data-v-f75da035]{align-items:flex-start;display:flex;justify-content:center}.buyCard__icon[data-v-f75da035]{border:1px solid rgba(26,26,26,.192);border-radius:50%;color:#1a1a1a;height:30px;margin:0;padding:5px;width:30px}.buyCard__box-hero[data-v-f75da035]{align-items:flex-start;display:flex;flex-direction:column;gap:8px;justify-content:center}@media (max-width:768px){.buyCard__box-hero[data-v-f75da035]{min-height:50px}}.buyCard__title[data-v-f75da035]{font-weight:700}.buyCard__info[data-v-f75da035]{align-items:center;display:flex;gap:8px;justify-content:flex-start}.buyCard__info-text[data-v-f75da035]{font-size:12px}";
-
-const HowToBuyStyles_e30e3c5b = [HowToBuy_vue_vue_type_style_index_0_scoped_f75da035_lang];
-
-export { HowToBuyStyles_e30e3c5b as default };
-//# sourceMappingURL=HowToBuy-styles.e30e3c5b.mjs.map

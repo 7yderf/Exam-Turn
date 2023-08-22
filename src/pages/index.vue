@@ -3,9 +3,9 @@ import { ref, onMounted, watch } from "vue";
 
 
 const {useFetch } = useProducts();
-const { products_list, error }: any = await useFetch('highlights');
+const { products_list, error }: any = await useFetch('highlights', null);
 console.log("🚀 ~ file: index.vue:6 ~ products_list:", products_list)
-const { products_list:products_offers, error: error_offers }: any = await useFetch('offers');
+const { products_list:products_offers, error: error_offers }: any = await useFetch('offers', null);
 console.log("🚀 ~ file: index.vue:8 ~ products_offers:", products_offers)
 
 const device = ref<boolean>(true);
@@ -18,6 +18,7 @@ onMounted(async () => {
 
   const { windowSize } = useMediaQuery("(min-width: 767px)");
   const { windowSize: mobileSize } = useMediaQuery("(min-width: 535px)");
+  
 
   device.value = windowSize.value;
   deviceMobile.value = mobileSize.value;
@@ -31,6 +32,7 @@ onMounted(async () => {
   });
 
   on_Mounted.value = true;
+  load.value = false;
 
 });
 
@@ -55,9 +57,9 @@ useSeoMeta({
         <HomeTitles title="productos destacados" />
         <div id="transport-prod"></div>
       </div>
-      <div class="row mt-5 w-100">
-        <HomeCarousel v-if="!device" :cards="products_list?.data || []" :type="'tecno'" />
-        <div class="home__card-desktop-box" v-if="device">
+      <div class="row mt-5 w-100 " v-if="!load">
+        <HomeCarousel  :cards="products_list?.data || []" :type="'tecno'"  class="home__card-mobile"/>
+        <div class="home__card-desktop-box " v-if="!load">
           <div class="home__card-desktop" v-for="(card, index) in products_list.data || []" :key="index">
             <HomeCardslide 
               :sale="card?.Sale" 
@@ -66,7 +68,7 @@ useSeoMeta({
               :brand="card.brand?.Name"
               :model="card.Model" 
               :code="card.Code" 
-              :priceMax="card.PriceMax" 
+              :priceMax="card.Price" 
               :priceSale="card?.PriceSale"
               :isQuote="card?.IsQuote" 
               :images="card.images" 
@@ -76,7 +78,7 @@ useSeoMeta({
       </div>
       <Teleport v-if="on_Mounted" :disabled="device" to="#transport-prod">
         <button class="home__btn-outline">
-          <router-link to="">Ver más</router-link>
+          <router-link to="/products">VER TODOS</router-link>
           <icon name="ri:arrow-right-line" class="home__btn-icon" />
         </button>
       </Teleport>
@@ -104,8 +106,8 @@ useSeoMeta({
         <div id="transport-sale"></div>
       </div>
       <div class="row mt-5 w-100">
-        <HomeCarousel v-if="!device" :cards="products_offers?.data || [] " :type="'tecno'" />
-        <div class="home__card-desktop-box" v-if="device">
+        <HomeCarousel  :cards="products_offers?.data || [] " :type="'tecno'" class="home__card-mobile" v-if="!load"/>
+        <div class="home__card-desktop-box" v-if="!load">
           <div class="home__card-desktop" v-for="(card, index) in products_offers?.data || []" :key="index">
             <HomeCardslide 
               :sale="card?.Sale" 
@@ -114,7 +116,7 @@ useSeoMeta({
               :brand="card.brand?.Name"
               :model="card.Model" 
               :code="card.Code" 
-              :priceMax="card.PriceMax" 
+              :priceMax="card.Price" 
               :priceSale="card?.PriceSale"
               :isQuote="card?.IsQuote" 
               :images="card.images" 
@@ -125,7 +127,7 @@ useSeoMeta({
 
       <Teleport v-if="on_Mounted" :disabled="device" to="#transport-sale">
         <button class="home__btn-outline">
-          <router-link to="">Ver más</router-link>
+          <router-link to="/products">VER TODOS</router-link>
           <icon name="ri:arrow-right-line" class="home__btn-icon" />
         </button>
       </Teleport>

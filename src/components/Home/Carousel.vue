@@ -37,7 +37,7 @@
           :brand="card.brand?.Name"
           :model="card.Model"
           :code="card.Code"
-          :priceMax="card.PriceMax"
+          :priceMax="card.Price"
           :priceSale="card?.PriceSale"
           :isQuote="card?.IsQuote"
           :images="card.images"
