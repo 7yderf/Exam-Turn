@@ -10,7 +10,6 @@ export default function useCircuits() {
         const data = ref<any>(null);
         const error = ref(null);
         let { token } = getUser;
-        console.log("🚀 ~ file: useCircuits.ts:12 ~ useFetch ~ token:", token)
         let params = url;
         !!url && (params =`?type=${url}`);
         !!page && (params = page);
@@ -21,9 +20,6 @@ export default function useCircuits() {
             !!params ?
                 (params = `${params}&identifier=${token}`) :
                 (params = `?identifier=${token}`);
-
-
-
 
             try {
                 const res = await fetch(`${config.API_BASE_URL}circuits${params}`);
