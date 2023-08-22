@@ -21,7 +21,7 @@ const generateRandomString = async(length: number) => {
   let  { token } = getUser;
   console.log("🚀 ~ file: app.vue:22 ~ token:", token)
   console.log("🚀 ~ file: app.vue:22 ~ token:", generateRandomString(20))
-  if (!!token) useToken().setUser({ token: await generateRandomString(20) })  
+  if (!token) useToken().setUser({ token: await generateRandomString(20) })  
   console.log("🚀 ~ file: app.vue:25 ~ token:", token)
 
 </script>
