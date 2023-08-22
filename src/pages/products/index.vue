@@ -96,6 +96,6 @@ useSeoMeta({
 
 
 <style lang="scss" scoped>
-@import "@/assets/scss/Products.scss";
+@import "@/assets/scss/products.scss";
 
 </style>
