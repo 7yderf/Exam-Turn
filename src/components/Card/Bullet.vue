@@ -4,8 +4,14 @@ const props = defineProps<{
     bullet: string,
     version?: string
 }>();
-
-type.value = (props.bullet == 'Usado' ? 'Seminuevo' : props.bullet)  ; 
+const types = [
+    'Usado',
+    'Remanufacturado',
+]
+type.value = (types.includes(props.bullet) ? 'Seminuevo' : props.bullet)  ; 
+watch(() => props.bullet, (value) => {
+    type.value = (types.includes(value) ? 'Seminuevo' : value)  ; 
+})
 
 </script>
 <template>
@@ -28,6 +34,20 @@ type.value = (props.bullet == 'Usado' ? 'Seminuevo' : props.bullet)  ;
   }
   &[data-type="Usado"] {
     background-color: var(--red-color);
+  }
+  &[data-type="Remanufacturado"] {
+    background-color: var(--red-color);
+  }
+  &[data-type="Temporalmente Agotado"] {
+    z-index: 3;
+    right: 0;
+    background-color: #D9D9D9;
+    color: #000;
+  }
+  &[data-type="Preventa"] {
+    z-index: 3;
+    right: 0;
+    background-color: #2D679F;
   }
   &[data-type="text"] {
     color: var(--text-color);

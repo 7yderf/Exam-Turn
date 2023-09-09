@@ -7,9 +7,9 @@ const { products_list, error }: any = await useFetch(null, null);
 const grid = ref<boolean>(true);
 products.value = products_list.value;
 
-const device = ref<boolean>(true);
+
 const on_Mounted = ref<boolean>(false);
-const load = ref<boolean>(true);
+
 
 const pagination = async (data: any) => {
   const { products_list, error }: any = await useFetch(null, data);
@@ -27,15 +27,8 @@ definePageMeta({
 
 onMounted(async () => {
 
-  const { windowSize } = useMediaQuery("(min-width: 767px)");
-  device.value = windowSize.value;
-  
-  watch(() => windowSize.value, (value) => {
-    device.value = value;
-  });
-
   on_Mounted.value = true;
-  load.value = false;
+  
 
 });
 
@@ -57,15 +50,17 @@ useSeoMeta({
     </article>
     
     <article class="container products__products">
-      <ListHero :total="products.total" :title="'Productos'" v-if="!load" @view="isGrid"/>
-      <div class="row mt-5 w-100 " v-if="!load">
+      <ListHero :total="products.total" :title="'Productos'" v-if="on_Mounted" @view="isGrid"/>
+      <div class="row mt-5 w-100 " v-if="on_Mounted">
        
         <div class="products__card-desktop-box" :data-grid="grid"  >
           <div class="products__card-desktop" :data-grid="grid" v-for="(card, index) in products.data || []" :key="index">
             <HomeCardslide 
               :sale="card?.Sale" 
               :type="card.Type" 
+              :legend="card.Legend" 
               :name="card.Name" 
+              :qty="card.Qty" 
               :brand="card.brand?.Name"
               :model="card.Model" 
               :code="card.Code" 
@@ -74,7 +69,9 @@ useSeoMeta({
               :isQuote="card?.IsQuote" 
               :images="card.images"
               :isGird="grid"
-              :index="index" 
+              :index="index"
+              :id="card.IdProduct" 
+              :tag="card?.Tag"
              
             />
           </div>
@@ -83,7 +80,7 @@ useSeoMeta({
       <hr class="mb-5">
       
       <ListPagination 
-        v-if="!load" 
+        v-if="on_Mounted" 
         :links="products.links" 
         :current="products.current_page"
         @linkPagination="pagination" />
@@ -97,5 +94,4 @@ useSeoMeta({
 
 <style lang="scss" scoped>
 @import "@/assets/scss/products.scss";
-
 </style>

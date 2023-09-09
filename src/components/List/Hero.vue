@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 const emit:any = defineEmits()
 const grid = ref<boolean>(true);
+
 const toggleViews = (isGrid: boolean) => {
+  console.log("🚀 ~ file: Hero.vue:6 ~ toggleViews ~ isGrid:", isGrid)
   emit('view', isGrid)
   grid.value = isGrid;
 }
@@ -16,6 +18,24 @@ const props = defineProps({
   },
 });
 
+onMounted(async () => {
+  const { windowSize } = useMediaQuery("(min-width: 769px)");
+  // grid.value = windowSize.value;
+  watch(
+    () => windowSize.value,
+    (value) => {
+      console.log("🚀 ~ file: Hero.vue:26 ~ onMounted ~ value:", value);
+      
+      
+
+      if(grid.value == false){
+        console.log("🚀 ~ file: Hero.vue:29 ~ onMounted ~ grid.value:", grid.value);
+        toggleViews(true)
+      };
+    }
+  );
+});
+
 </script>
 <template>
 
@@ -27,12 +47,12 @@ const props = defineProps({
         <div class="market__filter-box">
           <button class="market__btn-filter">
             <icon name="ri:equalizer-fill" class="market__btn-icon" />
-            <span class="market__filter-text">Filtrar y ordenar</span>
+            <span class="market__filter-text market__btn-filter--txt-filter">Filtrar y ordenar</span>
           </button>
-          <button class="market__btn-filter" :data-view="grid" @click="(toggleViews(true))">
+          <button class="market__btn-filter market__btn-filter--grid" :data-view="grid" @click="(toggleViews(true))">
             <icon name="ri:layout-grid-fill" class="market__btn-icon" />
           </button>
-          <button class="market__btn-filter" :data-view="!grid" @click="(toggleViews(false))">
+          <button class="market__btn-filter market__btn-filter--grid" :data-view="!grid" @click="(toggleViews(false))">
             <icon name="ri:menu-fill" class="market__btn-icon" />
           </button>
           
@@ -81,6 +101,18 @@ const props = defineProps({
     }
    
   }
+
+  @include for-size(tablet-portrait) {
+     &__btn-filter{
+      &--grid{
+        display: none;
+      }
+      &--txt-filter{
+        display: none;
+      }
+     }
+  }
+ 
 
   
   

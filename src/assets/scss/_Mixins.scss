@@ -96,12 +96,25 @@
 
 @mixin button($type: solid, $radius: 0px, $width: 250px ) {
   @if $type == solid {
-    --bg-color: var(--primary-color);
+    --bg-color: var(--text-color);
     --shadow-hover: none;
     --text: #FFF;
     --bg-hover-color: transparent;
-    --text-hover: var(--text-contrast-color);
-    --border-color: var(--primary-color); 
+    --text-hover: var(--text-color);
+    --border-color: var(--text-color); 
+    a{
+      color: var(--text-invert)!important;
+      
+    }
+    &:hover a{
+      color:#FFF!important;
+    }
+    .icon{
+      color: var(--text-invert)!important;
+    }
+    &:hover .icon{
+      color: var(--text-color)!important;
+    }
   } @else if $type == outline {
     --bg-color: transparent;
     --text: var(--text-color);

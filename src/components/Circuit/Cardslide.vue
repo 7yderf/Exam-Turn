@@ -1,37 +1,59 @@
 
 
 <template>
-  <div class="row carSlide">
-    <div class="home__five-img g-0">
+  <div class="row carSlide" :data-grid="isGird">
+    <div class="home__five-img g-0" :data-grid="isGird">
       <!-- <img :src="images[0].link" alt="portfolio" class="img__default" /> -->
-      <CardSlider :images="images" />
+      <CardSlider :images="images" :typeproduct="'circuito'" :grid="isGird"/>
     </div>
-    <div class="carSlide__text-content">
-      <div class="carSlide__data">
+    <div class="carSlide__text-content" :data-grid="isGird">
+      <div class="carSlide__data circuits" :data-grid="isGird">
         <div class="carSlide__box-hero">
-          <CardBullet :bullet="type" />
+          <!-- <CardBullet :bullet="type" /> -->
           <p class="carSlide__title">
             {{ name }}
           </p>
         </div>
-        <div class="carSlide__info">
-          <span class="carSlide__info-text">{{ qty }} Productos</span>
+        <div class="carSlide__info" :data-grid="isGird">
+          <Teleport v-if="on_Mounted" :disabled="isGird" :to="`#column-${index}`">
+            <p class="carSlide__info-text carSlide__info-text--quantity" :data-grid="isGird">{{qty}} <span v-if="isGird">Productos </span></p>
+          </Teleport>
         </div>
         <!-- <p class="turn-card-text-small text-start">{{subtitle}}</p> -->
         <div class="carSlide__prices">
-          <span class="carSlide__prices-text-sale">
+          <span  v-if="priceMax" class="carSlide__prices-text-sale">
             {{ useformatPrice(priceMax) }}
           </span>
+          <div v-else class="carSlide__noPrice">
+            <Icon name="ri:information-fill" class="carSlide__noPrice-icon" />
+            <p class="carSlide__noPrice-text">{{ legend }}</p>
+		  </div>
         </div>
-      </div>
-      <div class="carSlide__cart">
-        <icon name="ri:shopping-cart-2-fill" class="carSlide__icon" />
+        <div class="carSlide__quantity" v-show="!isGird">
+          <FormNumberInputWithButtons 
+          v-model="quantity" 
+          :min="1" 
+          :max="1" 
+          />
+         
+          <div :id="`cart-${index}`"></div>
+          </div>
+       </div> 
+       <div class="carSlide__cart" :data-grid="isGird">
+        <Teleport v-if="on_Mounted" :disabled="isGird" :to="`#cart-${index}`">
+            <button class="carSlide__btn-box" :data-grid="isGird">
+              <icon :name="isGird ?'ri:shopping-cart-2-fill':'ri:shopping-basket-line'" class="carSlide__icon" />
+            </button>
+        </Teleport>
+        
+        <div :id="`column-${index}`" class="carSlide__box-row"></div>
       </div>
     </div>
+    
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from "vue";
+const on_Mounted = ref<boolean>(false);
 type arrayImages = {
   link: string;
   Type: string;
@@ -39,92 +61,19 @@ type arrayImages = {
 
 const props = defineProps<{
   name: string;
+  legend: string;
   qty: number;
   priceMax: number;
   images: arrayImages[];
+  isGird?: boolean;
+	index?: number;
 }>();
+
+const quantity = ref(props.qty ? 1 : 0); // Valor inicial
+onMounted(async () => {
+		on_Mounted.value = true;
+});
 </script>
 <style lang="scss" scoped>
-@import "@/assets/scss/Mixins";
-
-.carSlide {
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  margin: auto;
-  border: 0.5px solid #ffffff;
-  flex-direction: column;
-
-  /* Note: backdrop-filter has minimal browser support */
-  margin: 0;
-  padding: 0;
-  gap: 24px;
-
-  &__text-content {
-    display: flex;
-  }
-  &__data {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-  &__cart {
-    @include flex(center, false, flex-end);
-  }
-  &__icon {
-    color: #1a1a1a;
-    margin: 0;
-    border: 1px solid #1a1a1a31;
-    padding: 3px;
-  }
-
-  &__box-hero {
-    @include flex(center, 8px, flex-start);
-    flex-direction: column;
-    @include for-size(tablet-portrait) {
-      min-height: 50px;
-    }
-  }
-
-  &__title {
-    font-weight: 700;
-  }
-
-  &__info {
-    @include flex(flex-start, 8px);
-  }
-  &__info-text {
-    font-size: 12px;
-    &::before {
-      content: "•";
-      margin-right: 8px;
-    }
-    &:nth-child(1) {
-      &::before {
-        content: "";
-        margin-right: 0px;
-      }
-    }
-  }
-
-  &__prices {
-    @include flex(flex-start, 8px);
-  }
-  &__prices-text-price {
-    font-size: 10px;
-    color: var(--red-color);
-    text-decoration: line-through;
-  }
-  &__prices-text-sale {
-    font-size: 14px;
-    font-weight: 500;
-    &::before {
-      margin-right: 4px;
-    }
-    &::after {
-      content: "MXN";
-      margin-left: 4px;
-    }
-  }
-}
+@import "@/assets/scss/components/CardSilde.scss";
 </style>

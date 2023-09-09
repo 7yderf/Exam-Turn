@@ -1,5 +1,5 @@
 <template>
-  <Teleport v-if="on_Mounted" :disabled="device" to="#transport-follow">
+  <Teleport v-if="on_Mounted" :disabled="isRezise" to="#transport-follow">
     <div class="nav-menu__hero-nav">
       <div class="container">
         <div class="nav-menu__box-phone">
@@ -25,10 +25,10 @@
   </Teleport>
 
   <nav class="navbar navbar-expand-md nav-menu nav-menu__mobile-content">
-    <div :class="device ? 'container' : 'container-fluid '" :data-toggle="toggler">
-      <a class="navbar-brand" href="#">
+    <div :class="isRezise ? 'container' : 'container-fluid '" :data-toggle="toggler">
+      <NuxtLink class="nav-link navbar-brand" :data-active="toggler" to="/">
         <img src="../assets/images/optimum_logo.png" alt="turn" class="logo-header" />
-      </a>
+      </NuxtLink>
 
       <button class="navbar-toggler nav-menu__toggler ml-0 txt" type="button" data-bs-toggle="collapse" aria-expanded="false"
         aria-label="Toggle navigation" @click="() => (toggler = !toggler)">
@@ -45,7 +45,7 @@
         :class="toggler ? 'nav-menu__mobile-content' : ''" id="navbarNav" :data-active="toggler">
         <ul class="navbar-nav d-flex  flex-grow-1"
           :class="toggler ? 'nav-menu__mobile-content--box container' : 'justify-content-around'">
-          <p class="nav-menu__title" :data-active="device">Menu</p>
+          <p class="nav-menu__title" v-if="on_Mounted" :data-active="isRezise">Menu</p>
           <li class="nav-item" @click="() => changePage()">
             <NuxtLink class="nav-link" :data-active="toggler" to="/"> Inicio </NuxtLink>
           </li>
@@ -54,7 +54,7 @@
             <div id="transport"></div>
           </li>
           <li class="nav-item" @click="() => changePage()">
-            <NuxtLink class="nav-link" :data-active="toggler" to="/circuits"> Circuito </NuxtLink>
+            <NuxtLink class="nav-link" :data-active="toggler" to="circuits"> Circuitos </NuxtLink>
           </li>
           <li class="nav-item" @click="() => changePage()">
             <NuxtLink class="nav-link" :data-active="toggler" to=""> Contacto </NuxtLink>
@@ -68,30 +68,21 @@
       </div>
     </div>
   </nav>
-  <Teleport v-if="on_Mounted" :disabled="device" to="#transport">
+  <Teleport v-if="on_Mounted" :disabled="isRezise" to="#transport">
     <NavProducts />
   </Teleport>
 </template>
 <script lang="ts" setup>
 const toggler = useToggler();
-const device = ref<boolean>(true);
-const path = ref<string>("/Home");
-const route = useRoute();
+const isRezise = useSizeResponsive();
 const on_Mounted = ref<boolean>(false);
 
-path.value = route.path === "/" ? "/Home" : route.path;
 
 const changePage = () => {
   toggler.value = false;
 };
 
-watch(
-  () => route.path,
-  (value) => {
-    path.value = value === "/" ? "/Home" : value;
-    console.log("path", value);
-  }
-);
+
 
 watch(
   () => toggler.value,
@@ -106,11 +97,11 @@ watch(
 
 onMounted(async () => {
   const { windowSize } = useMediaQuery("(min-width: 769px)");
-  device.value = windowSize.value;
+  isRezise.value = windowSize.value;
   watch(
     () => windowSize.value,
     (value) => {
-      device.value = value;
+      isRezise.value = value;
       value && (toggler.value = false);
     }
   );

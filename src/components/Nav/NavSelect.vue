@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-
+ const windowSize = useSizeResponsive();
+ const toggler = useToggler();
+ const useToggle = useShowMenu();
+ 
 const props = defineProps({
   dataActive: {
     type: Boolean,
@@ -7,7 +10,10 @@ const props = defineProps({
   },
 });
 
-const useToggle = useShowMenu();
+
+const changePage = () => {
+  toggler.value = false;
+};
 
 const showButton = () => {
   useToggle.value = !useToggle.value;
@@ -17,7 +23,7 @@ const showButton = () => {
 
 <template>
   <div class="nav-opcion" :data-active="dataActive">
-    <NuxtLink class="nav-link" :data-active="dataActive" to="/products"> Productos </NuxtLink>
+    <NuxtLink class="nav-link" :data-active="dataActive" to="/products" @click="() => changePage()" > Productos </NuxtLink>
     <icon name="ri:arrow-down-s-line" class="icon" @click="()=>showButton()" :data-active="dataActive" :data-show="useToggle"/>
   </div>
  

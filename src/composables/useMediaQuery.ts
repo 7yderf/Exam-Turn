@@ -18,6 +18,8 @@ export const useMediaQuery = (query: query = null) => {
   };
 };
 
+export const useSizeResponsive= () => useState('sizeResponsive', () => false);
+
 
 export const useShowMenu = () => useState('showMenu', () => false);
 
@@ -34,5 +36,8 @@ export const useformatPrice = (value:any) => {
 };
 
 export const useApiLink = (link: "") => {
-  return  link.replace("http://ecommerce:9000/api/products", ``)
+  let isProducts = link.includes("products")
+  return  isProducts ? 
+  link.replace("http://ecommerce:9000/api/products", ``) : 
+  link.replace("http://ecommerce:9000/api/circuits", ``)
 }

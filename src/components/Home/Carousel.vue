@@ -33,7 +33,9 @@
           v-if="type === 'tecno'"
           :sale="card?.Sale"
           :type="card.Type"
+          :legend="card.Legend"
           :name="card.Name"
+          :qty="card.Qty" 
           :brand="card.brand?.Name"
           :model="card.Model"
           :code="card.Code"
@@ -41,6 +43,10 @@
           :priceSale="card?.PriceSale"
           :isQuote="card?.IsQuote"
           :images="card.images"
+          :isGird="true" 
+          :index="index" 
+          :id="card.IdProduct"
+          :tag="card?.Tag"
         />
       </swiper-slide>
 
@@ -64,7 +70,8 @@ export default {
 },
   props: {
     cards: Array,
-    type: String
+    type: String,
+    legend: String
   },
   setup(props) {
     return {

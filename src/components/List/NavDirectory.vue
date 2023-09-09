@@ -30,10 +30,7 @@ const props = defineProps<{
   &__link{
     //font-size: 12px;
     color: var(--text-color);
-    &.router-link-active{
-      text-transform: uppercase;
-      font-weight: 500;
-    }
+
 			&::before{
 				content: "/";
 				margin-right: 12px;
@@ -45,6 +42,10 @@ const props = defineProps<{
 					margin-right: 0px;
 				}
 			}
+    &:nth-last-child(1){
+      text-transform: uppercase;
+      font-weight: 500;
+    }
   }
   &__icon{
     color: var(--text-color);

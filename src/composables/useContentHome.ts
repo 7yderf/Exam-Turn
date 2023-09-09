@@ -23,3 +23,31 @@ export const useFaqItems = () => {
     ]
     return faqItems;
 }
+
+export const useHowBuy = () => {
+    const howBuy = [
+        {
+            name: 'Paso 1',
+            type: 'Explora nuestro catálogo',
+            description: 'Agrega los productos al carrito de compras y ve al carrito para finalizar la compra.',
+            images: '/home/HowToBuy-1.png',
+            icon: 'ri:shopping-basket-line'
+        },
+        {
+            name: 'Paso 2',
+            type: 'Revisa tu carrito',
+            description: 'Completa el formulario de facturación y elige tu método de pago. Haz clic en “Cotizar pedido”',
+            images: '/home/HowToBuy-2.png',
+            icon: 'ri:price-tag-2-line'
+        },
+        {
+            name: 'Paso 3',
+            type: 'Finaliza la cotización',
+            description: 'Te cotizaremos tus productos y el envío y te proporcionaremos los detalles cotizados.',
+            images: '/home/HowToBuy-3.png',
+            icon: 'ri:hand-heart-line'
+        }
+        
+    ]
+    return howBuy;
+}

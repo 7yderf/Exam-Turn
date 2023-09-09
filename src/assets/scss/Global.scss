@@ -124,6 +124,11 @@ button:active {
 }
 a{
   text-decoration: none;
+  color: var(--text-color);
+  &:hover{
+    text-decoration: none;
+    color: var(--text-color);
+  }
 }
 
 .scroll{

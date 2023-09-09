@@ -4,6 +4,7 @@ const historyNav = useItemNav()
 const circuits = ref<any>([]);
 const { useFetchCircuits } = useCircuits();
 const { circuits_list }: any = await useFetchCircuits(null, null);
+const grid = ref<boolean>(true);
 circuits.value = circuits_list.value;
 const device = ref<boolean>(true);
 const deviceMobile = ref<boolean>(true);
@@ -15,7 +16,7 @@ const pagination = async (data: any) => {
   circuits.value = circuits_list.value;
 }
 const isGrid = async (data: any) => {
- console.log("🚀 ~ file: index.vue:19 ~ isGrid ~ data:", (data))
+  grid.value = data;
 }
 
 definePageMeta({
@@ -47,30 +48,34 @@ useHead({
   ],
 });
 useSeoMeta({
-  title: "Inicio",
+  title: "Circuitos",
 });
 
 </script>
 
 <template>
-  <main class="home__main mb-5">
+  <main class="products__main mb-5">
     <article class="container">
       <ListNavDirectory :links="historyNav"/>
     </article>
-    <article class="container home__products">
+    <article class="container products__products">
     <ListHero :total="circuits.total" :title="'Circuitos'" v-if="!load" @view="isGrid"/>
-      <div class="row mt-5 w-100">
-        <div class="home__card-desktop-box" v-if="!load">
+      <div class="row mt-5 w-100" v-if="!load">
+        <div class="products__card-desktop-box" :data-grid="grid">
           <div
-            class="home__card-desktop"
+            class="products__card-desktop"
             v-for="(card, index) in circuits?.data || []"
             :key="index"
+            :data-grid="grid"
           >
             <CircuitCardslide
               :name="card.Name"
+              :legend="card.Legend"
               :qty="card.qty"
-              :priceMax="card.price"
+              :priceMax="card.Price"
               :images="card.images"
+              :isGird="grid"
+              :index="index" 
             />
           </div>
         </div>
@@ -87,5 +92,5 @@ useSeoMeta({
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/Home.scss";
+@import "@/assets/scss/products.scss";
 </style>

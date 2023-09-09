@@ -15,7 +15,7 @@ export default defineNuxtRouteMiddleware((to, from, next) => {
       { name: "Atrás", url: `/${to.path.split('/')[1]}`, icon:'ri:arrow-left-line'},
       { name: "Inicio", url: "/", icon: "" },
       { name: to.meta.title, url: `/${to.path.split('/')[1]}`, icon: '' },
-      { name: to.params?.id, url:to.path, icon: '' }
+      { name: to.meta.detail, url:to.path, icon: '' }
      ]
   }
 });

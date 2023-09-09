@@ -4,15 +4,15 @@ import { ref, onMounted, watch } from "vue";
 
 const {useFetch } = useProducts();
 const { products_list, error }: any = await useFetch('highlights', null);
-console.log("🚀 ~ file: index.vue:6 ~ products_list:", products_list)
 const { products_list:products_offers, error: error_offers }: any = await useFetch('offers', null);
-console.log("🚀 ~ file: index.vue:8 ~ products_offers:", products_offers)
+
 
 const device = ref<boolean>(true);
 const deviceMobile = ref<boolean>(true);
 const on_Mounted = ref<boolean>(false);
 const load = ref<boolean>(true);
 const faqItems = useFaqItems();
+const howBuy = useHowBuy();
 
 onMounted(async () => {
 
@@ -64,14 +64,20 @@ useSeoMeta({
             <HomeCardslide 
               :sale="card?.Sale" 
               :type="card.Type" 
-              :name="card.Name" 
+              :legend="card.Legend" 
+              :name="card.Name"
+              :qty="card.Qty" 
               :brand="card.brand?.Name"
               :model="card.Model" 
               :code="card.Code" 
               :priceMax="card.Price" 
               :priceSale="card?.PriceSale"
               :isQuote="card?.IsQuote" 
-              :images="card.images" 
+              :images="card.images"
+              :isGird="true" 
+              :index="index" 
+              :id="card.IdProduct"
+              :tag="card?.Tag"
             />
           </div>
         </div>
@@ -89,15 +95,14 @@ useSeoMeta({
         <p>¡Gracias por tu interés en comprar con nosotros! Estos son los pasos para realizar tu compra</p>
       </div>
       <div class="home__How-buy-container container">
-        <CardHowToBuy :type="'Paso 1'" :name="'Explora nuestro catálogo'"
-          :description="'Agrega los productos al carrito de compras y ve al carrito para finalizar la compra.'"
-          :images="'/home/HowToBuy-1.png'" :icon="'ri:shopping-basket-line'" />
-        <CardHowToBuy :type="'Paso 2'" :name="'Revisa tu carrito'"
-          :description="'Completa el formulario de facturación y elige tu método de pago. Haz clic en “Cotizar pedido”'"
-          :images="'/home/HowToBuy-2.png'" :icon="'ri:price-tag-2-line'" />
-        <CardHowToBuy :type="'Paso 3'" :name="'Finaliza la cotización'"
-          :description="'Te cotizaremos tus productos y el envío y te proporcionaremos los detalles cotizados.'"
-          :images="'/home/HowToBuy-3.png'" :icon="'ri:hand-heart-line'" />
+        <CardHowToBuy v-for="how, index in howBuy" 
+        :key="index" 
+        :name="how.name" 
+        :type="how.type"
+        :description="how.description"
+        :images="how.images"
+        :icon="how.icon" 
+        />
       </div>
     </article>
     <article class="container home__products">
@@ -112,7 +117,9 @@ useSeoMeta({
             <HomeCardslide 
               :sale="card?.Sale" 
               :type="card.Type" 
+              :legend="card.Legend" 
               :name="card.Name" 
+              :qty="card.Qty" 
               :brand="card.brand?.Name"
               :model="card.Model" 
               :code="card.Code" 
@@ -120,6 +127,8 @@ useSeoMeta({
               :priceSale="card?.PriceSale"
               :isQuote="card?.IsQuote" 
               :images="card.images" 
+              :isGird="true" 
+              :index="index" 
             />
           </div>
         </div>

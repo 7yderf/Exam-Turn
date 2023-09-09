@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const useToggle = useShowMenu();
 const toggler = useToggler();
-const device = ref<boolean>(true);
+const isRezise = useSizeResponsive();
 const active = ref<string>("");
 
 const showButton = (value: string) => {
@@ -23,12 +23,11 @@ watch(
   );
 
 onMounted(async () => {
-  const { windowSize } = useMediaQuery("(min-width: 768px)");
-  device.value = windowSize.value;
+  
   watch(
-    () => windowSize.value,
+    () => isRezise.value,
     (value) => {
-      device.value = value;
+      console.log("🚀 ~ file: NavProducts.vue:30 ~ onMounted ~ value:", value)
       value && (active.value = "");
     }
   );
@@ -48,7 +47,7 @@ onMounted(async () => {
     </div>
     <div class="container products__content">
       <div class="products__box">
-        <div class="products__header-opcions" @click="!device && showButton('cardio')" >
+        <div class="products__header-opcions" @click="!isRezise && showButton('cardio')" >
           <h5>Cardio</h5>
           <icon name="ri:arrow-down-s-line" class="icon" :data-show="'cardio' == active" />
         </div>
@@ -60,7 +59,7 @@ onMounted(async () => {
         </div>
       </div>
       <div class="products__box">
-        <div class="products__header-opcions" @click="!device && showButton('fuerza')" >
+        <div class="products__header-opcions" @click="!isRezise && showButton('fuerza')" >
           <h5>Fuerza</h5>
           <icon name="ri:arrow-down-s-line" class="icon" :data-show="'fuerza' == active" />
         </div>
@@ -72,7 +71,7 @@ onMounted(async () => {
         </div>
       </div>
       <div class="products__box">
-        <div class="products__header-opcions" @click="!device && showButton('peso')" >
+        <div class="products__header-opcions" @click="!isRezise && showButton('peso')" >
           <h5>Peso</h5>
           <icon name="ri:arrow-down-s-line" class="icon" :data-show="'peso' == active" />
         </div>
@@ -84,7 +83,7 @@ onMounted(async () => {
         </div>
       </div>
       <div class="products__box">
-        <div class="products__header-opcions" @click="!device && showButton('accesorios')"  >
+        <div class="products__header-opcions" @click="!isRezise && showButton('accesorios')"  >
           <h5>Accesorios</h5>
           <icon name="ri:arrow-down-s-line" class="icon" :data-show="'accesorios' == active" />
         </div>

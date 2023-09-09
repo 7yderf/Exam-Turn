@@ -54,8 +54,8 @@ export default defineNuxtConfig({
       routes: [ 
         '/',
         '/products',
+        '/products/[id]',
         '/circuits',
-
       ],
     }
   },

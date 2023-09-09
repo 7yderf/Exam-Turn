@@ -8,12 +8,14 @@
   }
   
   &__card-desktop-box{
-    @include flex(space-between, 32px 16px, stretch);
+    @include flex(inherit, false, stretch);
     flex-wrap: wrap;
     width: 100%;
     margin-bottom: 40px;
+    gap: 40px (calc(100% / 43));
     &[data-grid='false']{
      flex-direction: column;
+     gap: 42px ;
     }
   }
 
@@ -35,5 +37,12 @@
     flex-grow: 1;
     font-size: 1.8rem;
   }
+  &__detail-info{
+    @include flex(flex-start, 8px, baseline);
+    h6{
+      font-weight: 700
+    }
+  }
+ 
 }
 @import "./responsive/products";
