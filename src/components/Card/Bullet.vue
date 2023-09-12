@@ -23,6 +23,7 @@ watch(() => props.bullet, (value) => {
 .bullets {
   @include button(bullet);
   @include text(1.2rem, 200);
+  pointer-events:none;
   flex: wrap;
   width: max-content;
   background: transparent;
@@ -40,13 +41,15 @@ watch(() => props.bullet, (value) => {
   }
   &[data-type="Temporalmente Agotado"] {
     z-index: 3;
-    right: 0;
+    right: 6px;
+    top: 6px;
     background-color: #D9D9D9;
     color: #000;
   }
   &[data-type="Preventa"] {
     z-index: 3;
-    right: 0;
+    right: 6px;
+    top: 6px;
     background-color: #2D679F;
   }
   &[data-type="text"] {
@@ -54,5 +57,8 @@ watch(() => props.bullet, (value) => {
     padding-left: 0px;
     font-size: 1.4rem;
   }
+
+  
+
 }
 </style>

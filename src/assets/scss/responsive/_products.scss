@@ -5,6 +5,19 @@
     &__card-desktop-box{
       gap: 32px (calc(100% / 10.6));
     }
+    
+      &__card-desktop{
+        &[data-from='home']{
+          &:nth-child(7){
+            display: none;
+          }
+          &:nth-child(8){
+            display: none;
+          }
+        }
+        
+      }
+    
   }
   @include for-size(desktop-mid) {
    

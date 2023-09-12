@@ -1,13 +1,12 @@
 <script lang="ts" setup>
 import { ref, onMounted, watch } from "vue";
-
+const isRezise = useSizeResponsive();
 
 const {useFetch } = useProducts();
 const { products_list, error }: any = await useFetch('highlights', null);
 const { products_list:products_offers, error: error_offers }: any = await useFetch('offers', null);
 
 
-const device = ref<boolean>(true);
 const deviceMobile = ref<boolean>(true);
 const on_Mounted = ref<boolean>(false);
 const load = ref<boolean>(true);
@@ -16,16 +15,8 @@ const howBuy = useHowBuy();
 
 onMounted(async () => {
 
-  const { windowSize } = useMediaQuery("(min-width: 767px)");
   const { windowSize: mobileSize } = useMediaQuery("(min-width: 535px)");
-  
-
-  device.value = windowSize.value;
   deviceMobile.value = mobileSize.value;
-
-  watch(() => windowSize.value, (value) => {
-    device.value = value;
-  });
 
   watch(() => mobileSize.value, (value) => {
     deviceMobile.value = value;
@@ -57,32 +48,13 @@ useSeoMeta({
         <HomeTitles title="productos destacados" />
         <div id="transport-prod"></div>
       </div>
-      <div class="row mt-5 w-100 " v-if="!load">
-        <HomeCarousel  :cards="products_list?.data || []" :type="'tecno'"  class="home__card-mobile"/>
-        <div class="home__card-desktop-box " v-if="!load">
-          <div class="home__card-desktop" v-for="(card, index) in products_list.data || []" :key="index">
-            <HomeCardslide 
-              :sale="card?.Sale" 
-              :type="card.Type" 
-              :legend="card.Legend" 
-              :name="card.Name"
-              :qty="card.Qty" 
-              :brand="card.brand?.Name"
-              :model="card.Model" 
-              :code="card.Code" 
-              :priceMax="card.Price" 
-              :priceSale="card?.PriceSale"
-              :isQuote="card?.IsQuote" 
-              :images="card.images"
-              :isGird="true" 
-              :index="index" 
-              :id="card.IdProduct"
-              :tag="card?.Tag"
-            />
-          </div>
+      <div class="row mt-5 w-100 " v-if="on_Mounted">
+        <CardCarousel  :cards="products_list?.data || []" :type="'tecno'"  class="home__card-mobile"/>
+        <div class="home__card-desktop-box ">
+         <CardMarketplace :products="products_list?.data || []" :type="'products'" :grid="true" from="home"/>
         </div>
       </div>
-      <Teleport v-if="on_Mounted" :disabled="device" to="#transport-prod">
+      <Teleport v-if="on_Mounted" :disabled="isRezise" to="#transport-prod">
         <button class="home__btn-outline">
           <router-link to="/products">VER TODOS</router-link>
           <icon name="ri:arrow-right-line" class="home__btn-icon" />
@@ -110,31 +82,14 @@ useSeoMeta({
         <HomeTitles title="Ofertas" />
         <div id="transport-sale"></div>
       </div>
-      <div class="row mt-5 w-100">
-        <HomeCarousel  :cards="products_offers?.data || [] " :type="'tecno'" class="home__card-mobile" v-if="!load"/>
-        <div class="home__card-desktop-box" v-if="!load">
-          <div class="home__card-desktop" v-for="(card, index) in products_offers?.data || []" :key="index">
-            <HomeCardslide 
-              :sale="card?.Sale" 
-              :type="card.Type" 
-              :legend="card.Legend" 
-              :name="card.Name" 
-              :qty="card.Qty" 
-              :brand="card.brand?.Name"
-              :model="card.Model" 
-              :code="card.Code" 
-              :priceMax="card.Price" 
-              :priceSale="card?.PriceSale"
-              :isQuote="card?.IsQuote" 
-              :images="card.images" 
-              :isGird="true" 
-              :index="index" 
-            />
-          </div>
+      <div class="row mt-5 w-100" v-if="on_Mounted">
+        <CardCarousel  :cards="products_offers?.data || [] " :type="'tecno'" class="home__card-mobile"/>
+        <div class="home__card-desktop-box">
+          <CardMarketplace :products="products_offers?.data || []" :type="'products'"  :grid="true" from="home"/>
         </div>
       </div>
 
-      <Teleport v-if="on_Mounted" :disabled="device" to="#transport-sale">
+      <Teleport v-if="on_Mounted" :disabled="isRezise" to="#transport-sale">
         <button class="home__btn-outline">
           <router-link to="/products">VER TODOS</router-link>
           <icon name="ri:arrow-right-line" class="home__btn-icon" />

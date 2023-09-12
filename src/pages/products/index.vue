@@ -54,27 +54,7 @@ useSeoMeta({
       <div class="row mt-5 w-100 " v-if="on_Mounted">
        
         <div class="products__card-desktop-box" :data-grid="grid"  >
-          <div class="products__card-desktop" :data-grid="grid" v-for="(card, index) in products.data || []" :key="index">
-            <HomeCardslide 
-              :sale="card?.Sale" 
-              :type="card.Type" 
-              :legend="card.Legend" 
-              :name="card.Name" 
-              :qty="card.Qty" 
-              :brand="card.brand?.Name"
-              :model="card.Model" 
-              :code="card.Code" 
-              :priceMax="card.Price" 
-              :priceSale="card?.PriceSale"
-              :isQuote="card?.IsQuote" 
-              :images="card.images"
-              :isGird="grid"
-              :index="index"
-              :id="card.IdProduct" 
-              :tag="card?.Tag"
-             
-            />
-          </div>
+          <CardMarketplace :products="products.data" :type="'products'" :grid="grid" />
         </div>
       </div>
       <hr class="mb-5">

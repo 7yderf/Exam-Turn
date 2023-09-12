@@ -28,7 +28,7 @@
             >
             <span
               class="product__info-text product__info-text--type"
-              >{{ type == 'Usado'? tag : code }}</span
+              >{{ type == 'Usado' || type == 'Remanufacturado' ? tag : code }}</span
             >
             <span v-if="color"
               class="product__info-text product__info-text--color"

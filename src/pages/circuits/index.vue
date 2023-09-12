@@ -6,10 +6,9 @@ const { useFetchCircuits } = useCircuits();
 const { circuits_list }: any = await useFetchCircuits(null, null);
 const grid = ref<boolean>(true);
 circuits.value = circuits_list.value;
-const device = ref<boolean>(true);
-const deviceMobile = ref<boolean>(true);
+
 const on_Mounted = ref<boolean>(false);
-const load = ref<boolean>(true);
+
 
 const pagination = async (data: any) => {
   const { circuits_list, error }: any = await useFetchCircuits(null, data);
@@ -27,16 +26,8 @@ definePageMeta({
 
 onMounted(async () => {
     
-  const { windowSize } = useMediaQuery("(min-width: 767px)");
-  device.value = windowSize.value;
-  watch(
-    () => windowSize.value,
-    (value) => {
-      device.value = value;
-    }
-  );
   on_Mounted.value = true;
-  load.value = false;
+
 });
 useHead({
   title: "Inicio",
@@ -59,31 +50,16 @@ useSeoMeta({
       <ListNavDirectory :links="historyNav"/>
     </article>
     <article class="container products__products">
-    <ListHero :total="circuits.total" :title="'Circuitos'" v-if="!load" @view="isGrid"/>
-      <div class="row mt-5 w-100" v-if="!load">
+    <ListHero :total="circuits.total" :title="'Circuitos'" v-if="on_Mounted" @view="isGrid"/>
+      <div class="row mt-5 w-100" v-if="on_Mounted">
         <div class="products__card-desktop-box" :data-grid="grid">
-          <div
-            class="products__card-desktop"
-            v-for="(card, index) in circuits?.data || []"
-            :key="index"
-            :data-grid="grid"
-          >
-            <CircuitCardslide
-              :name="card.Name"
-              :legend="card.Legend"
-              :qty="card.qty"
-              :priceMax="card.Price"
-              :images="card.images"
-              :isGird="grid"
-              :index="index" 
-            />
-          </div>
+          <CardMarketplace :products="circuits.data" :type="'circuits'" :grid="grid" />
         </div>
       </div>
       <hr class="mb-5">
 
       <ListPagination 
-      v-if="!load" 
+      v-if="on_Mounted" 
       :links="circuits.links" 
       :current="circuits.current_page"
       @linkPagination="pagination" />

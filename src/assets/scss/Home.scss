@@ -23,10 +23,11 @@
   }
 
   &__card-desktop-box{
-    @include flex(space-between, 32px 16px, stretch);
+    @include flex(inherit, false, stretch);
     flex-wrap: wrap;
     width: 100%;
     margin-bottom: 40px;
+    gap: 40px (calc(100% / 43));
   }
   &__card-desktop{
     width: 300px;

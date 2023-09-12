@@ -4,31 +4,12 @@
   
   }
   @include for-size(desktop-big) {
-    
-    &__card-desktop{
-      &:nth-child(7){
-        display: none;
-      }
-      &:nth-child(8){
-        display: none;
-      }
-    }
-  }
-  @include for-size(desktop-mid) {
     &__card-desktop-box{
-      justify-content: center;
-      gap: 40px;
+      gap: 32px (calc(100% / 10.6));
     }
-   
-    &__card-desktop{
-      &:nth-child(5){
-        display: none;
-      }
-      &:nth-child(6){
-        display: none;
-      }
-    }
+    
   }
+  @include for-size(desktop-mid) {}
   @include for-size(desktop) {}
   @include for-size(tablet-landscape) {
     &__card-desktop-box{

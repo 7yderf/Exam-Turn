@@ -50,5 +50,19 @@ const props = defineProps<{
   &__icon{
     color: var(--text-color);
   }
+
+  @media screen and (max-width: 500px){
+    
+      font-size: 12px;
+    
+  }
+
+  @media screen and (max-width: 429px){
+    &__link{
+    &:nth-last-child(2){
+      display: none;
+    }
+  }
+  }
 }
 </style>
