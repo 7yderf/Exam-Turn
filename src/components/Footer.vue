@@ -21,13 +21,13 @@
       
       <div class="footer__legal-box">
         <h5>Acerca de</h5>
-        <NuxtLink  class="footer__legal-link" to="">
+        <NuxtLink class="footer__legal-link" :to="'/legales/aviso-privacidad'">
           Aviso de privacidad
         </NuxtLink>
-        <NuxtLink  class="footer__legal-link" to="">
+        <NuxtLink class="footer__legal-link" :to="'/legales/politicas-garantias'">
           Policas de compra y garantía
         </NuxtLink>
-        <NuxtLink  class="footer__legal-link" to="">
+        <NuxtLink class="footer__legal-link" :to="'/legales/terminos-condiciones'">
           Términos y condiciones
         </NuxtLink>
        

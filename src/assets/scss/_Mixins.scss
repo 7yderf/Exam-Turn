@@ -99,7 +99,7 @@
     --bg-color: var(--text-color);
     --shadow-hover: none;
     --text: #FFF;
-    --bg-hover-color: transparent;
+    --bg-hover-color: var(--text-invert);
     --text-hover: var(--text-color);
     --border-color: var(--text-color); 
     a{

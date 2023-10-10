@@ -1,24 +1,21 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia'
 
-
-
+// eslint-disable-next-line import/prefer-default-export
 export const useToken = defineStore('token', {
 
-
   state: () => ({
-    user: {
-    token: ''}
+    user: { token: '' },
   }),
 
   actions: {
-    setUser( user: any ) {
-      this.user = user;
-    }
+    setUser(user: any) {
+      this.user = user
+    },
   },
   getters: {
     getUser(): any {
-      return this.user;
-    }
-  }
+      return this.user
+    },
+  },
 
 })

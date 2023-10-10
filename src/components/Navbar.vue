@@ -1,126 +1,210 @@
+<!-- eslint-disable vuejs-accessibility/click-events-have-key-events -->
+<!-- eslint-disable vuejs-accessibility/anchor-has-content -->
 <template>
-  <Teleport v-if="on_Mounted" :disabled="isRezise" to="#transport-follow">
-    <div class="nav-menu__hero-nav">
-      <div class="container">
-        <div class="nav-menu__box-phone">
-          <a href="">
-            <icon name="ri:phone-fill" class="nav-menu__icon" />
-          </a>
-          <p>Cotizar: 332 124 324 123</p>
-        </div>
-        <div class="nav-menu__box-follow">
-          <a href="https://www.instagram.com/optimumequipo" target="_blank">
-            <icon name="ri:instagram-fill" class="nav-menu__icon" />
-          </a>
-          <a href="https://es-la.facebook.com/people/Optimum-Equipo/100093244458686" target="_blank">
-            <icon name="ri:facebook-circle-fill" class="nav-menu__icon" />
-          </a>
-          <a href="https://youtube.com/@optimumequipo" target="_blank">
-            <icon name="ri:youtube-fill" class="nav-menu__icon" />
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </Teleport>
-
-  <nav class="navbar navbar-expand-md nav-menu nav-menu__mobile-content">
-    <div :class="isRezise ? 'container' : 'container-fluid '" :data-toggle="toggler">
-      <NuxtLink class="nav-link navbar-brand" :data-active="toggler" to="/">
-        <img src="../assets/images/optimum_logo.png" alt="turn" class="logo-header" />
+  <nav
+    :data-nav-show="isRezise && hideNav"
+    class="navbar navbar-expand-md nav-menu nav-menu__mobile-content"
+  >
+    <div
+      :class="isRezise ? 'container' : 'container-fluid '"
+      :data-toggle="toggler"
+    >
+      <NuxtLink
+        class="nav-link navbar-brand"
+        :data-active="toggler"
+        to="/"
+      >
+        <img
+          src="../assets/images/beyond.png"
+          alt="turn"
+          class="logo-header"
+        />
       </NuxtLink>
 
-      <button class="navbar-toggler nav-menu__toggler ml-0 txt" type="button" data-bs-toggle="collapse" aria-expanded="false"
-        aria-label="Toggle navigation" @click="() => (toggler = !toggler)">
-        <icon name="pajamas:hamburger" class="nav-menu__icon ms-0 " />
+      <button
+        class="navbar-toggler nav-menu__toggler ml-0 txt"
+        type="button"
+        data-bs-toggle="collapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        @click="() => (toggler = !toggler)"
+      >
+        <icon
+          name="pajamas:hamburger"
+          class="nav-menu__icon ms-0 "
+        />
       </button>
 
-      <button class="navbar-toggler nav-menu__toggler nav-menu__mobile" :data-active="toggler" type="button"
-        data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation"
-        @click="() => (toggler = !toggler)">
-        <icon name="ri:close-circle-fill" class="nav-menu__icon" />
+      <button
+        class="navbar-toggler nav-menu__toggler nav-menu__mobile"
+        :data-active="toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        @click="() => (toggler = !toggler)"
+      >
+        <icon
+          name="ri:close-circle-fill"
+          class="nav-menu__icon"
+        />
       </button>
 
-      <div class="collapse navbar-collapse nav-menu__collapse d-flex align-items-center justify-content-strech"
-        :class="toggler ? 'nav-menu__mobile-content' : ''" id="navbarNav" :data-active="toggler">
-        <ul class="navbar-nav d-flex  flex-grow-1"
-          :class="toggler ? 'nav-menu__mobile-content--box container' : 'justify-content-around'">
-          <p class="nav-menu__title" v-if="on_Mounted" :data-active="isRezise">Menu</p>
-          <li class="nav-item" @click="() => changePage()">
-            <NuxtLink class="nav-link" :data-active="toggler" to="/"> Inicio </NuxtLink>
+      <div
+        id="navbarNav"
+        class="collapse navbar-collapse nav-menu__collapse d-flex align-items-center justify-content-strech"
+        :class="toggler ? 'nav-menu__mobile-content' : ''"
+        :data-active="toggler"
+      >
+        <ul
+          class="navbar-nav d-flex  flex-grow-1 gap-4"
+          :class="toggler ? 'nav-menu__mobile-content--box container' : 'justify-content-center'"
+        >
+          <p
+            v-if="mounted"
+            class="nav-menu__title"
+            :data-active="isRezise"
+          >
+            Menu
+          </p>
+          <li
+            class="nav-item"
+            @click="() => changePage()"
+          >
+            <NuxtLink
+              class="nav-link"
+              :data-active="toggler"
+              to="/"
+            >
+              Inicio
+            </NuxtLink>
           </li>
-          <li class="nav-item">
-            <NavSelect :dataActive="toggler" />
-            <div id="transport"></div>
+          <!-- <li
+            class="nav-item"
+            @click="() => changePage()"
+          >
+            <NuxtLink
+              class="nav-link"
+              :data-active="toggler"
+              to="/circuits"
+            >
+              Circuitos
+            </NuxtLink>
           </li>
-          <li class="nav-item" @click="() => changePage()">
-            <NuxtLink class="nav-link" :data-active="toggler" to="circuits"> Circuitos </NuxtLink>
-          </li>
-          <li class="nav-item" @click="() => changePage()">
-            <NuxtLink class="nav-link" :data-active="toggler" to=""> Contacto </NuxtLink>
-          </li>
+          <li
+            class="nav-item"
+            @click="() => changePage()"
+          >
+            <NuxtLink
+              class="nav-link"
+              :data-active="toggler"
+              to=""
+            >
+              Contacto
+            </NuxtLink>
+          </li> -->
         </ul>
-        <div id="transport-follow"></div>
+        <div id="transport-follow" />
       </div>
       <div class="nav-menu__box-icon">
-        <icon name="ri:search-2-line" class="nav-menu__icon" />
-        <icon name="ri:shopping-cart-2-fill" class="nav-menu__icon" />
+        <icon
+          name="ri:search-2-line"
+          class="nav-menu__icon"
+        />
+        <icon
+          name="ri:shopping-cart-2-fill"
+          class="nav-menu__icon"
+        />
       </div>
     </div>
   </nav>
-  <Teleport v-if="on_Mounted" :disabled="isRezise" to="#transport">
-    <NavProducts />
-  </Teleport>
 </template>
 <script lang="ts" setup>
-const toggler = useToggler();
-const isRezise = useSizeResponsive();
-const on_Mounted = ref<boolean>(false);
-
+const toggler = useToggler()
+const useToggle = useShowMenu()
+const isRezise = useSizeResponsive()
+const mounted = ref<boolean>(false)
+const hideNav = ref<boolean>(false)
 
 const changePage = () => {
-  toggler.value = false;
-};
-
-
+  toggler.value = false
+  useToggle.value = false
+}
 
 watch(
   () => toggler.value,
-  (value) => {
+  value => {
     if (value) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto'
     }
-  }
-);
+  },
+)
+
+const scrollNavBottomHide = () => {
+  let prevScrollPos = window.pageYOffset // Almacena la posición de desplazamiento anterior
+
+  // Agrega un controlador de eventos de desplazamiento al objeto window
+  window.addEventListener('scroll', () => {
+    const currentScrollPos = window.pageYOffset // Obtiene la posición de desplazamiento actual
+    // const navHeight = nav?.getBoundingClientRect().height
+    const scrollHeight = window.pageYOffset
+    if (scrollHeight > 116) {
+      if (currentScrollPos > prevScrollPos) {
+        // El usuario se está desplazando hacia abajo
+        hideNav.value = true
+        console.log('Desplazándose hacia abajo')
+      } else if (currentScrollPos < prevScrollPos) {
+        hideNav.value = false
+        // El usuario se está desplazando hacia arriba
+        console.log('Desplazándose hacia arriba')
+      }
+    } else {
+      hideNav.value = false
+    }
+
+    // Actualiza la posición de desplazamiento anterior
+    prevScrollPos = currentScrollPos
+  })
+}
 
 onMounted(async () => {
-  const { windowSize } = useMediaQuery("(min-width: 769px)");
-  isRezise.value = windowSize.value;
+  scrollNavBottomHide()
+  const { windowSize } = useMediaQuery('(min-width: 769px)')
+  isRezise.value = windowSize.value
   watch(
     () => windowSize.value,
-    (value) => {
-      isRezise.value = value;
-      value && (toggler.value = false);
-    }
-  );
-  on_Mounted.value = true;
-});
+    value => {
+      isRezise.value = value
+      value && (toggler.value = false)
+    },
+  )
+  mounted.value = true
+})
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/Mixins";
 
 .logo-header {
   transition: 0.5s;
+  max-width: 200px;
 }
 
 .nav-menu {
   position: sticky;
-  top: 0;
+  top: 0px;
   z-index: 5;
   background: var(--primary-darker);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.11);
+  transition: 0.5s;
+  &[data-nav-show="true"]{
+    transition: 0.5s;
+    transform: translateY(-70px);
+  }
+  @media screen and (max-width: 768px) {
+    top: 0;
+  }
   .nav-link {
     color: var(--text-invert);
     text-transform: uppercase !important;
@@ -143,8 +227,16 @@ onMounted(async () => {
   }
 
   &__hero-nav {
+    position: sticky;
+    top: 0;
     padding: 12px 0;
     background: var(--primary-darker);
+  transition: 0.5s;
+  z-index: 5;
+  &[data-nav-show="true"] {
+    transition: 0.5s;
+    transform: translateY(-100%);
+  }
     .container {
       @include flex(flex-end);
     }
@@ -221,7 +313,6 @@ onMounted(async () => {
     transition: 0.5s;
     padding: 0;
     border: none;
-
 
     &:focus {
       outline: none;
@@ -309,7 +400,7 @@ onMounted(async () => {
           position: absolute;
           width: 150px;
           height: 60px;
-          background-image: url("../assets/images/optimum_logo.png");
+          background-image: url("../assets/images/beyond.png");
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
