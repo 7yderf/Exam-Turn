@@ -6,12 +6,12 @@
     <div class="services__home-back">
       <article class=" container services__hero">
         <div class="services__hero-tit">
-          <p>ARE YOU</p>
+          <p>{{ $t('home-hero-title') }}</p>
           <h1 class="services__hero_tit-top">
-            <span>Already</span> part
+            <span>{{ $t('home-hero-title-2') }}</span> {{ $t('home-hero-title-2-span') }}
           </h1>
           <h1 class="services__hero_tit-top services__hero_tit-top--rigth">
-            of the <span>Change?</span>
+            {{ $t('home-hero-title-3') }}<span> {{ $t('home-hero-title-3-span') }}</span>
           </h1>
 
         </div>
@@ -34,17 +34,17 @@
         </div>
       </article>
       <div class="container services__hero-bottom">
-        <p>MENTAL, EMOTIONAL <span>AND</span> FINANCIAL FREEDOM</p>
+        <p>{{ $t('home-hero-subtitle') }}<span>{{ $t('home-hero-subtitle-span-1') }}</span> {{ $t('home-hero-subtitle-span-2') }}</p>
       </div>
     </div>
     <div class="services__box-city">
       <div class="services__box-city-content">
         <p>
-          Action! change your paradigm
+          {{ $t('home-hero-subtitle-2') }}
         </p>
       </div>
       <p>
-        Action! change your paradigm
+        {{ $t('home-hero-subtitle-2') }}
       </p>
     </div>
     <article class="container paused">
@@ -52,8 +52,8 @@
         <div class="services__whoAre-box">
           <div class="services__whoAre-blur" />
           <div class="services__whoAre-content">
-            <h3>Who we are?</h3>
-            <p>GoBeyond is a community which combines diferent services and focus on solving unsatisfied needs for different industries and markets. We are a global community that have changed the mindset and reality of millions of people around the world through awareness, information and technology applied to everyday life and design for regular and common individuals, in order to get above average results by understanding and applying universal laws and principles, keeping it simple and practical.</p>
+            <h3>{{ $t('home-about-title') }}</h3>
+            <p>{{ $t('home-about-text') }}</p>
           </div>
         </div>
         <img
@@ -74,12 +74,12 @@
 
         <div class="services__card-txt">
           <h3>Knowledge</h3>
-          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exerci tation veniam consequat sunt nostrud amet...</p>
+          <p>{{ $t('knowledge-text') }}</p>
           <button
             type="button"
             class="services__card-btn-read services__card-btn-read--radius"
           >
-            Read more
+            {{ $t('read-more') }}
             <icon :name="'ri:arrow-right-fill'" />
           </button>
         </div>
@@ -94,12 +94,12 @@
 
         <div class="services__card-txt">
           <h3>Finance</h3>
-          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exerci tation veniam consequat sunt nostrud amet...</p>
+          <p>{{ $t('finance-text') }}</p>
           <button
             type="button"
             class="services__card-btn-read services__card-btn-read--radius"
           >
-            Read more
+            {{ $t('read-more') }}
             <icon :name="'ri:arrow-right-fill'" />
           </button>
         </div>
@@ -114,12 +114,12 @@
 
         <div class="services__card-txt">
           <h3>Connect</h3>
-          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exerci tation veniam consequat sunt nostrud amet...</p>
+          <p>{{ $t('connect-text') }}</p>
           <button
             type="button"
             class="services__card-btn-read services__card-btn-read--radius"
           >
-            Read more
+            {{ $t('read-more') }}
             <icon :name="'ri:arrow-right-fill'" />
           </button>
         </div>
@@ -134,14 +134,52 @@
 
         <div class="services__card-txt">
           <h3>Markets</h3>
-          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exerci tation veniam consequat sunt nostrud amet...</p>
+          <p>{{ $t('markets-text') }}</p>
           <button
             type="button"
             class="services__card-btn-read services__card-btn-read--radius"
           >
-            Read more
+            {{ $t('read-more') }}
             <icon :name="'ri:arrow-right-fill'" />
           </button>
+        </div>
+      </div>
+    </article>
+    <article class="container services__partners">
+      <h2>{{ $t('parners-title') }}</h2>
+
+      <div class="services__partners-img">
+        <img
+          src="../assets/images/partners/axi.png"
+          alt=""
+        >
+        <img
+          src="../assets/images/partners/bingx.png"
+          alt=""
+        >
+        <img
+          src="../assets/images/partners/bitget.png"
+          alt=""
+        >
+        <img
+          src="../assets/images/partners/okx.png"
+          alt=""
+        >
+        <img
+          src="../assets/images/partners/part1.png"
+          alt=""
+        >
+      </div>
+
+    </article>
+    <article class="container paused">
+      <div class="services__process">
+        <div class="services__process-box">
+          <div class="services__process-blur" />
+          <div class="services__process-content">
+            <h3>{{ $t('success-story-title') }}</h3>
+            <p>{{ $t('success-story-text') }}</p>
+          </div>
         </div>
       </div>
     </article>

@@ -6,7 +6,7 @@
   <div class="container-fluid overflow g-0">
     <slot />
   </div>
-  <!-- <Footer /> -->
+  <Footer />
 </template>
 
 <script lang="ts" setup>

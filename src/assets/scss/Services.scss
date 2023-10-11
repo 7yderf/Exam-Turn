@@ -229,6 +229,71 @@ width: 150px;
   }
 }
 
+&__partners{
+  @include flex(center, 56px);
+  margin-top: 100px;
+  flex-direction: column;
+  h2{
+    @include text(5.4rem, 900, 6.4rem);
+    margin-bottom: 16px;
+    color: var(--text-color);
+  }
+}
+
+&__partners-img{
+  @include flex(center, 32px, center);
+  flex-wrap: wrap;
+  img{
+    box-shadow: 3px 8px 50px 0px rgba(0, 0, 0, 0.17);
+    border-radius: 8px;
+  }
+}
+
+&__process{
+  @include flex;
+  margin-top: 64px;
+  width: 100%;
+  margin-top: 100px
+}
+&__process-box{
+  @include flex;
+  @include background-img(url('../images/circle_back.png'));
+  position: relative;
+  border-radius: 8px;
+  width: 100%;
+  animation: fade-show 1s ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: backwards;
+}
+&__process-blur{
+position: absolute;
+border-radius: 8px;
+background: rgba(255, 255, 255, 0.10);
+backdrop-filter: blur(60px);
+width: 100%;
+height: 100%;
+z-index: 0;
+}
+&__process-content{
+  @include flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  z-index: 1;
+  padding: 48px 54px;
+  h3{
+    @include text(4.8rem, 900, 6.4rem, center);
+    color: var(--text-invert)
+  }
+  p{
+    @include text(2rem, 500, 3.6rem, center);
+    margin-top: 16px;
+    color: var(--text-invert)
+  }
+}
+
+
+
 &__paragraphs{
   @include flex(space-between, false, stretch);
   width: 100%;

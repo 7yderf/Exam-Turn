@@ -3,22 +3,24 @@
   "language": "Language",
   "text": "ingles",
   "lang": "en",
-  "list_app_movile": [
-    {
-      "titulo": "Information architecture and wireframes",
-      "description": "Creating a user-friendly design and interface starts here."
-  },
-  {
-      "titulo": "user interface design",
-      "description": "We build exquisitely responsive GUIs, animations, and embedded media."
-  },
-  {
-      "titulo": "Mobile UI/UX development",
-      "description": "As part of our end-to-end mobile app development services."
-  },
-  {
-      "titulo": "Front End Programming",
-      "description": "Stunning app interfaces are brought to life by our front-end developers."
-  }
-]
+  "home-hero-title": "ARE YOU",
+  "home-hero-title-2": "Already part",
+  "home-hero-title-2-span": "part",
+  "home-hero-title-3": "of the",
+  "home-hero-title-3-span": " Change?",
+  "home-hero-subtitle": "MENTAL, EMOTIONAL",
+  "home-hero-subtitle-span-1": " AND",
+  "home-hero-subtitle-span-2": " FINANCIAL FREEDOM",
+  "home-hero-subtitle-2": "ACTION! CHANGE YOUR PARADIGM",
+  "home-about-title": "Who we are?",
+  "home-about-text": "GoBeyond is a community which combines diferent services and focus on solving unsatisfied needs for different industries and markets. We are a global community that have changed the mindset and reality of millions of people around the world through awareness, information and technology applied to everyday life and design for regular and common individuals, in order to get above average results by understanding and applying universal laws and principles, keeping it simple and practical.",
+  "knowledge-text": "We deeply believe that the most powerful tool to transform every aspect of your life is information and its implementation in your life to transform it into knowledge. We believe that with the right information you can create and design every aspect of your life, from your health, to your professional, financial and family relationships.",
+  "finance-text": "Over the last few years, a whole and growing ecosystem has been developed by new technologies creating a global and decentralised world with many opportunities and implementations for our daily lives. To be informed, to keep track and to be up to date about it; we have created a guide about it so you can go beyond what is in the regular system and after getting informed go and immerse yourself in the DEFI world.",
+  "connect-text": "In a totally globalised world, one of the most important things for us is to keep everyone connected. And that connection often goes beyond messages and calls, it's different types of interactions and transactions that we have been working on to provide solutions to the present and future needs of the world. Between families, colleagues and loved ones so that you can be anywhere in the world and help your loved ones, go about your business and find solutions for your daily life while you are abroad.",
+  "markets-text": "Our community's mission is to educate our members about the transformative potential of new technologies.",
+  "read-more": "Read more",
+  "parners-title": "Partners",
+  "success-story-title": "Launch Process and success story",
+  "success-story-text": "Our gestation started in 2021 and saw the light on our launch on February 2023. Having the clear target to transform, from their mindset, markets, communities, countries and societies; and observing the results in the progress made by their families, communities and regions, because in GoBeyond community we do not have boundaries including languages, skin colour, place of birth or economics."
+
 }

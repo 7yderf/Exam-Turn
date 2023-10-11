@@ -3,22 +3,23 @@
   "language": "Lenguaje",
   "text": "<b>español</b>",
   "lang": "es",
-  "list_app_movile": [
-      {
-        "titulo": "Android",
-        "description": "Aplicaciones escritas en el lenguaje nativo de los dispositivos Android. Ideal si buscas estar sólo en la playstore de Google"
-    },
-    {
-        "titulo": "iOS",
-        "description": "Aplicaciones creadas para dispositivos Apple. Ideal si buscas integraciones con todo el ecosistema de Apple"
-    },
-    {
-        "titulo": "Híbridas",
-        "description": "Aplicaciones compatibles con todos los sistemas operativos.\nIdelaes su buscas estar en todas las tiendas digitales"
-    },
-    {
-        "titulo": "Progressive Web App(PWA)",
-        "description": "Aplicaciones móviles creadas con tecnologías web avanzadas, listas para visualizarse desde cualquier dispositivo. Ideales si quieres evitar los fees de las tiendas digitales"
-    }
-  ]
+  "home-hero-title": "Estas",
+  "home-hero-title-2": "formando",
+  "home-hero-title-2-span": "parte",
+  "home-hero-title-3": "del",
+  "home-hero-title-3-span": " cambio?",
+  "home-hero-subtitle": "LIBERTAD MENTAL, EMOCIONAL",
+  "home-hero-subtitle-span-1": " Y",
+  "home-hero-subtitle-span-2": "FINANCIERA",
+  "home-hero-subtitle-2": "Actua!! cambia de paradigma",
+  "home-about-title": "¿Quiénes somos?",
+  "home-about-text": "GoBeyond es una comunidad que combina diferentes servicios y se centra en resolver necesidades insatisfechas de diferentes sectores y mercados.Somos una comunidad global que ha cambiado la mentalidad y la realidad de millones de personas en todo el mundo a través de la concientización, la información y la tecnología aplicadas a la vida cotidiana y el diseño para individuos comunes y corrientes, con el fin de obtener resultados superiores a la media mediante la comprensión y la aplicación de leyes y principios universales, manteniéndolo simple y práctico.",
+  "knowledge-text": "Creemos profundamente que la herramienta más poderosa para transformar cada aspecto de tu vida es la información y su implementación en tu vida para transformarla en conocimiento. Creemos que con la información adecuada puedes crear y diseñar cada aspecto de tu vida, desde tu salud, hasta tus relaciones profesionales, financieras y familiares.",
+  "finance-text": "En los últimos años, las nuevas tecnologías han desarrollado un ecosistema completo y en crecimiento, creando un mundo global y descentralizado con muchas oportunidades e implementaciones para nuestra vida diaria. Estar informado, realizar un seguimiento y estar al día al respecto; Hemos creado una guía al respecto para que puedas ir más allá de lo que hay en el sistema habitual y, después de informarte, sumergirte en el mundo DEFI.",
+  "connect-text": "En un mundo totalmente globalizado, una de las cosas más importantes para nosotros es mantener a todos conectados. Y esa conexión a menudo va más allá de mensajes y llamadas, son diferentes tipos de interacciones y transacciones en las que hemos estado trabajando para brindar soluciones a las necesidades presentes y futuras del mundo. Entre familiares, compañeros y seres queridos para que puedas estar en cualquier parte del mundo y ayudar a tus seres queridos, dedicarte a tus negocios y encontrar soluciones para tu vida diaria mientras estás en el extranjero.",
+  "markets-text": "La misión de nuestra comunidad es educar a nuestros miembros sobre el potencial transformador de las nuevas tecnologías.",
+  "read-more": "Leer más",
+  "parners-title": "Colaboradores",
+  "success-story-title": "Historias de éxito",
+  "success-story-text": "Nuestra gestación comenzó en 2021 y vio la luz en nuestro lanzamiento en febrero de 2023. Teniendo claro el objetivo de transformar, desde su mentalidad, mercados, comunidades, países y sociedades; y observando los resultados en los progresos realizados por sus familias, comunidades y regiones, porque en la comunidad GoBeyond no tenemos fronteras incluyendo idiomas, color de piel, lugar de nacimiento o economía."
 }

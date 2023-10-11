@@ -1,3 +1,4 @@
+<!-- eslint-disable vuejs-accessibility/form-control-has-label -->
 <!-- eslint-disable vuejs-accessibility/click-events-have-key-events -->
 <!-- eslint-disable vuejs-accessibility/anchor-has-content -->
 <template>
@@ -107,10 +108,21 @@
         <div id="transport-follow" />
       </div>
       <div class="nav-menu__box-icon">
-        <icon
-          name="ri:search-2-line"
-          class="nav-menu__icon"
-        />
+
+        <form class="lang">
+          <select
+            id="locale-select"
+            v-model="$i18n.locale"
+          >
+            <option value="en">
+              en
+            </option>
+            <option value="es">
+              es
+            </option>
+          </select>
+        </form>
+
         <icon
           name="ri:shopping-cart-2-fill"
           class="nav-menu__icon"
@@ -185,6 +197,22 @@ onMounted(async () => {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/Mixins";
+.lang{
+  select{
+    border: none;
+    background: transparent;
+    color: var(--text-invert);
+    font-weight: 600;
+    font-size: 1.6rem;
+    &:focus{
+      outline: none;
+    }
+  }
+  option{
+    background: var(--primary-darker);
+    color: var(--text-invert);
+  }
+}
 
 .logo-header {
   transition: 0.5s;
