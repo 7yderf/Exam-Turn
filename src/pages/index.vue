@@ -7,7 +7,7 @@
     <div class="services__home-back js">
       <article
         class=" container services__hero segmenter"
-        style="background-image: url(_nuxt/assets/images/backHome.png)"
+        style="background-image: url(../assets/images/backHome.png)"
       />
       <article class=" container services__hero trigger-headline trigger-headline--hidden">
         <div class="services__hero-tit">
@@ -271,24 +271,24 @@ onMounted(async () => {
 })
 useHead({
   link: [
-    { rel: 'stylesheet', href: '_nuxt/assets/css/component.css' },
-    { rel: 'stylesheet', href: '_nuxt/assets/css/demo.css' },
-    { rel: 'stylesheet', href: '_nuxt/assets/css/normalize.css' },
+    { rel: 'stylesheet', href: '../assets/css/component.css' },
+    { rel: 'stylesheet', href: '../assets/css/demo.css' },
+    { rel: 'stylesheet', href: '../assets/css/normalize.css' },
   ],
   script: [
     {
       async: true,
-      src: '_nuxt/assets/js/anime.min.js',
+      src: '../assets/js/anime.min.js',
       body: true,
     },
     {
       async: true,
-      src: '_nuxt/assets/js/imagesloaded.pkgd.min.js',
+      src: '../assets/js/imagesloaded.pkgd.min.js',
       body: true,
     },
     {
       async: true,
-      src: '_nuxt/assets/js/main.js',
+      src: '../assets/js/main.js',
       body: true,
     },
   ],
