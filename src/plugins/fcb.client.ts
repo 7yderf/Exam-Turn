@@ -1,19 +1,17 @@
 // ~/plugins/gtm.client.ts
 export default defineNuxtPlugin(nuxtApp => {
-	nuxtApp.hooks.hook('vue:setup', () => {
-		const {
-			public: { fcbContainerId, IS_PROD },
-		} = useRuntimeConfig()
+  nuxtApp.hooks.hook('vue:setup', () => {
+    const {
+      public: { fcbContainerId, IS_PROD },
+    } = useRuntimeConfig()
 
-		if (!!IS_PROD && fcbContainerId) {
-			useHead({
-				script: [
-					{
-						children: `! function(f, b, e, v, n, t, s)
-						{
+    if (!!IS_PROD && fcbContainerId) {
+      useHead({
+        script: [
+          {
+            children: `! function(f, b, e, v, n, t, s){
               if (f.fbq) return;
-              n = f.fbq = function() 
-							{
+              n = f.fbq = function() {
                 n.callMethod ?
                 n.callMethod.apply(n, arguments) : n.queue.push(arguments)
               };
@@ -26,24 +24,17 @@ export default defineNuxtPlugin(nuxtApp => {
               t.async = !0;
               t.src = v;
               s = b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t, s)
-          	}
-						(
-							window, document, 'script',
-            	'https://connect.facebook.net/en_US/fbevents.js'
-						);
-          	fbq('init', '${fcbContainerId}');
-          	fbq('track', 'PageView');`,
-						tagPriority: 'high',
-					},
-				],
-				noscript: [
-					{
-						children:`<img height="1" width="1" src="https://www.facebook.com/tr?id=${fcbContainerId}&ev=PageView&noscript=1" />`,
-						tagPosition: 'bodyOpen',
-					},
-				],
-			})
-		}
-	})
+              s.parentNode.insertBefore(t, s)}(window, document, 'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '${fcbContainerId}');fbq('track', 'PageView');`,
+            tagPriority: 'high',
+          },
+        ],
+        noscript: [
+          {
+            children: `<img height="1" width="1" src="https://www.facebook.com/tr?id=${fcbContainerId}&ev=PageView&noscript=1" />`,
+            tagPosition: 'bodyOpen',
+          },
+        ],
+      })
+    }
+  })
 })

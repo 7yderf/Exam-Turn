@@ -1,21 +1,26 @@
+<!-- eslint-disable no-tabs -->
 <template>
   <section
     ref="servic"
     class="services"
   >
-    <div class="services__home-back">
-      <article class=" container services__hero">
+    <div class="services__home-back js">
+      <article
+        class=" container services__hero segmenter"
+        style="background-image: url(_nuxt/assets/images/backHome.png)"
+      />
+      <article class=" container services__hero trigger-headline trigger-headline--hidden">
         <div class="services__hero-tit">
-          <p>{{ $t('home-hero-title') }}</p>
-          <h1 class="services__hero_tit-top">
+          <span><p>{{ $t('home-hero-title') }}</p></span>
+          <span class="services__hero_tit-top">
             <span>{{ $t('home-hero-title-2') }}</span> {{ $t('home-hero-title-2-span') }}
-          </h1>
-          <h1 class="services__hero_tit-top services__hero_tit-top--rigth">
+          </span>
+          <span class="services__hero_tit-top services__hero_tit-top--rigth">
             {{ $t('home-hero-title-3') }}<span> {{ $t('home-hero-title-3-span') }}</span>
-          </h1>
+          </span>
 
         </div>
-        <div class="services__hero-img">
+        <span class="services__hero-img">
           <img
             src="../assets//images/Ellipse.png"
             class="elipse"
@@ -31,18 +36,23 @@
             class="services__hero-img-icon"
             alt=""
           />
-        </div>
+        </span>
       </article>
       <div class="container services__hero-bottom">
         <p>{{ $t('home-hero-subtitle') }}<span>{{ $t('home-hero-subtitle-span-1') }}</span> {{ $t('home-hero-subtitle-span-2') }}</p>
       </div>
     </div>
-    <div class="services__box-city">
-      <div class="services__box-city-content">
-        <p>
-          {{ $t('home-hero-subtitle-2') }}
-        </p>
+    <div class="services__box-city paused">
+
+      <div class="glitch glitch--style-1">
+        <div class="glitch__img" />
+        <div class="glitch__img" />
+        <div class="glitch__img" />
+        <div class="glitch__img" />
+        <div class="glitch__img" />
       </div>
+
+      <div class="services__box-city-content" />
       <p>
         {{ $t('home-hero-subtitle-2') }}
       </p>
@@ -183,134 +193,12 @@
         </div>
       </div>
     </article>
-    <!-- <article class=" container  services__paragraphs paused">
-      <div class="services__paragraph-1">
-        <ServicesParagraph
-          :titulo="types_proyects[1].titulo"
-          :bullets="types_proyects[1].bullets"
-          :texto="types_proyects[1].texto"
-          :action="types_proyects[1].action"
-        />
-      </div>
-      <div class="services__list-1">
-        <ServicesListServices
-          :list-services="list_proyects_apps"
-        />
-      </div>
-    </article>
-    <article class=" container  services__paragraphs paused">
-      <div class="services__paragraph-1">
-        <ServicesParagraph
-          :titulo="types_proyects[2].titulo"
-          :bullets="types_proyects[2].bullets"
-          :texto="types_proyects[2].texto"
-          :action="types_proyects[2].action"
-        />
-      </div>
-      <div class="services__list-1">
-        <ServicesListServices
-          :list-services="list_proyects_web"
-        />
-      </div>
-    </article>
-    <article class=" container services__contact">
-      <h2>Contactános</h2>
-      <p>Estamos encantados de oir tu proyecto</p>
-
-    </article> -->
-
   </section>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
 
 const servic = ref(null)
-const types_proyects = ref([
-
-  {
-    titulo: 'Diseño UX/UI',
-    bullets: [
-      'Diseño UX/UI',
-    ],
-    texto: 'La clave para desarrollar una aplicación exitosa es combinar la funcionalidad que exigen los usuarios con un diseño y una experiencia intuitivos que la hagan lo más simple posible de usar.',
-    action: 'Cotiza tu proyecto',
-  },
-  {
-    titulo: 'Desarrollo de Apps',
-    bullets: [
-      'Aplicaciones nativos',
-      'Aplicaciones nativos',
-    ],
-    texto: 'Confiamos en nuestra experiencia tecnológica en varias industrias para ofrecer aplicaciones web, móviles, de escritorio e híbridas altamente escalables, flexibles e interoperables.',
-    action: 'Cotiza tu proyecto',
-  },
-  {
-    titulo: 'Desarrollo web',
-    bullets: [
-      'Desarrollos a la medida',
-    ],
-    texto: 'Servicios de desarrollo de software personalizado. Contamos con desarrolladores expertos, y con vasta experiencia en industrias específicas.',
-    action: 'Cotiza tu proyecto',
-  },
-
-])
-
-const list_proyects_design = ref([
-  {
-    titulo: 'Arquitectura de información y wireframes',
-    description: 'La creación de un diseño y una interfaz fáciles de usar comienza aquí.',
-  },
-  {
-    titulo: 'Diseño de interfaz de usuario',
-    description: 'Construimos interfaces gráficas de usuario exquisitamente receptivas, animaciones y medios integrados.',
-  },
-  {
-    titulo: 'Desarrollo de UI / UX móviles',
-    description: 'Como parte de nuestros servicios de desarrollo de aplicaciones móviles de extremo a extremo.',
-  },
-  {
-    titulo: 'Programación de Front-End',
-    description: 'Las impresionantes interfaces de aplicaciones cobran vida gracias a nuestros desarrolladores front-end.',
-  },
-
-])
-
-const list_proyects_apps = ref([
-  {
-    titulo: 'Mantenimiento de aplicaciones',
-    description: 'Diseñados para garantizar la escalabilidad, el rendimiento y la sostenibilidad de la aplicación',
-  },
-  {
-    titulo: 'Integraciones de API',
-    description: 'Creamos API personalizadas para todas las clases de aplicaciones, agregando funcionalidades a sus sistemas.',
-  },
-  {
-    titulo: 'Diseñamos UI/UX',
-    description: 'aplicaciones receptivas y escalables que transforman las experiencias de los clientes a través de múltiples canales.',
-  },
-
-])
-
-const list_proyects_web = ref([
-  {
-    titulo: 'Desarrollo web personalizado',
-    description: 'Nuestras soluciones facilitan los flujos de trabajo, aumentan los ingresos y optimizan las operaciones comerciales',
-  },
-  {
-    titulo: 'Implementación y despliegue',
-    description: 'Diseñamos un plan de implementación y despliegue de software a profundidad.',
-  },
-  {
-    titulo: 'Desarrollo de API',
-    description: 'Desarrollamos APIs confiables que permiten integraciones flexibles y personalización de productos de software.',
-  },
-  {
-    titulo: 'Integración de sistemas',
-    description: 'Nuestros equipo de integración de software adoptan nuevas tecnologías y procesos para superar posibles desafíos.',
-  },
-
-])
 
 function isVisible(elm: any) {
   const rect = elm.getBoundingClientRect()
@@ -328,12 +216,88 @@ const animationScroll = () => {
 }
 
 onMounted(async () => {
-  console.log('mounted', window.scroll)
   animationScroll()
-  console.log('mounted', servic)
-})
+  const headline = document.querySelector('.trigger-headline')
 
+  const segmenter = new Segmenter(document.querySelector('.segmenter'), {
+    pieces: 9,
+    positions: [
+      {
+        top: 30, left: 5, width: 40, height: 80,
+      },
+      {
+        top: 50, left: 25, width: 30, height: 30,
+      },
+      {
+        top: 5, left: 75, width: 40, height: 20,
+      },
+      {
+        top: 30, left: 45, width: 40, height: 20,
+      },
+      {
+        top: 45, left: 15, width: 50, height: 40,
+      },
+      {
+        top: 10, left: 40, width: 10, height: 20,
+      },
+      {
+        top: 20, left: 50, width: 30, height: 70,
+      },
+      {
+        top: 0, left: 10, width: 50, height: 60,
+      },
+      {
+        top: 70, left: 40, width: 30, height: 30,
+      },
+    ],
+    animation: {
+      duration: 2000,
+      easing: 'easeInOutCubic',
+      delay: 0,
+      opacity: 1,
+      translateZ: 85,
+      translateX: { min: -20, max: 20 },
+      translateY: { min: -20, max: 20 },
+    },
+    parallax: true,
+    parallaxMovement: { min: -10, max: -5 },
+    onReady() {
+      setTimeout(() => {
+        segmenter.animate()
+        headline.classList.remove('trigger-headline--hidden')
+      }, 200)
+    },
+  })
+})
+useHead({
+  link: [
+    { rel: 'stylesheet', href: '_nuxt/assets/css/component.css' },
+    { rel: 'stylesheet', href: '_nuxt/assets/css/demo.css' },
+    { rel: 'stylesheet', href: '_nuxt/assets/css/normalize.css' },
+  ],
+  script: [
+    {
+      async: true,
+      src: '_nuxt/assets/js/anime.min.js',
+      body: true,
+    },
+    {
+      async: true,
+      src: '_nuxt/assets/js/imagesloaded.pkgd.min.js',
+      body: true,
+    },
+    {
+      async: true,
+      src: '_nuxt/assets/js/main.js',
+      body: true,
+    },
+  ],
+  noscript: [
+    {},
+  ],
+})
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/Services";
+@import "@/assets/scss/demo3.scss";
 </style>

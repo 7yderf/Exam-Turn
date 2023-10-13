@@ -1,19 +1,91 @@
 .services {
   @include for-size(desktop-xbig) {}
-  @include for-size(desktop-big) {}
-  @include for-size(desktop-mid) {}
-  @include for-size(desktop) {
+  @include for-size(desktop-big) {
+    &__card{
+      width: 80%;
+      &--left{
+        margin-top: initial;
+      }
+      &--rigth{
+        margin-top: initial;
+        margin-left: auto;
+      }
+    }
+  }
+  @include for-size(desktop-mid) {
     &__hero-tit{
-      width: 40%;
+      width: 70%;
+      gap: 16px;
     }
     &__hero-img{
-      width: 60%;
+      width: 30%;
     }
-
+    &__hero-bottom p{
+      font-size: 5.4rem;
+      line-height: 7.2rem;
+    }
   }
-  @include for-size(tablet-landscape) {}
+  @include for-size(desktop) {
+    
+  }
+  @include for-size(tablet-landscape) {
+    &__hero{
+      flex-direction: column;
+      padding-top: initial;
+    }
+    &__hero-tit{
+      width: 100%;
+    }
+    &__hero-img{
+      width: 100%;
+      max-width: 400px;
+    }
+    &__hero-bottom p{
+      font-size: 4.2rem;
+      line-height: 5.4rem;
+      z-index: 1;
+    }
+    &__whoAre{
+      flex-direction: column;
+    }
+    &__whoAre-content{
+      padding: 32px 16px;
+    }
+    &__whoAre-box{
+      width: 100%;
+      margin-right: initial;
+      order: 2;
+      margin-top: -30%;
+    }
+    &__paragraph-1{
+      flex-direction: column;
+      padding: 0;
+    }
+    &__card-img{
+      border-radius: 0;
+    border: none;
+    width: 100%;
+    /* max-width: 328px; */
+    height: 294px;
+    object-fit: cover;
+    object-position: 0px -80px;
+    }
+    &__card-txt{
+      padding: 16px;
+    }
+    &__partners-img{
+      img{
+        width: 150px;
+      }
+    }
+  }
   @include for-size(tablet-portrait) {
     gap: 16px;
+    &__hero_tit-top{
+      &--rigth{
+        margin-right: initial;
+      }
+    }
     &__hero{
       flex-direction: column;
     }
@@ -24,7 +96,6 @@
     &__hero-img{
       width: 100%;
       img{
-        width: 120%;
         object-fit: contain;
         object-position: center;
         margin-left: -10%;
@@ -52,8 +123,27 @@
         @include text(2.4rem, 200, 3rem, left);
       }
     }
+    &__hero-img{
+      max-width: 250px;
+    }
+    &__hero-img-icon{
+      padding-bottom: 29px;
+    padding-left: 15px;
+    }
+    &__box-city-content{
+      height: 250px;
+    }
+    &__hero-bottom{
+      p{
+        text-align: center;
+      }
+    }
   }
-  @include for-size(phone-big) {}
+  @include for-size(phone-big) {
+    &__process-content{
+      padding: 32px 16px;
+    }
+  }
   @include for-size(phone-mid) {}
   @include for-size(phone) {}
 }

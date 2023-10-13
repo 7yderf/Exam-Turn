@@ -7,9 +7,9 @@ margin-bottom: 80px;
 
 &__home-back{
   @include flex;
+  position: relative;
   flex-direction: column;
-  background-image: url('../images/backHome.png');
-  background-size: 150%;
+  // background-image: url('../images/backHome.png');
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
@@ -23,6 +23,7 @@ margin-bottom: 80px;
   margin-bottom: 64px;
   margin-top: 32px;
   padding-top: 150px;
+  padding: 16px;
 }
 
 &__hero-tit{
@@ -46,7 +47,7 @@ margin-bottom: 80px;
   }
 }
 &__hero_tit-top{
-  @include text(8rem, 500, 10rem, left);
+  @include text(7.2rem, 500, 10rem, left);
   span{
     font-weight: 700;
   }
@@ -63,6 +64,9 @@ margin-bottom: 80px;
   flex-grow: 1;
   width: 40%;
   position: relative;
+  animation: fade-in 1.5s ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
   img{
     width: 100%;
     height: auto;
@@ -86,7 +90,8 @@ margin-bottom: 80px;
 
 &__hero-bottom{
   @include flex;
-  padding-top: 32px;
+  padding: 32px 16px 16px;
+  z-index: 2;
   margin: auto;
   p{
     @include text(6.4rem, 600, 10rem);
@@ -106,21 +111,28 @@ margin-bottom: 80px;
   width: 100%;
   min-height: 500px;
   p{
-    @include text(4rem, 500, 6.4rem);
+    @include text(4rem, 600, 6.4rem, center);
     text-transform: uppercase;
     letter-spacing: 16px;
     color: var(--text-invert);
+    z-index: 2;
   }
 
 }
 &__box-city-content{
   @include flex;
   @include border;
+  width: 100%;
+  max-width: 1200px;
+  height: 150px;
   position: absolute;
   background: #060165ee;
 mix-blend-mode: color-burn;
 box-shadow: 41.49343px 49.79212px 46.85185px 0px rgba(0, 0, 0, 0.05), 64.01844px 76.82213px 100px 0px rgba(0, 0, 0, 0.07);
 padding: 16px 54px;
+animation: fade-in 1.5s ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 &__whoAre{
