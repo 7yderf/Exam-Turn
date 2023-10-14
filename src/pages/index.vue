@@ -271,24 +271,24 @@ onMounted(async () => {
 })
 useHead({
   link: [
-    { rel: 'stylesheet', href: '../assets/css/component.css' },
-    { rel: 'stylesheet', href: '../assets/css/demo.css' },
-    { rel: 'stylesheet', href: '../assets/css/normalize.css' },
+    { rel: 'stylesheet', href: '~/assets/css/component.css' },
+    { rel: 'stylesheet', href: '~/assets/css/demo.css' },
+    { rel: 'stylesheet', href: '~/assets/css/normalize.css' },
   ],
   script: [
     {
       async: true,
-      src: '../assets/js/anime.min.js',
+      src: '~/assets/js/anime.min.js',
       body: true,
     },
     {
       async: true,
-      src: '../assets/js/imagesloaded.pkgd.min.js',
+      src: '~/assets/js/imagesloaded.pkgd.min.js',
       body: true,
     },
     {
       async: true,
-      src: '../assets/js/main.js',
+      src: '~/assets/js/main.js',
       body: true,
     },
   ],
