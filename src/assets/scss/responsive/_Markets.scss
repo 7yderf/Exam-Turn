@@ -15,7 +15,24 @@
     &__hero-img{
       width: 60%;
     }
+    &__trading-card{
+      width: 100%;
+      flex-direction: column;
+      &--rigth{
+        img{
+          order: 0 !important;
+          margin: 24px auto 32px;
+        }
+        .markets__trading-card-txt{
+          order: 1 !important;
+        }
+      }
+    }
 
+    &__trading-card-img{
+      width: 100%;
+      height: 100px;
+    }
   }
   @include for-size(tablet-landscape) {}
   @include for-size(tablet-portrait) {
@@ -69,7 +86,19 @@
       order: 1;
     }
   }
-  @include for-size(tablet-small) {}
+  @include for-size(tablet-small) {
+    .container{
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+    &__hero-img{
+      text-align: center;
+    }
+    &__hero-img img{
+      width: 80%;
+      margin: auto;
+    }
+  }
   @include for-size(phone-xbig) {
     &__hero-tit{
       padding: 8px;

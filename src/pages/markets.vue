@@ -94,6 +94,18 @@
       </div>
     </div>
 
+    <article class="markets__academy container">
+      <div class="markets__tit">
+        <h4>Academia</h4>
+      </div>
+
+      <h5 class="markets__academy-tit">
+        ¡Bienvenidos a nuestra academia de trading!
+      </h5>
+      <p class="markets__acadmey-txt">
+        Aquí encontrarás una fuente inagotable de inspiración y conocimientos valiosos para alcanzar tus metas financieras. Nuestro compromiso es brindarte contenido educativo de la más alta calidad respaldado por instructores reconocidos en la industria. Únete a nosotros y descubre cómo transformar tus habilidades en el mundo del trading. Juntos, alcanzaremos nuevos horizontes financieros. Tu academia contendrá:
+      </p>
+    </article>
     <article class=" container markets__paragraphs paused">
       <div class="markets__paragraph-1 ">
         <ServicesParagraph
@@ -157,6 +169,94 @@
           :image="'/academy-04.png'"
         />
       </div>
+    </article>
+    <article class="markets__trading">
+      <div class=" container markets__tit">
+        <h4>Trading</h4>
+      </div>
+      <article class="container markets__products-card  paused">
+        <div class="markets__trading-card markets__trading-card--left markets__trading-paragraph-1">
+
+          <img
+            src="../assets//images/trading.png"
+            alt=""
+            class="markets__trading-card-img"
+          >
+
+          <div class="markets__trading-card-txt">
+            <h3>QUE ES TRADING?</h3>
+            <p>El trading es una actividad financiera que implica comprar y vender diferentes instrumentos financieros con el objetivo de obtener ganancias a través de la especulación de los movimientos de precios en los mercados. Los beneficios del trading incluyen la posibilidad de obtener altos rendimientos en un corto período de tiempo, la flexibilidad para operar en diferentes mercados y la oportunidad de generar ingresos adicionales.
+            </p>
+            <button
+              type="button"
+              class="markets__trading-card-btn-read markets__trading-card-btn-read--radius"
+            >
+              {{ $t('read-more') }}
+              <icon :name="'ri:arrow-right-fill'" />
+            </button>
+          </div>
+        </div>
+        <div class="markets__trading-card markets__trading-card--rigth markets__trading-paragraph-1">
+
+          <div class="markets__trading-card-txt">
+            <h3>MERCADOS A OPERAR EN TRADING</h3>
+            <p>El trading es una actividad financiera que implica comprar y vender diferentes instrumentos financieros con el objetivo de obtener ganancias a través de la especulación de los movimientos de precios en los mercados. Los beneficios del trading incluyen la posibilidad de obtener altos rendimientos en un corto período de tiempo, la flexibilidad para operar en diferentes mercados y la oportunidad de generar ingresos adicionales. </p>
+            <button
+              type="button"
+              class="markets__trading-card-btn-read markets__trading-card-btn-read--radius"
+            >
+              {{ $t('read-more') }}
+              <icon :name="'ri:arrow-right-fill'" />
+            </button>
+          </div>
+          <img
+            src="../assets//images/trading.png"
+            alt=""
+            class="markets__trading-card-img"
+          >
+        </div>
+        <div class="markets__trading-card markets__trading-card--left markets__trading-paragraph-1">
+
+          <img
+            src="../assets//images/trading.png"
+            alt=""
+            class="markets__trading-card-img"
+          >
+
+          <div class="markets__trading-card-txt">
+            <h3>COPYTRADING</h3>
+            <p>El copytrading es una estrategia en la que los usuarios pueden beneficiarse al replicar las operaciones realizadas por profesionales en los mercados financieros. En lugar de operar de forma independiente, los usuarios pueden seleccionar a traders experimentados y seguir automáticamente sus estrategias y decisiones de operacion en tiempo real. Los beneficios de una estrategia de copytrading son varios. En primer lugar, los usuarios tienen la oportunidad de aprovechar la experiencia y el conocimiento de traders profesionales, incluso si no tienen un amplio conocimiento del mercado financiero. Esto les permite participar en los mercados y potencialmente obtener beneficios sin tener que realizar un análisis exhaustivo ni tomar decisiones de operación por sí mismos. Además, el copytrading ofrece una oportunidad de aprendizaje. Al seguir a traders experimentados, los usuarios pueden observar y comprender las estrategias utilizadas, los patrones de mercado identificados y las técnicas de gestión de riesgos implementadas.
+            </p>
+            <button
+              type="button"
+              class="markets__trading-card-btn-read markets__trading-card-btn-read--radius"
+            >
+              {{ $t('read-more') }}
+              <icon :name="'ri:arrow-right-fill'" />
+            </button>
+          </div>
+        </div>
+        <div class="markets__trading-card markets__trading-card--rigth markets__trading-paragraph-1">
+
+          <div class="markets__trading-card-txt">
+            <h3>EXCHANGE</h3>
+            <p>Un exchange de criptomonedas es una plataforma digital que permite a los usuarios comprar, vender e intercambiar diferentes criptomonedas. Funciona como un intermediario que facilita las transacciones entre compradores y vendedores de criptomonedas. Los usuarios deben crear billeteras digitales (wallets) en el exchange para almacenar sus criptomonedas. Estas billeteras permiten recibir, almacenar y enviar criptomonedas de manera segura, Se pueden depositar criptomonedas en sus billeteras del exchange desde otras fuentes externas o retirar criptomonedas del exchange a sus billeteras personales Es importante tener en cuenta que los exchanges pueden variar en términos de características, servicios y regulaciones. Al elegir un exchange, es esencial investigar y considerar su reputación, seguridad, comisiones y disponibilidad en la jurisdicción en la que te encuentres.
+            </p>
+            <button
+              type="button"
+              class="markets__trading-card-btn-read markets__trading-card-btn-read--radius"
+            >
+              {{ $t('read-more') }}
+              <icon :name="'ri:arrow-right-fill'" />
+            </button>
+          </div>
+          <img
+            src="../assets//images/trading.png"
+            alt=""
+            class="markets__trading-card-img"
+          >
+        </div>
+      </article>
     </article>
   </section>
 </template>
@@ -411,4 +511,5 @@ onMounted(async () => {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/Markets.scss";
+@import "@/assets/scss/Services";
 </style>

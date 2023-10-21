@@ -50,7 +50,8 @@ const props = defineProps<{
   padding-left: 32px;
   border-left: 1px solid var(--primary-color) ;
   h2{
-    @include text(5.6rem, 400, 7.2rem, center);
+    @include text(3.6rem, 500, 7.2rem, center);
+    width: 100%;
   }
   &__content-box{
     @include flex(flex-start, 16px, inherit);
@@ -78,7 +79,7 @@ const props = defineProps<{
 .paragraph{
   @include for-size(desktop-mid) {
     h2{
-      font-size: 4rem;
+      font-size: 3.2rem;
       line-height: 6rem;
     }
   }

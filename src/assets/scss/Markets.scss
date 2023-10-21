@@ -164,6 +164,88 @@ margin-bottom: 80px;
     color: var(--text-color);
   }
 }
+&__tit{
+
+  padding: 24px 0 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #E9E9FF;
+}
+&__academy-tit{
+  padding: 16px 0;
+}
+&__trading{
+  background-image: url('../images/back-markest.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+&__products-card{
+  @include flex(space-between, 32px 2px, center);
+  flex-wrap: wrap;
+  position: relative;
+  margin-top: 120px;
+  flex-direction: column;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+&__trading-card{
+  @include flex(space-between, 32px, stretch);
+  width: 70%;
+  padding: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.01);
+  box-shadow: 3px 16px 110px 0px rgba(0, 0, 0, 0.17);
+  backdrop-filter: blur(7.5px);
+  &--left{
+    // margin-top: -150px;
+    align-self: flex-start;
+    margin-top: -60px;
+  }
+  &--rigth{
+    margin-top: -60px;
+    align-self: flex-end;
+    h3,p{
+      text-align: right!important;
+    }
+  }
+}
+&__trading-card-img{
+  border-radius: 999px;
+  border: 1px solid var(--neutral-black, #060606);
+width: 150px;
+object-fit: cover;
+}
+
+&__trading-card-txt{
+  @include flex(flex-start, false, stretch);
+  flex-direction: column;
+  width: 100%;
+  h3{
+    @include text(3.2rem, 500, 4.2rem);
+    margin-bottom: 16px;
+  }
+  p{
+    @include text(1.6rem, 400, 3.2rem);
+    @include border(#959595);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding-top: 24px;
+    margin-bottom: 16px;
+  }
+}
+&__trading-card-btn-read{
+  @include button(outline);
+  width: 100%;
+  max-width: 200px;
+  margin-top: auto;
+  margin-bottom: 16px;
+  &--radius{
+    border-radius: 25px;
+  }
+}
+
   @keyframes fade-in{
     0%{
       opacity: 0;
