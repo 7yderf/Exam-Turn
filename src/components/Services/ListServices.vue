@@ -1,36 +1,42 @@
 <template>
   <div class="list">
-    <div class="list__content-box"
-    v-for="(service, index) in listServices"
-    :key="index"
+    <div
+      v-for="(service, index) in listServices"
+      :key="index"
+      class="list__content-box"
     >
-      <h2 class="list__tit">{{service.titulo}}</h2>
+      <h2 class="list__tit">
+        {{ service.titulo }}
+      </h2>
       <div class="list__content-text">
-        <p class="list__text">{{service.description}}</p>
+        <p class="list__text">
+          {{ service.description }}
+        </p>
       </div>
     </div>
   </div>
-  
+
 </template>
 <script lang="ts" setup>
-  import { defineProps } from "vue";
+import { defineProps } from 'vue'
 
-  const active = ref(1);
+const active = ref(1)
 
- const props = defineProps<{
-      
+const props = defineProps<{
+
       listServices: Array<{
         titulo: string,
         description: string,
       }>,
-      
-  }>();
-  
+
+  }>()
+
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/Mixins";
 .list{
-  @include flex(flex-start, 32px, inherit);
+  @include flex(flex-start, 16px, inherit);
+  padding-top: 100px;
   flex-direction: column;
   &__content-box{
     @include flex(flex-start, false, inherit);
@@ -40,12 +46,15 @@
     padding:0px 16px;
   }
   &__tit{
-    @include text(2.4rem, 400, 3.2rem, left);
-    color: white;
+    @include text(2rem, 400, 2rem, left);
   }
   &__content-text{
     @include text(1.6rem, 400, 2.8rem, left);
-    color: white;
+  }
+}
+@include for-size(tablet-portrait) {
+  .list{
+    padding-top: 0px;
   }
 }
 </style>

@@ -80,18 +80,19 @@
               Inicio
             </NuxtLink>
           </li>
-          <!-- <li
+           <li
             class="nav-item"
             @click="() => changePage()"
           >
             <NuxtLink
               class="nav-link"
               :data-active="toggler"
-              to="/circuits"
+              to="/markets"
             >
-              Circuitos
+              Markets
             </NuxtLink>
           </li>
+          <!--
           <li
             class="nav-item"
             @click="() => changePage()"

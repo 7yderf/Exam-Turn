@@ -91,7 +91,7 @@
     }
     &__hero-tit{
       width:100%;
-      margin-top: 54px;
+      margin-top: 0px;
     }
     &__hero-img{
       width: 100%;
@@ -111,9 +111,15 @@
     &__list-1{
       width: 100%;
     }
+    &__hero_tit-top{
+      align-self: initial;
+    }
   }
   @include for-size(tablet-small) {}
   @include for-size(phone-xbig) {
+    &__hero{
+      margin-top: 0;
+    }
     &__hero-tit{
       padding: 8px;
       h1{
