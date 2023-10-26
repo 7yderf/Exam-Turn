@@ -80,7 +80,7 @@
               Inicio
             </NuxtLink>
           </li>
-           <li
+          <li
             class="nav-item"
             @click="() => changePage()"
           >
@@ -90,6 +90,42 @@
               to="/markets"
             >
               Markets
+            </NuxtLink>
+          </li>
+          <li
+            class="nav-item"
+            @click="() => changePage()"
+          >
+            <NuxtLink
+              class="nav-link"
+              :data-active="toggler"
+              to="/knowledge"
+            >
+              Knowledge
+            </NuxtLink>
+          </li>
+          <li
+            class="nav-item"
+            @click="() => changePage()"
+          >
+            <NuxtLink
+              class="nav-link"
+              :data-active="toggler"
+              to="/finance"
+            >
+              Finance
+            </NuxtLink>
+          </li>
+          <li
+            class="nav-item"
+            @click="() => changePage()"
+          >
+            <NuxtLink
+              class="nav-link"
+              :data-active="toggler"
+              to="/connect"
+            >
+              Connect
             </NuxtLink>
           </li>
           <!--

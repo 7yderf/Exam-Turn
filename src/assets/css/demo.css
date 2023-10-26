@@ -5,13 +5,7 @@
 	box-sizing: border-box;
 }
 
-body {
-	font-family: 'Roboto', 'Avenir Next', sans-serif;
-	color: #fff;
-	background: #333;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
+
 
 /* Buttons */
 
@@ -57,11 +51,7 @@ body {
 
 /* Links */
 
-a {
-	text-decoration: none;
-	color: #fbe094;
-	outline: none;
-}
+
 
 /* Demo colors */
 .demo-2 a {}

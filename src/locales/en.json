@@ -21,6 +21,116 @@
   "read-more": "Read more",
   "parners-title": "Partners",
   "success-story-title": "Launch Process and success story",
-  "success-story-text": "Our gestation started in 2021 and saw the light on our launch on February 2023. Having the clear target to transform, from their mindset, markets, communities, countries and societies; and observing the results in the progress made by their families, communities and regions, because in GoBeyond community we do not have boundaries including languages, skin colour, place of birth or economics."
-
+  "success-story-text": "Our gestation started in 2021 and saw the light on our launch on February 2023. Having the clear target to transform, from their mindset, markets, communities, countries and societies; and observing the results in the progress made by their families, communities and regions, because in GoBeyond community we do not have boundaries including languages, skin colour, place of birth or economics.",
+  "markest-vision": "Vision",
+  "markets-vision-text": "We strive to become the premier trading and copy trading education company, providing our clients with the tools necessary to achieve financial success in global markets. \n We seek to establish solid and lasting relationships with commercial teams with experience in network marketing, offering them a unique opportunity to generate additional income. We focus on serving both beginners who want to gain basic knowledge and experienced traders looking to expand their skills.",
+  "markets-academy": "Academy",
+  "markets-academy-sub-text": "Welcome to our trading academy!",
+  "markets-academy-sub-text-2": "Here you will find an endless source of inspiration and valuable knowledge to achieve your financial goals. Our commitment is to provide you with the highest quality educational content supported by industry-recognized instructors. Join us and discover how to transform your skills in the world of trading. Together, we will reach new financial horizons. Your academy will contain:",
+  "markets-academy-list-1": "BASIC ACADEMY",
+  "markets-list-academy": [
+    {
+      "titulo": "1. Introduction to trading",
+      "description": ""
+    },
+    {
+      "titulo": "2. History of money",
+      "description": ""
+    },
+    {
+      "titulo": "3. Central banks",
+      "description": ""
+    },
+    {
+      "titulo": "4. What is trading ",
+      "description": ""
+    },
+    {
+      "titulo": "5. history of forex",
+      "description": ""
+    },
+    {
+      "titulo": "6. What are CFDs",
+      "description": ""
+    },
+    {
+      "titulo": "7. Trading vocabulary",
+      "description": ""
+    },
+    {
+      "titulo": "8. Market development",
+      "description": ""
+    },
+    {
+      "titulo": "9.  What is a currency",
+      "description": ""
+    },
+    {
+      "titulo": "10. What is a broker",
+      "description": ""
+    },
+    {
+      "titulo": "11. Introduction to tools",
+      "description": ""
+    },
+    {
+      "titulo": "12. What are pips",
+      "description": ""
+    },
+    {
+      "titulo": "13. What is Spread and commissions",
+      "description": ""
+    },
+    {
+      "titulo": "14.  Lotage",
+      "description": ""
+    },
+    {
+      "titulo": "15.  Broker and leverage",
+      "description": ""
+    },
+    {
+      "titulo": "16.  Order Types",
+      "description": ""
+    },
+    {
+      "titulo": "17.  Types of analysis",
+      "description": ""
+    },
+    {
+      "titulo": "18. Japanese candles",
+      "description": ""
+    }
+  ],
+  "markets-academy-list-2": "ACADEMIA INTERMEDIA",
+  "markets-academy-academy-2":  [
+    {
+      "titulo": "1. Introducción en el trading ",
+      "description": ""
+    },
+    {
+      "titulo": "2. History of money",
+      "description": ""
+    },
+    {
+      "titulo": "3. Central banks",
+      "description": ""
+    },
+    {
+      "titulo": "4. What is trading ",
+      "description": ""
+    },
+    {
+      "titulo": "5. History of forex",
+      "description": ""
+    },
+    {
+      "titulo": "6. What are CFDs ",
+      "description": ""
+    }
+  ], 
+  "markets-academy-list-3": "ACADEMIA INTERMEDIA",
+  "markets-academy-academy-3":[], 
+  "markets-academy-list-4": "ACADEMIA INTERMEDIA",
+  "markets-academy-academy-4":[]
 }

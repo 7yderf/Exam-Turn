@@ -1,5 +1,5 @@
 @import "./Mixins";
-.markets{
+.knowledge{
 @include flex(center, 56px, stretch);
 width: 100%;
 flex-direction: column;
@@ -8,14 +8,13 @@ margin-bottom: 80px;
 &__hero-back{
   padding-top: 32px;
   @include flex;
-  align-items: stretch;
   position: relative;
   flex-direction: column;
-  // background-image: url('../images/backHome.png');
-  // background-repeat: no-repeat;
-  // background-position: center;
+  background-image: url('../images/back-conos.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   width: 100%;
-  min-height: 500px;
 
 }
 
@@ -25,16 +24,16 @@ margin-bottom: 80px;
   width: 100%;
   margin-bottom: 64px;
   margin-top: 32px;
-  z-index: 1
 }
 &__hero-content{
   @include flex(space-between,32px);
   width: 100%;
+ 
   &--bottom{
     align-items: baseline;
   }
   h1{
-    @include text(13.6rem, 400, 7rem, left);
+    @include text(8.6rem, 400, 7rem, left);
     color: var(--text-invert)
   }
   h3{
@@ -45,15 +44,15 @@ margin-bottom: 80px;
     @include text(2rem, 400, 4rem, left);
     color: var(--text-invert)
   }
+ 
 }
 &__hero-img{
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   img{
     width: 100%;
     object-fit: contain;
     filter: invert(1);
-    width: 70%;
   }
   &--logo{
     width: 100%;
@@ -61,7 +60,6 @@ margin-bottom: 80px;
     /* border: 1px solid black; */
     border-radius: 50%;
     padding: 40px;
-    mix-blend-mode: multiply;
     box-shadow: 1.18553px 1.42263px 3.14815px 0px rgba(0, 0, 0, 0.02), 5.21632px 6.25958px 6.51852px 0px rgba(0, 0, 0, 0.03), 12.80369px 15.36443px 13px 0px rgba(0, 0, 0, 0.04), 40px -4px 46.85185px 0px rgba(0, 0, 0, 0.05);
   }
   &--bottom{
@@ -255,14 +253,16 @@ object-fit: cover;
 
 &__broker{
   padding: 32px 16px 80px;
-  background: linear-gradient(to right, rgba(57,91,117,1) 0%, rgba(92,94,156,1) 100%);
+  background: linear-gradient(to right, rgba(57, 91, 117, 0.297) 0%, rgba(92, 94, 156, 0.271) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#395b75', endColorstr='#5c5e9c', GradientType=1 );
+width: 100%;
 }
 
 &__whoAre{
   @include flex;
   margin-top: 64px;
   width: 100%;
+  flex-direction: column;
 }
 &__whoAre-box{
   @include flex;
@@ -291,9 +291,18 @@ z-index: 0;
     @include text(4.8rem, 900, 6.4rem);
     color: var(--text-invert)
   }
+  h4{
+    color: var(--text-invert)
+  }
   p{
     @include text(2rem, 500, 3.6rem);
     color: var(--text-invert)
+  }
+  h5{
+    // @include text(2rem, 400, 4rem, left);
+    margin-top: 8px;
+    color: var(--text-invert) !important;
+    font-weight: 600;
   }
 }
 &__whoAre-img{
@@ -329,4 +338,4 @@ z-index: 0;
     animation-play-state: paused;
   }
 }
-@import "./responsive/Markets";
+@import "./responsive/knowledge";

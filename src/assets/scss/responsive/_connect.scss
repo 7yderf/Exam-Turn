@@ -1,4 +1,4 @@
-.markets {
+.connect {
   @include for-size(desktop-xbig) {}
   @include for-size(desktop-big) {}
   @include for-size(desktop-mid) {
@@ -98,6 +98,10 @@
     }
     &__paragraph-1--order{
       order: 1;
+    }
+    &__cards-icons{
+      align-items: center;
+      justify-content: center;
     }
   }
   @include for-size(tablet-small) {

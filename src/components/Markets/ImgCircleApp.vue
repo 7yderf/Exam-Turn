@@ -15,7 +15,12 @@
         alt=""
         class="circle__back-2"
       >
-      <div
+      <!-- <img
+        :src="image_bottom"
+        alt=""
+        class="circle__back-2"
+      > -->
+      <!-- <div
         v-if="type == 'services' "
         class="circle__body"
       >
@@ -59,46 +64,46 @@
             Análisis
           </button>
         </div>
-      </div>
+      </div> -->
       <button
         v-if="type == 'services' "
         type="button"
         class="circle__btn-app circle__btn-app--css"
       >
-        <img
+        <!-- <img
           src="/img/logos/css.png"
           alt=""
-        >
+        > -->
       </button>
       <button
         v-if="type == 'services' "
         type="button"
         class="circle__btn-app circle__btn-app--boostrap"
       >
-        <img
+        <!-- <img
           src="/img/logos/bootstrap.png"
           alt=""
-        >
+        > -->
       </button>
       <button
         v-if="type == 'services' "
         type="button"
         class="circle__btn-app circle__btn-app--kotlin"
       >
-        <img
+        <!-- <img
           src="/img/logos/kotlin.png"
           alt=""
-        >
+        > -->
       </button>
       <button
         v-if="type == 'services' "
         type="button"
         class="circle__btn-app circle__btn-app--html5"
       >
-        <img
+        <!-- <img
           src="/img/logos/html5.png"
           alt=""
-        >
+        > -->
       </button>
     </div>
   </div>
@@ -129,15 +134,20 @@ const props = defineProps<{
   position: relative;
   width: 380px;
   height: 380px;
+    box-shadow: 1.18553px 1.42263px 3.14815px 0px rgba(0, 0, 0, 0.02), 5.21632px 6.25958px 6.51852px 0px rgba(0, 0, 0, 0.03), 12.80369px 15.36443px 13px 0px rgba(0, 0, 0, 0.04), 40px -4px 46.85185px 0px rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    background: #002a4980;
   &__back-1{
     position: absolute;
     width: 100%;
     height: 100%;
+    filter: contrast(0);
+    opacity: 0.6;
+    mix-blend-mode: multiply;
   }
    &__back-2{
     position: absolute;
-    border-radius: 50%;
-    animation: identifier 10s ease-in-out infinite;
+    animation: identifier 20s ease-in-out infinite;
     align-self: center;
     margin: auto;
 
@@ -189,6 +199,10 @@ const props = defineProps<{
     min-height: 60px;
     min-width: 60px;
     border-radius: 50%;
+    mix-blend-mode: multiply;
+    box-shadow: 1.18553px 1.42263px 3.14815px 0px rgba(0, 0, 0, 0.02), 5.21632px 6.25958px 6.51852px 0px rgba(0, 0, 0, 0.03), 12.80369px 15.36443px 13px 0px rgba(0, 0, 0, 0.04), 40px -4px 46.85185px 0px rgba(0, 0, 0, 0.05);
+    background: #450e937d;
+    border: none;
     img{
       width: 55px;
       height: auto;
@@ -267,31 +281,22 @@ const props = defineProps<{
 }
 @keyframes identifier {
   0% {
-    width: 120%;
-    height: 120%;
+    width: 50%;
+    height:auto;
     transform: rotate(0deg);
-    filter: blur(20px);
-  background: rgba(252, 111, 16, 0.3);
-  -webkit-filter: blur(60px);
-  -moz-filter: blur(60px);
+
   }
   50% {
-    width: 95%;
-    height: 95%;
+    width: 35%;
+    height:auto;
     transform: rotate(-360deg);
-    filter: blur(10px);
-  background: rgba(248, 36, 12, 0.25);
-  -webkit-filter: blur(40px);
-  -moz-filter: blur(40px);
+    
   }
   100% {
-    width: 120%;
-    height: 120%;
+    width: 50%;
+    height:auto;
     transform: rotate(0deg);
-    filter: blur(20px);
-  background: rgba(252, 111, 16, 0.3);
-  -webkit-filter: blur(60px);
-  -moz-filter: blur(60px);
+    
   }
 
 }

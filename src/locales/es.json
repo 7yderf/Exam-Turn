@@ -21,5 +21,142 @@
   "read-more": "Leer más",
   "parners-title": "Colaboradores",
   "success-story-title": "Historias de éxito",
-  "success-story-text": "Nuestra gestación comenzó en 2021 y vio la luz en nuestro lanzamiento en febrero de 2023. Teniendo claro el objetivo de transformar, desde su mentalidad, mercados, comunidades, países y sociedades; y observando los resultados en los progresos realizados por sus familias, comunidades y regiones, porque en la comunidad GoBeyond no tenemos fronteras incluyendo idiomas, color de piel, lugar de nacimiento o economía."
+  "success-story-text": "Nuestra gestación comenzó en 2021 y vio la luz en nuestro lanzamiento en febrero de 2023. Teniendo claro el objetivo de transformar, desde su mentalidad, mercados, comunidades, países y sociedades; y observando los resultados en los progresos realizados por sus familias, comunidades y regiones, porque en la comunidad GoBeyond no tenemos fronteras incluyendo idiomas, color de piel, lugar de nacimiento o economía.",
+  "markest-vision": "Visión",
+  "markets-vision-text": "Nuestro enfoque es proporcionar una educación integral de trading y un servicio de copy trading en todos los mercados, priorizando la transparencia y responsabilidad hacia nuestros clientes. ",
+  "markets-vision-text-2": "Nos esforzamos por convertirnos en la principal compañía de educación de trading y copy trading, brindando a nuestros clientes las herramientas necesarias para alcanzar el éxito financiero en los mercados globales. \n Buscamos establecer relaciones sólidas y duraderas con equipos comerciales y con experiencia en network marketing, ofreciéndoles una oportunidad única para generar ingresos adicionales. Nos enfocamos en atender tanto a principiantes que desean adquirir conocimientos básicos como a traders experimentados que buscan ampliar sus habilidades. ",
+  "markets-academy": "Academia",
+  "markets-academy-sub-text": "¡Bienvenidos a nuestra academia de trading!",
+  "markets-academy-sub-text-2": "Aquí encontrarás una fuente inagotable de inspiración y conocimientos valiosos para alcanzar tus metas financieras. Nuestro compromiso es brindarte contenido educativo de la más alta calidad respaldado por instructores reconocidos en la industria. Únete a nosotros y descubre cómo transformar tus habilidades en el mundo del trading. Juntos, alcanzaremos nuevos horizontes financieros. Tu academia contendrá: ",
+  "markets-academy-list-1": "ACADEMIA BASICA",
+  "markets-list-academy": [
+    {
+      "titulo": "1. Introducción en el trading ",
+      "description": ""
+    },
+    {
+      "titulo": "2. Historia del dinero",
+      "description": ""
+    },
+    {
+      "titulo": "3. Bancos centrales",
+      "description": ""
+    },
+    {
+      "titulo": "4. Que es el trading ",
+      "description": ""
+    },
+    {
+      "titulo": "5. Historia del forex",
+      "description": ""
+    },
+    {
+      "titulo": "6. Que son los CFDs ",
+      "description": ""
+    },
+    {
+      "titulo": "7. Vocabulario del trading",
+      "description": ""
+    },
+    {
+      "titulo": "8. Desarrollo del mercado ",
+      "description": ""
+    },
+    {
+      "titulo": "9. Que es una divisa ",
+      "description": ""
+    },
+    {
+      "titulo": "10. Que es un broker",
+      "description": ""
+    },
+    {
+      "titulo": "11. Introducción a las herramientas",
+      "description": ""
+    },
+    {
+      "titulo": "12. Que son pips",
+      "description": ""
+    },
+    {
+      "titulo": "13. Que es Spread y comisiones ",
+      "description": ""
+    },
+    {
+      "titulo": "14. Lotaje ",
+      "description": ""
+    },
+    {
+      "titulo": "15. Broker y apalancamiento ",
+      "description": ""
+    },
+    {
+      "titulo": "16. Tipos de órdenes  ",
+      "description": ""
+    },
+    {
+      "titulo": "17. Tipos de análisis ",
+      "description": ""
+    },
+    {
+      "titulo": "18. Velas japonesas",
+      "description": ""
+    }
+  ],
+  "markets-academy-list-2": "ACADEMIA INTERMEDIA",
+  "markets-academy-academy-2":  [
+    {
+      "titulo": "1. Introducción avanzada ",
+      "description": ""
+    },
+    {
+      "titulo": "2. Patrones de velas",
+      "description": ""
+    },
+    {
+      "titulo": "3. Bancos centrales",
+      "description": ""
+    },
+    {
+      "titulo": "4. Que es el trading ",
+      "description": ""
+    },
+    {
+      "titulo": "5. Historia del forex",
+      "description": ""
+    },
+    {
+      "titulo": "6. Que son los CFDs ",
+      "description": ""
+    }
+  ],
+  "markets-academy-list-3": "ACADEMIA INTERMEDIA",
+  "markets-academy-academy-3":[ {
+    "titulo": "1. Introducción para la rentabilidad ",
+    "description": ""
+  },
+  {
+    "titulo": "2. Ondas de Elliot ",
+    "description": ""
+  },
+  {
+    "titulo": "3. Fractalidad",
+    "description": ""
+  },
+  {
+    "titulo": "4. Liquidez ",
+    "description": ""
+  },
+  {
+    "titulo": "5. Stop hunt ",
+    "description": ""
+  },
+  {
+    "titulo": "4. Liquidez ",
+    "description": ""
+  }
+], 
+  "markets-academy-list-4": "ACADEMIA INTERMEDIA",
+  "markets-academy-academy-4":[]
+  
 }
