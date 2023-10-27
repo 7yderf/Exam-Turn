@@ -24,6 +24,7 @@
   "success-story-text": "Our gestation started in 2021 and saw the light on our launch on February 2023. Having the clear target to transform, from their mindset, markets, communities, countries and societies; and observing the results in the progress made by their families, communities and regions, because in GoBeyond community we do not have boundaries including languages, skin colour, place of birth or economics.",
   "markest-vision": "Vision",
   "markets-vision-text": "We strive to become the premier trading and copy trading education company, providing our clients with the tools necessary to achieve financial success in global markets. \n We seek to establish solid and lasting relationships with commercial teams with experience in network marketing, offering them a unique opportunity to generate additional income. We focus on serving both beginners who want to gain basic knowledge and experienced traders looking to expand their skills.",
+  "markets-vision-text-2": "We strive to become the premier trading and copy trading education company, providing our clients with the tools necessary to achieve financial success in global markets. \n We seek to establish solid and lasting relationships with commercial teams with experience in network marketing, offering them a unique opportunity to generate additional income. We focus on serving both beginners who want to gain basic knowledge and experienced traders looking to expand their skills.",
   "markets-academy": "Academy",
   "markets-academy-sub-text": "Welcome to our trading academy!",
   "markets-academy-sub-text-2": "Here you will find an endless source of inspiration and valuable knowledge to achieve your financial goals. Our commitment is to provide you with the highest quality educational content supported by industry-recognized instructors. Join us and discover how to transform your skills in the world of trading. Together, we will reach new financial horizons. Your academy will contain:",
@@ -102,8 +103,8 @@
       "description": ""
     }
   ],
-  "markets-academy-list-2": "ACADEMIA INTERMEDIA",
-  "markets-academy-academy-2":  [
+  "markets-academy-list-2": "INTERMEDIATE ACADEMY",
+  "markets-list-academy-2":  [
     {
       "titulo": "1. Introducción en el trading ",
       "description": ""
@@ -129,8 +130,122 @@
       "description": ""
     }
   ], 
-  "markets-academy-list-3": "ACADEMIA INTERMEDIA",
-  "markets-academy-academy-3":[], 
-  "markets-academy-list-4": "ACADEMIA INTERMEDIA",
-  "markets-academy-academy-4":[]
+  "markets-academy-list-3": "MIDDLE ACADEMY",
+  "markets-list-academy-3":[ {
+    "titulo": "1. Introduction to profitability ",
+    "description": ""
+  },
+  {
+    "titulo": "2. Elliot waves ",
+    "description": ""
+  },
+  {
+    "titulo": "3. Fractalidad",
+    "description": ""
+  },
+  {
+    "titulo": "4. Fractality ",
+    "description": ""
+  },
+  {
+    "titulo": "5. Stop hunt ",
+    "description": ""
+  },
+  {
+    "titulo": "6. You came to success ",
+    "description": ""
+  }
+],  
+  "markets-academy-list-4": "ADVANCED ACADEMY",
+  "markets-list-academy-4":[
+    {
+      "titulo": "1. Introduction to success ",
+      "description": ""
+    },
+    {
+      "titulo": "2. Success Tickets ",
+      "description": ""
+    },
+    {
+      "titulo": "3. Price inefficiency",
+      "description": ""
+    },
+    {
+      "titulo": "4. Market structure ",
+      "description": ""
+    },
+    {
+      "titulo": "5. Trading plan and schedules ",
+      "description": ""
+    },
+    {
+      "titulo": "6. General analysis ",
+      "description": ""
+    },
+    {
+      "titulo": "7. Backtesting ",
+      "description": ""
+    },
+    {
+      "titulo": "8.Trading psychology ",
+      "description": ""
+    }
+  ],
+  "markets-trading": "Trading",
+  "markets-trading-card-tit-1" : "WHAT IS TRADING?",
+  "markets-trading-card-text-1":"Trading is a financial activity that involves buying and selling different financial instruments with the aim of making profits through speculation of price movements in the markets. The benefits of trading include the ability to earn high returns in a short period of time, the flexibility to trade in different markets, and the opportunity to generate additional income.",
+  "markets-trading-card-tit-2" : "MARKETS TO OPERATE IN TRADING",
+  "markets-trading-card-text-2":"Trading is a financial activity that involves buying and selling different financial instruments with the aim of making profits through speculation of price movements in the markets. The benefits of trading include the ability to earn high returns in a short period of time, the flexibility to trade in different markets, and the opportunity to generate additional income.",
+  "markets-trading-card-tit-3" : "COPYTRADING",
+  "markets-trading-card-text-3":"Copytrading is a strategy in which users can benefit by replicating operations carried out by professionals in the financial markets. Instead of trading independently, users can select experienced traders and automatically follow their trading strategies and decisions in real time. The benefits of a copytrading strategy are several. First of all, users have the opportunity to take advantage of the experience and knowledge of professional traders, even if they do not have extensive knowledge of the financial market. This allows them to participate in the markets and potentially make profits without having to do extensive analysis or make trading decisions themselves. Additionally, copytrading offers a learning opportunity. By following experienced traders, users can observe and understand the strategies used, the market patterns identified, and the risk management techniques implemented.",
+  "markets-trading-card-tit-4" : "EXCHANGE",
+  "markets-trading-card-text-4":"Un exchange de criptomonedas es una plataforma digital que permite a los usuarios comprar, vender e intercambiar diferentes criptomonedas. Funciona como un intermediario que facilita las transacciones entre compradores y vendedores de criptomonedas. Los usuarios deben crear billeteras digitales (wallets) en el exchange para almacenar sus criptomonedas. Estas billeteras permiten recibir, almacenar y enviar criptomonedas de manera segura, Se pueden depositar criptomonedas en sus billeteras del exchange desde otras fuentes externas o retirar criptomonedas del exchange a sus billeteras personales Es importante tener en cuenta que los exchanges pueden variar en términos de características, servicios y regulaciones. Al elegir un exchange, es esencial investigar y considerar su reputación, seguridad, comisiones y disponibilidad en la jurisdicción en la que te encuentres.",
+  "markets-broker": "BROKER",
+  "markets-broker-txt":"A broker is a financial intermediary that facilitates the purchase and sale of financial assets, such as stocks, bonds, currencies and other investment instruments. It acts as an agent between buyers and sellers, executing transactions on behalf of its clients. Brokers can work in different markets. They provide access to these markets and offer advisory and trade execution services to their clients. In addition to facilitating transactions, they offer online trading platforms that allow clients to carry out their operations autonomously. It is important to note that brokers can operate as independent intermediaries or be affiliated with a financial institution, such as a bank or a brokerage house. In any case, its main function is to provide a safe and efficient channel for investors to buy and sell financial assets in the markets.",
+  "Knowledge-tit-hero":"Go Beyond Knowledge",
+  "Knowledge-text-hero-1":"Going alone can be challenging, lonely and boring. At GoBeyond Knowledge we have built a like-minded community of people that believe in the future of financial possibilities. This is a space for the community to learn in a different way about the new Web 3.0 revolution; we have designed it for those people who already have knowledge in Web 3.0; Trading and the different financial markets that exist today. \n Some are full time traders, others are builders working in the industry, and yet many are hobbyists that love to learn more about Web 3.0 and sharpen their trading game.",
+  "Knowledge-text-hero-2":"IF YOU CHANGE YOUR PERCEPTION YOU CHANGE YOUR MIND \n THERE IS SO MUCH WE CAN LEARN and the schools are not teaching us!",
+  "finance-tit-hero":"DeFi vs traditional finance",
+  "finance-text-hero-1":"Traditional finance can have certain drawbacks when you want to use its products, such as: difficulty in opening or using financial services; payment blocking; market closures by government authorities; transaction times; human processes that can slow down transfers; high intermediation costs; and most importantly, the cost of personal data. Our main objective is that our community can achieve the maximum potential of DeFi, which will depend to a large extent on what the community may need; avoiding any of the above-mentioned drawbacks when making use of our services.",
+  "connect-tit-hero": "Thinking on helping our community to stay connected with their products, we have developed a group of financial solutions.",
+  "connect-text-hero-1": "The crypto debit card that lets you to take your digital assets wherever you want for in-store or online purchases.",
+  "connect-text-hero-2": "One card for everything you need",
+  "connect-buton-pay": "Request your card",
+  "connect-card-tit-1": "Pay your purchases online",
+  "connect-card-text-1": "Use your Cryptocard to pay for any of your purchases online.",
+  "connect-card-tit-2": "Withdraw cash",
+  "connect-card-text-2": "Go to any ATM and convert your digital assets into cash in your local currency.",
+  "connect-card-tit-3": "Limits?",
+  "connect-card-text-3": "Access limits that fit your needs. Pay wherever and whenever you want.",
+  "connect-card-tit-4": "Control and security",
+  "connect-card-text-4": "Can't find your card? Pause it from your account so no one can use it. Found it? Activate it again and continue enjoying your assets.",
+  "connect-baner-tit-1": "Exchange Crypto-Fiat/Fiat- Crypto",
+  "connect-baner-text-1": "Exchange Crypto-Fiat/Fiat- Crypto By opening an account at GoBeyond, you will be able to change your Crypto to FIAT and your money from FIAT to Crypto, you will also be able to exchange between the different types of currencies. \n In addition, you can exchange crypto to any other crypto.",
+  "connect-nft": "EXPLORE OUR NFTs",
+  "connect-baner-tit-2": "Manage all your currencies anywhere in the world",
+  "connect-baner-text-2": "Whether you are looking for the best deal to convert currency, pay international bills or receive money from abroad, you can do it all conveniently with a Gobeyond account.",
+  "contact": "Card request",
+   "name": "Name",
+   "placeholder-name": "Your name please",
+   "middle": "Middle name (optional)",
+   "placeholder-middle": "Middle name (optional)",
+   "last-name": "Last name",
+   "placeholder-last-name": "Last name",
+   "tel": "Telephone",
+   "placeholder-tel": "Phone",
+   "email": "Email",
+   "placeholder-email": "Email",
+   "direction-1": "Address 1",
+   "placeholder-direction-1": "Linear address 1",
+   "direction-2": "Direction 2",
+   "placeholder-direction-2": "Linear direction 2",
+   "cuidad": "City",
+   "placeholder-ciudad": "City",
+   "estado": "State",
+   "placeholder-estado": "State",
+   "pais": "Country",
+   "placeholder-pais": "Country",
+   "direction": "Direcction",
+   "send-solicitud": "Send request"
+ 
 }

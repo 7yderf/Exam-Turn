@@ -41,11 +41,11 @@
         </div>
         <div class="markets__hero-content markets__hero-content--bottom">
 
-          <h3 style="color:#212529">DeFi frente a las finanzas tradicionales.</h3>
+          <h3 style="color:#212529">{{ $t('finance-tit-hero') }}</h3>
 
         </div>
         <div class="markets__hero-content markets__hero-content--bottom pt-5">
-          <p style="color:#212529">Las finanzas tradicionales pueden presentar ciertos inconvenientes al momento de querer utilizar sus productos; tales como: dificultad para abrir o utilizar servicios financieros; bloqueo de pagos; cierre de mercados por autoridades gubernamentales; horarios de transacción; procesos humanos que pueden retardar las transferencias; altos costos de intermediación y más importante aún, el costo de los datos personales. Nuestro objetivo principal es que nuestra comunidad pueda lograr el máximo potencial de DeFi, el cual dependerá en gran medida de lo que la comunidad pueda necesitar; evitando presentar alguno de los inconvenientes mencionados al momento de hacer uso de nuestros servicios.
+          <p style="color:#212529">{{ $t('finance-text-hero-1') }}
           </p>
         </div>
       </article>

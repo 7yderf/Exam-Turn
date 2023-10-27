@@ -104,7 +104,7 @@
     }
   ],
   "markets-academy-list-2": "ACADEMIA INTERMEDIA",
-  "markets-academy-academy-2":  [
+  "markets-list-academy-2":  [
     {
       "titulo": "1. Introducción avanzada ",
       "description": ""
@@ -130,8 +130,8 @@
       "description": ""
     }
   ],
-  "markets-academy-list-3": "ACADEMIA INTERMEDIA",
-  "markets-academy-academy-3":[ {
+  "markets-academy-list-3": "ACADEMIA MEDIA",
+  "markets-list-academy-3":[ {
     "titulo": "1. Introducción para la rentabilidad ",
     "description": ""
   },
@@ -152,11 +152,99 @@
     "description": ""
   },
   {
-    "titulo": "4. Liquidez ",
+    "titulo": "6. Llegaste al éxito ",
     "description": ""
   }
 ], 
-  "markets-academy-list-4": "ACADEMIA INTERMEDIA",
-  "markets-academy-academy-4":[]
-  
+  "markets-academy-list-4": "ACADEMIA AVANZADA",
+  "markets-list-academy-4":[
+    {
+      "titulo": "1. Introducción al éxito ",
+      "description": ""
+    },
+    {
+      "titulo": "2. Entradas de éxito ",
+      "description": ""
+    },
+    {
+      "titulo": "3. Ineficiencia del precio",
+      "description": ""
+    },
+    {
+      "titulo": "4. Estructura del mercado ",
+      "description": ""
+    },
+    {
+      "titulo": "5. Plan de trading y horarios ",
+      "description": ""
+    },
+    {
+      "titulo": "6. Análisis general ",
+      "description": ""
+    },
+    {
+      "titulo": "7. El backtesting ",
+      "description": ""
+    },
+    {
+      "titulo": "8. Psicología del trading ",
+      "description": ""
+    }
+  ],
+  "markets-trading": "Trading",
+  "markets-trading-card-tit-1": "QUE ES TRADING?",
+  "markets-trading-card-text-1": "El trading es una actividad financiera que implica comprar y vender diferentes instrumentos financieros con el objetivo de obtener ganancias a través de la especulación de los movimientos de precios en los mercados. Los beneficios del trading incluyen la posibilidad de obtener altos rendimientos en un corto período de tiempo, la flexibilidad para operar en diferentes mercados y la oportunidad de generar ingresos adicionales.",
+  "markets-trading-card-tit-2" : "MERCADOS A OPERAR EN TRADING",
+  "markets-trading-card-text-2":"El trading es una actividad financiera que implica comprar y vender diferentes instrumentos financieros con el objetivo de obtener ganancias a través de la especulación de los movimientos de precios en los mercados. Los beneficios del trading incluyen la posibilidad de obtener altos rendimientos en un corto período de tiempo, la flexibilidad para operar en diferentes mercados y la oportunidad de generar ingresos adicionales. ",
+  "markets-trading-card-tit-3" : "COPYTRADING",
+  "markets-trading-card-text-3":"El copytrading es una estrategia en la que los usuarios pueden beneficiarse al replicar las operaciones realizadas por profesionales en los mercados financieros. En lugar de operar de forma independiente, los usuarios pueden seleccionar a traders experimentados y seguir automáticamente sus estrategias y decisiones de operacion en tiempo real. Los beneficios de una estrategia de copytrading son varios. En primer lugar, los usuarios tienen la oportunidad de aprovechar la experiencia y el conocimiento de traders profesionales, incluso si no tienen un amplio conocimiento del mercado financiero. Esto les permite participar en los mercados y potencialmente obtener beneficios sin tener que realizar un análisis exhaustivo ni tomar decisiones de operación por sí mismos. Además, el copytrading ofrece una oportunidad de aprendizaje. Al seguir a traders experimentados, los usuarios pueden observar y comprender las estrategias utilizadas, los patrones de mercado identificados y las técnicas de gestión de riesgos implementadas.",
+  "markets-trading-card-tit-4" : "EXCHANGE",
+  "markets-trading-card-text-4":"Un exchange de criptomonedas es una plataforma digital que permite a los usuarios comprar, vender e intercambiar diferentes criptomonedas. Funciona como un intermediario que facilita las transacciones entre compradores y vendedores de criptomonedas. Los usuarios deben crear billeteras digitales (wallets) en el exchange para almacenar sus criptomonedas. Estas billeteras permiten recibir, almacenar y enviar criptomonedas de manera segura, Se pueden depositar criptomonedas en sus billeteras del exchange desde otras fuentes externas o retirar criptomonedas del exchange a sus billeteras personales Es importante tener en cuenta que los exchanges pueden variar en términos de características, servicios y regulaciones. Al elegir un exchange, es esencial investigar y considerar su reputación, seguridad, comisiones y disponibilidad en la jurisdicción en la que te encuentres.",
+  "markets-broker": "BROKER",
+  "markets-broker-txt":"Un broker es un intermediario financiero que facilita la compra y venta de activos financieros, como acciones, bonos, divisas y otros instrumentos de inversión. Actúa como un agente entre los compradores y vendedores, ejecutando las transacciones en nombre de sus clientes. Los brokers pueden trabajar en diferentes mercados, Proporcionan acceso a estos mercados y ofrecen servicios de asesoramiento y ejecución de operaciones a sus clientes. Además de facilitar las transacciones, ofrecen plataformas de trading en línea que permiten a los clientes realizar sus operaciones de forma autónoma. Es importante destacar que los brokers pueden operar como intermediarios independientes o estar afiliados a una institución financiera, como un banco o una casa de valores. En cualquier caso, su función principal es proporcionar un canal seguro y eficiente para que los inversores compren y vendan activos financieros en los mercados.",
+  "Knowledge-tit-hero":"Go Beyond Knowledge",
+  "Knowledge-text-hero-1":"Avanzar solo puede ser difícil, solitario y aburrido. En GoBeyond Knowledge hemos creado una comunidad de personas con ideas afines que creen en el futuro de las posibilidades financieras. \n Este es un espacio para que la comunidad pueda aprender de una forma diferente sobre la nueva revolución de Web 3.0; lo hemos diseñado para aquellas personas que ya tienen conocimiento en Web 3.0; Trading y los diferentes mercados financieros que existen actualmente. Algunos son operadores a tiempo completo, otros son constructores que trabajan en el sector, y muchos son aficionados a los que les encanta aprender más sobre la Web 3.0 y perfeccionar su juego de trading.",
+  "Knowledge-text-hero-2":"Si cambias tu percepción cambias tu mente \n ¡hay tanto que podemos aprender y las escuelas no nos están enseñando!",
+  "finance-tit-hero":"DeFi frente a las finanzas tradicionales.",
+  "finance-text-hero-1":"Las finanzas tradicionales pueden presentar ciertos inconvenientes al momento de querer utilizar sus productos; tales como: dificultad para abrir o utilizar servicios financieros; bloqueo de pagos; cierre de mercados por autoridades gubernamentales; horarios de transacción; procesos humanos que pueden retardar las transferencias; altos costos de intermediación y más importante aún, el costo de los datos personales. Nuestro objetivo principal es que nuestra comunidad pueda lograr el máximo potencial de DeFi, el cual dependerá en gran medida de lo que la comunidad pueda necesitar; evitando presentar alguno de los inconvenientes mencionados al momento de hacer uso de nuestros servicios.",
+  "connect-tit-hero": "Pensando en ayudar a nuestra comunidad a mantenerse conectada con sus productos, hemos desarrollado un grupo de soluciones financieras.",
+  "connect-text-hero-1": "La tarjeta de débito cripto que le permite llevar sus activos digitales donde quiera para compras en tiendas o en línea.",
+  "connect-text-hero-2": "Una tarjeta para todo lo que necesite",
+  "connect-buton-pay": "Solicitar tu tarjeta",
+  "connect-card-tit-1": "Pague sus compras en línea",
+  "connect-card-text-1": "Utilice su Cryptocard para pagar cualquiera de sus compras en línea.",
+  "connect-card-tit-2": "Retirar efectivo ",
+  "connect-card-text-2": "Ve a cualquier cajero automático y convierte tus activos digitales en efectivo en tu moneda local.",
+  "connect-card-tit-3": "¿Limites?",
+  "connect-card-text-3": "Límites de acceso que se adaptan a sus necesidades. Pague donde y cuando quiera.  ",
+  "connect-card-tit-4": "Control y seguridad",
+  "connect-card-text-4": "¿No encuentras tu tarjeta? páusala desde tu cuenta para que nadie pueda utilizarla. ¿La has encontrado? Actívala de nuevo y sigue disfrutando de tus bienes.",
+  "connect-baner-tit-1": "Intercambio Cripto-Fiat/Fiat-Cripto.",
+  "connect-baner-text-1": "Al abrir una cuenta en GoBeyond, podrás cambiar tu Cripto a FIAT y tu dinero de FIAT a Cripto; también podrás intercambiar entre los diferentes tipos de divisas. \n Además, puedes intercambiar cripto por cualquier otro cripto.",
+  "connect-nft": " EXPLORA NUESTROS NFT ",
+  "connect-baner-tit-2": "Gestione todas sus divisas en cualquier lugar del mundo",
+  "connect-baner-text-2": "Si busca la mejor oferta para convertir divisas, pagar facturas internacionales o recibir dinero del extranjero, puede hacerlo todo cómodamente con una cuenta Gobeyond.",
+  "contact": "Solicitud de tarjeta",
+  "name": "Nombre",
+  "placeholder-name": "Su nombre por favor",
+  "middle": "Segundo nombre (opcional)",
+  "placeholder-middle": "Segundo nombre (opcional)",
+  "last-name": "Apellido",
+  "placeholder-last-name": "Apellido",
+  "tel": "Teléfono",
+  "placeholder-tel": "Teléfono",
+  "email": "Correo electrónico",
+  "placeholder-email": "Correo electrónico",
+  "direction-1": "Dirección 1", 
+  "placeholder-direction-1": "Dirección lineal 1",
+  "direction-2": "Dirección 2", 
+  "placeholder-direction-2": "Dirección lineal 2",
+  "cuidad": "Ciudad",
+  "placeholder-ciudad": "Cuidad",
+  "estado": "Estado",
+  "placeholder-estado": "Estado",
+  "pais": "País",
+  "placeholder-pais": "País",
+  "direction": "Dirección",
+  "send-solicitud": "Enviar solicitud"
 }

@@ -26,9 +26,9 @@
           <div class="connect__whoAre-box">
             <div class="connect__whoAre-blur" />
             <div class="connect__whoAre-content">
-              <h4>Pensando en ayudar a nuestra comunidad a mantenerse conectada con sus productos, hemos desarrollado un grupo de soluciones financieras.</h4>
-              <p>La tarjeta de débito cripto que le permite llevar sus activos digitales donde quiera para compras en tiendas o en línea.<br />
-              </p><h5>Una tarjeta para todo lo que necesite</h5>
+              <h4>{{ $t('connect-tit-hero') }}</h4>
+              <p>{{ $t('connect-text-hero-1') }}<br />
+              </p><h5>{{ $t('connect-text-hero-2') }}</h5>
             </div>
           </div>
         </div>
@@ -42,31 +42,44 @@
         >
       </div>
       <button
-        type="button" 
-        class="connect__card-button">
-        Solicita tu tarjeta
+        type="button"
+        class="connect__card-button"
+      >
+        {{ $t('connect-buton-pay') }}
       </button>
     </article>
     <article class="connect__cards-icons container">
       <div class="connect__box-cards">
-        <icon name="ri:bit-coin-fill" class="connect__cards-icon" />
-        <h5>Pague sus compras en línea</h5>
-        <p>Utilice su Cryptocard para pagar cualquiera de sus compras en línea.</p>
+        <icon
+          name="ri:bit-coin-fill"
+          class="connect__cards-icon"
+        />
+        <h5>{{ $t('connect-card-tit-1') }}</h5>
+        <p>{{ $t('connect-card-text-1') }}</p>
       </div>
       <div class="connect__box-cards">
-        <icon name="ri:bank-card-fill" class="connect__cards-icon" />
-        <h5>Retirar efectivo</h5>
-        <p>Ve a cualquier cajero automático y convierte tus activos digitales en efectivo en tu moneda local.</p>
+        <icon
+          name="ri:bank-card-fill"
+          class="connect__cards-icon"
+        />
+        <h5>{{ $t('connect-card-tit-2') }}</h5>
+        <p>{{ $t('connect-card-text-2') }}</p>
       </div>
       <div class="connect__box-cards">
-        <icon name="ri:money-dollar-circle-fill" class="connect__cards-icon" />
-        <h5>¿Limites?</h5>
-        <p>Límites de acceso que se adaptan a sus necesidades. Pague donde y cuando quiera.</p>
+        <icon
+          name="ri:money-dollar-circle-fill"
+          class="connect__cards-icon"
+        />
+        <h5>{{ $t('connect-card-tit-3') }}</h5>
+        <p>{{ $t('connect-card-text-3') }}</p>
       </div>
       <div class="connect__box-cards">
-        <icon name="ri:shield-check-fill" class="connect__cards-icon" />
-        <h5>Control y seguridad</h5>
-        <p>¿No encuentras tu tarjeta? páusala desde tu cuenta para que nadie pueda utilizarla. ¿La has encontrado? Actívala de nuevo y sigue disfrutando de tus bienes.</p>
+        <icon
+          name="ri:shield-check-fill"
+          class="connect__cards-icon"
+        />
+        <h5>{{ $t('connect-card-tit-4') }}</h5>
+        <p>{{ $t('connect-card-text-4') }}</p>
       </div>
     </article>
     <article class="paused connect__broker">
@@ -79,8 +92,8 @@
         <div class="connect__whoAre-box">
           <div class="connect__whoAre-blur" />
           <div class="connect__whoAre-content">
-            <h3>Intercambio Cripto-Fiat/Fiat-Cripto.</h3>
-            <p>Al abrir una cuenta en GoBeyond, podrás cambiar tu Cripto a FIAT y tu dinero de FIAT a Cripto; también podrás intercambiar entre los diferentes tipos de divisas. <br/> Además, puedes intercambiar cripto por cualquier otro cripto.</p>
+            <h3>{{ $t('connect-baner-tit-1') }}</h3>
+            <p>{{ $t('connect-baner-text-1') }}</p>
           </div>
         </div>
       </div>
@@ -97,7 +110,7 @@
 
       <div class="connect__box-city-content" />
       <p>
-        EXPLORA NUESTROS NFT
+        {{ $t('connect-nft') }}
       </p>
     </div>
     <article class="paused connect__broker">
@@ -106,8 +119,8 @@
         <div class="connect__whoAre-box">
           <div class="connect__whoAre-blur" />
           <div class="connect__whoAre-content">
-            <h3>Gestione todas sus divisas en cualquier lugar del mundo</h3>
-            <p>Si busca la mejor oferta para convertir divisas, pagar facturas internacionales o recibir dinero del extranjero, puede hacerlo todo cómodamente con una cuenta Gobeyond.</p>
+            <h3> {{ $t('connect-baner-tit-2') }}</h3>
+            <p>{{ $t('connect-baner-text-2') }}</p>
           </div>
         </div>
         <img
@@ -116,6 +129,19 @@
           alt=""
         >
       </div>
+    </article>
+    <article class="paused connect__broker connect__broker--send">
+      <article class="connect__send container">
+        <img
+          src="../assets/images/pensar-back.png"
+          class="connect__whoAre-img"
+          alt=""
+        >
+        <div class="connect__whoAre-box connect__whoAre-box--send">
+          <div class="connect__whoAre-blur" />
+          <Contact class="connect__form" />
+        </div>
+      </article>
     </article>
   </section>
 </template>

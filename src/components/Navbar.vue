@@ -160,10 +160,18 @@
           </select>
         </form>
 
-        <icon
+        <!-- <icon
           name="ri:shopping-cart-2-fill"
           class="nav-menu__icon"
-        />
+        /> -->
+        <NuxtLink
+          class="nav-menu__sign"
+          :data-active="toggler"
+          to="https://test.gobytec.com/login"
+          target="_blank"
+        >
+          Sing in
+        </NuxtLink>
       </div>
     </div>
   </nav>
@@ -269,6 +277,17 @@ onMounted(async () => {
   }
   @media screen and (max-width: 768px) {
     top: 0;
+  }
+  &__sign{
+    @include border(#1357f4);
+    color: var(--text-invert);
+    font-size: 1.2rem;
+    padding: 4px 16px;
+    border-radius: 16px;
+    background: #031e5d;
+    &:hover{
+      background: #083397;
+    }
   }
   .nav-link {
     color: var(--text-invert);

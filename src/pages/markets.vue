@@ -29,13 +29,12 @@
               alt=""
             >
           </div>
-          <h3>Vision</h3>
-          <p>Nuestro enfoque es proporcionar una educación integral de trading y un servicio de copy trading en todos los mercados, priorizando la transparencia y responsabilidad hacia nuestros clientes.
+          <h3> {{ $t('markest-vision') }}</h3>
+          <p> {{ $t('markets-vision-text') }}
           </p>
         </div>
         <div class="markets__hero-content markets__hero-content--bottom pt-5">
-          <p>Nos esforzamos por convertirnos en la principal compañía de educación de trading y copy trading, brindando a nuestros clientes las herramientas necesarias para alcanzar el éxito financiero en los mercados globales. <br>
-            Buscamos establecer relaciones sólidas y duraderas con equipos comerciales y con experiencia en network marketing, ofreciéndoles una oportunidad única para generar ingresos adicionales. Nos enfocamos en atender tanto a principiantes que desean adquirir conocimientos básicos como a traders experimentados que buscan ampliar sus habilidades.
+          <p>{{ $t('markets-vision-text-2') }}
           </p>
         </div>
       </article>
@@ -75,44 +74,44 @@
 
     <article class="markets__academy container">
       <div class="markets__tit">
-        <h4>Academia</h4>
+        <h4>{{ $t('markets-academy') }}</h4>
       </div>
 
       <h5 class="markets__academy-tit">
-        ¡Bienvenidos a nuestra academia de trading!
+        {{ $t('markets-academy-sub-text') }}
       </h5>
       <p class="markets__acadmey-txt">
-        Aquí encontrarás una fuente inagotable de inspiración y conocimientos valiosos para alcanzar tus metas financieras. Nuestro compromiso es brindarte contenido educativo de la más alta calidad respaldado por instructores reconocidos en la industria. Únete a nosotros y descubre cómo transformar tus habilidades en el mundo del trading. Juntos, alcanzaremos nuevos horizontes financieros. Tu academia contendrá:
+        {{ $t('markets-academy-sub-text-2') }}
       </p>
     </article>
     <article class=" container markets__paragraphs paused">
       <div class="markets__paragraph-1 ">
         <ServicesParagraph
-          :titulo="types_proyects[0].titulo"
-          :bullets="types_proyects[0].bullets"
-          :texto="types_proyects[0].texto"
-          :action="types_proyects[0].action"
+          :titulo="$t('markets-academy-list-1')"
+          :bullets="''"
+          :texto="''"
+          :action="''"
           :image="'/academy-1.png'"
         />
       </div>
       <div class="markets__list-1">
         <ServicesListServices
-          :list-services="list"
+          :list-services="list_1"
         />
       </div>
     </article>
     <article class=" container markets__paragraphs paused">
       <div class="markets__list-1 markets__list-1--order">
         <ServicesListServices
-          :list-services="list_proyects_apps"
+          :list-services="list_2"
         />
       </div>
       <div class="markets__paragraph-1 markets__paragraph-1--order">
         <ServicesParagraph
-          :titulo="types_proyects[1].titulo"
-          :bullets="types_proyects[1].bullets"
-          :texto="types_proyects[1].texto"
-          :action="types_proyects[1].action"
+          :titulo="$t('markets-academy-list-2')"
+          :bullets="''"
+          :texto="''"
+          :action="''"
           :image="'/academy-02.png'"
         />
       </div>
@@ -120,38 +119,38 @@
     <article class=" container markets__paragraphs paused">
       <div class="markets__paragraph-1">
         <ServicesParagraph
-          :titulo="types_proyects[2].titulo"
-          :bullets="types_proyects[2].bullets"
-          :texto="types_proyects[2].texto"
-          :action="types_proyects[2].action"
+          :titulo="$t('markets-academy-list-3')"
+          :bullets="''"
+          :texto="''"
+          :action="''"
           :image="'/academy-03.png'"
         />
       </div>
       <div class="markets__list-1">
         <ServicesListServices
-          :list-services="list_proyects_web"
+          :list-services="list_3"
         />
       </div>
     </article>
     <article class=" container markets__paragraphs paused">
       <div class="markets__list-1 markets__list-1--order">
         <ServicesListServices
-          :list-services="list_proyects_apps"
+          :list-services="list_4"
         />
       </div>
       <div class="markets__paragraph-1 markets__paragraph-1--order">
         <ServicesParagraph
-          :titulo="types_proyects[3].titulo"
-          :bullets="types_proyects[1].bullets"
-          :texto="types_proyects[1].texto"
-          :action="types_proyects[1].action"
+          :titulo="$t('markets-academy-list-4')"
+          :bullets="''"
+          :texto="''"
+          :action="''"
           :image="'/academy-04.png'"
         />
       </div>
     </article>
     <article class="markets__trading">
       <div class=" container markets__tit">
-        <h4>Trading</h4>
+        <h4>{{ $t('markets-trading') }}</h4>
       </div>
       <article class="container markets__products-card  paused">
         <div class="markets__trading-card markets__trading-card--left markets__trading-paragraph-1">
@@ -163,8 +162,8 @@
           >
 
           <div class="markets__trading-card-txt">
-            <h3>QUE ES TRADING?</h3>
-            <p>El trading es una actividad financiera que implica comprar y vender diferentes instrumentos financieros con el objetivo de obtener ganancias a través de la especulación de los movimientos de precios en los mercados. Los beneficios del trading incluyen la posibilidad de obtener altos rendimientos en un corto período de tiempo, la flexibilidad para operar en diferentes mercados y la oportunidad de generar ingresos adicionales.
+            <h3>{{ $t('markets-trading-card-tit-1') }}</h3>
+            <p>{{ $t('markets-trading-card-text-1') }}
             </p>
             <button
               type="button"
@@ -178,8 +177,8 @@
         <div class="markets__trading-card markets__trading-card--rigth markets__trading-paragraph-1">
 
           <div class="markets__trading-card-txt">
-            <h3>MERCADOS A OPERAR EN TRADING</h3>
-            <p>El trading es una actividad financiera que implica comprar y vender diferentes instrumentos financieros con el objetivo de obtener ganancias a través de la especulación de los movimientos de precios en los mercados. Los beneficios del trading incluyen la posibilidad de obtener altos rendimientos en un corto período de tiempo, la flexibilidad para operar en diferentes mercados y la oportunidad de generar ingresos adicionales. </p>
+            <h3>{{ $t('markets-trading-card-tit-2') }}</h3>
+            <p>{{ $t('markets-trading-card-text-2') }}</p>
             <button
               type="button"
               class="markets__trading-card-btn-read markets__trading-card-btn-read--radius"
@@ -203,9 +202,8 @@
           >
 
           <div class="markets__trading-card-txt">
-            <h3>COPYTRADING</h3>
-            <p>El copytrading es una estrategia en la que los usuarios pueden beneficiarse al replicar las operaciones realizadas por profesionales en los mercados financieros. En lugar de operar de forma independiente, los usuarios pueden seleccionar a traders experimentados y seguir automáticamente sus estrategias y decisiones de operacion en tiempo real. Los beneficios de una estrategia de copytrading son varios. En primer lugar, los usuarios tienen la oportunidad de aprovechar la experiencia y el conocimiento de traders profesionales, incluso si no tienen un amplio conocimiento del mercado financiero. Esto les permite participar en los mercados y potencialmente obtener beneficios sin tener que realizar un análisis exhaustivo ni tomar decisiones de operación por sí mismos. Además, el copytrading ofrece una oportunidad de aprendizaje. Al seguir a traders experimentados, los usuarios pueden observar y comprender las estrategias utilizadas, los patrones de mercado identificados y las técnicas de gestión de riesgos implementadas.
-            </p>
+            <h3>{{ $t('markets-trading-card-tit-3') }}</h3>
+            <p>{{ $t('markets-trading-card-text-3') }}</p>
             <button
               type="button"
               class="markets__trading-card-btn-read markets__trading-card-btn-read--radius"
@@ -218,9 +216,8 @@
         <div class="markets__trading-card markets__trading-card--rigth markets__trading-paragraph-1">
 
           <div class="markets__trading-card-txt">
-            <h3>EXCHANGE</h3>
-            <p>Un exchange de criptomonedas es una plataforma digital que permite a los usuarios comprar, vender e intercambiar diferentes criptomonedas. Funciona como un intermediario que facilita las transacciones entre compradores y vendedores de criptomonedas. Los usuarios deben crear billeteras digitales (wallets) en el exchange para almacenar sus criptomonedas. Estas billeteras permiten recibir, almacenar y enviar criptomonedas de manera segura, Se pueden depositar criptomonedas en sus billeteras del exchange desde otras fuentes externas o retirar criptomonedas del exchange a sus billeteras personales Es importante tener en cuenta que los exchanges pueden variar en términos de características, servicios y regulaciones. Al elegir un exchange, es esencial investigar y considerar su reputación, seguridad, comisiones y disponibilidad en la jurisdicción en la que te encuentres.
-            </p>
+            <h3>{{ $t('markets-trading-card-tit-4') }}</h3>
+            <p>{{ $t('markets-trading-card-text-4') }}</p>
             <button
               type="button"
               class="markets__trading-card-btn-read markets__trading-card-btn-read--radius"
@@ -247,8 +244,8 @@
         <div class="markets__whoAre-box">
           <div class="markets__whoAre-blur" />
           <div class="markets__whoAre-content">
-            <h3>BROKER</h3>
-            <p>Un broker es un intermediario financiero que facilita la compra y venta de activos financieros, como acciones, bonos, divisas y otros instrumentos de inversión. Actúa como un agente entre los compradores y vendedores, ejecutando las transacciones en nombre de sus clientes. Los brokers pueden trabajar en diferentes mercados, Proporcionan acceso a estos mercados y ofrecen servicios de asesoramiento y ejecución de operaciones a sus clientes. Además de facilitar las transacciones, ofrecen plataformas de trading en línea que permiten a los clientes realizar sus operaciones de forma autónoma. Es importante destacar que los brokers pueden operar como intermediarios independientes o estar afiliados a una institución financiera, como un banco o una casa de valores. En cualquier caso, su función principal es proporcionar un canal seguro y eficiente para que los inversores compren y vendan activos financieros en los mercados.</p>
+            <h3>{{ $t('markets-broker') }}</h3>
+            <p>{{ $t('markets-broker-txt') }}</p>
           </div>
         </div>
       </div>
@@ -257,17 +254,22 @@
 </template>
 
 <script lang="ts" setup>
-import { set } from 'nuxt/dist/app/compat/capi'
+
 import { ref, onMounted, render } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t, tm } = useI18n()
-const list = ref<any>(tm('markets-list-academy'))
+const list_1 = ref<any>(tm('markets-list-academy'))
+const list_2 = ref<any>(tm('markets-list-academy-2'))
+const list_3 = ref<any>(tm('markets-list-academy-3'))
+const list_4 = ref<any>(tm('markets-list-academy-4'))
 const servic = ref(null)
 
 watch(() => t('lang'), value => {
-  console.log('🚀 ~ file: index.vue:145 ~ watch ~ value:', value)
-  list.value = tm('markets-list-academy')
+  list_1.value = tm('markets-list-academy')
+  list_2.value = tm('markets-list-academy-2')
+  list_3.value = tm('markets-list-academy-3')
+  list_4.value = tm('markets-list-academy-3')
 })
 
 const types_proyects = ref([
@@ -304,190 +306,6 @@ const types_proyects = ref([
     ],
     texto: 'Servicios de desarrollo de software personalizado. Contamos con desarrolladores expertos, y con vasta experiencia en industrias específicas.',
     action: 'Cotiza tu proyecto',
-  },
-
-])
-
-const list_proyects_design = ref([
-  {
-    titulo: '1. Introducción en el trading ',
-    description: '',
-  },
-  {
-    titulo: '2. Historia del dinero',
-    description: '',
-  },
-  {
-    titulo: '3. Bancos centrales',
-    description: '',
-  },
-  {
-    titulo: '4. Que es el trading ',
-    description: '',
-  },
-  {
-    titulo: '5. Historia del forex',
-    description: '',
-  },
-  {
-    titulo: '6. Que son los CFDs ',
-    description: '',
-  },
-  {
-    titulo: '7. Vocabulario del trading',
-    description: '',
-  },
-  {
-    titulo: '8. Desarrollo del mercado ',
-    description: '',
-  },
-  {
-    titulo: '9. Que es una divisa ',
-    description: '',
-  },
-  {
-    titulo: '10. Que es un broker',
-    description: '',
-  },
-  {
-    titulo: '11. Introducción a las herramientas',
-    description: '',
-  },
-  {
-    titulo: '12. Que son pips',
-    description: '',
-  },
-  {
-    titulo: '13. Que es Spread y comisiones ',
-    description: '',
-  },
-  {
-    titulo: '14. Lotaje ',
-    description: '',
-  },
-  {
-    titulo: '15. Broker y apalancamiento ',
-    description: '',
-  },
-  {
-    titulo: '16. Tipos de órdenes  ',
-    description: '',
-  },
-  {
-    titulo: '17. Tipos de análisis ',
-    description: '',
-  },
-  {
-    titulo: '18. Velas japonesas',
-    description: '',
-  },
-
-])
-
-const list_proyects_apps = ref([
-  {
-    titulo: '1. Introducción avanzada ',
-    description: '',
-  },
-  {
-    titulo: '2. Patrones de velas',
-    description: '',
-  },
-  {
-    titulo: '3. Estructura del mercado 1',
-    description: '',
-  },
-  {
-    titulo: '4. Estructura del mercado 2',
-    description: '',
-  },
-  {
-    titulo: '5. Soportes y resistencias',
-    description: '',
-  },
-  {
-    titulo: '6. Líneas de tendencia',
-    description: '',
-  },
-  {
-    titulo: '7. Indicadores ',
-    description: '',
-  },
-  {
-    titulo: '8. Chartismo ',
-    description: '',
-  },
-  {
-    titulo: '9. Análisis del día ',
-    description: '',
-  },
-
-])
-
-const list_proyects_web = ref([
-  {
-    titulo: '1. Introducción para la rentabilidad ',
-    description: '',
-  },
-  {
-    titulo: '2. Ondas de Elliot ',
-    description: '',
-  },
-  {
-    titulo: '3. Fractalidad',
-    description: '',
-  },
-  {
-    titulo: '4. Liquidez ',
-    description: '',
-  },
-  {
-    titulo: '5. Stop hunt ',
-    description: '',
-  },
-  {
-    titulo: '4. Liquidez ',
-    description: '',
-  },
-
-])
-
-const list_proyects_apps_dos = ref([
-  {
-    titulo: '1. Introducción avanzada ',
-    description: '',
-  },
-  {
-    titulo: '2. Patrones de velas',
-    description: '',
-  },
-  {
-    titulo: '3. Estructura del mercado 1',
-    description: '',
-  },
-  {
-    titulo: '4. Estructura del mercado 2',
-    description: '',
-  },
-  {
-    titulo: '5. Soportes y resistencias',
-    description: '',
-  },
-  {
-    titulo: '6. Líneas de tendencia',
-    description: '',
-  },
-  {
-    titulo: '7. Indicadores ',
-    description: '',
-  },
-  {
-    titulo: '8. Chartismo ',
-    description: '',
-  },
-  {
-    titulo: '9. Análisis del día ',
-    description: '',
   },
 
 ])

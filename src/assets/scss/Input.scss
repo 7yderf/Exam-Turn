@@ -29,6 +29,20 @@ input:-webkit-autofill,
   &__text{
     flex-grow: 1;
   }
+  &[data-type="middle_name"]{
+   
+      &::after{
+        content: "";
+      }
+    
+  }
+  &[data-type="address_line_2"]{
+   
+    &::after{
+      content: "";
+    }
+  
+}
 }
 
 .input {
@@ -79,10 +93,10 @@ input:-webkit-autofill,
     // }
   }
   &__text-danger{
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     line-height: normal;
     position: absolute;
-    bottom: -32px;
+    bottom: -22px;
     color: var(--error-color);
     left: 20px;
   }

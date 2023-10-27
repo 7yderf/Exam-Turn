@@ -26,13 +26,9 @@
           <div class="knowledge__whoAre-box">
             <div class="knowledge__whoAre-blur" />
             <div class="knowledge__whoAre-content">
-              <h3>Conocimiento GoBeyond</h3>
-              <p>Avanzar solo puede ser difícil, solitario y aburrido. En GoBeyond Knowledge hemos creado una comunidad de personas con ideas afines que creen en el futuro de las posibilidades financieras.<br />
-                Este es un espacio para que la comunidad pueda aprender de una forma diferente sobre la nueva revolución de Web 3.0; lo hemos diseñado para aquellas personas que ya tienen conocimiento en Web 3.0; Trading y los diferentes mercados financieros que existen actualmente.
-                Algunos son operadores a tiempo completo, otros son constructores que trabajan en el sector, y muchos son aficionados a los que les encanta aprender más sobre la Web 3.0 y perfeccionar su juego de trading.
-              </p><h5>Si cambias tu percepción cambias tu mente <br />
-
-                ¡hay tanto que podemos aprender y las escuelas no nos están enseñando!</h5>
+              <h3>{{ $t('Knowledge-tit-hero') }}</h3>
+              <p>{{ $t('Knowledge-text-hero-1') }}
+              </p><h5>{{ $t('Knowledge-text-hero-2') }}</h5>
             </div>
           </div>
         </div>
