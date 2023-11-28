@@ -77,7 +77,7 @@
       </div>
     </div>
     <p class="footer__copyright container">
-      © 2023 Copyright Optimum Equipo
+      © 2023 Copyright Exsin Equipo
     </p>
   </footer>
 
