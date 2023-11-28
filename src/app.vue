@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  titleTemplate: title => (title ? `${title} - Turn ` : 'By gobeyond'),
+  titleTemplate: title => (title ? `${title} - Turn ` : 'exsin'),
 })
 
 </script>

@@ -4,7 +4,7 @@
 
 
 /* General styles */
-* {
+body, * {
   box-sizing: border-box;
   outline: 0;
   padding: 0;
@@ -12,13 +12,13 @@
 }
 
 :root {
-  --primary-color: #4200FF;
+  --primary-color: #313C32;
   --primary-lighter: #D9CCFF;
   --primary-light: #C6B3FF;
   --primary-darker: #0B1A28;
   --primary-dark: #280099;
 
-  --green-color: #15B75B;
+  --green-color: #02AFA2;
   --green-lighter: #D1FAE3;
   --green-light: #A3F5C7;
   --green-darker: #0F8A45;
@@ -36,7 +36,7 @@
   --red-darker: #FF1C00;
   --red-dark: #59201D;
  
-  // --secondary-color: #FF5C20;
+  --secondary-color: #02AFA2;
   // --bg-color: #F8FAFC;
   // --bg-second-color: ;
   --text-color: #565252;;
@@ -64,18 +64,43 @@ html {
     font-size: 55%;
   }
 }
-body {
+
+  body{
+  @include flex(center, false, stretch);
+  flex-wrap: wrap;  
   font-family: var(--primary-font)!important;
   font-size: 1.6rem;
+  width: 100%;
   min-height: 100vh;
 }
-.img-default{
-  display: none;
+.body{
+  @include flex(center, false, stretch);
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;  
 }
 
-body {
-  cursor: url("/cursor.png"), default;
+// #__nuxt{
+//   width: 100%; //solo para nuxt
+//   & > div{
+//     height: 100%;
+//   }
+ 
+// }
+article{
+  @include article-box;
 }
+section{
+  @include section-box;
+}
+
+.box{
+  @include section-box;
+}
+
+// body{
+//   cursor: url("/cursor.png"), default;
+// }
 h1{
   @include text(9.6rem, 700, auto);
 }
@@ -186,7 +211,32 @@ a{
     margin: 0 8px;
     color: var(--text-invert);
 }
+.background-srcImg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+  &[data-blur="true"]{
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(60px);
+  }
+}
+
+img{
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
 
 .img__default{
   width: 100%;
+}
+
+
+.container {         
+  position: relative;
 }

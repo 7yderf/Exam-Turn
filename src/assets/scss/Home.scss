@@ -1,0 +1,127 @@
+@import "./Mixins";
+main{
+  @include main-box(100%, 0px);
+}
+article{
+  // @include border;
+  position: relative;
+}
+section{
+  // @include border
+}
+
+.box{
+  // @include border;
+}
+
+.home{
+  
+&__hero{
+  height: 500px;
+}
+&__hero-section{
+  @include flex(center, 10px);
+  flex-direction: column;
+  color: var(--text-invert);
+  h4{
+    text-align: center;
+  }
+  p{
+    font-size: 2.4rem;
+    text-align: center;
+    line-height: 3.6rem;
+  }
+}
+&__hero-actions{
+  @include flex(center, 32px);
+  flex-grow: initial;
+}
+&__hero-action{
+  &--about{
+    @include button;
+  }
+  &--contact{
+    @include button(outline);
+  }
+  padding: 10px 24px 8px!important;
+  border-radius: 36px!important;
+}
+&__services{
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+&__services-section{
+  @include article-box;
+}
+&__services-hero{
+  @include flex(center, 48px);
+  padding: 36px;
+  flex-direction: column;
+  color: var(--text-invert);
+  h3{
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  p{
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}
+&__services-space-blur{
+  width: 100%;
+  max-width: 900px;
+  padding: 32px;
+  border-radius: 12px;
+}
+&__services-cards{
+  @include flex(center, 96px 80px, center);
+  flex-wrap: wrap;
+  padding: 80px;
+}
+&__services-card{
+  // @include border;
+  @include flex(flex-start, 8px, flex-end);
+  position: relative;
+  padding: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.5s;
+  width: 250px;
+  height: 350px;
+  p{
+    color: var(--text-invert);
+  }
+}
+&__property-body{
+  @include flex(center, 32px, stretch);
+  flex-wrap: wrap;
+}
+&__contact-section{
+  @include flex(center,false,stretch);
+  // max-height: 650px;
+  padding: 32px;
+  
+}
+
+&__contact-left{
+  padding: 50px 48px;
+  border-radius: 16px 0 0 16px;
+  background: radial-gradient(50% 71.86% at 50% 50%, #626262 0%, #3E3E3E 100%);
+  h4{
+    max-width: 80%;
+    color: var(--text-invert);
+  }
+  h5{
+    padding: 16px 0;
+    color: var(--text-invert);
+  }
+}
+&__contact-right{
+  position:relative;
+  max-width: 47%;
+  padding: 32px;
+  border-radius: 0 16px 16px 0;
+  overflow: hidden;
+}
+
+}
+@import "./responsive/Home";
+

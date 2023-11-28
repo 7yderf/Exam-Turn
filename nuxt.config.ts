@@ -46,12 +46,16 @@ export default defineNuxtConfig({
     dirs: ['./stores'],
   },
   build: {
-    transpile: ['swiper', 'three'],
+    transpile: ['swiper'],
   },
   nitro: {
     prerender: {
       routes: [
         '/',
+        '/products',
+        '/products/[id]',
+        '/circuits',
+        '/circuits/[id]',
         '/legales/[tab]',
       ],
     },
@@ -78,6 +82,7 @@ export default defineNuxtConfig({
     // Keys within public, will be also exposed to the client-side
     public: {
       API_BASE_URL: process.env.API_BASE_URL || 'http://localhost:3000',
+      API_KEY: process.env.API_KEY || '123',
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://urlpage.com',
       gtmContainerId: process.env.NUXT_PUBLIC_GTM_CONTAINER_ID || 'GTM-XXXXXXX',
       fcbContainerId: process.env.NUXT_PUBLIC_FCB_CONTAINER_ID || 'FCB-XXXXXXX',

@@ -1,0 +1,137 @@
+@import "./Mixins";
+
+main {
+  @include main-box(100%, 0px);
+}
+
+article {
+  // @include border;
+  position: relative;
+}
+
+section {
+  // @include border
+}
+
+.box {
+  // @include border;
+}
+
+.about {
+
+  &__hero {
+    height: 500px;
+    &--valores{
+      height: auto;
+      padding: 86px 8px;
+    }
+  }
+
+  &__hero-section {
+    @include flex(center, 10px);
+    flex-direction: column;
+    color: var(--text-invert);
+    h4{
+      text-align: center;
+    }
+    p{
+      font-size: 2.4rem;
+      text-align: center;
+      line-height: 3.6rem;
+    }
+  }
+
+  &__hero-actions {
+    @include flex(center, 32px);
+    flex-grow: initial;
+  }
+
+  &__hero-action {
+    &--about {
+      @include button;
+    }
+
+    &--contact {
+      @include button(outline);
+    }
+
+    padding: 10px 24px 8px !important;
+    border-radius: 36px !important;
+  }
+
+  &__mision-section {
+    @include article-box;
+    flex-direction: row;
+    padding: 64px 0;
+  }
+
+  &__mision-box {
+    @include flex(center, 32px, flex-start);
+    flex-direction: column;
+    padding: 32px;
+    color: var(--text-invert);
+  }
+
+  &__mision-icons{
+    position: relative;
+    @include flex(center, 24px, flex-start);
+    flex-direction: column;
+    padding: 40px 32px;
+  }
+  &__val{
+    padding-top: 100px;
+  }
+  &__val-row {
+    @include flex(center, 32px, center);
+    flex-direction: column;
+  }
+  &__val-cards{
+    @include flex(center, 40px, center);
+    padding: 32px 0 80px;
+    flex-wrap: wrap;
+  }
+  &__val-image-bottom{
+    position: relative;
+    width: 100%;
+    height: calc(15vw - 32px);
+  }
+
+  &__body-icons {
+    @include flex;
+    @include border;
+    height: 50px;
+
+    .icon {
+      color: black;
+    }
+  }
+  &__contact-section{
+    @include flex(center,false,stretch);
+    // max-height: 650px;
+    padding:  64px 32px;
+    
+  }
+  
+  &__contact-left{
+    padding: 50px 48px;
+    border-radius: 16px 0 0 16px;
+    background: radial-gradient(50% 71.86% at 50% 50%, #626262 0%, #3E3E3E 100%);
+    h4{
+      max-width: 80%;
+      color: var(--text-invert);
+    }
+    h5{
+      padding: 16px 0;
+      color: var(--text-invert);
+    }
+  }
+  &__contact-right{
+    position:relative;
+    max-width: 47%;
+    padding: 32px;
+    border-radius: 0 16px 16px 0;
+    overflow: hidden;
+  }
+}
+
+@import "./responsive/About";

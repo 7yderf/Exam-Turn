@@ -1,60 +1,89 @@
+<!-- eslint-disable vuejs-accessibility/label-has-for -->
+<!-- eslint-disable vuejs-accessibility/click-events-have-key-events -->
+<!-- eslint-disable vuejs-accessibility/form-control-has-label -->
 <template>
-  <div class="field" :data-Type="data">
-    <div class="label" :data-Type="data">
-      <label class="label__text" >{{ label }}</label>
+  <div
+    class="field"
+    :data-Type="data"
+  >
+    <div
+      class="label"
+      :data-Type="data"
+    >
+      <label class="label__text">{{ label }}</label>
     </div>
 
-      <div class="input input__box" :data-Type="data">
-        
-          <VField :name="name"  v-model="searchGlobal" v-slot="{ field, meta, errors  }">
-            <span class="input__bullet">
-              <!-- <i class="input__bullet-icon" :class="leftIcon"></i> -->
-              <img class="input__bullet-icon" :src="icon" alt="">
-            </span>
-            <input
-              v-bind="field"
-              class="input__input input__input--select"
-              :class="{
-                'is-success': meta.valid && meta.touched,
-                'is-danger': !meta.valid && meta.touched,
-              }"
-              :placeholder="placeholder"
-              :type="type"
-              autocomplete="off"
-              :data-search="true"
-              @focus="showSearch"
-              @blur="handelSerch"
-              @click="debounceInput"
-              id="input_search_enter"
-              readonly
-            />
-            <div
-              class="search__resultSerch"
-              :data-Show="opcionSerch"
-              v-if="searchInputService !== ''"
-            >
-              <div
-                class="search__resultSerch-list"
-                v-for="item in searchInputService"
-                :key="item.id"
-                @click="serchParams(item)"
-              >
-                {{ `${item.name}` }}
-              </div>
-            </div>
-            <span
-              class="input__check--select"
-              :data-check="meta.valid && meta.touched"
-            >
-              <img src="/icon/arrow-down.svg" alt="">
-            </span>
-            
-            <p class="input__text-danger" v-if="!meta.valid && meta.touched">
-              {{ errors[0] }}
-            </p>
-          </VField>
-       
-      </div>
+    <div
+      class="input input__box"
+      :data-Type="data"
+    >
+
+      <VField
+        v-slot="{ field, meta, errors }"
+        v-model="searchGlobal"
+        :name="name"
+      >
+        <span class="input__bullet">
+          <!-- <i class="input__bullet-icon" :class="leftIcon"></i> -->
+          <img
+            v-if="icon !== ''"
+            class="input__bullet-icon"
+            :src="icon"
+            alt=""
+          >
+        </span>
+        <input
+          v-bind="field"
+          id="input_search_enter"
+          class="input__input input__input--select"
+          :class="{
+            'is-success': meta.valid && meta.touched,
+            'is-danger': !meta.valid && meta.touched,
+          }"
+          :placeholder="placeholder"
+          :type="type"
+          autocomplete="off"
+          :data-search="true"
+          readonly
+          @focus="showSearch"
+          @blur="handelSerch"
+          @click="debounceInput"
+        />
+        <div
+          v-if="searchInputService !== ''"
+          class="search__resultSerch"
+          :data-Show="opcionSerch"
+        >
+          <div
+            v-for="item in searchInputService"
+            :key="item.id"
+            class="search__resultSerch-list"
+            @click="serchParams(item)"
+          >
+            {{ `${item.name}` }}
+          </div>
+        </div>
+        <span
+          class="input__check--select click"
+
+          :data-check="meta.valid && meta.touched"
+          @click="showclick"
+        >
+          <img
+            src="/icon/arrow-down.svg"
+            alt=""
+          >
+        </span>
+
+        <p
+          v-if="!meta.valid && meta.touched"
+          class="input__text-danger"
+        >
+          {{ errors[0] }}
+        </p>
+      </VField>
+
+    </div>
 
   </div>
 </template>
@@ -63,7 +92,7 @@
 const props = defineProps({
   type: {
     type: String,
-    default: "text",
+    default: 'text',
   },
   name: {
     type: String,
@@ -75,78 +104,83 @@ const props = defineProps({
   },
   placeholder: {
     type: String,
-    default: "",
+    default: '',
   },
   icon: {
     type: String,
-    default: "",
+    default: '',
   },
   data: {
     type: String,
-    default: "",
+    default: '',
   },
-});
-const searchGlobal = ref("");
-const searchInput = ref([]);
-const searchInputService = ref([]);
-const opcionSerch = ref(false);
-const mod = ref(false);
-  
-    const showSearch = async () => {
-      opcionSerch.value = true;
-    };
-    const handelSerch = () => {
-      setTimeout(() => {
-        opcionSerch.value = false;
-      }, 500);
-    };
-    
-    
-    const serchParams = (value) => {
-      console.log(value);
-      searchGlobal.value = value.value;
-      // emit("cityValue", value.value);
-    };
-  
-    const debounceInput = async () => {
-      
-      searchInputService.value = [
-        {
-        id: 1,
-        value: 300000,
-        name: '$300,000'
-        },
-        {
-        id: 2,
-        value: 700000,
-        name: '$700,000'
-        },
-        {
-        id: 3,
-        value: 1500000,
-        name: '$1500,000'
-        }
-      ];
-      
-    };
+})
+const searchGlobal = ref('')
+const searchInput = ref([])
+const searchInputService = ref([])
+const opcionSerch = ref(false)
+const mod = ref(false)
 
-    // const debounceInput = _.debounce(async () => {
-    //   const { data } = await ApiService.get(
-    //       `/api/cities?search=${searchGlobal.value}`
-    //     );
-    //     searchInputService.value = data.data.map((c, index) => {
-    //       return { id: index + 1, value: c.city, name: c.name };
-    //     });
+const showSearch = async () => {
+  opcionSerch.value = true
+}
+const handelSerch = () => {
+  setTimeout(() => {
+    opcionSerch.value = false
+  }, 500)
+}
 
-    //     searchInput.value = [];
-      
-    // }, 400);
+const serchParams = value => {
+  console.log(value)
+  searchGlobal.value = value.name
+  opcionSerch.value = false
+  // emit("cityValue", value.value);
+}
 
+const debounceInput = async () => {
+  searchInputService.value = [
+    {
+      id: 1,
+      value: 300000,
+      name: '+ MXN $300,000',
+    },
+    {
+      id: 2,
+      value: 700000,
+      name: '+ MXN $700,000',
+    },
+    {
+      id: 3,
+      value: 1500000,
+      name: '+ MXN $1,500,000',
+    },
+  ]
+}
+
+const showclick = () => {
+  opcionSerch.value = !opcionSerch.value
+  console.log('🚀 ~ file: VSelectInput.vue:137 ~ showclick ~  opcionSerch.value:', opcionSerch.value)
+  debounceInput()
+}
+// const debounceInput = _.debounce(async () => {
+//   const { data } = await ApiService.get(
+//       `/api/cities?search=${searchGlobal.value}`
+//     );
+//     searchInputService.value = data.data.map((c, index) => {
+//       return { id: index + 1, value: c.city, name: c.name };
+//     });
+
+//     searchInput.value = [];
+
+// }, 400);
 
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/Input.scss";
 
+.click{
+  cursor: pointer;
+}
 .search {
   &__content-search {
     position: relative;
@@ -194,26 +228,26 @@ const mod = ref(false);
       background: #565656;
       border-radius: 4px;
     }
-    
+
     &::-webkit-scrollbar{
       width: 5px;
     }
-    
+
     &::-webkit-scrollbar-thumb:active {
       background-color: #565656;
     }
-    
+
     &::-webkit-scrollbar-thumb:hover {
       background: #565656;
     }
-    
+
      /* Estilos track de scroll */
     &::-webkit-scrollbar-track {
       background: #f3f3f300;
       border-radius: 4px;
     }
-    
-    &::-webkit-scrollbar-track:hover, 
+
+    &::-webkit-scrollbar-track:hover,
     &::-webkit-scrollbar-track:active {
       background: #00000000;
     }
@@ -228,7 +262,7 @@ const mod = ref(false);
     align-items: center;
     width: 100%;
     padding: 8px;
-    
+
     cursor: pointer;
     &:hover {
       background-color:#fcddd4;

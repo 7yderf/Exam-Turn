@@ -1,4 +1,3 @@
-<!-- eslint-disable vuejs-accessibility/form-control-has-label -->
 <!-- eslint-disable vuejs-accessibility/click-events-have-key-events -->
 <!-- eslint-disable vuejs-accessibility/anchor-has-content -->
 <template>
@@ -59,7 +58,7 @@
       >
         <ul
           class="navbar-nav d-flex  flex-grow-1 gap-4"
-          :class="toggler ? 'nav-menu__mobile-content--box container' : 'justify-content-center'"
+          :class="toggler ? 'nav-menu__mobile-content--box container' : 'justify-content-end'"
         >
           <p
             v-if="mounted"
@@ -87,9 +86,9 @@
             <NuxtLink
               class="nav-link"
               :data-active="toggler"
-              to="/markets"
+              to="/about"
             >
-              Markets
+              Nosotros
             </NuxtLink>
           </li>
           <li
@@ -99,37 +98,12 @@
             <NuxtLink
               class="nav-link"
               :data-active="toggler"
-              to="/knowledge"
+              to="/services"
             >
-              Knowledge
+              Servicios
             </NuxtLink>
           </li>
-          <li
-            class="nav-item"
-            @click="() => changePage()"
-          >
-            <NuxtLink
-              class="nav-link"
-              :data-active="toggler"
-              to="/finance"
-            >
-              Finance
-            </NuxtLink>
-          </li>
-          <li
-            class="nav-item"
-            @click="() => changePage()"
-          >
-            <NuxtLink
-              class="nav-link"
-              :data-active="toggler"
-              to="/connect"
-            >
-              Connect
-            </NuxtLink>
-          </li>
-          <!--
-          <li
+          <!--<li
             class="nav-item"
             @click="() => changePage()"
           >
@@ -144,35 +118,16 @@
         </ul>
         <div id="transport-follow" />
       </div>
-      <div class="nav-menu__box-icon">
-
-        <form class="lang">
-          <select
-            id="locale-select"
-            v-model="$i18n.locale"
-          >
-            <option value="en">
-              en
-            </option>
-            <option value="es">
-              es
-            </option>
-          </select>
-        </form>
-
-        <!-- <icon
+      <!-- <div class="nav-menu__box-icon">
+        <icon
+          name="ri:search-2-line"
+          class="nav-menu__icon"
+        />
+        <icon
           name="ri:shopping-cart-2-fill"
           class="nav-menu__icon"
-        /> -->
-        <NuxtLink
-          class="nav-menu__sign"
-          :data-active="toggler"
-          to="https://test.gobytec.com/login"
-          target="_blank"
-        >
-          Sing in
-        </NuxtLink>
-      </div>
+        />
+      </div> -->
     </div>
   </nav>
 </template>
@@ -242,33 +197,17 @@ onMounted(async () => {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/Mixins";
-.lang{
-  select{
-    border: none;
-    background: transparent;
-    color: var(--text-invert);
-    font-weight: 600;
-    font-size: 1.6rem;
-    &:focus{
-      outline: none;
-    }
-  }
-  option{
-    background: var(--primary-darker);
-    color: var(--text-invert);
-  }
-}
 
 .logo-header {
   transition: 0.5s;
-  max-width: 200px;
+  max-width: 120px;
 }
 
 .nav-menu {
   position: sticky;
   top: 0px;
   z-index: 5;
-  background: var(--primary-darker);
+  background: #293831;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.11);
   transition: 0.5s;
   &[data-nav-show="true"]{
@@ -277,17 +216,6 @@ onMounted(async () => {
   }
   @media screen and (max-width: 768px) {
     top: 0;
-  }
-  &__sign{
-    @include border(#1357f4);
-    color: var(--text-invert);
-    font-size: 1.2rem;
-    padding: 4px 16px;
-    border-radius: 16px;
-    background: #031e5d;
-    &:hover{
-      background: #083397;
-    }
   }
   .nav-link {
     color: var(--text-invert);

@@ -26,6 +26,9 @@ export const useFiltersEcom = defineStore('filtersEcom', {
       presale: null,
       outstock: null,
       quoteneeded: null,
+      format: 'json',
+      key: null,
+      lang: 'es',
     },
     productsList: [],
     linkPaginate: null,
@@ -44,7 +47,11 @@ export const useFiltersEcom = defineStore('filtersEcom', {
       this.filters = filters
     },
     async getProducts({ paginate = null, ...params }: any = {}) {
-      const { useFetch } = useProducts()
+      const { useFetch } = useProperty()
+      const dataProperty = ref<any>({
+        meta: {},
+        objects: [],
+      })
 
       if (JSON.stringify(params) !== '{}') {
         this.filters = { ...params, identifier: 1 }
@@ -56,25 +63,27 @@ export const useFiltersEcom = defineStore('filtersEcom', {
 
       try {
         const { productsList }: any = await useFetch(this.filters)
-        this.productsList = productsList.value
+        dataProperty.value = productsList.value || dataProperty.value
+        const { objects } = dataProperty.value
+        this.productsList = objects
       } catch (error) {}
     },
-    async getCircuits({ paginate = null, ...params }: any = {}) {
-      const { useFetchCircuits } = useCircuits()
+    // async getCircuits({ paginate = null, ...params }: any = {}) {
+    //   const { useFetchCircuits } = useCircuits()
 
-      if (JSON.stringify(params) !== '{}') {
-        this.filters = { ...params, identifier: 1 }
-      }
+    //   if (JSON.stringify(params) !== '{}') {
+    //     this.filters = { ...params, identifier: 1 }
+    //   }
 
-      if (paginate) {
-        this.linkPaginate = paginate
-      }
+    //   if (paginate) {
+    //     this.linkPaginate = paginate
+    //   }
 
-      try {
-        const { circuitsList }: any = await useFetchCircuits(this.filters)
-        this.productsList = circuitsList.value
-      } catch (error) {}
-    },
+    //   try {
+    //     const { circuitsList }: any = await useFetchCircuits(this.filters)
+    //     this.productsList = circuitsList.value
+    //   } catch (error) {}
+    // },
     constructorFiltersArray(filters: any) {
       const filtersArray: any = []
       for (const key in filters) {
@@ -151,6 +160,14 @@ export const useFiltersEcom = defineStore('filtersEcom', {
         }
         return acc
       }, {})
+    },
+    rangePriceParams(filters: any) {
+      const params: any = {}
+      const { price, ...rest } = filters
+      const priceMin = price?.split(',')[0]
+      const priceMax = price?.split(',')[1]
+      params.value = { ...rest, price_from: priceMin, price_to: priceMax }
+      return params.value
     },
   },
 })

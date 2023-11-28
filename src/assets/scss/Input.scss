@@ -1,8 +1,12 @@
 @import "./Mixins";
+
+// variable para el texto
+$font-input: var(--text-invert);
+
 input:-internal-autofill-selected {
   background-color: transparent !important;
   background-image: none !important;
-  color: var(--text-color) !important;
+  color: $font-input !important;
 }
 input:-webkit-autofill,
   input:-webkit-autofill:focus {
@@ -17,32 +21,18 @@ input:-webkit-autofill,
 .label {
   @include text(1.4rem, 400, 1.7rem, left);
   @include flex(center, false, stretch);
-  color: var(--text-color);
+  color: $font-input;
   padding-left: 5%;
   align-self: flex-start; //opcional
 
   flex-grow: 1;
-  &::after {
-    content: "*";
-    color: var(--error-color);
-  }
+  // &::after {
+  //   content: "*";
+  //   color: var(--error-color);
+  // }
   &__text{
     flex-grow: 1;
   }
-  &[data-type="middle_name"]{
-   
-      &::after{
-        content: "";
-      }
-    
-  }
-  &[data-type="address_line_2"]{
-   
-    &::after{
-      content: "";
-    }
-  
-}
 }
 
 .input {
@@ -50,8 +40,10 @@ input:-webkit-autofill,
   &__box{
     @include flex(center, false, center);
     position: relative;
-    @include border(rgb(78, 78, 78));
-    border-radius: 8px;
+    @include border(rgb(223, 223, 223));
+    border-top: none;
+    border-left: none;
+    border-right: none;
     padding: 4px 16px;
     margin-bottom: 16px;
     background-color: transparent;
@@ -60,23 +52,23 @@ input:-webkit-autofill,
 
   &__input {
     @include text(1.6rem, 400, 2.4rem);
+    color: $font-input;
     padding-left: 15px;
     padding-right: 15px;
     width: 100%;
     height: 50px;
-    color: var(--text-color);
     &::placeholder {
       @include text(1.3rem, 100, 2.4rem);
       letter-spacing: .4px;
-      color: var(--text-color);
+      color: $font-input;
     }
     &--select{
       cursor: pointer;
     }
   }
-  // &__bullet{
-  //   filter: invert(1);
-  // }
+  &__bullet{
+    filter: invert(1);
+  }
   &__check-success{
     filter: invert(85%) sepia(34%) saturate(4799%) hue-rotate(90deg) brightness(94%) contrast(98%);
   }
@@ -93,10 +85,10 @@ input:-webkit-autofill,
     // }
   }
   &__text-danger{
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     line-height: normal;
     position: absolute;
-    bottom: -22px;
+    bottom: -32px;
     color: var(--error-color);
     left: 20px;
   }

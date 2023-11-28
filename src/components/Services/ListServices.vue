@@ -35,8 +35,7 @@ const props = defineProps<{
 <style lang="scss" scoped>
 @import "@/assets/scss/Mixins";
 .list{
-  @include flex(flex-start, 16px, inherit);
-  padding-top: 100px;
+  @include flex(flex-start, 32px, inherit);
   flex-direction: column;
   &__content-box{
     @include flex(flex-start, false, inherit);
@@ -46,15 +45,12 @@ const props = defineProps<{
     padding:0px 16px;
   }
   &__tit{
-    @include text(2rem, 400, 2rem, left);
+    @include text(2.4rem, 400, 3.2rem, left);
+    color: white;
   }
   &__content-text{
     @include text(1.6rem, 400, 2.8rem, left);
-  }
-}
-@include for-size(tablet-portrait) {
-  .list{
-    padding-top: 0px;
+    color: white;
   }
 }
 </style>

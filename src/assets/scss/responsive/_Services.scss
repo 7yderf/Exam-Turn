@@ -1,0 +1,53 @@
+.services{
+  @include for-size(desktop-xbig) {}
+  @include for-size(desktop-big) {}
+  @include for-size(desktop-mid) {}
+  @include for-size(desktop) {}
+  @include for-size(tablet-landscape) {
+  }
+  @include for-size(tablet-portrait) {
+    &__contact-section{
+        flex-direction: column-reverse;
+    }
+
+    &__contact-left{
+      border-radius: 0 0 16px 16px;
+      padding: 16px;
+      h4{
+        font-size: 2.8rem;
+        line-height: 3.6rem;
+      }
+      h5{
+        font-size: 2rem;
+      }
+    }
+
+    &__contact-right{
+      max-width: inherit;
+      border-radius: 16px 16px 0 0;
+      height: 100px;
+    }
+    
+  }
+  @include for-size(tablet-small) {
+    &__hero-section{
+      p{
+        font-size: 1.6rem;
+        line-height: 2.5rem;
+      }
+    }
+    &__mision{
+      padding: 50px 8px;
+    }
+    &__contact-section{
+      padding: 16px;
+    }
+    &__mision-box{
+      padding: 16px;
+    }
+  }
+  @include for-size(phone-xbig) {}
+  @include for-size(phone-big) {}
+  @include for-size(phone-mid) {}
+  @include for-size(phone) {}
+}

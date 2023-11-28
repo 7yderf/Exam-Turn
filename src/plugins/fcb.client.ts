@@ -9,9 +9,11 @@ export default defineNuxtPlugin(nuxtApp => {
       useHead({
         script: [
           {
-            children: `! function(f, b, e, v, n, t, s){
+            children: `! function(f, b, e, v, n, t, s)
+						{
               if (f.fbq) return;
-              n = f.fbq = function() {
+              n = f.fbq = function() 
+							{
                 n.callMethod ?
                 n.callMethod.apply(n, arguments) : n.queue.push(arguments)
               };
@@ -24,7 +26,14 @@ export default defineNuxtPlugin(nuxtApp => {
               t.async = !0;
               t.src = v;
               s = b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t, s)}(window, document, 'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '${fcbContainerId}');fbq('track', 'PageView');`,
+              s.parentNode.insertBefore(t, s)
+          	}
+						(
+							window, document, 'script',
+            	'https://connect.facebook.net/en_US/fbevents.js'
+						);
+          	fbq('init', '${fcbContainerId}');
+          	fbq('track', 'PageView');`,
             tagPriority: 'high',
           },
         ],

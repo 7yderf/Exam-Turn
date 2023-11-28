@@ -10,7 +10,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, mounted } from 'vue'
 
 onMounted(async () => {})
 
@@ -18,5 +17,6 @@ onMounted(async () => {})
 <style lang="scss" scoped>
     .overflow {
         overflow-x: hidden;
+        height: 100%;
     }
 </style>

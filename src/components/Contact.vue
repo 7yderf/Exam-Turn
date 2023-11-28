@@ -6,98 +6,40 @@
       :initial-values="formValues"
       @submit="onSubmit"
     >
-      <h3 class="form__text">
-        {{ $t("contact") }}
-      </h3>
-      <div class="form__box">
+      <div class="form__box form__box--mobile">
         <FormVTextInput
           type="text"
-          name="name"
-          :label="$t('name')"
-          :placeholder="$t('placeholder-name')"
+          name="first_name"
+          label=""
+          placeholder="Nombre"
           icon="/icon/profile-circle.svg"
-          data="name"
+          data="first_name"
         />
-        <FormVTextInput
-          type="text"
-          name="middle_name"
-          :label="$t('middle')"
-          :placeholder="$t('placeholder-middle')"
-          icon="/icon/profile-circle.svg"
-          data="middle_name"
-        />
-      </div>
-      <div class="form__box">
         <FormVTextInput
           type="text"
           name="last_name"
-          :label="$t('last-name')"
-          :placeholder="$t('placeholder-last-name')"
+          label=""
+          placeholder="Apellido"
           icon="/icon/profile-circle.svg"
           data="last_name"
         />
-
-        <FormVTextInput
-          type="text"
-          name="telephone"
-          :label="$t('tel')"
-          :placeholder="$t('placeholder-tel')"
-          icon="/icon/call.svg"
-        />
-
       </div>
-      <div class="form__box">
+      <div class="form__box form__box--mobile">
         <FormVTextInput
           type="mail"
           name="email"
-          :label="$t('email')"
-          :placeholder="$t('placeholder-email')"
+          label=""
+          placeholder="Email"
           icon="/icon/sms.svg"
         />
-
       </div>
-      <h3 class="form__text">
-        {{ $t("direction") }}
-      </h3>
-      <div class="form__box">
-
+      <div class="form__box form__box--mobile">
         <FormVTextInput
           type="text"
-          name="address_line_1"
-          :label="$t('direction-1')"
-          :placeholder="$t('placeholder-direction-1')"
-          icon="/icon/building.svg"
-        />
-        <FormVTextInput
-          type="text"
-          name="address_line_2"
-          :label="$t('direction-2')"
-          :placeholder="$t('placeholder-direction-2')"
-          icon="/icon/building.svg"
-          data="address_line_2"
-        />
-      </div>
-      <div class="form__box">
-        <FormVTextInput
-          type="text"
-          name="city"
-          :label="$t('ciudad')"
-          :placeholder="$t('placeholder-ciudad')"
-          icon="/icon/building.svg"
-        />
-        <FormVTextInput
-          type="text"
-          name="state"
-          :label="$t('estado')"
-          :placeholder="$t('placeholder-estado')"
-          icon="/icon/building.svg"
-        />
-        <FormVTextInput
-          type="text"
-          name="country"
-          :label="$t('pais')"
-          :placeholder="$t('placeholder-pais')"
-          icon="/icon/building.svg"
+          name="telephone"
+          label=""
+          placeholder="+52 MX"
+          icon="/icon/call.svg"
         />
       </div>
       <div
@@ -108,7 +50,7 @@
           type="submit"
           class="form__submit-btn"
         >
-          {{ $t("send-solicitud") }}
+          Enviar
         </button>
       </div>
     </VForm>
@@ -117,55 +59,64 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useI18n } from 'vue-i18n'
-
+import { useReCaptcha } from 'vue-recaptcha-v3'
+// import axios from "axios";
 import { useForm } from 'vee-validate'
 // import { object, string, ref as yupRef } from "yup";
 import * as yup from 'yup'
 
-const { t, tm } = useI18n()
 const { handleSubmit } = useForm()
 const swal = inject('$swal')
 const config = useRuntimeConfig()
 const formValues = ref({
-  name: '',
-  middle_name: '',
-  last_name: '',
-  telephone: '',
   email: '',
-  address_line_1: '',
-  address_line_2: '',
-  city: '',
-  state: '',
-  country: '',
+  first_name: '',
+  last_name: '',
+  company: '',
+  telephone: '',
+  budget: '',
+  details: '',
 })
+
+// initialize a instance
+const recaptchaInstance = useReCaptcha()
+
+const recaptcha = async () => {
+  // optional you can await for the reCaptcha load
+  await recaptchaInstance?.recaptchaLoaded()
+
+  // get the token, a custom action could be added as argument to the method
+  const token = await recaptchaInstance?.executeRecaptcha('lead_Contact')
+
+  return token
+}
 
 const schema = markRaw(
   yup.object().shape({
-    name: yup.string().required('Required'),
-    middle_name: yup.string(),
-    last_name: yup.string().required('Required'),
-    telephone: yup.string()
-      .min(10, 'Minimo 10 caracteres')
-      .max(14, 'Maximo 14 caracteres')
-      .matches(/^[0-9]+$/, 'Solo se aceptan numeros')
-      .required('Required'),
+    first_name: yup.string().required('El dato es obligatorio'),
+    last_name: yup.string().required('El dato es obligatorio'),
+    company: yup.string().required('El dato es obligatorio'),
     email: yup
       .string()
-      .email('Porfavor ingrese un formato valido')
-      .required('Required'),
-    address_line_1: yup.string().required('Required'),
-    address_line_2: yup.string(),
-    city: yup.string().required('Required'),
-    state: yup.string().required('Required'),
-    country: yup.string().required('Required'),
+      .required('El dato es obligatorio')
+      .email('Porfavor ingrese un formato valido'),
+    telephone: yup.string()
+      .min(10, 'Minimo 10 caracteres')
+      .max(10, 'Maximo 10 caracteres')
+      .matches(/^[0-9]+$/, 'Solo se aceptan numeros')
+      .required('El dato es obligatorio'),
+    budget: yup.string().required('El dato es obligatorio'),
   }),
 )
 
 const onSubmit = async (values, { resetForm }) => {
-  const { data, error } = await useLazyFetch('https://test.api.gobytec.com/contact', {
+  const token = await recaptcha()
+
+  values.budget = values.budget.replace(/[^0-9]+/g, '')
+
+  const { data, error } = await useLazyFetch(`${config.API_BASE_URL}api/lead`, {
     method: 'POST',
-    body: JSON.stringify(values),
+    body: JSON.stringify({ ...values, 'g-recaptcha-response': token }),
     headers: {
       'Content-Type': 'application/json',
     },
@@ -211,25 +162,41 @@ onMounted(async () => {
 <style lang="scss" scoped>
 @import "@/assets/scss/Mixins";
 .form{
-  width: 100%;
   &__box{
     @include flex(space-between, 16px, center);
-    @media screen and (max-width: 768px) {
-      flex-direction: column;
-      align-items: stretch;
-    }
   }
   &__submit{
     width: 100%;
+    padding-top: 32px;
   }
   &__submit-btn{
     @include button;
     max-width: inherit;
     width: 100%;
+    max-width: 150px;
+    margin-left: auto;
+    padding: 16px 32px;
+    border-radius: 32px 0 0 32px;
   }
   &__text{
     @include text(2.4rem, 400, 2.8rem, left);
     margin: 16px 0 32px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .form{
+    &__box{
+      &--mobile{
+        flex-direction: column ;
+        gap: 0;
+        .field{
+          width: 100%;
+
+        }
+      }
+    }
+  }
+}
+
 </style>
