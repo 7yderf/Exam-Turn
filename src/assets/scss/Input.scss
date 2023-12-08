@@ -2,11 +2,15 @@
 
 // variable para el texto
 $font-input: var(--text-invert);
+$font-input-black: var(--text-color);
 
 input:-internal-autofill-selected {
   background-color: transparent !important;
   background-image: none !important;
   color: $font-input !important;
+  &[data-font-black="true"]{
+    color: $font-input-black;
+  }
 }
 input:-webkit-autofill,
   input:-webkit-autofill:focus {
@@ -24,8 +28,10 @@ input:-webkit-autofill,
   color: $font-input;
   padding-left: 5%;
   align-self: flex-start; //opcional
-
   flex-grow: 1;
+  &[data-font-black="true"]{
+    color: $font-input-black;
+  }
   // &::after {
   //   content: "*";
   //   color: var(--error-color);
@@ -48,6 +54,9 @@ input:-webkit-autofill,
     margin-bottom: 16px;
     background-color: transparent;
     background-image: blur(10px);
+    &[data-font-black="true"]{
+      @include border(rgb(223, 223, 223));
+    }
   }
 
   &__input {
@@ -62,8 +71,16 @@ input:-webkit-autofill,
       letter-spacing: .4px;
       color: $font-input;
     }
+    &[data-font-black="true"]{
+      color: $font-input-black;
+      &::placeholder {
+        color: $font-input-black;
+        font-weight: 300;
+      }
+    }
     &--select{
       cursor: pointer;
+      height: 40px;
     }
   }
   &__bullet{

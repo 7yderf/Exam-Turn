@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable import/prefer-default-export */
 import { defineStore } from 'pinia'
@@ -29,14 +31,25 @@ export const useFiltersEcom = defineStore('filtersEcom', {
       format: 'json',
       key: null,
       lang: 'es',
+      data: {} as any,
     },
     productsList: [],
     linkPaginate: null,
+    nextPaginate: null,
+    prevPaginate: null,
+    limit: null,
+    offset: 0,
+    total: 0,
   }),
   getters: {
     getFilters: state => state.filters,
     getProductsList: state => state.productsList,
     getPaginator: state => state.linkPaginate,
+    getNextPaginator: state => state.nextPaginate,
+    getPrevPaginator: state => state.prevPaginate,
+    getLimit: state => state.limit,
+    getOffset: state => state.offset,
+    getTotal: state => state.total,
   },
   actions: {
 
@@ -46,7 +59,35 @@ export const useFiltersEcom = defineStore('filtersEcom', {
     setFilters(filters: any) {
       this.filters = filters
     },
+    setOffset(offset: any) {
+      this.offset = offset
+    },
+
+    isArrayOrString(value: any) {
+      if (Array.isArray(value)) {
+        return value
+      }
+      return value.split('')
+    },
     async getProducts({ paginate = null, ...params }: any = {}) {
+      console.log('🚀 ~ file: FiltersEcom.ts:57 ~ getProducts ~ params:', params)
+      const {
+        property_types, operation_types, price_from, price_to, offset,
+      } = params
+        console.log('🚀 ~ file: FiltersEcom.ts:70 ~ getProducts ~ offset:', offset)
+      this.offset = offset
+      if (property_types) params.property_types = this.isArrayOrString(property_types)
+      else params.property_types = ''
+      if (operation_types) params.operation_types = this.isArrayOrString(operation_types)
+      else params.operation_types = ''
+      if (price_from && price_to) {
+        params.price_from = price_from
+        params.price_to = price_to
+      } else {
+        params.price_from = ''
+        params.price_to = ''
+      }
+
       const { useFetch } = useProperty()
       const dataProperty = ref<any>({
         meta: {},
@@ -54,7 +95,11 @@ export const useFiltersEcom = defineStore('filtersEcom', {
       })
 
       if (JSON.stringify(params) !== '{}') {
-        this.filters = { ...params, identifier: 1 }
+        this.filters = {
+          data: JSON.stringify({
+            ...params, filters: [],
+          }),
+        }
       }
 
       if (paginate) {
@@ -64,8 +109,13 @@ export const useFiltersEcom = defineStore('filtersEcom', {
       try {
         const { productsList }: any = await useFetch(this.filters)
         dataProperty.value = productsList.value || dataProperty.value
-        const { objects } = dataProperty.value
+        const { objects, meta } = dataProperty.value
         this.productsList = objects
+        this.nextPaginate = meta.next
+        this.prevPaginate = meta.previous
+        this.limit = meta.limit
+        this.offset = meta.offset
+        this.total = meta.total_count
       } catch (error) {}
     },
     // async getCircuits({ paginate = null, ...params }: any = {}) {
@@ -105,18 +155,30 @@ export const useFiltersEcom = defineStore('filtersEcom', {
       }
       return filtersObj
     },
+
+    // transforFiltesrToUrl con if para añadir parametros por separado dentro de un array
+
+    // transforFiltesrToUrl(filters: any) {
+    //   const filtersArray: any = []
+    //   for (const key in filters) {
+    //     if (filters[key] !== null && filters[key] !== '') {
+    //       if (typeof filters[key] === 'string' && filters[key].includes(',')) {
+    //         const values = filters[key].split(',')
+    //         for (const value of values) {
+    //           filtersArray.push(`${key}=${value.trim()}`)
+    //         }
+    //       } else {
+    //         filtersArray.push(`${key}=${filters[key]}`)
+    //       }
+    //     }
+    //   }
+    //   return filtersArray.join('&')
+    // },
     transforFiltesrToUrl(filters: any) {
       const filtersArray: any = []
       for (const key in filters) {
         if (filters[key] !== null && filters[key] !== '') {
-          if (typeof filters[key] === 'string' && filters[key].includes(',')) {
-            const values = filters[key].split(',')
-            for (const value of values) {
-              filtersArray.push(`${key}=${value.trim()}`)
-            }
-          } else {
-            filtersArray.push(`${key}=${filters[key]}`)
-          }
+          filtersArray.push(`${key}=${filters[key]}`)
         }
       }
       return filtersArray.join('&')

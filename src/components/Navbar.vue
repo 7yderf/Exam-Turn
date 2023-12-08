@@ -1,6 +1,15 @@
 <!-- eslint-disable vuejs-accessibility/click-events-have-key-events -->
 <!-- eslint-disable vuejs-accessibility/anchor-has-content -->
 <template>
+
+  <div
+    v-if="load"
+    :disabled="false"
+    class="lodaer__body"
+  >
+    <span class="loader" />
+  </div>
+
   <nav
     :data-nav-show="isRezise && hideNav"
     class="navbar navbar-expand-md nav-menu nav-menu__mobile-content"
@@ -103,6 +112,18 @@
               Servicios
             </NuxtLink>
           </li>
+          <li
+            class="nav-item"
+            @click="() => changePage()"
+          >
+            <NuxtLink
+              class="nav-link"
+              :data-active="toggler"
+              to="/property"
+            >
+              Propiedades
+            </NuxtLink>
+          </li>
           <!--<li
             class="nav-item"
             @click="() => changePage()"
@@ -135,6 +156,7 @@
 const toggler = useToggler()
 const useToggle = useShowMenu()
 const isRezise = useSizeResponsive()
+const load = useload()
 const mounted = ref<boolean>(false)
 const hideNav = ref<boolean>(false)
 
@@ -497,4 +519,17 @@ onMounted(async () => {
   }
 }
 
-@media screen and (max-width: 635px) {}</style>
+@media screen and (max-width: 635px) {}
+.lodaer__body{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: 44;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+@import "@/assets/scss/loader.scss";
+</style>

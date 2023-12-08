@@ -52,11 +52,10 @@ export default defineNuxtConfig({
     prerender: {
       routes: [
         '/',
-        '/products',
-        '/products/[id]',
-        '/circuits',
-        '/circuits/[id]',
-        '/legales/[tab]',
+        '/property',
+        '/property/[id]',
+        '/about',
+        '/services',
       ],
     },
   },

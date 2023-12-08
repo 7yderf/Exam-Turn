@@ -22,7 +22,7 @@
               <global-button-services
                 v-for="item, index in saleServices"
                 :key="index"
-                :whatsapp="item.whatsapp"
+                :whatsapp="'https://wa.link/6jdak0'"
                 :text-boton="item.textBoton"
                 :message="item.message"
               />
@@ -41,7 +41,7 @@
               <global-button-services
                 v-for="item, index in valueProperty"
                 :key="index"
-                :whatsapp="item.whatsapp"
+                :whatsapp="'https://wa.link/5iru5s'"
                 :text-boton="item.textBoton"
                 :message="item.message"
               />
@@ -60,7 +60,7 @@
               <global-button-services
                 v-for="item, index in administration"
                 :key="index"
-                :whatsapp="item.whatsapp"
+                :whatsapp="'https://wa.link/an91o5'"
                 :text-boton="item.textBoton"
                 :message="item.message"
               />
@@ -79,7 +79,7 @@
               <global-button-services
                 v-for="item, index in capacitation"
                 :key="index"
-                :whatsapp="item.whatsapp"
+                :whatsapp="'https://wa.link/80kskq'"
                 :text-boton="item.textBoton"
                 :message="item.message"
               />

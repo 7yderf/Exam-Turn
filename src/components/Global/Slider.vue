@@ -106,6 +106,7 @@ export default {
     border: 1px solid #2723234d;
     padding: 14px 8px;
     border-radius: 12px;
+    background: #ffffff5f;
   }
 
   @media screen and (max-width: 768px) {

@@ -12,8 +12,9 @@ defineProps<{
     class="contact-whatsapp"
   >
     <NuxtLink
-      :to="whatsapp + '?text=' + message"
+      :to="whatsapp"
       class="contact-whatsapp__button"
+      target="_blank"
     >
       <global-space-blur
         class="contact-whatsapp__button-blur"

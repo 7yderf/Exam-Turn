@@ -47,7 +47,7 @@ defineProps<{
     padding: 16px;
     transform: translateY(60%);
     background-color: rgba(89, 131, 252, 0);
-background-image: linear-gradient(180deg, rgba(89, 131, 252, 0) 0%, rgba(41, 53, 86, 0.26) 19%, rgba(41, 53, 86, 1) 100%);
+background-image: linear-gradient(180deg, rgba(89, 131, 252, 0) 0%, rgba(41, 56, 49, 0.43) 33%, rgba(41, 56, 49, 1) 100%);
     transition: 0.5s;
     z-index: 0;
     p{

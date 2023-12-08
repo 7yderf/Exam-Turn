@@ -1,12 +1,11 @@
 <!-- eslint-disable vue/no-v-html -->
 <template>
 
-  <nuxt-link
-    :to="`/property/${property.id}`"
+  <div
     class="property"
   >
     <div class="slide">
-      <global-slider
+      <global-galery-detail
         :images="property.photos || []"
       />
     </div>
@@ -29,7 +28,7 @@
         </div>
       </div>
     </div>
-  </nuxt-link>
+  </div>
 
 </template>
 
@@ -45,13 +44,19 @@ const props = defineProps<{
 
 <style lang="scss" scoped>
 @import "@/assets/scss/Mixins";
+.slide{
+  width: 70%;
+  padding: 16px;
+  max-width: 700px;
+}
 .property {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 3px 16px 110px 0px rgba(0, 0, 0, 0.17);
-  width: 270px;
+  width: 100%;
+ 
   &__main{
     @include flex(flex-start, 8px, flex-start);
     flex-direction: column;

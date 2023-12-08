@@ -1,20 +1,21 @@
 // escuchar el cambio de ruta y la procedencia de la ruta
 
 export default defineNuxtRouteMiddleware((to, from, next) => {
-  const historyNav = useItemNav()
+  const load = useload()
+  load.value = true
 
-  if (!to.params?.id) {
-    historyNav.value = [
-      { name: 'Atrás', url: '/', icon: 'ri:arrow-left-line' },
-      { name: 'Inicio', url: '/', icon: '' },
-      { name: to.meta.title, url: to.path, icon: '' },
-    ]
-  } else if (to.params?.id) {
-    historyNav.value = [
-      { name: 'Atrás', url: `/${to.path.split('/')[1]}`, icon: 'ri:arrow-left-line' },
-      { name: 'Inicio', url: '/', icon: '' },
-      { name: to.meta.title, url: `/${to.path.split('/')[1]}`, icon: '' },
-      { name: to.meta.detail, url: to.path, icon: '' },
-    ]
-  }
+  // if (!to.params?.id) {
+  //   historyNav.value = [
+  //     { name: 'Atrás', url: '/', icon: 'ri:arrow-left-line' },
+  //     { name: 'Inicio', url: '/', icon: '' },
+  //     { name: to.meta.title, url: to.path, icon: '' },
+  //   ]
+  // } else if (to.params?.id) {
+  //   historyNav.value = [
+  //     { name: 'Atrás', url: `/${to.path.split('/')[1]}`, icon: 'ri:arrow-left-line' },
+  //     { name: 'Inicio', url: '/', icon: '' },
+  //     { name: to.meta.title, url: `/${to.path.split('/')[1]}`, icon: '' },
+  //     { name: to.meta.detail, url: to.path, icon: '' },
+  //   ]
+  // }
 })

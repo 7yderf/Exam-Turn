@@ -9,6 +9,7 @@
     <div
       class="label"
       :data-Type="data"
+      data-font-black="true"
     >
       <label class="label__text">{{ label }}</label>
     </div>
@@ -16,6 +17,7 @@
     <div
       class="input input__box"
       :data-Type="data"
+      data-font-black="true"
     >
 
       <VField
@@ -36,6 +38,7 @@
           v-bind="field"
           id="input_search_enter"
           class="input__input input__input--select"
+          data-font-black="true"
           :class="{
             'is-success': meta.valid && meta.touched,
             'is-danger': !meta.valid && meta.touched,
@@ -45,6 +48,7 @@
           autocomplete="off"
           :data-search="true"
           readonly
+          :disabled="disabled"
           @focus="showSearch"
           @blur="handelSerch"
           @click="debounceInput"
@@ -55,8 +59,8 @@
           :data-Show="opcionSerch"
         >
           <div
-            v-for="item in searchInputService"
-            :key="item.id"
+            v-for="item, index in [{ name: 'Seleccione una opcion', id: '' }, ...searchInputService]"
+            :key="index"
             class="search__resultSerch-list"
             @click="serchParams(item)"
           >
@@ -114,7 +118,20 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  selectInfo: {
+    type: Array,
+    default: () => [],
+  },
+  reset: {
+    type: Boolean,
+    default: false,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 })
+const emits = defineEmits()
 const searchGlobal = ref('')
 const searchInput = ref([])
 const searchInputService = ref([])
@@ -127,34 +144,18 @@ const showSearch = async () => {
 const handelSerch = () => {
   setTimeout(() => {
     opcionSerch.value = false
-  }, 500)
+  }, 200)
 }
 
 const serchParams = value => {
   console.log(value)
-  searchGlobal.value = value.name
+  searchGlobal.value = value.name === 'Seleccione una opcion' ? '' : value.name
   opcionSerch.value = false
-  // emit("cityValue", value.value);
+  emits('select', value, props.name)
 }
 
 const debounceInput = async () => {
-  searchInputService.value = [
-    {
-      id: 1,
-      value: 300000,
-      name: '+ MXN $300,000',
-    },
-    {
-      id: 2,
-      value: 700000,
-      name: '+ MXN $700,000',
-    },
-    {
-      id: 3,
-      value: 1500000,
-      name: '+ MXN $1,500,000',
-    },
-  ]
+  searchInputService.value = props.selectInfo
 }
 
 const showclick = () => {
@@ -162,17 +163,16 @@ const showclick = () => {
   console.log('🚀 ~ file: VSelectInput.vue:137 ~ showclick ~  opcionSerch.value:', opcionSerch.value)
   debounceInput()
 }
-// const debounceInput = _.debounce(async () => {
-//   const { data } = await ApiService.get(
-//       `/api/cities?search=${searchGlobal.value}`
-//     );
-//     searchInputService.value = data.data.map((c, index) => {
-//       return { id: index + 1, value: c.city, name: c.name };
-//     });
 
-//     searchInput.value = [];
-
-// }, 400);
+watch(() => props.reset, () => {
+  searchGlobal.value = ''
+})
+watch(() => props.selectInfo, () => {
+  searchInputService.value = props.selectInfo
+  if (props.selectInfo.length === 0) {
+    searchGlobal.value = ''
+  }
+})
 
 </script>
 <style lang="scss" scoped>
@@ -181,13 +181,19 @@ const showclick = () => {
 .click{
   cursor: pointer;
 }
+
+label{
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 1.1px;
+  }
 .search {
   &__content-search {
     position: relative;
     width: 100%;
     input{
       width: 100%;
-      height: 50px;
+      height: 40px;
       background: #151317;
       border-radius: 5px;
       padding: 20px;
@@ -210,7 +216,8 @@ const showclick = () => {
     }
   }
   &__resultSerch {
-    background: #FEEFEB;
+    background: #e5f0eb47;
+    backdrop-filter: blur(60px);
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -265,7 +272,8 @@ const showclick = () => {
 
     cursor: pointer;
     &:hover {
-      background-color:#fcddd4;
+      background: #b4c1bb54;
+      backdrop-filter: blur(40px);
       font-weight: 400;
     }
   }

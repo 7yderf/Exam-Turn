@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  titleTemplate: title => (title ? `${title} - Turn ` : 'exsin'),
+  titleTemplate: title => (title ? `${title} - exsin ` : 'exsin'),
 })
 
 </script>

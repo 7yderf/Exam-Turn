@@ -24,6 +24,29 @@
           </div>
         </section>
       </article>
+      <article
+        v-if="!loading"
+        class="home__property container"
+      >
+
+        <div class="box home__property-hero">
+          <h4>Propiedades destacadas</h4>
+          <h5>Encuentre la propiedad que busca</h5>
+        </div>
+        <div class="home__property-filters">
+          <filter-form
+            :ubication="'home'"
+          />
+        </div>
+        <div class="box home__property-body">
+          <global-property
+            v-for="(property, index) in objects"
+            :key="index"
+            :property="property"
+          />
+        </div>
+
+      </article>
       <article class="home__services w-100">
         <global-background-src
           :img-src="'/backgrounds/service_hero.png'"
@@ -35,7 +58,7 @@
               class="home__services-space-blur"
               :description="'servicio profesional y muy especializado enfocado a retos de almacenamiento, la búsqueda de inmuebles especializados, asesoría técnica, legal y financiera; valuación y estudios de mercado, negociación, soluciones a corto, mediano y largo plazo, proyectos llave en mano, gestión de trámites'"
               :box-shadow="true"
-              background="rgba(255, 255, 255, 0.10)"
+              background="rgb(41 56 49 / 46%)"
               blur="60px"
             />
           </div>
@@ -68,23 +91,6 @@
           </div>
         </section>
       </article>
-      <article
-        v-if="!loading"
-        class="home__property container">
-
-        <div class="box home__property-hero">
-          <h4>Propiedades destacadas</h4>
-          <h5>Encuentre la propiedad que busca</h5>
-        </div>
-        <div class="box home__property-body">
-          <global-property
-            v-for="(property, index) in objects"
-            :key="index"
-            :property="property"
-          />
-        </div>
-
-      </article>
       <article class="home__contact">
         <section class="container home__contact-section">
           <div class="box home__contact-left">
@@ -106,9 +112,11 @@
 </template>
 
 <script lang="ts" setup>
+const load = useload()
 const loading = ref<boolean>(true)
 const { useFetch } = useProperty()
-const { productsList, error }: any = await useFetch({ limit: 5 })
+const { productsList, error }: any = await useFetch({ limit: 6 })
+load.value = false
 
 const dataProperty = ref<any>({
   meta: {},
@@ -132,6 +140,12 @@ const animationScroll = () => {
     })
   })
 }
+
+definePageMeta({
+  middleware: 'observer-nav',
+  icon: 'mdi-home',
+  title: 'Productos',
+})
 
 onMounted(async () => {
   console.log('mounted', window.scroll)
