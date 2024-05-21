@@ -243,7 +243,7 @@ export default {
 
     watch(() => props.reset, value => {
       console.log('🚀 ~ file: SelectedFormAnio.vue:137 ~ watch ~ value:', value)
-      dataSelected.value = ''
+      dataSelected.value = []
     })
 
     return {

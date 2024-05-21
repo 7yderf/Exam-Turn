@@ -75,13 +75,11 @@ export default {
       const regex = /[a-zA-Z]/g
       if (regex.test(rangeMin.value) || regex.test(rangeMax.value)) {
         error.value = 'Solo se permiten números'
-        console.log('🚀 ~ file: Range.vue:121 ~ oninput ~ error.value:', error.value)
         return
       }
       error.value = null
       rangeMin.value = parseInt(value.value[0], 10)
       rangeMax.value = parseInt(value.value[1], 10)
-      console.log('🚀 ~ file: Range.vue:131 ~ oninput ~ value.value[1]:', value.value[1])
 
       emit('searchRange', parseNumber(rangeMin.value), parseNumber(rangeMax.value), props.type)
     }
