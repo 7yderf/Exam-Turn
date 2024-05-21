@@ -12,10 +12,6 @@ export default function useBrokProperty() {
     const queryParams = transformFiltersToQueryParams()
     const options = {
       method: 'GET',
-      redirect: 'follow',
-      headers: {
-        accept: 'application/json',
-      },
     }
 
     const queryString = new URLSearchParams(queryParams).toString()
