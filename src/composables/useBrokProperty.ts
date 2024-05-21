@@ -16,7 +16,7 @@ export default function useBrokProperty() {
 
     const queryString = new URLSearchParams(queryParams).toString()
     console.log('🚀 ~ fetchProperties ~ queryString:', queryString)
-    const url = `http://apieasybroker-production.up.railway.app?${decodeURIComponent(queryString)}`
+    const url = `https://apieasybroker-production.up.railway.app?${decodeURIComponent(queryString)}`
 
     try {
       const response = await fetch(url, options)
