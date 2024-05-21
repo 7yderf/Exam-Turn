@@ -1,0 +1,95 @@
+@import "./Mixins";
+main{
+  @include main-box(100%, 0px);
+}
+article{
+  // @include border;
+  position: relative;
+}
+section{
+  // @include border
+}
+
+.box{
+  // @include border;
+}
+
+.home{
+  
+&__services{
+  padding-top: 0px;
+  padding-bottom: 40px;
+}
+&__contact-box{
+  &--hero{
+    @include flex;
+    height: 86px
+  }
+  &--main{
+    border: 1px solid #cdcdcd;
+    border-top: none;
+    padding: 24px;
+  }
+}
+&__services-filters{
+  @include flex(center, 16px);
+  flex-direction: column;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+}
+
+.about{
+  &__box-title{
+    @include flex;
+    min-height: 200px;
+    padding: 48px 16px;
+    
+  }
+  &__list-vision{
+    @include flex(center, 16px,flex-start);
+    flex-direction: column;
+    padding: 24px;
+  }
+  
+  &__metrics{
+    @include flex(space-around, 16px);
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 48px 16px 40px;
+  }
+  &__decorate{
+    background: var(--primary-color);
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+    left: -20px;
+    top: 50px;
+    position: absolute;
+    animation: palpito 2s infinite;
+  }
+  
+}
+
+.services{
+  &__services{
+    padding: 60px 0px;
+    @include flex(center, 40px);
+    flex-direction: column;
+  }
+
+}
+
+@keyframes palpito {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+  
+}
+// @import "./responsive/Home";
+
