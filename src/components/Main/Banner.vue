@@ -63,7 +63,7 @@ defineProps<{
   </article>
 </template>
 <style lang="scss" scoped>
-@import "@/assets/scss/mixins";
+@import "@/assets/scss/Mixins";
 
 .banner{
 
