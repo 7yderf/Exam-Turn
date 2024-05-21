@@ -95,7 +95,7 @@ defineProps<{
   </div>
 </template>
 <style lang="scss" scoped>
-@import "@/assets/scss/mixins.scss";
+@import "@/assets/scss/Mixins";
 .paragraph{
   @include flex(center, var(--gap), var(--align-items));
   flex-direction: column;
